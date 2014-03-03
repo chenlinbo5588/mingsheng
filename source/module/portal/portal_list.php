@@ -16,6 +16,9 @@ if(empty($catid)) {
 	showmessage('list_choose_category', dreferer());
 }
 $portalcategory = &$_G['cache']['portalcategory'];
+//echo $catid;
+
+
 $cat = $portalcategory[$catid];
 
 if(empty($cat)) {
@@ -23,6 +26,13 @@ if(empty($cat)) {
 }
 require_once libfile('function/portalcp');
 $categoryperm = getallowcategory($_G['uid']);
+/*
+print_r($cat);
+print_r($_G['group']);
+print_r($categoryperm[$catid]);
+die(0);
+*/
+
 if($cat['closed'] && !$_G['group']['allowdiy'] && !$categoryperm[$catid]['allowmanage']) {
 	showmessage('list_category_is_closed', dreferer());
 }

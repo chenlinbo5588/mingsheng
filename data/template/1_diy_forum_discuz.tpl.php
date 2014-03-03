@@ -6,6 +6,18 @@
 </div>
 </div>
 </div>
+
+<!--
+<div class="dmain">
+<div class="bmzx"><img src="images/zjlogo.jpg" /></div>
+<div class="bmlist">
+<div><?php if(is_array($catlist)) foreach($catlist as $key => $cat) { if(is_array($cat['forums'])) foreach($cat['forums'] as $forumid) { $forum=$forumlist[$forumid];?><?php $forumurl = !empty($forum['domain']) && !empty($_G['setting']['domain']['root']['forum']) ? 'http://'.$forum['domain'].'.'.$_G['setting']['domain']['root']['forum'] : 'forum.php?mod=forumdisplay&fid='.$forum['fid'];?><a href="<?php echo $forumurl;?>"<?php if($forum['redirect']) { ?> target="_blank"<?php } ?>><?php echo $forum['name'];?></a>|
+<?php } } ?>
+</div>
+</div>
+</div>
+-->
+
 <div class="showstatus"><img src="images/showstatus.jpg"></div>
 <div class=""></div>
 <div id="pt" class="bm cl">

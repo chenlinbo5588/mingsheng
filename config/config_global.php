@@ -4,9 +4,9 @@
 $_config = array();
 
 // ----------------------------  CONFIG DB  ----------------------------- //
-$_config['db']['1']['dbhost'] = 'localhost';
+$_config['db']['1']['dbhost'] = '192.168.171.128';
 $_config['db']['1']['dbuser'] = 'root';
-$_config['db']['1']['dbpw'] = '123456';
+$_config['db']['1']['dbpw'] = '123123';
 $_config['db']['1']['dbcharset'] = 'utf8';
 $_config['db']['1']['pconnect'] = '0';
 $_config['db']['1']['dbname'] = 'minsheng';

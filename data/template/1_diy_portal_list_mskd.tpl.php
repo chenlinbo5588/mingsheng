@@ -15,7 +15,15 @@ block_get('6');?><?php include template('common/header'); ?><!--[name]!portalcat
 </div>
 </div>
 <div class="mright">
-<div class="helpsound"></div>
+<div class="helpsound">
+            <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>
+            <a class="hotlink" href="/portal.php?mod=view&amp;aid=9">热线呼叫</a>
+            <a class="hotlink" href="/forum.php">部门连线</a>
+            <a class="hotlink" href="/forum.php">镇街连线</a>
+            <a class="hotlink" href="/weibo.html">政务微博</a>
+            <a class="hotlink" href="/portal.php?mod=view&amp;aid=10">微信留言</a>
+            <a class="hotlink" href="/portal.php?mod=view&amp;aid=11">微博留言</a>
+        </div>
 <div class="lanmu">
 <div class="lanmutop"><h1>阿拉帮侬忙</h1></div>
 <div class="lanmucen"><?php block_display('6');?></div>

@@ -2,7 +2,7 @@
 block_get('7,8,9,11,13,13,5,12');?><?php include template('common/header'); ?><div class="mfirst">
 <div class="mhdp"><img src="images/focus.jpg" /></div>
 <div class="mmskd">
-<h2>&gt;&nbsp;<a href="/portal.php?mod=list&amp;catid=2">更多</a></h2>
+<h2><a class="moreLink" href="/portal.php?mod=list&amp;catid=2">&gt;&nbsp;更多</a></h2>
 <div class="mscon">
 <h3><?php block_display('7');?></h3>
 <div class="hot2"><?php block_display('8');?></div>
@@ -16,7 +16,7 @@ block_get('7,8,9,11,13,13,5,12');?><?php include template('common/header'); ?><d
 </div>
 <div class="msecond">
 <div class="secleft">
-<h2>&gt;&nbsp;<a href="/portal.php?mod=list&amp;catid=3">更多</a></h2>
+<h2><a class="moreLink" href="/portal.php?mod=list&amp;catid=3">&gt;&nbsp;更多</a></h2>
 <div class="mscons">
 <div class="mlist mlisthome"><?php block_display('11');?></div>
  
@@ -25,19 +25,36 @@ block_get('7,8,9,11,13,13,5,12');?><?php include template('common/header'); ?><d
 </div>
 <div class="clr"></div>
 </div>
-<div class="asklc"><img src="images/asklc.jpg" /></div>
+<div class="asklc">
+            <a href="/portal.php?mod=view&amp;aid=12" class="guide guide1">发帖须知</a>
+            <a href="/portal.php?mod=list&amp;catid=6" class="guide guide2">常见问题</a>
+            <a href="/portal.php?mod=list&amp;catid=7" class="guide guide3">部门职责</a>
+            <a href="/forum.php" class="guide guide4">镇街连线</a>
+            <a href="/forum.php" class="guide guide5">我要提问</a>
+            <!--<img src="images/asklc.jpg" />-->
+            
+        
+        </div>
 </div>
 <div class="secright">
-<div class="bncdsy"></div>
+<div class="bncdsy">
+            <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>
+            <a class="hotlink" href="/portal.php?mod=view&amp;aid=9">热线呼叫</a>
+            <a class="hotlink" href="/forum.php">部门连线</a>
+            <a class="hotlink" href="/forum.php">镇街连线</a>
+            <a class="hotlink" href="/weibo.html">政务微博</a>
+            <a class="hotlink" href="/portal.php?mod=view&amp;aid=10">微信留言</a>
+            <a class="hotlink" href="/portal.php?mod=view&amp;aid=11">微博留言</a>
+        </div>
 </div>
 <div class="clr"></div>
 </div>
 <div class="bluebg"></div>
 <div class="third">
 <div class="zxask">
-<a href="#" class="a1">&nbsp;</a>
-<a href="#" class="a2">&nbsp;</a>
-<a href="#" class="a3">&nbsp;</a>
+<a href="/forum.php" class="a1">&nbsp;</a>
+<a href="/portal.php?mod=view&amp;aid=15" class="a2">&nbsp;</a>
+<a href="/forum.php" class="a3">&nbsp;</a>
 </div>
 
 <div class="secleft">
@@ -62,7 +79,7 @@ block_get('7,8,9,11,13,13,5,12');?><?php include template('common/header'); ?><d
 </div>
 </div>
 <div class="secright w240">
-<div class="wxbgtop"><a href="#" class="mmore">&nbsp;</a></div>
+<div class="wxbgtop"><a href="#" class="moreLink">&nbsp;更多</a></div>
 <div class="wxbgcen">
 <div class="bgtj">
 <p>总发帖：34256   用户数：343245</p>
@@ -77,7 +94,7 @@ block_get('7,8,9,11,13,13,5,12');?><?php include template('common/header'); ?><d
 <div class="bluebg"></div>
 <div class="four">
 <div class="zxask wxsytop">
-<a href="#" class="a3">&nbsp;</a>
+<!--<a href="#" class="a3 moreLink">&gt;&nbsp;更多</a>-->
 </div>
 <div class="wxsycen">
 <div class="asktop asktop2">

@@ -3,9 +3,9 @@
 
 define('UC_CONNECT', 'mysql');
 
-define('UC_DBHOST', 'localhost');
+define('UC_DBHOST', '192.168.171.128');
 define('UC_DBUSER', 'root');
-define('UC_DBPW', '123456');
+define('UC_DBPW', '123123');
 define('UC_DBNAME', 'minsheng');
 define('UC_DBCHARSET', 'utf8');
 define('UC_DBTABLEPRE', '`minsheng`.ms_ucenter_');

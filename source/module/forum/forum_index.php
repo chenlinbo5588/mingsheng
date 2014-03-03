@@ -273,7 +273,7 @@ if(!$gid && (!defined('FORUM_INDEX_PAGE_MEMORY') || !FORUM_INDEX_PAGE_MEMORY)) {
 			}
 			$forum['forumscount'] 	= 0;
 			$catlist[$forum['fid']] = $forum;
-
+            
 		}
 	}
 	unset($forum_access, $forum_fields);

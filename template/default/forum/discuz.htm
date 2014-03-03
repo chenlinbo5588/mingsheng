@@ -13,6 +13,24 @@
 		</div>
 	</div>
 </div>
+
+<!--
+<div class="dmain">
+	<div class="bmzx"><img src="images/zjlogo.jpg" /></div>
+	<div class="bmlist">
+		<div>
+		<!--{loop $catlist $key $cat}-->
+		<!--{loop $cat[forums] $forumid}-->
+		<!--{eval $forum=$forumlist[$forumid];}-->
+		<!--{eval $forumurl = !empty($forum['domain']) && !empty($_G['setting']['domain']['root']['forum']) ? 'http://'.$forum['domain'].'.'.$_G['setting']['domain']['root']['forum'] : 'forum.php?mod=forumdisplay&fid='.$forum['fid'];}-->
+		<a href="$forumurl"{if $forum[redirect]} target="_blank"{/if}>{$forum[name]}</a>|
+		<!--{/loop}-->
+		<!--{/loop}-->
+		</div>
+	</div>
+</div>
+-->
+
 <div class="showstatus"><img src="images/showstatus.jpg"></div>
 <div class=""></div>
 <div id="pt" class="bm cl">

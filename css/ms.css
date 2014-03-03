@@ -26,6 +26,11 @@ a{
 	margin: 0 auto;
 	
 }
+.third {
+    height: 390px;
+    overflow: hidden;
+}
+
 .header{
 	width: 1000px;
 	margin: 0 auto;
@@ -110,7 +115,7 @@ a{
 	color: #000000;
 }
 .mlist{
-	padding: 40px 0 0 40px;
+	padding: 15px 0 0 25px;
 }
 .mlist ul,.mlist ul li{
 	list-style: none;
@@ -132,6 +137,7 @@ a{
 .mlist ul li span{
 	zoom:1;
 	padding-left: 20px;
+    float:right;
 }
 .dmain .mleft .page{
 	font-size: 14px;
@@ -216,7 +222,12 @@ a{
     line-height: 26px;
     font-size: 14px;
     color: #2B2B2B;
+    overflow: hidden;
 }
+.contentText img {
+    width:100%;
+}
+
 .abstract {
 	margin-top:20px;
     border: 1px solid #E3E2E2;
@@ -275,10 +286,12 @@ a{
 	font-weight: normal;
 	font-size: 14px;
 }
+/*
 .mmskd h2 a{
 	font-size: 14px;
 	font-weight: normal;
 }
+*/
 .mscon{
 	width: 563px;
 	height: 229px;
@@ -382,25 +395,37 @@ a{
 	margin: 20px 0;
 }
 .zxask{
-	width: 1000px;
+	
 	height: 65px;
 	background: url("../images/zxask.jpg") no-repeat;
 	position: relative;
 }
 .wxsytop{
-	width: 1000px;
 	height: 50px;
 	background: url("../images/wxsytop.jpg") no-repeat;
 	position: relative;
 }
-.zxask a{
+
+.wxsytop a {
+    position: absolute;
+    right:0px;
+    top:10px;
+    
+}
+
+.mmskd {
+    1position:relative;
+}
+.zxask a {
 	display: block;
 	position: absolute;
 	width: 65px;
 	height: 30px;
-	top:15px;
-	right: 0px;
+	top: 22px;
+    right: -22px;
 }
+
+
 .zxask a.a1{
 	right: 168px;
 }
@@ -509,7 +534,8 @@ a{
 	height: 34px;
 	position: absolute;
 	right: 8px;
-	top: 0px;
+	top: 7px;
+    text-decoration: none;
 }
 .w240 .wxbgcen{
 	width: 238px;
@@ -590,6 +616,8 @@ a{
 }
 .bmlogos{
 	padding-bottom: 20px;
+    height:350px;
+    overflow: auto;
 }
 .bmlogos ul,.bmlogos ul li{
 	list-style: none;
@@ -725,4 +753,55 @@ a{
 }
 .cright ul li span{
 	float: right;
+}
+
+.moreLink {
+    color:#999999;
+    font-size:12px;
+}
+
+.showno {
+    height: 210px;
+    overflow:hidden;
+}
+
+
+.hotlink {
+    text-decoration: none;
+    height:52px;
+    display: block;
+    text-indent: -1000em;
+}
+
+.hotlink:hover {
+    text-decoration: none;
+}
+
+.guide {
+    background:url(/images/asklc.jpg) no-repeat ;
+    width:146px;
+    height:80px;
+    display: block;
+    float: left;
+    text-indent: -1000em;
+}
+
+.guide1 {
+    background-position: 0 0;
+}
+
+.guide2 {
+    background-position: -146px 0px;
+}
+
+.guide3 {
+    background-position: -292px 0px;
+}
+
+.guide4 {
+    background-position: -438px 0px;
+}
+
+.guide5 {
+    background-position: -584px 0px;
 }
