@@ -1,0 +1,51 @@
+<!--{template common/header}-->
+<!--[name]{lang portalcategory_viewtplname}[/name]-->
+<!-- main start -->
+<div class="dmain">
+	<div class="mleft">
+		<div class="mnav">
+			<h1>首页&gt;<span>民生快递</span></h1>
+			<div class="mline"></div>
+		</div>
+		<div class="mlist kdxx">
+			<h1>$article[title]</h1>
+			<div class="abstract"><!--{if $article[summary] && empty($cat[notshowarticlesummay])}-->{lang article_description}: $article[summary]<!-- {/if} --></div>
+			
+			<div class="contentText">$content[content]</div>
+			<div class="o cl ptm pbm">
+				<!--{hook/view_article_op_extra}-->
+				<a href="home.php?mod=spacecp&ac=favorite&type=article&id=$article[aid]&handlekey=favoritearticlehk_{$article[aid]}" id="a_favorite" onclick="showWindow(this.id, this.href, 'get', 0);" class="oshr ofav">{lang favorite}</a>
+				<!--{if helper_access::check_module('share')}-->
+				<a href="home.php?mod=spacecp&ac=share&type=article&id=$article[aid]&handlekey=sharearticlehk_{$article[aid]}" id="a_share" onclick="showWindow(this.id, this.href, 'get', 0);" class="oshr">{lang share}</a>
+				<!--{/if}-->
+				<a href="misc.php?mod=invite&action=article&id=$article[aid]" id="a_invite" onclick="showWindow('invite', this.href, 'get', 0);" class="oshr oivt">{lang invite}</a>
+				<!--{if $_G['group']['allowmanagearticle'] || ($_G['group']['allowpostarticle'] && $article['uid'] == $_G['uid'] && (empty($_G['group']['allowpostarticlemod']) || $_G['group']['allowpostarticlemod'] && $article['status'] == 1)) || $categoryperm[$value['catid']]['allowmanage']}-->
+					<a href="portal.php?mod=portalcp&ac=article&op=edit&aid=$article[aid]">{lang edit}</a><span class="pipe">|</span>
+					<a  id="related_article" href="portal.php?mod=portalcp&ac=related&aid=$article[aid]&catid=$article[catid]&update=1" onclick="showWindow(this.id, this.href, 'get', 0);return false;">{lang article_related}</a><span class="pipe">|</span>
+					<!--{if $article[status]>0 && ($_G['group']['allowmanagearticle'] || $categoryperm[$value['catid']]['allowmanage'])}-->
+						<a href="portal.php?mod=portalcp&ac=article&op=verify&aid=$article[aid]" id="article_verify_$article[aid]" onclick="showWindow(this.id, this.href, 'get', 0);">{lang moderate}</a>
+					<!--{else}-->
+						<a href="portal.php?mod=portalcp&ac=article&op=delete&aid=$article[aid]" id="article_delete_$article[aid]" onclick="showWindow(this.id, this.href, 'get', 0);">{lang delete}</a>
+					<!--{/if}-->
+					<span class="pipe">|</span>
+				<!--{/if}-->
+				<!--{if $article[status]==0 && ($_G['group']['allowdiy']  || getstatus($_G['member']['allowadmincp'], 4) || getstatus($_G['member']['allowadmincp'], 5) || getstatus($_G['member']['allowadmincp'], 6))}-->
+				<a href="portal.php?mod=portalcp&ac=portalblock&op=recommend&idtype=aid&id=$article[aid]" onclick="showWindow('recommend', this.href, 'get', 0)">{lang blockdata_recommend}</a><span class="pipe">|</span>
+				<!--{/if}-->
+			</div>
+		</div>
+	</div>
+	<div class="mright">
+		<div class="helpsound"></div>
+		<div class="lanmu">
+			<div class="lanmutop"><h1>阿拉帮侬忙</h1></div>
+			<div class="lanmucen">
+				<!--{block/6}-->
+			</div>
+			<div class="lanmufoot"></div>
+		</div>
+	</div>
+	<div class="clr"></div>
+</div>
+<!-- main end -->
+<!--{template common/footer}-->

@@ -1,0 +1,68 @@
+body {font-size:9px; line-height: 14pt}
+td {font-size:12px;line-height: 18pt;color:#000000}
+ 
+.1{font-size:12px;line-height: 18pt;color:#333333}
+.2{font-size:12px;line-height: 18pt;color:#FFFFFF}
+.3{font-size:12px;line-height: 18pt;color:#555555}
+.4{font-size:12px;line-height: 13pt;color:#002F5E}
+.20{font-size:14px;color:#002F5E}
+.12{font-size:12px;color:#333333}
+li,input,select {font-size:12px;}
+.box { border: 1px #CCCCCC solid; font-size: 9pt;}
+.pc1 { font-size: 9pt; line-height: 16pt}
+.p14 { font-size: 14.8px; line-height: 20px}
+.box1 { border: 1px solid; font-size: 9pt; border-color: black #000000}
+.unline { border: solid; font-size: 9pt ; border-color: #ffffff black #CCCCCC solid; border-width: 1px 0px 1px 0px}
+.s02 {border-left:1 ridge #ffffff;border-top:1 ridge #ffffff;border-bottom:1;border-right:1;border-style:ridge;background-color:#cccccc;font-size:9pt; }
+.p9 { font-size: 9pt}
+.s9 { font-size: 9pt; line-height: 13pt}
+a:visited { color: #7F7F7F;  font-size: 9pt;text-decoration: none;}
+a:link { color: #7F7F7F;  font-size: 9pt;text-decoration: none}
+a:hover { font-size: 9pt; color: #FF0000;text-decoration: underline}
+
+.input1 {  font-size: 9pt; height: 18px; border: 1px #999999 solid; background-color: #FFFFFF; font-family: "ËÎÌו"; color: #000000; text-decoration: none}
+.input3 {  font-size: 9pt; height: 21px; border: 1px #51A8FF solid; background-color: #ffffff; font-family: "ËÎÌו"; color: #000000; text-decoration: none}
+
+.body14 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	line-height: 24px;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+}
+a.body14:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	line-height: 24px;
+	color: #000000;
+	text-decoration: none;
+}
+a.body14:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	line-height: 24px;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+}
+a.body14:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	line-height: 24px;
+	font-weight: normal;
+	color: #0000FF;
+	text-decoration: underline;
+}
+a.body14:active {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-style: normal;
+	line-height: 24px;
+	font-weight: normal;
+	color: #000000;
+	text-decoration: none;
+}
