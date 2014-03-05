@@ -5,6 +5,14 @@
     font-family:Verdana, Arial, Helvetica, sans-serif;
     font-size: 12px;
 }
+
+.clearfix:before,
+.clearfix:after { content: ""; display: table; }
+
+.clearfix:after { clear: both; }
+.clearfix { *zoom: 1;clear:both }
+
+
 .fll{
 	float: left;
 }
@@ -318,8 +326,13 @@ a{
 .mlisth ul li{
 	display: inline;
 	float: left;
-	width: 250px;
+	width: 255px;
 }
+
+.mlisth ul li:nth-child(2n){
+    margin-right:10px;
+}
+
 .hotline{
 	width:550px;
 	height:25px;

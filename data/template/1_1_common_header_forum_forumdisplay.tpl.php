@@ -1,6 +1,6 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); 
 0
-|| checktplrefresh('./template/default/common/header.htm', './template/default/common/header_common.htm', 1393859526, '1', './data/template/1_1_common_header_forum_forumdisplay.tpl.php', './template/default', 'common/header_forum_forumdisplay')
+|| checktplrefresh('./template/default/common/header.htm', './template/default/common/header_common.htm', 1393997068, '1', './data/template/1_1_common_header_forum_forumdisplay.tpl.php', './template/default', 'common/header_forum_forumdisplay')
 ;?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -43,6 +43,9 @@
 <?php } if($_GET['diy'] == 'yes' && check_diy_perm($topic)) { ?>
 <link rel="stylesheet" type="text/css" id="diy_common" href="data/cache/style_<?php echo STYLEID;?>_css_diy.css?<?php echo VERHASH;?>" />
 <?php } ?>
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    <script src="<?php echo $_G['setting']['jspath'];?>selectivizr-min.js" type="text/javascript"></script>
+    <![endif]-->
 </head>
 
 <body id="nv_<?php echo $_G['basescript'];?>" class="pg_<?php echo CURMODULE;?><?php if($_G['basescript'] === 'portal' && CURMODULE === 'list' && !empty($cat)) { ?> <?php echo $cat['bodycss'];?><?php } ?>" onkeydown="if(event.keyCode==27) return false;">

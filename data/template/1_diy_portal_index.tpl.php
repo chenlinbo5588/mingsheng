@@ -1,11 +1,12 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('index');
-block_get('7,8,9,11,13,13,5,12');?><?php include template('common/header'); ?><div class="mfirst">
-<div class="mhdp"><img src="images/focus.jpg" /></div>
+block_get('14,7,9,11,13,15,5,12');?><?php include template('common/header'); ?><div class="mfirst">
+<div class="mhdp">
+        <?php block_display('14');?>    </div>
 <div class="mmskd">
 <h2><a class="moreLink" href="/portal.php?mod=list&amp;catid=2">&gt;&nbsp;更多</a></h2>
 <div class="mscon">
 <h3><?php block_display('7');?></h3>
-<div class="hot2"><?php block_display('8');?></div>
+<div class="hot2"></div>
 <div class="hotline"></div>
 <div class="mlist mllist mlisth"><?php block_display('9');?></div>
 
@@ -68,7 +69,7 @@ block_get('7,8,9,11,13,13,5,12');?><?php include template('common/header'); ?><d
 </div>
 <div class="askul">
 <div class="showno zxwd_1"><?php block_display('13');?></div>
-<div class="showno zxwd_2"><?php block_display('13');?></div>
+<div class="showno zxwd_2"><?php block_display('15');?></div>
 <div class="clr"></div>
 <div class="person">
 <p class="per1"><a href="#">个人中心</a></p>

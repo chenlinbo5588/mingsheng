@@ -59,7 +59,9 @@ if(submitcheck("articlesubmit", 0, $seccodecheck, $secqaacheck)) {
 	$highlight_style = $_GET['highlight_style'];
 	$style = '';
 	$style = implode('|',$highlight_style);
-	if(empty($_POST['summary'])) $_POST['summary'] = preg_replace("/(\s|\<strong\>##########NextPage(\[title=.*?\])?##########\<\/strong\>)+/", ' ', $_POST['content']);
+	if(empty($_POST['summary'])) {
+        //$_POST['summary'] = preg_replace("/(\s|\<strong\>##########NextPage(\[title=.*?\])?##########\<\/strong\>)+/", ' ', $_POST['content']);
+    }
 	$summary = portalcp_get_summary($_POST['summary']);
 	$summary = censor($summary);
 
