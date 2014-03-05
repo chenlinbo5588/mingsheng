@@ -2,15 +2,17 @@
 <div class="dmain">
 	<div class="bmzx"><img src="images/bmlogo.jpg" /></div>
 	<div class="bmlist">
-		<div>
 		<!--{loop $catlist $key $cat}-->
-		<!--{loop $cat[forums] $forumid}-->
+		<div class="subbm-item">
+		<span class="subtitle">{$cat[name]}:&nbsp;</span>
+		<!--{loop $cat[forums] $skey $forumid}-->
 		<!--{eval $forum=$forumlist[$forumid];}-->
 		<!--{eval $forumurl = !empty($forum['domain']) && !empty($_G['setting']['domain']['root']['forum']) ? 'http://'.$forum['domain'].'.'.$_G['setting']['domain']['root']['forum'] : 'forum.php?mod=forumdisplay&fid='.$forum['fid'];}-->
-		<a href="$forumurl"{if $forum[redirect]} target="_blank"{/if}>{$forum[name]}</a>|
-		<!--{/loop}-->
+		{if ($skey !=0)}| {/if}
+		<a href="$forumurl"{if $forum[redirect]} target="_blank"{/if}>{$forum[name]}</a>
 		<!--{/loop}-->
 		</div>
+		<!--{/loop}-->
 	</div>
 </div>
 

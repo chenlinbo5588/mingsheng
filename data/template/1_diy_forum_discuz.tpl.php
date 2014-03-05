@@ -1,9 +1,11 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('discuz');?><?php include template('common/header'); ?><div class="dmain">
 <div class="bmzx"><img src="images/bmlogo.jpg" /></div>
-<div class="bmlist">
-<div><?php if(is_array($catlist)) foreach($catlist as $key => $cat) { if(is_array($cat['forums'])) foreach($cat['forums'] as $forumid) { $forum=$forumlist[$forumid];?><?php $forumurl = !empty($forum['domain']) && !empty($_G['setting']['domain']['root']['forum']) ? 'http://'.$forum['domain'].'.'.$_G['setting']['domain']['root']['forum'] : 'forum.php?mod=forumdisplay&fid='.$forum['fid'];?><a href="<?php echo $forumurl;?>"<?php if($forum['redirect']) { ?> target="_blank"<?php } ?>><?php echo $forum['name'];?></a>|
-<?php } } ?>
+<div class="bmlist"><?php if(is_array($catlist)) foreach($catlist as $key => $cat) { ?><div class="subbm-item">
+<span class="subtitle"><?php echo $cat['name'];?>:&nbsp;</span><?php if(is_array($cat['forums'])) foreach($cat['forums'] as $skey => $forumid) { $forum=$forumlist[$forumid];?><?php $forumurl = !empty($forum['domain']) && !empty($_G['setting']['domain']['root']['forum']) ? 'http://'.$forum['domain'].'.'.$_G['setting']['domain']['root']['forum'] : 'forum.php?mod=forumdisplay&fid='.$forum['fid'];?><?php if(($skey !=0)) { ?>| <?php } ?>
+<a href="<?php echo $forumurl;?>"<?php if($forum['redirect']) { ?> target="_blank"<?php } ?>><?php echo $forum['name'];?></a>
+<?php } ?>
 </div>
+<?php } ?>
 </div>
 </div>
 
