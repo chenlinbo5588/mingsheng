@@ -335,7 +335,7 @@ a{
 
 .hotline{
 	width:550px;
-	height:25px;
+	height:1px;
 	margin:0 auto;
 	background: url("../images/liline.jpg") left center repeat-x;
 }
@@ -427,11 +427,16 @@ a{
 }
 
 .mmskd {
-    1position:relative;
+    
+}
+
+.mmskd .xld dt {
+    padding:2px 0 3px;
 }
 
 .mmskd .xld dd {
     font-weight: normal;
+    margin-bottom: 8px;
 }
 
 .zxask a {
