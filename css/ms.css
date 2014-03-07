@@ -157,7 +157,7 @@ a{
 	padding-right: 20px;
 	padding-top: 20px;
 }
-.mright .helpsound{
+ .helpsound{
 	width: 282px;
 	height: 402px;
 	background: url("../images/helpsound.jpg") no-repeat;
@@ -841,4 +841,93 @@ a{
 	font-weight: bold;
 	display: inline-block;
 	background-color: #52a0e5;
+}
+.dmain .nleft{
+	float: left;
+        padding: 5px 0 0 20px;
+}
+.dmain .nright{
+	float: right;
+	width: 670px;
+}
+.weidesc {
+    width: 282px;
+    line-height: 24px;
+    margin-bottom: 20px;
+}
+.weidesc .desctitle {
+    color: #026dcf;
+    padding: 10px 0 5px 0;
+    font-weight: bold;
+}
+.weidesc .desc {
+    text-indent: 20px;
+}
+.weititle {
+    width: 962px;
+    margin: 10px auto;
+    padding: 2px 0 0 38px;
+    height: 28px;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: bold;
+    background: url(../images/weibo/weibo.png) no-repeat 0 0;
+}
+.weilogotab {
+    width: 100%;
+    height: 30px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #d6d6d6;
+    margin-bottom: 10px;
+}
+.weilogotab ul li {
+    width: 212px;
+    height: 30px;
+    float: left;
+    font-size: 16px;
+    line-height: 30px;
+    font-weight: bold;
+    text-align: center;
+    background: url(../images/weibo/tab-bg.jpg) no-repeat 0 0;
+    list-style: none;
+    cursor: pointer;
+}
+.weilogotab ul li:hover,
+.weilogotab .active {
+    color: #fff;
+    background: url(../images/weibo/tab-active-bg.jpg) no-repeat 0 0;
+}
+.weilogos li {
+    float: left;
+    width: 145px;
+    height: 56px;
+    padding: 8px;
+    margin: 0px 3px 10px 3px;
+    background: #f3f3f3;
+    list-style: none;
+}
+.weilogos li .pic {
+    width: 50px;
+    height: 50px;
+    float: left;
+    border: 2px solid #fff;
+    margin-top: 2px;
+}
+.weilogos li .info {
+    width: 80px;
+    float: left;
+    padding-left: 7px;
+}
+.weilogos li .info span {
+    display: block;
+}
+.weilogos li .info .parttitle,
+.weilogos li .info .partnum label
+{
+    color: #0376b7;
+    padding-right: 5px;
+}
+.weilogos li .info .parttitle {
+    font-weight: bold;
+    margin-bottom: 2px;
 }

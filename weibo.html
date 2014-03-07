@@ -7,7 +7,7 @@
 <link rel=stylesheet type=text/css href="img/style.css" />
 <link rel=stylesheet type=text/css href="css/view.css" />
 
-<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="static/js/jquery.js"></script>
 </head>
 <body>
 <!-- header start -->
@@ -27,9 +27,331 @@
 </div>
 <!-- header end -->
 <!-- main start -->
-<div style="width: 1000px;margin: 0 auto;">
-	<img src="images/weibo.jpg" />
+<div class="weititle">微博发布厅</div>
+<div class="dmain">
+    <div class="nleft">
+        <div class="weidesc">
+            <p class="desctitle">简介：</p>
+            <p class="desc">
+                为适应“微”时代的网络与情态势，进一步提高党委政府网上执政能力， 2011年12月28日， 由宁波市委外宣办（市政府新闻办、市网宣办）主办的“宁波发布”政府微博正式上线，成为浙江省内收个市级政府微博发布平台。同时，宁波市委外宣办（市网宣办）整合了各县（市）区和市级部门的微博，推出宁波政务微博群。
+            </p>
+            <p class="desc">
+                截止今天，全市已有71家与民生关系密切的市级部门及各县（市）区开通政务微博。宁波政务微博群的总粉丝数量已经突破180万。其中，仅“宁波发布”政务微博的粉丝量已超过50万。
+            </p>
+            <p class="desc">有事儿发微博。政务微博正在成为我市各级党委政府发布政绩、沟通民情，引导网上舆论、服务社会民生的不可或缺的重要平台。
+            </p>
+        </div>
+        <div class="helpsound">
+            <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>
+            <a class="hotlink" href="/portal.php?mod=view&amp;aid=9">热线呼叫</a>
+            <a class="hotlink" href="/forum.php">部门连线</a>
+            <a class="hotlink" href="/forum.php">镇街连线</a>
+            <a class="hotlink" href="/weibo.html">政务微博</a>
+            <a class="hotlink" href="/portal.php?mod=view&amp;aid=10">微信留言</a>
+            <a class="hotlink" href="/portal.php?mod=view&amp;aid=11">微博留言</a>
+        </div>
+    </div>
+    <div class="nright">
+        <div class="weilogotab">
+            <ul id="weibo-tabs">
+                <li data-tab="1" class="active">部委.机构</li>
+                <li data-tab="2">镇街</li>
+            </ul>
+        </div>
+        <div class="weilogos">
+            <ul id="tab-con-1">
+                <li>
+                    <div class="pic"><a href="http://weibo.com/1115099077" target="_blank"><img src="images/weibo/logo-1.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/1115099077" target="_blank"><span class="parttitle">市教育局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/zjcxga" target="_blank"><img src="images/weibo/logo-2.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/zjcxga" target="_blank"><span class="parttitle">市公安局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3880067608" target="_blank"><img src="images/weibo/logo-3.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3880067608" target="_blank"><span class="parttitle">市环保局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/2926087684" target="_blank"><img src="images/weibo/logo-4.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/2926087684" target="_blank"><span class="parttitle">市民政局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/2939768570" target="_blank"><img src="images/weibo/logo-5.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/2939768570" target="_blank"><span class="parttitle">市人社局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="" target="_blank"><img src="images/weibo/logo-6.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="" target="_blank"><span class="parttitle">市国土局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/2687439411" target="_blank"><img src="images/weibo/logo-7.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/2687439411" target="_blank"><span class="parttitle">市住建局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/2926087684" target="_blank"><img src="images/weibo/logo-8.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/2926087684" target="_blank"><span class="parttitle">市城管局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3878532262" target="_blank"><img src="images/weibo/logo-9.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3878532262" target="_blank"><span class="parttitle">市交通运输局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/u/3862203873" target="_blank"><img src="images/weibo/logo-10.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/u/3862203873" target="_blank"><span class="parttitle">市水利局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/u/3823459994" target="_blank"><img src="images/weibo/logo-11.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/u/3823459994" target="_blank"><span class="parttitle">市农业局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3165118060" target="_blank"><img src="images/weibo/logo-12.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3165118060" target="_blank"><span class="parttitle">市文广局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/2817054130" target="_blank"><img src="images/weibo/logo-13.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/2817054130" target="_blank"><span class="parttitle">市卫生局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3877467009" target="_blank"><img src="images/weibo/logo-14.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3877467009" target="_blank"><span class="parttitle">市药监局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3113148783" target="_blank"><img src="images/weibo/logo-15.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3113148783" target="_blank"><span class="parttitle">市安检局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/cxgsfj" target="_blank"><img src="images/weibo/logo-16.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/cxgsfj" target="_blank"><span class="parttitle">市工商局</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+            </ul>
+            
+            <ul id="tab-con-2" style="display:none;">
+                <li>
+                    <div class="pic"><a href="http://weibo.com/2254223210" target="_blank"><img src="images/weibo/logo-zhen-1.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/2254223210" target="_blank"><span class="parttitle">龙山镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3208309823" target="_blank"><img src="images/weibo/logo-zhen-2.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3208309823" target="_blank"><span class="parttitle">掌起镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/2768195194" target="_blank"><img src="images/weibo/logo-zhen-3.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/2768195194" target="_blank"><span class="parttitle">观海卫镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3221268170" target="_blank"><img src="images/weibo/logo-zhen-4.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3221268170" target="_blank"><span class="parttitle">附海镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3172877437" target="_blank"><img src="images/weibo/logo-zhen-5.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3172877437" target="_blank"><span class="parttitle">逍林镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3241008210" target="_blank"><img src="images/weibo/logo-zhen-6.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3241008210" target="_blank"><span class="parttitle">胜山镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3087912170" target="_blank"><img src="images/weibo/logo-zhen-7.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3087912170" target="_blank"><span class="parttitle">新浦镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/1585615541" target="_blank"><img src="images/weibo/logo-zhen-8.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/1585615541" target="_blank"><span class="parttitle">桥头镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/2076025213" target="_blank"><img src="images/weibo/logo-zhen-9.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/2076025213" target="_blank"><span class="parttitle">匡堰镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/1660247301" target="_blank"><img src="images/weibo/logo-zhen-10.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/1660247301" target="_blank"><span class="parttitle">横河镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3485335223" target="_blank"><img src="images/weibo/logo-zhen-11.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3485335223" target="_blank"><span class="parttitle">崇寿镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/2690488971" target="_blank"><img src="images/weibo/logo-zhen-12.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/2690488971" target="_blank"><span class="parttitle">长河镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3086612434" target="_blank"><img src="images/weibo/logo-zhen-13.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3086612434" target="_blank"><span class="parttitle">周巷镇</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/2798088322" target="_blank"><img src="images/weibo/logo-zhen-14.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/2798088322" target="_blank"><span class="parttitle">古塘街道</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/1132639825" target="_blank"><img src="images/weibo/logo-zhen-15.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/1132639825" target="_blank"><span class="parttitle">浒山街道</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/2162968260" target="_blank"><img src="images/weibo/logo-zhen-16.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/2162968260" target="_blank"><span class="parttitle">白沙路街道</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/zhjdxcb" target="_blank"><img src="images/weibo/logo-zhen-17.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/zhjdxcb" target="_blank"><span class="parttitle">宗汉街道</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="pic"><a href="http://weibo.com/3482247713" target="_blank"><img src="images/weibo/logo-zhen-18.jpg" alt="" width="50" height="50" border="0" /></a></div>
+                    <div class="info">
+                        <a href="http://weibo.com/3482247713" target="_blank"><span class="parttitle">坎墩街道</a></span></a>
+                        <span class="partnum"><label>粉丝</label>2345</span>
+                        <span class="partnum"><label>总帖数</label>234</span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="clr"></div>
 </div>
+<script type="text/javascript">
+    var $j = jQuery.noConflict();
+    $j(function(){
+        $j('#weibo-tabs li').click(function(){
+            var $$ = $j(this), tabKey = $$.attr('data-tab');
+            $j('#weibo-tabs li').removeClass('active');
+            $$.addClass('active');
+            $j('#tab-con-'+tabKey).toggle();
+            $j('#tab-con-'+tabKey).siblings('ul').hide();
+        });
+    });
+</script>
 <!-- main end -->
 <!-- footer start -->
 <div class="mfoot">
