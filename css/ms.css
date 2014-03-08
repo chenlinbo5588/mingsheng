@@ -931,3 +931,29 @@ a{
     font-weight: bold;
     margin-bottom: 2px;
 }
+.talkcon p {
+    padding: 2px 6px;
+    font-size: 12px;
+}
+.talkcon p.tp1 a{
+    color: #b72222;
+    font-size:14px;
+}
+.view-idx .module {
+    border: 3px solid #dedde0;
+    font-size: 12px;
+    height: 226px;
+    overflow: hidden;
+}
+.view-idx .xld dt a {
+    color: #b72222;
+}
+.view-idx .xld .m {
+    margin: 1px;
+}
+.view-idx .xld dt {
+    padding: 5px;
+}
+.view-idx .xld dd {
+    margin: 0 5px 5px 5px;
+}
