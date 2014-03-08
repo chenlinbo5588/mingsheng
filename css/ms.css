@@ -878,7 +878,7 @@ a{
     height: 30px;
     padding-bottom: 3px;
     border-bottom: 1px solid #d6d6d6;
-    margin-bottom: 10px;
+    margin: 15px 0 10px 0;
 }
 .weilogotab ul li {
     width: 212px;
