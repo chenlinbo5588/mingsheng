@@ -55,7 +55,17 @@
 	<div class="toplogo"><img src="images/toplogo.jpg" /></div>
 	<div class="menu">
 		<div class="nav"><a href="/portal.php">首 页</a><span>|</span><a href="/portal.php?mod=list&catid=2">民生快递</a><span>|</span><a href="/forum.php">阿拉帮侬忙</a><span>|</span><a href="/portal.php?mod=list&catid=3">新闻发布会</a><span>|</span><a href="/portal.php?mod=list&catid=8">微博发布厅</a></div>
-		<div class="soso"><input type="text" class="key" value="输入搜索关键字" /></div>
+        <div class="soso">
+            <form action="/search.php" name="formsearch" target="_blank" onsubmit="if(kw.value==''){alert('请输入搜索的关键词');return false;}">
+				<input type="hidden" name="mod" value="portal">
+                <input type="hidden" name="searchid" value="2">
+                <input type="hidden" name="searchsubmit" value="yes">
+                <ul >
+				<li class="search_ipt"><input type="text" name="kw" autocomplete="off" maxlength="2048" onfocus="this.value=''" onblur="if(!value){value=defaultValue;}" value="输入搜索关键词"></li>
+				<li class="search_submit"><button type="submit">搜索</button></li>
+                </ul>
+			</form>
+        </div>
 		<div class="clr"></div>
 	</div>
 </div>

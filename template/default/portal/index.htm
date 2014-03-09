@@ -48,7 +48,7 @@
             <a class="hotlink" href="/portal.php?mod=view&aid=9">热线呼叫</a>
             <a class="hotlink" href="/forum.php?gid=1">部门连线</a>
             <a class="hotlink" href="/forum.php?gid=72">镇街连线</a>
-            <a class="hotlink" href="/weibo.html">政务微博</a>
+            <a class="hotlink" href="/portal.php?mod=list&catid=8">政务微博</a>
             <a class="hotlink" href="/portal.php?mod=view&aid=10">微信留言</a>
             <a class="hotlink" href="/portal.php?mod=view&aid=11">微博留言</a>
         </div>
@@ -67,7 +67,7 @@
 		<div class="asktop" id="zxwd">
 			<ul>
 				<li class="askcur" lang="1">网友正在问</li>
-				<li lang="2">部门正在答</li>
+                <li lang="2">部门正在答</li>
 			</ul>
 			<div class="clr"></div>
 			<div class="rightlc"><img src="images/rightlc.jpg" /></div>
@@ -85,7 +85,15 @@
                     <!--{/if}--></p>
 				<p class="per2"><a href="/portal.php?mod=view&aid=12">发帖须知</a></p>
 				<p class="per3">e热线：63013581</p>
-				<div class="psoso"><input class="pkey" type="text" name="key" /><input class="psub" type="submit" value="" /></div>
+				<div class="psoso">
+                    <form action="/search.php" name="formsearch" target="_blank" onsubmit="if(kw.value==''){alert('请输入搜索的关键词');return false;}">
+                    <input type="hidden" name="mod" value="forum">
+                    <input type="hidden" name="searchid" value="1">
+                    <input type="hidden" name="searchsubmit" value="yes">
+                    <input class="pkey" type="text" name="kw" />
+                    <input class="psub" type="submit" value="" />
+                    </form>
+                </div>
 			</div>
 		</div>
 	</div>
