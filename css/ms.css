@@ -81,8 +81,7 @@ a{
 	padding-right:10px;
 	width: 228px;
 	height: 31px;
-	padding-top:6px;
-	background: url("../images/sosobg.jpg") no-repeat;
+	padding-top:1px;
 }
 .dlogo .menu .soso .key{
 	width:186px;
@@ -474,6 +473,12 @@ a{
 	font-weight: bolder;
 	color: #fff;
 	cursor: pointer;
+}
+.asktop ul li a {
+    font-weight: bolder;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
 }
 .zxwd_2{
 	display: none;
@@ -1066,4 +1071,31 @@ a{
     position: absolute;
     right:0;
     top:5px;
+}
+.search_submit {
+    width: 30px;
+    float: left;
+    overflow: hidden;
+}
+.search_submit button {
+    background: url(../images/search.png) 50% 50% no-repeat #fff;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    text-indent: -999px;
+}
+.soso .search_ipt {
+    float:left;
+    width: 196px;
+    height: 32px;
+}
+.soso input {
+    display: inline-block;
+    border: 0px;
+    height: 30px;
+    width: 194px;
+    line-height: 28px;
+    border: 1px solid #B0B0B0;
+    color: #999999;
 }

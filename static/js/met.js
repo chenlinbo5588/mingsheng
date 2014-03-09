@@ -22,7 +22,7 @@ jq(function(){
     */
 });
 jq(function(){
-	jq('#zxwd li').click(function(){
+	jq('#zxwd li').mouseover(function(){
 		jq('#zxwd li').removeClass('askcur');
 		jq(this).addClass('askcur');
 		var id=jq(this).attr('lang');
