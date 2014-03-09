@@ -913,6 +913,10 @@ a{
     border: 2px solid #fff;
     margin-top: 2px;
 }
+.weilogos li .pic img {
+    width: 50px;
+    height: 50px;
+}
 .weilogos li .info {
     width: 80px;
     float: left;
@@ -956,4 +960,110 @@ a{
 }
 .view-idx .xld dd {
     margin: 0 5px 5px 5px;
+}
+
+/* forum css */
+
+.thread-tabs {
+    width: 1000px;
+    height: 30px;
+    margin: 10px 0 0 0;
+    border-bottom: 3px solid #5a97c8;
+    overflow: hidden;
+}
+.thread-tabs ul li {
+    display: block;
+    float: left;
+    width: 105px;
+    height: 30px;
+    text-align: left;
+    display: inline;
+    font-size: 14px;
+    border-left: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    margin-left: 10px;
+    text-align: center;
+}
+.thread-tabs ul li.tab-24 {
+    background: url(../images/light_warn.gif) no-repeat left center;
+}
+.thread-tabs ul li.tab-3days {
+    background: url(../images/light_green.gif) no-repeat left center;
+}
+.thread-tabs ul li.tab-5days {
+    background: url(../images/light_yellow.gif) no-repeat left center;
+}
+.thread-tabs ul li.tab-5daysover {
+    background: url(../images/light_gray.gif) no-repeat left center;
+}
+.thread-tabs ul li.tab-overtime {
+    background: url(../images/light_red.gif) no-repeat left center;
+}
+.thread-tabs ul li.active {
+    background-color: #F2F2F2;
+}
+.thread-tabs ul li a {
+    display:block;
+    line-height: 30px;
+    width: 90px;
+    height: 30px;
+    margin-left:15px;
+}
+.thread-tabs ul li.tab-all a {
+    width: 105px;
+    margin-left:0px;
+}
+.thread-tabs ul li.active a {
+    line-height: 27px;
+    font-weight: bold;
+}
+.thread-tabs ul li a:hover {
+    font-weight: bold;
+    text-decoration: none;
+}
+.user-profile {
+    display: block;
+    padding-left: 16px;
+    margin-top: 5px; 
+}
+.thread-list-wrapper {
+    border: 1px solid #CDCDCD;
+}
+.thread-list-wrapper table {
+    width: 100%;
+}
+.thread-list-wrapper table th,
+.thread-list-wrapper table td{
+    margin-top: 1px;
+    padding: 0 10px;
+    line-height: 36px;
+    border-bottom: 1px solid #CDCDCD;
+    background: #F2F2F2;
+    vertical-align: baseline; 
+}
+.thread-list-wrapper table td.thread-title a {
+    font-size: 14px;
+}
+.thread-list-wrapper table td.hover-active{
+    background: #F2F2F2;
+}
+.thread-list-wrapper table td {
+    background: #fff;
+    border-bottom: 1px solid #C2D5E3;
+}
+.article-info {
+    text-align: center;
+    margin-top: 10px;
+}
+.btm-btn {
+    position: relative;
+}
+.btm-btn .bdsharebuttonbox {
+    width: 300px;
+}
+.btm-btn .right {
+    position: absolute;
+    right:0;
+    top:5px;
 }
