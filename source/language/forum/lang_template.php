@@ -1312,6 +1312,12 @@ $lang = array (
   'hiderecover_tips' => '点击恢复主题隐藏状态',
   'hiderecover' => '恢复隐藏',
   'content_actions' => '更多操作',
+    
+    'thread_24hours'=> '24小时未受理',
+    'thread_3days_reply'=> '三天内回复',
+    'thread_5days_reply'=> '五天内回复',
+    'thread_5more_days_reply'=> '五天外回复',
+    'thread_over_time_noreply'=> '超时未回复',
 );
 
 ?>

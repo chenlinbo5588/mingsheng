@@ -11,9 +11,34 @@
 		</div>
 		<div class="mlist kdxx">
 			<h1>$article[title]</h1>
+            <!--article information start-->
+            <div class='article-info'>
+                <span>{lang article_source}：{$article['from']} &nbsp; {$article['dateline']}</span>  &nbsp;  &nbsp;
+                <span>{lang view_count}：{$article['viewnum']}</span>  &nbsp;  &nbsp;
+                <span>{lang font_size}：【<a href="javascript:zoomFont(16);">大</a> <a href="javascript:zoomFont(14);">中</a> <a href="javascript:zoomFont(12);">小</a>】   </span>
+            </div>
+            <!--article information end-->
+            
 			<!--{if $article[summary] && empty($cat[notshowarticlesummay])}--><div class="abstract">{lang article_description}: $article[summary]</div><!--{/if}-->
 			
 			<div class="contentText">$content[content]</div>
+            
+            <script type="text/javascript">
+                function zoomFont(size) {
+                    var jq = jQuery.noConflict();
+                    jq('.abstract').css('font-size',size);
+                    jq('.contentText').css('font-size',size);
+                }
+            </script>
+            <div class="btm-btn">
+                <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more">分享到：</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["weixin","tsina","tqq","qzone","renren"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","tqq","qzone","renren"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                <div class="right"> 
+                    【<a href="javascript:window.print()">打印</a>】  【<a href="javascript:window.close()">关闭</a>】 
+                </div>
+            </div>
+
 			<div class="o cl ptm pbm">
 				<!--{hook/view_article_op_extra}-->
 				<a href="home.php?mod=spacecp&ac=favorite&type=article&id=$article[aid]&handlekey=favoritearticlehk_{$article[aid]}" id="a_favorite" onclick="showWindow(this.id, this.href, 'get', 0);" class="oshr ofav">{lang favorite}</a>

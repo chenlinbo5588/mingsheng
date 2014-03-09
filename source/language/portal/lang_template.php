@@ -315,6 +315,8 @@ $lang = array (
   'next_article' => '下一篇：',
   'display_order' => '显示位置',
   'filename' => '文件名',
+    'view_count' => '浏览次数',
+    'font_size' => '文字',
 );
 
 ?>
