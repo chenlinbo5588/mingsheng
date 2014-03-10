@@ -51,11 +51,15 @@
             self.hide();
         }
     });
-    jq('#weibo-tabs li').mouseover(function(){
+    jq('#weibo-tabs li').mouseenter(function(){
         var self = jq(this), tabKey = self.attr('data-tab') - 1;
         jq('#weibo-tabs li').removeClass('active');
         self.addClass('active');
-        jq('#tab-con ul').eq(tabKey).toggle();
+        if (self.hasClass('active')) {
+            jq('#tab-con ul').eq(tabKey).show();
+        } else {
+            jq('#tab-con ul').eq(tabKey).hide();
+        }
         jq('#tab-con ul').eq(tabKey).siblings('ul').hide();
     });
 </script>
