@@ -350,7 +350,7 @@ a{
 
 .mscons{
 	width: 728px;
-	height:249px;
+	height:220px;
 	border: 1px solid #DADDDD;
 	overflow: hidden;
 	position: relative;
@@ -965,7 +965,6 @@ a{
 .view-idx .module {
     border: 3px solid #dedde0;
     font-size: 12px;
-    height: 226px;
     overflow: hidden;
 }
 .view-idx .xld dt a {
