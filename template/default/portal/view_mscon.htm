@@ -13,7 +13,12 @@
 			<h1>$article[title]</h1>
             <!--article information start-->
             <div class='article-info'>
-                <span>{lang article_source}：{$article['from']} &nbsp; {$article['dateline']}</span>  &nbsp;  &nbsp;
+                <!--{if empty($article['from'])}-->
+                <span>{$article['dateline']}</span>
+                <!--{else}-->
+                <span>{lang article_source}：{$article['from']} &nbsp; {$article['dateline']}</span>
+                <!--{/if}-->
+                &nbsp;  &nbsp;
                 <span>{lang view_count}：{$article['viewnum']}</span>  &nbsp;  &nbsp;
                 <span>{lang font_size}：【<a href="javascript:zoomFont(16);">大</a> <a href="javascript:zoomFont(14);">中</a> <a href="javascript:zoomFont(12);">小</a>】   </span>
             </div>
