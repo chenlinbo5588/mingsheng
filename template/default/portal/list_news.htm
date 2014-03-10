@@ -22,7 +22,7 @@
                     <!--{loop $list['list'] $value}-->
                     <!--{eval $highlight = article_title_style($value);}-->
                     <!--{eval $article_url = fetch_article_url($value);}-->
-                    <li><a href="$article_url">$value[title]</a><span>$value[dateline]</span></li>
+                    <li><a href="$article_url" target="_blank">$value[title]</a><span>$value[dateline]</span></li>
                     <!--{/loop}-->
                 </ul>
             </div>
@@ -47,7 +47,7 @@
                     <!--{loop $list['list'] $value}-->
                     <!--{eval $highlight = article_title_style($value);}-->
                     <!--{eval $article_url = fetch_article_url($value);}-->
-                    <li><a href="$article_url">$value[title]</a><span>$value[dateline]</span></li>
+                    <li><a href="$article_url" target="_blank">$value[title]</a><span>$value[dateline]</span></li>
                     <!--{/loop}-->
                 </ul>
             </div>
