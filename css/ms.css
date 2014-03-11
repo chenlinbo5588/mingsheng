@@ -350,7 +350,7 @@ a{
 
 .mscons{
 	width: 728px;
-	height:249px;
+	height:220px;
 	border: 1px solid #DADDDD;
 	overflow: hidden;
 	position: relative;
@@ -612,11 +612,18 @@ a{
 	color: #4f4f4f;
 }
 .person .psoso{
-	width: 188px;
+	width: 275px;
 	height: 30px;
 	position: absolute;
 	right: 25px;
 	top: 13px;
+}
+.person .thread-search {
+    font-size: 14px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 16px;
+    margin-left: 22px;
 }
 .psoso .pkey{
 	width: 150px;
@@ -659,18 +666,25 @@ a{
 	margin-top: 20px;
 	
 }
-.bmlogos ul li .piclogo{
+.bmlogos ul li .piclogo,
+.bmlogos ul li .pic{
 	width: 80px;
 	height: 80px;
 	padding:7px;
 	border: 1px solid #ccc;
 }
-.bmlogos ul li .bmdesc{
+.bmlogos ul li .bmdesc,
+.bmlogos ul li .parttitle{
 	text-align: center;
 	height: 24px;
 	line-height: 24px;
 	color: #0d2aa0;
 	font-weight: bold;
+        display: block;
+}
+.bmlogos ul li span {
+    display: inline-block;
+    margin-right: 3px;
 }
 .ask_2,.ask_3{
 	display: none;
@@ -951,7 +965,6 @@ a{
 .view-idx .module {
     border: 3px solid #dedde0;
     font-size: 12px;
-    height: 226px;
     overflow: hidden;
 }
 .view-idx .xld dt a {
