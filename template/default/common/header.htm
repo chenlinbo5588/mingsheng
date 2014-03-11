@@ -48,7 +48,7 @@
 	<!--{/if}-->
 	
 	 | <a href="#" title="{lang go_to_mobile}">手机版</a> </div>
-	<div class="frr">主办单位：中共慈溪市委宣传部</div>
+	<div class="frr">主办单位：市纪委、市委宣传部&nbsp; &nbsp;</div>
 	<div class="clr"></div>
 </div>
 <div class="dlogo">	
@@ -56,14 +56,15 @@
 	<div class="menu">
 		<div class="nav"><a href="/portal.php">首 页</a><span>|</span><a href="/portal.php?mod=list&catid=2">民生快递</a><span>|</span><a href="/forum.php">阿拉帮侬忙</a><span>|</span><a href="/portal.php?mod=list&catid=3">新闻发布会</a><span>|</span><a href="/portal.php?mod=list&catid=8">微博发布厅</a></div>
         <div class="soso">
-            <form action="/search.php" name="formsearch" target="_blank" onsubmit="if(kw.value==''){alert('请输入搜索的关键词');return false;}">
+            <form method="post" autocomplete="off" action="search.php?mod=portal"  onsubmit="if($('scform_srchtxt')) searchFocus($('scform_srchtxt'));">
 				<input type="hidden" name="mod" value="portal">
-                <input type="hidden" name="searchid" value="2">
+                <input type="hidden" name="formhash" value="63cbf93d">
                 <input type="hidden" name="searchsubmit" value="yes">
                 <ul >
-				<li class="search_ipt"><input type="text" name="kw" autocomplete="off" maxlength="2048" onfocus="this.value=''" onblur="if(!value){value=defaultValue;}" value="输入搜索关键词"></li>
-				<li class="search_submit"><button type="submit">搜索</button></li>
+				<li class="search_ipt"><input type="text" id="scform_srchtxt" name="srchtxt" value="" tabindex="1" placeholder="请输入搜索内容"></li>
+				<li class="search_submit"><button id="scform_submit" value="true" type="submit">搜索</button></li>
                 </ul>
+                <script type="text/javascript">initSearchmenu('scform_srchtxt');$('scform_srchtxt').focus();</script>
 			</form>
         </div>
 		<div class="clr"></div>

@@ -87,12 +87,11 @@
 				<p class="per3">e热线：63013581</p>
                 <span class="thread-search">热帖搜索：</span>
 				<div class="psoso">
-                    <form action="/search.php" name="formsearch" target="_blank" onsubmit="if(kw.value==''){alert('请输入搜索的关键词');return false;}">
-                    <input type="hidden" name="mod" value="forum">
-                    <input type="hidden" name="searchid" value="1">
+                    <form method="post" autocomplete="off" action="search.php?mod=forum" onsubmit="if($('scform_fmtxt')) searchFocus($('scform_srchtxt'));">
+                    <input type="hidden" name="formhash" value="63cbf93d">
+                    <input class="pkey" type="text" id="scform_fmtxt" name="srchtxt" value="" tabindex="1" placeholder="请输入搜索内容">
                     <input type="hidden" name="searchsubmit" value="yes">
-                    <input class="pkey" type="text" name="kw" />
-                    <input class="psub" type="submit" value="" />
+                    <button class="psub" type="submit" id="scform_submit1" value="true">
                     </form>
                 </div>
 			</div>
@@ -105,7 +104,12 @@
 				<p>总发帖：34256   用户数：343245</p>
 				<p>在受理：43245  总回复：43232</p>
 			</div>
-			<div class="fttj"><img src="images/lspic1.jpg" /></div>
+            <div class="fttj">
+                <!--{block/23}-->
+            </div>
+            <div class="wxbgbtm">
+                <!--{block/22}-->
+            </div>
 		</div>
 	</div>
 	<div class="clr"></div>
