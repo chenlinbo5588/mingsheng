@@ -1,6 +1,6 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); 
 0
-|| checktplrefresh('./template/default/common/header.htm', './template/default/common/header_common.htm', 1394032442, '1', './data/template/1_1_common_header_portal_index.tpl.php', './template/default', 'common/header_portal_index')
+|| checktplrefresh('./template/default/common/header.htm', './template/default/common/header_common.htm', 1394506324, '1', './data/template/1_1_common_header_portal_index.tpl.php', './template/default', 'common/header_portal_index')
 ;?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -55,21 +55,34 @@
 <div class="fll"><a href="http://www.cxnews.cn" target="_blank"><img src="images/newslogo.jpg" /></a></div>
 <div class="fll"> 
 <?php if($_G['uid']) { ?>
-<strong class="vwmy<?php if($_G['setting']['connect']['allow'] && $_G['member']['conisbind']) { ?> qq<?php } ?>"><a href="home.php?mod=space&amp;uid=<?php echo $_G['uid'];?>" target="_blank" title="访问我的空间"><?php echo $_G['member']['username'];?></a></strong>
-您好，欢迎您访问慈溪网络民生服务平台！ <a href="member.php?mod=logging&amp;action=logout&amp;formhash=<?php echo FORMHASH;?>">退出</a>
+<strong class="vwmy<?php if($_G['setting']['connect']['allow'] && $_G['member']['conisbind']) { ?> qq<?php } ?>"><a href="/home.php?mod=spacecp&amp;ac=profile" title="访问我的空间"><?php echo $_G['member']['username'];?></a></strong>
+您好，欢迎您访问慈溪网络民生服务平台！
+    <a href="/home.php?mod=spacecp&amp;ac=pm" title="消息">消息</a> |
+    <a href="/home.php?mod=spacecp" title="设置">设置</a> |
+    <a href="member.php?mod=logging&amp;action=logout&amp;formhash=<?php echo FORMHASH;?>">退出</a>
 <?php } else { ?>
 您好：游客，欢迎您访问慈溪网络民生服务平台！<a href="/member.php?mod=logging&amp;action=login">请登入</a> | <a href="/member.php?mod=register">立即注册</a>
 <?php } ?>
 
- | 手机版 </div>
-<div class="frr">主办单位：市纪委、市宣传部</div>
+ | <a href="#" title="进入手机版">手机版</a> </div>
+<div class="frr">主办单位：市委宣传部</div>
 <div class="clr"></div>
 </div>
 <div class="dlogo">	
 <div class="toplogo"><img src="images/toplogo.jpg" /></div>
 <div class="menu">
-<div class="nav"><a href="/portal.php">首 页</a><span>|</span><a href="/portal.php?mod=list&amp;catid=2">民生快递</a><span>|</span><a href="/forum.php">阿拉帮侬忙</a><span>|</span><a href="/portal.php?mod=list&amp;catid=3">新闻发布会</a><span>|</span><a href="/weibo.html">微博发布厅</a></div>
-<div class="soso"><input type="text" class="key" value="输入搜索关键字" /></div>
+<div class="nav"><a href="/portal.php">首 页</a><span>|</span><a href="/portal.php?mod=list&amp;catid=2">民生快递</a><span>|</span><a href="/forum.php">阿拉帮侬忙</a><span>|</span><a href="/portal.php?mod=list&amp;catid=3">新闻发布会</a><span>|</span><a href="/portal.php?mod=list&amp;catid=8">微博发布厅</a></div>
+        <div class="soso">
+            <form action="/search.php" name="formsearch" target="_blank" onsubmit="if(kw.value==''){alert('请输入搜索的关键词');return false;}">
+<input type="hidden" name="mod" value="portal">
+                <input type="hidden" name="searchid" value="2">
+                <input type="hidden" name="searchsubmit" value="yes">
+                <ul >
+<li class="search_ipt"><input type="text" name="kw" autocomplete="off" maxlength="2048" onfocus="this.value=''" onblur="if(!value){value=defaultValue;}" value="输入搜索关键词"></li>
+<li class="search_submit"><button type="submit">搜索</button></li>
+                </ul>
+</form>
+        </div>
 <div class="clr"></div>
 </div>
 </div>

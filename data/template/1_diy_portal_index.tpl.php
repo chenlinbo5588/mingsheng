@@ -1,5 +1,5 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); hookscriptoutput('index');
-block_get('14,7,9,11,13,15,5,12');?><?php include template('common/header'); ?><div class="mfirst">
+block_get('14,7,9,11,16,13,15,5,12');?><?php include template('common/header'); ?><div class="mfirst">
 <div class="mhdp">
         <?php block_display('14');?>    </div>
 <div class="mmskd">
@@ -21,9 +21,8 @@ block_get('14,7,9,11,13,15,5,12');?><?php include template('common/header'); ?><
 <div class="mscons">
 <div class="mlist mlisthome"><?php block_display('11');?></div>
  
-<div class="viewbg">
-<div class="views"></div>
-</div>
+<div class="viewbg view-idx">
+                                <?php block_display('16');?></div>
 <div class="clr"></div>
 </div>
 <div class="asklc">
@@ -41,9 +40,9 @@ block_get('14,7,9,11,13,15,5,12');?><?php include template('common/header'); ?><
 <div class="bncdsy">
             <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>
             <a class="hotlink" href="/portal.php?mod=view&amp;aid=9">热线呼叫</a>
-            <a class="hotlink" href="/forum.php">部门连线</a>
-            <a class="hotlink" href="/forum.php">镇街连线</a>
-            <a class="hotlink" href="/weibo.html">政务微博</a>
+            <a class="hotlink" href="/forum.php?gid=1">部门连线</a>
+            <a class="hotlink" href="/forum.php?gid=72">镇街连线</a>
+            <a class="hotlink" href="/portal.php?mod=list&amp;catid=8">政务微博</a>
             <a class="hotlink" href="/portal.php?mod=view&amp;aid=10">微信留言</a>
             <a class="hotlink" href="/portal.php?mod=view&amp;aid=11">微博留言</a>
         </div>
@@ -62,7 +61,7 @@ block_get('14,7,9,11,13,15,5,12');?><?php include template('common/header'); ?><
 <div class="asktop" id="zxwd">
 <ul>
 <li class="askcur" lang="1">网友正在问</li>
-<li lang="2">部门正在答</li>
+                <li lang="2">部门正在答</li>
 </ul>
 <div class="clr"></div>
 <div class="rightlc"><img src="images/rightlc.jpg" /></div>
@@ -72,10 +71,23 @@ block_get('14,7,9,11,13,15,5,12');?><?php include template('common/header'); ?><
 <div class="showno zxwd_2"><?php block_display('15');?></div>
 <div class="clr"></div>
 <div class="person">
-<p class="per1"><a href="#">个人中心</a></p>
-<p class="per2"><a href="#">发帖须知</a></p>
+<p class="per1">
+                    <?php if($_G['uid']) { ?>
+                        <a href="/home.php?mod=spacecp&amp;ac=profile">个人中心</a>
+                    <?php } else { ?>
+                        <a href="/home.php?mod=space&amp;uid=1">个人中心</a>
+                    <?php } ?></p>
+<p class="per2"><a href="/portal.php?mod=view&amp;aid=12">发帖须知</a></p>
 <p class="per3">e热线：63013581</p>
-<div class="psoso"><input class="pkey" type="text" name="key" /><input class="psub" type="submit" value=" " /></div>
+<div class="psoso">
+                    <form action="/search.php" name="formsearch" target="_blank" onsubmit="if(kw.value==''){alert('请输入搜索的关键词');return false;}">
+                    <input type="hidden" name="mod" value="forum">
+                    <input type="hidden" name="searchid" value="1">
+                    <input type="hidden" name="searchsubmit" value="yes">
+                    <input class="pkey" type="text" name="kw" />
+                    <input class="psub" type="submit" value="" />
+                    </form>
+                </div>
 </div>
 </div>
 </div>
