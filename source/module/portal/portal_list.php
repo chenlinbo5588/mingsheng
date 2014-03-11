@@ -101,7 +101,7 @@ function category_get_wheresql($cat) {
 	$wheresql = '';
 	if(is_array($cat)) {
 		$catid = $cat['catid'];
-		if(!empty($cat['subs'])) {
+		if(!empty($cat['subs']) && ($catid !=2)) {
 			include_once libfile('function/portalcp');
 			$subcatids = category_get_childids('portal', $catid);
 			$subcatids[] = $catid;

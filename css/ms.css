@@ -395,7 +395,7 @@ a{
 .secright .bncdsy{
 	width: 240px;
 	height: 379px;
-	background: url("../images/bncdsy.jpg") no-repeat;
+	background: url("../images/helpsound-top.jpg") no-repeat 0 0;
 }
 .asklc{
 	margin-top: 15px;
@@ -832,14 +832,33 @@ a{
 
 .hotlink {
     text-decoration: none;
-    height:52px;
+    height:50px;
     display: block;
     text-indent: -1000em;
+    margin: 5px 0;
 }
-
 .hotlink:hover {
     text-decoration: none;
 }
+.secright .bncdsy .hot-1 {
+    background: url(../images/helpsound-1.jpg) no-repeat 0 0;
+}
+.secright .bncdsy .hot-2 {
+    background: url(../images/helpsound-2.jpg) no-repeat 0 0;
+}
+.secright .bncdsy .hot-3 {
+    background: url(../images/helpsound-3.jpg) no-repeat 0 0;
+}
+.secright .bncdsy .hot-4 {
+    background: url(../images/helpsound-4.jpg) no-repeat 0 0;
+}
+.secright .bncdsy .hot-5 {
+    background: url(../images/helpsound-5.jpg) no-repeat 0 0;
+}
+.secright .bncdsy .hot-6 {
+    background: url(../images/helpsound-6.jpg) no-repeat 0 0;
+}
+
 
 .guide {
     background:url(/images/asklc.jpg) no-repeat ;

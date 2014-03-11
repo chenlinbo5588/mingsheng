@@ -17,7 +17,7 @@ Created & Modified by Pony.
 .ct2 #chart, .ct2 #an { margin-right: -235px; }
 	.ie6 .ct2 #chart, .ie6 .ct2 #an { position: relative; }
 
-.ct2_a { padding-left: 150px; }
+.ct2_a { padding-left: 150px;width: 850px; }
 	.ct2_a .appl { margin-left: -150px; }
 		.ie6 .ct2_a .appl { position: relative; display: inline; }
 	.ct2_a .mn { width: 99%; }
