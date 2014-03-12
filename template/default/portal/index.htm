@@ -1,49 +1,47 @@
 <!--{template common/header}-->
 <div class="mfirst">
-	<div class="mhdp">
+    <div class="mhdp">
         <!--{block/14}-->
     </div>
-	<div class="mmskd">
-		<h2><a class="moreLink" href="/portal.php?mod=list&catid=2"  target="_blank">&gt;&nbsp;更多</a></h2>
-		<div class="mscon">
-			<h3><!--{block/7}--></h3>
-			<div class="hot2"></div>
-			<div class="hotline"></div>
-			<div class="mlist mllist mlisth">
-				<!--{block/9}-->
-			</div>
-			
-			
-		</div>
-	</div>
-	<div class="clr"></div>
+    <div class="mmskd">
+        <h2><a class="moreLink" href="/portal.php?mod=list&catid=2"  target="_blank">&gt;&nbsp;更多</a></h2>
+        <div class="mscon">
+            <h3><!--{block/7}--></h3>
+            <div class="hot2"></div>
+            <div class="hotline"></div>
+            <div class="mlist mllist mlisth">
+                <!--{block/9}-->
+            </div>
+        </div>
+    </div>
+    <div class="clr"></div>
 </div>
 <div class="msecond">
-	<div class="secleft">
+    <div class="secleft">
         <h2><a class="moreLink" href="/portal.php?mod=list&catid=3" target="_blank">&gt;&nbsp;更多</a></h2>
-		<div class="mscons">
-			<div class="mlist mlisthome">
-				<!--{block/11}-->
-			</div>
-			 
-			<div class="viewbg view-idx">
-                                <!--{block/16}-->
-			</div>
-			<div class="clr"></div>
-		</div>
-		<div class="asklc">
+        <div class="mscons">
+            <div class="mlist mlisthome">
+                <!--{block/11}-->
+            </div>
+
+            <div class="viewbg view-idx">
+                <!--{block/16}-->
+            </div>
+            <div class="clr"></div>
+        </div>
+        <div class="asklc">
             <a href="/portal.php?mod=view&aid=12" class="guide guide1">发帖须知</a>
             <a href="/portal.php?mod=list&catid=6" class="guide guide2">常见问题</a>
             <a href="/portal.php?mod=list&catid=7" class="guide guide3">部门职责</a>
             <a href="/forum.php" class="guide guide4">镇街连线</a>
             <a href="/forum.php" class="guide guide5">我要提问</a>
             <!--<img src="images/asklc.jpg" />-->
-            
-        
+
+
         </div>
-	</div>
-	<div class="secright">
-		<div class="bncdsy">
+    </div>
+    <div class="secright">
+        <div class="bncdsy">
             <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>
             <a class="hotlink hot-1" href="/portal.php?mod=view&aid=9">热线呼叫</a>
             <a class="hotlink hot-2" href="/forum.php?gid=1">部门连线</a>
@@ -52,93 +50,95 @@
             <a class="hotlink hot-5" href="/portal.php?mod=view&aid=10">微信留言</a>
             <a class="hotlink hot-6" href="/portal.php?mod=view&aid=11">微博留言</a>
         </div>
-	</div>
-	<div class="clr"></div>
+    </div>
+    <div class="clr"></div>
 </div>
 <div class="bluebg"></div>
+
 <div class="third">
-	<div class="zxask">
-		<a href="/forum.php" class="a1">&nbsp;</a>
-		<a href="/portal.php?mod=view&aid=15" class="a2">&nbsp;</a>
-		<a href="/forum.php" class="a3">&nbsp;</a>
-	</div>
-	
-	<div class="secleft">
-		<div class="asktop" id="zxwd">
-			<ul>
-				<li class="askcur" lang="1">网友正在问</li>
-                <li lang="2">部门正在答</li>
-			</ul>
-			<div class="clr"></div>
-			<div class="rightlc"><img src="images/rightlc.jpg" /></div>
-		</div>
-		<div class="askul">
-			<div class="showno zxwd_1"><!--{block/13}--></div>
-			<div class="showno zxwd_2"><!--{block/15}--></div>
-			<div class="clr"></div>
-			<div class="person">
-				<p class="per1">
-                    <!--{if $_G['uid']}-->
+    <div class="zxask">
+        <a href="/forum.php" class="a1">&nbsp;</a>
+        <a href="/portal.php?mod=view&aid=15" class="a2">&nbsp;</a>
+        <a href="/forum.php" class="a3">&nbsp;</a>
+    </div>
+    <div class="zxask-btm">
+        <div class="secleft">
+            <div class="asktop" id="zxwd">
+                <ul>
+                    <li class="askcur" lang="1">网友正在问</li>
+                    <li lang="2">部门正在答</li>
+                </ul>
+                <div class="clr"></div>
+                <div class="rightlc"><img src="images/rightlc.jpg" /></div>
+            </div>
+            <div class="askul">
+                <div class="showno zxwd_1"><!--{block/13}--></div>
+                <div class="showno zxwd_2"><!--{block/15}--></div>
+                <div class="clr"></div>
+                <div class="person">
+                    <p class="per1">
+                        <!--{if $_G['uid']}-->
                         <a href="/home.php?mod=spacecp&ac=profile">个人中心</a>
-                    <!--{else}-->
+                        <!--{else}-->
                         <a href="/home.php?mod=space&uid=1">个人中心</a>
-                    <!--{/if}--></p>
-				<p class="per2"><a href="/portal.php?mod=view&aid=12">发帖须知</a></p>
-				<p class="per3">e热线：63013581</p>
-                <span class="thread-search">热帖搜索：</span>
-				<div class="psoso">
-                    <form method="post" autocomplete="off" action="search.php?mod=forum" onsubmit="if($('scform_fmtxt')) searchFocus($('scform_srchtxt'));">
-                    <input type="hidden" name="formhash" value="63cbf93d">
-                    <input class="pkey" type="text" id="scform_fmtxt" name="srchtxt" value="" tabindex="1" placeholder="请输入搜索内容">
-                    <input type="hidden" name="searchsubmit" value="yes">
-                    <button class="psub" type="submit" id="scform_submit1" value="true">
-                    </form>
+                        <!--{/if}--></p>
+                    <p class="per2"><a href="/portal.php?mod=view&aid=12">发帖须知</a></p>
+                    <p class="per3">e热线：63013581</p>
+                    <span class="thread-search">热帖搜索：</span>
+                    <div class="psoso">
+                        <form method="post" autocomplete="off" action="search.php?mod=forum" onsubmit="if ($('scform_fmtxt'))  searchFocus($('scform_srchtxt'));">
+                            <input type="hidden" name="formhash" value="63cbf93d">
+                            <input class="pkey" type="text" id="scform_fmtxt" name="srchtxt" value="" tabindex="1" placeholder="请输入搜索内容">
+                            <input type="hidden" name="searchsubmit" value="yes">
+                            <input class="psub" type="submit" id="scform_submit1" value="">
+                        </form>
+                    </div>
                 </div>
-			</div>
-		</div>
-	</div>
-	<div class="secright w240">
-		<div class="wxbgtop"><a href="/portal.php?mod=list&catid=3" class="moreLink"  target="_blank">&nbsp;更多</a></div>
-		<div class="wxbgcen">
-			<div class="bgtj">
-				<p>总发帖：34256   用户数：343245</p>
-				<p>在受理：43245  总回复：43232</p>
-			</div>
-            <div class="fttj">
-                <!--{block/23}-->
             </div>
-            <div class="wxbgbtm">
-                <!--{block/22}-->
+        </div>
+        <div class="secright w240">
+            <div class="wxbgtop"><a href="/portal.php?mod=list&catid=3" class="moreLink"  target="_blank">&nbsp;更多</a></div>
+            <div class="wxbgcen">
+                <div class="bgtj">
+                    <p>总发帖：34256   用户数：343245</p>
+                    <p>在受理：43245  总回复：43232</p>
+                </div>
+                <div class="fttj">
+                    <!--{block/23}-->
+                </div>
+                <div class="wxbgbtm">
+                    <!--{block/22}-->
+                </div>
             </div>
-		</div>
-	</div>
-	<div class="clr"></div>
+        </div>
+        <div class="clr"></div>
+    </div>
 </div>
 <div class="msad"><a href="/weibo.html"><img src="images/lspic2.jpg" /></a></div>
 <div class="bluebg"></div>
 <div class="four">
-	<div class="zxask wxsytop">
-		<!--<a href="#" class="a3 moreLink">&gt;&nbsp;更多</a>-->
-	</div>
-	<div class="wxsycen">
-		<div class="asktop asktop2">
-			<ul>
-				<li class="askcur" lang="1">部 门</li>
-				<li lang="2">镇 街</li>
-				<li lang="3">政务微博</li>
-			</ul>
-			<div class="clr"></div>
-		</div>
-		<div class="bmlogos ask_1">
-			<!--{block/5}-->
-		</div>
-		<div class="bmlogos ask_2">
-			<!--{block/12}-->
-		</div>
-		<div class="bmlogos ask_3">
-			<!--{block/20}-->
-		</div>
-	</div>
+    <div class="zxask wxsytop">
+        <!--<a href="#" class="a3 moreLink">&gt;&nbsp;更多</a>-->
+    </div>
+    <div class="wxsycen">
+        <div class="asktop asktop2">
+            <ul>
+                <li class="askcur" lang="1">部 门</li>
+                <li lang="2">镇 街</li>
+                <li lang="3">政务微博</li>
+            </ul>
+            <div class="clr"></div>
+        </div>
+        <div class="bmlogos ask_1">
+            <!--{block/5}-->
+        </div>
+        <div class="bmlogos ask_2">
+            <!--{block/12}-->
+        </div>
+        <div class="bmlogos ask_3">
+            <!--{block/20}-->
+        </div>
+    </div>
 </div>
 <!-- {block/zxbm} -->
 <!--{template common/footer}-->

@@ -343,10 +343,15 @@ a{
 	margin: 0 auto;
 	padding-top: 10px;
 }
+.zxask-btm {
+    width: 1000px;
+    overflow: hidden;
+    zoom: 1;
+}
 .secleft{
 	float: left;
 	width: 730px;
-        clear: both;
+        position: relative;
 }
 
 .mscons{
@@ -583,6 +588,7 @@ a{
 	padding-left: 10px;
 }
 .fttj {
+    height: 175px;
     padding:17px 17px 10px 17px;
 }
 .fttj a {
@@ -637,6 +643,7 @@ a{
 	width: 195px;
 	height: 30px;
 	position: absolute;
+        overflow: hidden;
 	right: 18px;
 	top: 13px;
 }
@@ -651,11 +658,13 @@ a{
 	width: 151px;
 	height: 28px;
 	border: 0px;
+        line-height: 28px;
 	padding:0 4px;
 	background: transparent;
         float: left;
 }
 .psoso .psub{
+        float: left;
 	width: 30px;
 	height: 30px;
 	background: transparent;
