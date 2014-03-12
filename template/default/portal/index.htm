@@ -30,11 +30,11 @@
             <div class="clr"></div>
         </div>
         <div class="asklc">
-            <a href="/portal.php?mod=view&aid=12" class="guide guide1">发帖须知</a>
-            <a href="/portal.php?mod=list&catid=6" class="guide guide2">常见问题</a>
-            <a href="/portal.php?mod=list&catid=7" class="guide guide3">部门职责</a>
-            <a href="/forum.php" class="guide guide4">镇街连线</a>
-            <a href="/forum.php" class="guide guide5">我要提问</a>
+            <a href="/portal.php?mod=view&aid=12" class="guide guide1" target="_blank">发帖须知</a>
+            <a href="/portal.php?mod=list&catid=6" class="guide guide2" target="_blank">常见问题</a>
+            <a href="/portal.php?mod=list&catid=7" class="guide guide3" target="_blank">部门职责</a>
+            <a href="/forum.php" class="guide guide4" target="_blank">镇街连线</a>
+            <a href="/forum.php" class="guide guide5" target="_blank">我要提问</a>
             <!--<img src="images/asklc.jpg" />-->
 
 
@@ -100,8 +100,10 @@
             <div class="wxbgtop"><a href="/portal.php?mod=list&catid=3" class="moreLink"  target="_blank">&nbsp;更多</a></div>
             <div class="wxbgcen">
                 <div class="bgtj">
-                    <p>总发帖：34256   用户数：343245</p>
-                    <p>在受理：43245  总回复：43232</p>
+                    <ul><li><span class="forum-num">总发帖：</span>{$allposts}</li>
+                    <li><span class="forum-num"> 用户数：</span>{$allmembers}</li></ul>
+                    <ul><li><span class="forum-num">在受理：</span>{$nowdeals}</li>
+                    <li><span class="forum-num">总回复：</span>{$allreplies}</li></ul>
                 </div>
                 <div class="fttj">
                     <!--{block/23}-->

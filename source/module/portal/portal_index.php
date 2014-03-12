@@ -28,6 +28,13 @@ if(!$metadescription) {
 if(isset($_G['makehtml'])){
 	helper_makehtml::portal_index();
 }
+$allposts = 0;
+$allmembers = 0;
+$nowdeals = 0;
+$allreplies = 0;
+$allposts = DB::result_first("SELECT SUM(posts) AS totalposts FROM ".DB::table('forum_forum'));
+$allmembers = DB::result_first("SELECT count(*) FROM ".DB::table('common_member'));
+$allreplies = DB::result_first("SELECT SUM(replies) AS totalreplies FROM ".DB::table('forum_thread'));
 
 include_once template('diy:portal/index');
 ?>

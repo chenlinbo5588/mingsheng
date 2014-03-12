@@ -577,15 +577,23 @@ a{
 	border-top: 0px;
 }
 .wxbgcen .bgtj{
-	padding: 5px;
+        height: 45px;
+	padding: 5px 9px;
         background: url(../images/wxbg-top.jpg) no-repeat 0 0;
 	border-bottom: 1px dashed #d1d1d1;
 }
-.wxbgcen .bgtj p{
-	line-height: 22px;
-	font-weight: bold;
-	color: #838383;
-	padding-left: 10px;
+.wxbgcen .bgtj ul li {
+    float: left;
+    width: 110px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 12px;
+    color: #464646;
+    list-style: none;
+}
+.wxbgcen .bgtj .forum-num {
+    color: #0EA0B8;
+    font-weight: bold;
 }
 .fttj {
     height: 175px;
