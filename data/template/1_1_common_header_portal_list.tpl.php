@@ -1,6 +1,6 @@
 <?php if(!defined('IN_DISCUZ')) exit('Access Denied'); 
 0
-|| checktplrefresh('./template/default/common/header.htm', './template/default/common/header_common.htm', 1393854939, '1', './data/template/1_1_common_header_portal_list.tpl.php', './template/default', 'common/header_portal_list')
+|| checktplrefresh('./template/default/common/header.htm', './template/default/common/header_common.htm', 1394624995, '1', './data/template/1_1_common_header_portal_list.tpl.php', './template/default', 'common/header_portal_list')
 ;?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -43,6 +43,9 @@
 <?php } if($_GET['diy'] == 'yes' && check_diy_perm($topic)) { ?>
 <link rel="stylesheet" type="text/css" id="diy_common" href="data/cache/style_<?php echo STYLEID;?>_css_diy.css?<?php echo VERHASH;?>" />
 <?php } ?>
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    <script src="<?php echo $_G['setting']['jspath'];?>selectivizr-min.js" type="text/javascript"></script>
+    <![endif]-->
 </head>
 
 <body id="nv_<?php echo $_G['basescript'];?>" class="pg_<?php echo CURMODULE;?><?php if($_G['basescript'] === 'portal' && CURMODULE === 'list' && !empty($cat)) { ?> <?php echo $cat['bodycss'];?><?php } ?>" onkeydown="if(event.keyCode==27) return false;">
@@ -52,21 +55,34 @@
 <div class="fll"><a href="http://www.cxnews.cn" target="_blank"><img src="images/newslogo.jpg" /></a></div>
 <div class="fll"> 
 <?php if($_G['uid']) { ?>
-<strong class="vwmy<?php if($_G['setting']['connect']['allow'] && $_G['member']['conisbind']) { ?> qq<?php } ?>"><a href="home.php?mod=space&amp;uid=<?php echo $_G['uid'];?>" target="_blank" title="访问我的空间"><?php echo $_G['member']['username'];?></a></strong>
-您好，欢迎您访问慈溪网络民生服务平台！ <a href="member.php?mod=logging&amp;action=logout&amp;formhash=<?php echo FORMHASH;?>">退出</a>
+<strong class="vwmy<?php if($_G['setting']['connect']['allow'] && $_G['member']['conisbind']) { ?> qq<?php } ?>"><a href="/home.php?mod=spacecp&amp;ac=profile" title="访问我的空间"><?php echo $_G['member']['username'];?></a></strong>
+您好，欢迎您访问慈溪网络民生服务平台！
+    <a href="/home.php?mod=spacecp" title="设置">个人中心</a> |
+    <a href="member.php?mod=logging&amp;action=logout&amp;formhash=<?php echo FORMHASH;?>">退出</a>
 <?php } else { ?>
 您好：游客，欢迎您访问慈溪网络民生服务平台！<a href="/member.php?mod=logging&amp;action=login">请登入</a> | <a href="/member.php?mod=register">立即注册</a>
 <?php } ?>
 
- | 手机版 </div>
-<div class="frr">主办单位：市纪委、市宣传部</div>
+ | <a href="#" title="进入手机版">手机版</a> </div>
+<div class="frr">主办单位：市纪委、市委宣传部&nbsp; &nbsp;</div>
 <div class="clr"></div>
 </div>
 <div class="dlogo">	
 <div class="toplogo"><img src="images/toplogo.jpg" /></div>
 <div class="menu">
-<div class="nav"><a href="/portal.php">首 页</a><span>|</span><a href="/portal.php?mod=list&amp;catid=2">民生快递</a><span>|</span><a href="/forum.php">阿拉帮侬忙</a><span>|</span><a href="/portal.php?mod=list&amp;catid=3">新闻发布会</a><span>|</span><a href="/weibo.html">微博发布厅</a></div>
-<div class="soso"><input type="text" class="key" value="输入搜索关键字" /></div>
+<div class="nav"><a href="/portal.php">首 页</a><span>|</span><a href="/portal.php?mod=list&amp;catid=2">民生快递</a><span>|</span><a href="/forum.php">阿拉帮侬忙</a><span>|</span><a href="/portal.php?mod=list&amp;catid=3">新闻发布会</a><span>|</span><a href="/portal.php?mod=list&amp;catid=8">微博发布厅</a></div>
+        <div class="soso">
+            <form method="post" autocomplete="off" action="search.php?mod=portal"  onsubmit="if($('scform_srchtxt')) searchFocus($('scform_srchtxt'));">
+<input type="hidden" name="mod" value="portal">
+                <input type="hidden" name="formhash" value="63cbf93d">
+                <input type="hidden" name="searchsubmit" value="yes">
+                <ul >
+<li class="search_ipt"><input type="text" id="scform_srchtxt" name="srchtxt" value="" tabindex="1" placeholder="请输入搜索内容"></li>
+<li class="search_submit"><button id="scform_submit" value="true" type="submit">搜索</button></li>
+                </ul>
+                <script type="text/javascript">initSearchmenu('scform_srchtxt');$('scform_srchtxt').focus();</script>
+</form>
+        </div>
 <div class="clr"></div>
 </div>
 </div>

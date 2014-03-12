@@ -94,6 +94,22 @@ $primaltplname = $cat['primaltplname'];
 if(strpos($primaltplname, ':') !== false) {
 	list($tpldirectory, $primaltplname) = explode(':', $primaltplname);
 }
+
+if ($catid == 7) {
+    require_once libfile('function/pinyin');
+    $wheresql = category_get_wheresql($cat);
+    $list = category_get_list($cat, $wheresql, 1, 100);
+
+    $py = new PYInitials('utf-8'); 
+    $catelist = array();
+    foreach ($list['list'] as $part) {
+        $pinyin = $py->getInitials($part['title']);
+        $tmpKey = substr($pinyin, 0, 1);
+        $catelist[$tmpKey][] = $part;
+    }
+    ksort($catelist);
+}
+
 include template('diy:'.$file, NULL, $tpldirectory, NULL, $primaltplname);
 
 

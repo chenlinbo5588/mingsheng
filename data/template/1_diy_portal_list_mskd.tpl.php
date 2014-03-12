@@ -8,7 +8,7 @@ block_get('6');?><?php include template('common/header'); ?><!--[name]!portalcat
 <div class="mline"></div>
 </div>
 <div class="mlist">
-<ul><?php if(is_array($list['list'])) foreach($list['list'] as $value) { $highlight = article_title_style($value);?><?php $article_url = fetch_article_url($value);?><li><a href="<?php echo $article_url;?>"><?php echo $value['title'];?></a><span><?php echo $value['dateline'];?></span></li>
+<ul><?php if(is_array($list['list'])) foreach($list['list'] as $value) { $highlight = article_title_style($value);?><?php $article_url = fetch_article_url($value);?><li><a href="<?php echo $article_url;?>" target="_blank"><?php echo $value['title'];?></a><span><?php echo $value['dateline'];?></span></li>
 <?php } ?>
 </ul>
 <div class="page"><?php echo $list['multi'];?></div>
@@ -18,8 +18,8 @@ block_get('6');?><?php include template('common/header'); ?><!--[name]!portalcat
 <div class="helpsound">
             <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>
             <a class="hotlink" href="/portal.php?mod=view&amp;aid=9">热线呼叫</a>
-            <a class="hotlink" href="/forum.php">部门连线</a>
-            <a class="hotlink" href="/forum.php">镇街连线</a>
+            <a class="hotlink" href="/forum.php?gid=1">部门连线</a>
+            <a class="hotlink" href="/forum.php?gid=72">镇街连线</a>
             <a class="hotlink" href="/weibo.html">政务微博</a>
             <a class="hotlink" href="/portal.php?mod=view&amp;aid=10">微信留言</a>
             <a class="hotlink" href="/portal.php?mod=view&amp;aid=11">微博留言</a>

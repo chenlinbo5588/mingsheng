@@ -1,0 +1,45 @@
+<!--{template common/header}-->
+<!--[name]{lang portalcategory_listtplname}[/name]-->
+<!-- main start -->
+<div class="dmain">
+	<div class="mleft">
+		<div class="mnav">
+			<h1>首页&gt;<span>$cat[catname]</span></h1>
+			<div class="mline"></div>
+		</div>
+		<div class="plist">
+			<ul>
+				<!--{loop $catelist $letter $sublist}-->
+				<li><span class="first-letter">$letter</span>
+                    <!--{loop $sublist $value}-->
+                    <!--{eval $article_url = fetch_article_url($value);}-->
+                    <a href="$article_url" target="_blank">$value[title]</a>
+                    <!--{/loop}-->
+                </li>
+				<!--{/loop}-->
+			</ul>
+			<div class="page">{$list['multi']}</div>
+		</div>
+	</div>
+	<div class="mright">
+		<div class="helpsound">
+            <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>
+            <a class="hotlink" href="/portal.php?mod=view&aid=9">热线呼叫</a>
+            <a class="hotlink" href="/forum.php?gid=1">部门连线</a>
+            <a class="hotlink" href="/forum.php?gid=72">镇街连线</a>
+            <a class="hotlink" href="/weibo.html">政务微博</a>
+            <a class="hotlink" href="/portal.php?mod=view&aid=10">微信留言</a>
+            <a class="hotlink" href="/portal.php?mod=view&aid=11">微博留言</a>
+        </div>
+		<div class="lanmu">
+			<div class="lanmutop"><h1>阿拉帮侬忙</h1></div>
+			<div class="lanmucen">
+				<!--{block/6}-->
+			</div>
+			<div class="lanmufoot"></div>
+		</div>
+	</div>
+	<div class="clr"></div>
+</div>
+<!-- main end -->
+<!--{template common/footer}-->
