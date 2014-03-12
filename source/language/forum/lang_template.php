@@ -1318,6 +1318,11 @@ $lang = array (
     'thread_5days_reply'=> '五天内回复',
     'thread_5more_days_reply'=> '五天外回复',
     'thread_over_time_noreply'=> '超时未回复',
+    'all_text' => '全部',
+    'wait_pass' => '待审核',
+    'wait_accept' => '未受理',
+    'accept' => '已受理',
+    'replied' => '已回复',
 );
 
 ?>

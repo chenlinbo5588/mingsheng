@@ -436,9 +436,11 @@ $extra = rawurlencode(!IS_ROBOT ? 'page='.$page.($forumdisplayadd['page'] ? '&fi
 $threadtableids = !empty($_G['cache']['threadtableids']) ? $_G['cache']['threadtableids'] : array();
 
 $tableid = $_GET['archiveid'] && in_array($_GET['archiveid'], $threadtableids) ? intval($_GET['archiveid']) : 0;
-$tabKey = isset($_GET['tabkey']) ? $_GET['tabkey'] : 0;
-
-$filterarr = array();
+$sortid = isset($_GET['sortid']) ? $_GET['sortid'] : 'all';
+$filterarr = array(
+    'insort' => $sortid
+);
+/*
 switch ($tabKey) {
     case '1': 
         $filterarr['starttime'] = date('Y-m-d H:i:s');
@@ -458,11 +460,58 @@ switch ($tabKey) {
     default:
     case '0':
         break;
-}
+}*/
 $list['threadcount'] = C::t('forum_thread')->count_search($filterarr);
 
 $threadlist = C::t('forum_thread')->fetch_all_search($filterarr);
 $list['threadlist'] = format_index_list($threadlist);
+
+
+function addTimeMark($list){
+        //当前时间戳
+    $ts_now = time();
+    $hour24 = 60 * 60 * 24;
+    
+    foreach($list as $k => $thread){
+        
+        switch($thread['sortid']){
+            case 0:
+            case 1:
+                $thread['show_text'] = '待审核';
+                $thread['className'] = ($ts_now - $thread['dateline']) > $hour24 ? 'icon-24' : '';
+                break;
+            case 2:
+                $thread['show_text'] = '未受理';
+                $thread['className'] = ($ts_now - $thread['dateline']) > $hour24 ? 'icon-24' : '';
+                break;
+            case 3:
+            case 4:
+                if($thread['replies']){
+                    $days = ceil(($ts_now - $thread['dateline'])/$hour24);
+                    if($days > 5){
+                        $thread['className'] = 'icon-5daysover';
+                    }else{
+                        $thread['className'] = 'icon-'.$days.'days';
+                    }
+                    $thread['show_text'] = $days . "内回复";
+                }else{
+                    $thread['show_text'] = '超时未回复';
+                    $thread['className'] = 'icon-overtime';
+                }
+                break;
+            default:
+                break;
+        }
+        
+        $list[$k] = $thread;
+    }
+    
+    return $list;
+}
+//print_r($list['threadlist']);
+$list['threadlist'] = addTimeMark($list['threadlist']);
+//print_r($list['threadlist']);
+//print_r($catlist);
 include template('diy:forum/discuz:'.$gid);
 
 function get_index_announcements() {

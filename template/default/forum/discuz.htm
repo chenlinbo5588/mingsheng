@@ -8,17 +8,27 @@
 <div class="dmain">
 	<div class="bmzx"><img src="images/bmlogo.jpg" /></div>
 	<div class="bmlist">
-		<!--{loop $catlist $key $cat}-->
 		<div class="subbm-item">
-		<span class="subtitle">{$cat[name]}:&nbsp;</span>
-		<!--{loop $cat[forums] $skey $forumid}-->
+		<span class="subtitle">{$catlist[1][name]}:&nbsp;</span>
+		<!--{loop $catlist[1][forums] $skey $forumid}-->
 		<!--{eval $forum=$forumlist[$forumid];}-->
 		<!--{eval $forumurl = !empty($forum['domain']) && !empty($_G['setting']['domain']['root']['forum']) ? 'http://'.$forum['domain'].'.'.$_G['setting']['domain']['root']['forum'] : 'forum.php?mod=forumdisplay&fid='.$forum['fid'];}-->
 		{if ($skey !=0)}| {/if}
 		<a href="$forumurl"{if $forum[redirect]} target="_blank"{/if}>{$forum[name]}</a>
 		<!--{/loop}-->
 		</div>
+	</div>
+    <div class="bmzx"><img src="images/zjlogo.jpg" /></div>
+	<div class="bmlist">
+		<div class="subbm-item">
+		<span class="subtitle">{$catlist[72][name]}:&nbsp;</span>
+		<!--{loop $catlist[72][forums] $skey $forumid}-->
+		<!--{eval $forum=$forumlist[$forumid];}-->
+		<!--{eval $forumurl = !empty($forum['domain']) && !empty($_G['setting']['domain']['root']['forum']) ? 'http://'.$forum['domain'].'.'.$_G['setting']['domain']['root']['forum'] : 'forum.php?mod=forumdisplay&fid='.$forum['fid'];}-->
+		{if ($skey !=0)}| {/if}
+		<a href="$forumurl"{if $forum[redirect]} target="_blank"{/if}>{$forum[name]}</a>
 		<!--{/loop}-->
+		</div>
 	</div>
 </div>
 
@@ -45,7 +55,7 @@
 
 <!--{if empty($gid)}-->
 <div id="chart" class="bm bw0 cl">
-    <p class="z">
+    <p class="z clearfix">
         <!--{if $_G['uid']}-->
         <strong class="vwmy{if $_G['setting']['connect']['allow'] && $_G[member][conisbind]} qq{/if}"><a href="/home.php?mod=spacecp&ac=profile" title="{lang visit_my_space}">{$_G[member][username]}</a></strong> &nbsp;
         <a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a> |
@@ -54,7 +64,7 @@
         <!--{/if}-->
 
         <!--{if $_G['uid']}-->                    
-        <br><span class='user-profile'>
+        <span class='user-profile'>
         <!--{eval $creditid=$_G['setting']['creditstrans'];}-->
         <!--{if $_G['setting']['extcredits'][$creditid]}-->
         <!--{eval $credit=$_G['setting']['extcredits'][$creditid]; }-->
@@ -74,12 +84,11 @@
 
 <div class="thread-tabs">
     <ul>
-        <li class="tab-all <!--{if !$tabKey}-->active<!--{/if}-->"><a href="forum.php">{lang all}</a></li>
-        <li class="tab-24 <!--{if ($tabKey=='1')}-->active<!--{/if}-->"><a href="forum.php?tabkey=1">{lang thread_24hours}</a></li>
-        <li class="tab-3days <!--{if ($tabKey==2)}-->active<!--{/if}-->"><a href="forum.php?tabkey=2">{lang thread_3days_reply}</a></li>
-        <li class="tab-5days <!--{if ($tabKey==3)}-->active<!--{/if}-->"><a href="forum.php?tabkey=3">{lang thread_5days_reply}</a></li>
-        <li class="tab-5daysover <!--{if ($tabKey==4)}-->active<!--{/if}-->"><a href="forum.php?tabkey=4">{lang thread_5more_days_reply}</a></li>
-        <li class="tab-overtime <!--{if ($tabKey==5)}-->active<!--{/if}-->"><a href="forum.php?tabkey=5">{lang thread_over_time_noreply}</a></li>
+        <li class="tab <!--{if $sortid === '0' || $sortid ='all'}-->active<!--{/if}-->"><a href="forum.php">{lang all_text}</a></li>
+        <li class="tab <!--{if ($sortid == '1' )}-->active<!--{/if}-->"><a href="forum.php?sortid=1">{lang wait_pass}</a></li>
+        <li class="tab <!--{if ($sortid=='2')}-->active<!--{/if}-->"><a href="forum.php?sortid=2">{lang wait_accept}</a></li>
+        <li class="tab <!--{if ($sortid=='3')}-->active<!--{/if}-->"><a href="forum.php?sortid=3">{lang accept}</a></li>
+        <li class="tab <!--{if ($sortid=='4')}-->active<!--{/if}-->"><a href="forum.php?sortid=4">{lang replied}</a></li>
     </ul>
 </div>
 
@@ -87,6 +96,7 @@
         <table>
             <tr>
                 <th colspan='2'>{lang title}</th>
+                <th>&nbsp;</th>
                 <th>{lang forum_group}</th>
                 <th>{lang author}</th>
                 <th>{lang replies}</th>
@@ -127,7 +137,11 @@
                 <!--{/if}-->
                 </a>
             </td>
+            <td>
+                <div style="width:28px;height:28px; " class="{$thread[className]}"></div>
+            </td>
             <td class='thread-title'>
+                [{$thread[show_text]}]
                 <!--{if !$thread['forumstick'] && $thread['closed'] > 1 && ($thread['isgroup'] == 1 || $thread['fid'] != $_G['fid'])}-->
                     <!--{eval $thread[tid]=$thread[closed];}-->
                 <!--{/if}-->
@@ -190,7 +204,7 @@
             <!--{/if}-->
             </td>
             <td>
-                <a href="forum.php?mod=forumdisplay&fid=$thread[fid]" target="_blank">$forumlist[$thread[fid]]['name']</a>
+                <a href="forum.php?mod=forumdisplay&fid=$thread[fid]" target="_blank">$forumlist[$thread[fid]]['name']</a></div>
             </td>
             <td>
                 <cite>
@@ -203,7 +217,7 @@
                 <em><span{if $thread['istoday']} class="xi1"{/if}>$thread[dateline]</span></em>
             </td>
             <td>
-                <a href="forum.php?mod=viewthread&tid=$thread[tid]&extra=$extra" class="xi2">$thread[replies]</a><em><!--{if $thread['isgroup'] != 1}-->$thread[views]<!--{else}-->{$groupnames[$thread[tid]][views]}<!--{/if}--></em>
+                <a href="forum.php?mod=viewthread&tid=$thread[tid]&extra=$extra" class="xi2">$thread[replies]</a>/<em><!--{if $thread['isgroup'] != 1}-->$thread[views]<!--{else}-->{$groupnames[$thread[tid]][views]}<!--{/if}--></em>
             </td>
             <td>
                 <cite><!--{if $thread['lastposter']}--><a href="{if $thread[digest] != -2}home.php?mod=space&username=$thread[lastposterenc]{else}forum.php?mod=viewthread&tid=$thread[tid]&page={echo max(1, $thread[pages]);}{/if}" c="1">$thread[lastposter]</a><!--{else}-->$_G[setting][anonymoustext]<!--{/if}--></cite>
