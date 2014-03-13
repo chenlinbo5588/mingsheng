@@ -16,7 +16,10 @@
 				<!--{loop $list['list'] $value}-->
 				<!--{eval $highlight = article_title_style($value);}-->
 				<!--{eval $article_url = fetch_article_url($value);}-->
-				<li><a href="$article_url" target="_blank">$value[title]</a><span>$value[dateline]</span></li>
+				<li>
+                    <h4><a $highlight href="/html/292/797/997/2014/0312/427532.html">$value[title]</a></h4>
+                    <p>$value[summary]<a href="$article_url" target="_blank">[详细]</a></p>
+                </li>
 				<!--{/loop}-->
 			</ul>
 			<div class="page">{$list['multi']}</div>

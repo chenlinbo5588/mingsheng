@@ -109,6 +109,10 @@ if ($catid == 7) {
     }
     ksort($catelist);
 }
+//$sql = 'UPDATE '.DB::table('portal_category').' SET primaltplname="./template/default:portal/list" WHERE catid=9';
+//print_r($sql);
+//$test = DB::update($sql);
+//var_dump($test);
 
 include template('diy:'.$file, NULL, $tpldirectory, NULL, $primaltplname);
 
