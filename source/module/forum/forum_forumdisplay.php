@@ -12,7 +12,7 @@ if(!defined('IN_DISCUZ')) {
 }
 
 require_once libfile('function/forumlist');
-
+$lang = lang('forum/template');
 if($_G['forum']['redirect']) {
 	dheader("Location: {$_G[forum][redirect]}");
 } elseif($_G['forum']['type'] == 'group') {
@@ -636,6 +636,7 @@ if($filter !== 'hot') {
 	}
 	$threadlist = array_merge($threadlist, C::t('forum_thread')->fetch_all_search($filterarr, $tableid, $start_limit, $_G['tpp'], $_order, '', $indexadd));
 	unset($_order);
+    //print_r($threadlist);
 	if(empty($threadlist) && $page <= ceil($_G['forum_threadcount'] / $_G['tpp'])) {
 		require_once libfile('function/post');
 		updateforumcount($_G['fid']);
@@ -849,6 +850,8 @@ if(!empty($threadids)) {
 		$_G['forum_threadlist'][$index]['views'] += $value['addviews'];
 	}
 }
+$threadlist = thread_add_icon_by_row($threadlist);
+//print_r($threadlist);
 if($_G['setting']['verify']['enabled'] && $verifyuids) {
 	foreach(C::t('common_member_verify')->fetch_all($verifyuids) as $value) {
 		foreach($_G['setting']['verify'] as $vid => $vsetting) {

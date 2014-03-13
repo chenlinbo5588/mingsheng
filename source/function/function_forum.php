@@ -11,52 +11,56 @@ if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
 
-function thread_add_icon($data){
+function thread_add_icon_by_row($data,$datelineKey){
     global $lang;
     $ts_now = time();
     $hour24 = 60 * 60 * 24;
     
+    foreach($data as $k => $thread){
+        //$duration = $ts_now - $tv2['dbdateline'];
+        $thread['className'] =  '';
+        $thread['show_text'] = '';
+        $days = ceil(($ts_now - $thread[$datelineKey])/$hour24);
+        
+        switch($thread['sortid']){
+            case $lang['sort_all_code']:
+            case $lang['sort_wait_verify_code']:
+            case $lang['sort_wait_accept_code']:
+                $thread['show_text'] = $lang['sort_wait_accept'];
+                $thread['className'] = ($ts_now - $thread[$datelineKey]) > $hour24 ? 'icon-24' : '';
+                break;
+            case $lang['sort_accept_code']:
+                if($days > 10){
+                    $thread['className'] = 'icon-overtime';
+                }
+                $thread['show_text'] = $lang['sort_accept'];
+                break;
+            case $lang['sort_replied_code']:
+                if($days > 5){
+                    $thread['className'] = 'icon-5daysover';
+                    $thread['show_text'] = '5天外回复';
+                }else{
+                    if($days <= 3){
+                        $thread['show_text'] = '3天内回复';
+                        $thread['className'] = 'icon-3days';
+                    }else{
+                        $thread['show_text'] = '5天内回复';
+                        $thread['className'] = 'icon-5days';
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+        $data[$k] = $thread;
+    }
+    return $data;
+}
+
+function thread_add_icon($data,$datelineKey = 'dateline'){
     foreach($data as $tk => $tv){
         if(!empty($tv['threadlist'])){
-            foreach($tv['threadlist'] as $tk2 => $thread){
-                //$duration = $ts_now - $tv2['dbdateline'];
-                $thread['className'] =  '';
-                $thread['show_text'] = '';
-                switch($thread['sortid']){
-                    case $lang['sort_all_code']:
-                    case $lang['sort_wait_verify_code']:
-                        $thread['show_text'] = $lang['sort_wait_verify'];
-                        break;
-                    case $lang['sort_wait_accept_code']:
-                        $thread['show_text'] = $lang['sort_wait_accept'];
-                        $thread['className'] = ($ts_now - $thread['dbdateline']) > $hour24 ? 'icon-24' : '';
-                        break;
-                    case $lang['sort_accept_code']:
-                        $thread['show_text'] = $lang['sort_accept'];
-                        break;
-                    case $lang['sort_replied_code']:
-                        $days = ceil(($ts_now - $thread['dateline'])/$hour24);
-                        if($days > 5){
-                            $thread['className'] = 'icon-5daysover';
-                        }else{
-                            $thread['className'] = 'icon-'.$days.'days';
-                        }
-                        $thread['show_text'] = $days . "内回复";
-                            
-                        /*
-                        if($thread['replies']){
-                            
-                        }else{
-                            $thread['show_text'] = $lang['thread_over_time_noreply'];
-                            $thread['className'] = 'icon-overtime';
-                        }*/
-                        break;
-                    default:
-                        break;
-                }
-                $tv['threadlist'][$tk2] = $thread;
-            }
-            $data[$tk]['threadlist'] = $tv['threadlist'];
+            $data[$tk]['threadlist'] = thread_add_icon_by_row($tv['threadlist'],$datelineKey);
         }
     }
     

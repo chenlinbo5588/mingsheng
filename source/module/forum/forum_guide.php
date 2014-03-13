@@ -129,7 +129,7 @@ if($view != 'index') {
 loadcache('stamps');
 $currentview[$view] = 'class="xw1 a"';
 //print_r($data);
-$data = thread_add_icon($data);
+$data = thread_add_icon($data,'dbdateline');
 //print_r($data);
 $navigation = $view != 'index' ? ' <em>&rsaquo;</em> <a href="forum.php?mod=guide&view='.$view.'">'.$lang['guide_'.$view].'</a>' : '';
 include template('forum/guide');

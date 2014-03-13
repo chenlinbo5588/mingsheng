@@ -403,6 +403,16 @@
 					<!--{if !$_GET['archiveid']}--><a href="javascript:;" id="newspecial" onmouseover="$('newspecial').id = 'newspecialtmp';this.id = 'newspecial';showMenu({'ctrlid':this.id})"{if !$_G['forum']['allowspecialonly'] && empty($_G['forum']['picstyle']) && !$_G['forum']['threadsorts']['required']} onclick="showWindow('newthread', 'forum.php?mod=post&action=newthread&fid=$_G[fid]')"{else} onclick="location.href='forum.php?mod=post&action=newthread&fid=$_G[fid]';return false;"{/if} title="{lang send_posts}"><img src="{IMGDIR}/pn_post.png" alt="{lang send_posts}" /></a><!--{/if}-->
 					<!--{hook/forumdisplay_postbutton_top}-->
 				</div>
+                <div class="thread-tabs">
+                    <ul>
+                        <li class="tab <!--{if $_GET['sortid'] == '0' || $_GET['sortid'] =='all' }-->active<!--{/if}-->"><a href="forum.php?mod=forumdisplay&fid={$_G[fid]}">{lang sort_all}</a></li>
+                        <li class="tab <!--{if $_GET['sortid'] == '2'}-->active<!--{/if}-->"><a href="forum.php?mod=forumdisplay&filter=sortid&fid={$_G[fid]}&sortid=2">{lang sort_wait_accept}</a></li>
+                        <li class="tab <!--{if $_GET['sortid'] =='3'}-->active<!--{/if}-->"><a href="forum.php?mod=forumdisplay&filter=sortid&fid={$_G[fid]}&sortid=3">{lang sort_accept}</a></li>
+                        <li class="tab <!--{if $_GET['sortid'] =='4'}-->active<!--{/if}-->"><a href="forum.php?mod=forumdisplay&filter=sortid&fid={$_G[fid]}&sortid=4">{lang sort_replied}</a></li>
+                    </ul>
+                </div>
+                
+                
 				<!--{if ($_G['forum']['threadtypes'] && $_G['forum']['threadtypes']['listable']) || count($_G['forum']['threadsorts']['types']) > 0}-->
 					<ul id="thread_types" class="ttp bm cl">
 						<!--{hook/forumdisplay_threadtype_inner}-->
