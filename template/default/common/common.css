@@ -745,7 +745,7 @@ CSS 写作注意事项：
 	*/
 	.bm, .bn { margin-bottom: 10px; }
 		.bm { border: 1px solid {COMMONBORDER}; background: {WRAPBG}; }
-			.bm_c { padding: 10px; }
+			.bm_c { padding: 0px; }
 		.drag {}
 		.bm_h .o { float: right; width: 30px; }
 			.bm_h .o img { float: right; margin-top: 8px; cursor: pointer; }

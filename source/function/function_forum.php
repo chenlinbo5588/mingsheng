@@ -11,6 +11,58 @@ if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
 
+function thread_add_icon($data){
+    global $lang;
+    $ts_now = time();
+    $hour24 = 60 * 60 * 24;
+    
+    foreach($data as $tk => $tv){
+        if(!empty($tv['threadlist'])){
+            foreach($tv['threadlist'] as $tk2 => $thread){
+                //$duration = $ts_now - $tv2['dbdateline'];
+                $thread['className'] =  '';
+                $thread['show_text'] = '';
+                switch($thread['sortid']){
+                    case $lang['sort_all_code']:
+                    case $lang['sort_wait_verify_code']:
+                        $thread['show_text'] = $lang['sort_wait_verify'];
+                        break;
+                    case $lang['sort_wait_accept_code']:
+                        $thread['show_text'] = $lang['sort_wait_accept'];
+                        $thread['className'] = ($ts_now - $thread['dbdateline']) > $hour24 ? 'icon-24' : '';
+                        break;
+                    case $lang['sort_accept_code']:
+                        $thread['show_text'] = $lang['sort_accept'];
+                        break;
+                    case $lang['sort_replied_code']:
+                        $days = ceil(($ts_now - $thread['dateline'])/$hour24);
+                        if($days > 5){
+                            $thread['className'] = 'icon-5daysover';
+                        }else{
+                            $thread['className'] = 'icon-'.$days.'days';
+                        }
+                        $thread['show_text'] = $days . "内回复";
+                            
+                        /*
+                        if($thread['replies']){
+                            
+                        }else{
+                            $thread['show_text'] = $lang['thread_over_time_noreply'];
+                            $thread['className'] = 'icon-overtime';
+                        }*/
+                        break;
+                    default:
+                        break;
+                }
+                $tv['threadlist'][$tk2] = $thread;
+            }
+            $data[$tk]['threadlist'] = $tv['threadlist'];
+        }
+    }
+    
+    return $data;
+}
+
 function discuz_uc_avatar($uid, $size = '', $returnsrc = FALSE) {
 	global $_G;
 	return avatar($uid, $size, $returnsrc, FALSE, $_G['setting']['avatarmethod'], $_G['setting']['ucenterurl']);

@@ -1087,7 +1087,11 @@ class table_forum_thread extends discuz_table
 				$addsql = ' AND digest>0';
 				break;
 			default :
-				$addsql = '';
+                if(isset($_GET['sortid']) || $_GET['sortid'] != 0 ){
+                    $addsql = ' AND sortid = '.intval($_GET['sortid']);
+                }else{
+                    $addsql = '';
+                }
 		}
 		if(getglobal('setting/followforumid')) {
 			$addsql .= ' AND '.DB::field('fid', getglobal('setting/followforumid'), '<>');
@@ -1106,7 +1110,9 @@ class table_forum_thread extends discuz_table
 			if($dateline) {
 				$addsql .= ' AND dateline > '.intval($dateline);
 			}
-			if($type == 'newthread') {
+            if($type == 'all'){
+                $orderby = 'dateline';
+            }elseif($type == 'newthread') {
 				$orderby = 'tid';
 			} elseif($type == 'reply') {
 				$orderby = 'lastpost';
@@ -1115,8 +1121,8 @@ class table_forum_thread extends discuz_table
 				$orderby = 'lastpost';
 			}
 			$addsql .= ' AND displayorder>=0 ORDER BY '.$orderby.' DESC '.DB::limit($start, $limit);
-
 		}
+        //echo "SELECT * FROM ".DB::table('forum_thread')." WHERE ".$tidsql.$addsql;
 		return DB::fetch_all("SELECT * FROM ".DB::table('forum_thread')." WHERE ".$tidsql.$addsql);
 	}
 	public function fetch_max_tid() {

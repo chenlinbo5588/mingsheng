@@ -6,14 +6,59 @@
 				.xl2 .xl2_r em { padding-right: 0; }
 			.xl2 .xl2_r i { padding-left: 10px; }
 </style>
-<div id="pt" class="bm cl">
-	<div class="z">
-		<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><!--{if helper_access::check_module('guide')}--><em>&raquo;</em><a href="forum.php?mod=guide&view=index">{lang guide}</a><!--{/if}-->$navigation
-	</div>
-</div>
+
 <div class="boardnav">
+    <div class="dmain">
+        <div class="bmzx"><img src="images/bmlogo.jpg" /></div>
+        <div class="bmlist">
+            <div class="subbm-item">
+            <!--<span class="subtitle">{$catlist[1][name]}:&nbsp;</span>-->
+            <!--{loop $catlist[1][forums] $skey $forumid}-->
+            <!--{eval $forum=$forumlist[$forumid];}-->
+            <!--{eval $forumurl = !empty($forum['domain']) && !empty($_G['setting']['domain']['root']['forum']) ? 'http://'.$forum['domain'].'.'.$_G['setting']['domain']['root']['forum'] : 'forum.php?mod=forumdisplay&fid='.$forum['fid'];}-->
+            {if ($skey !=0)}| {/if}
+            <a href="$forumurl"{if $forum[redirect]} target="_blank"{/if}>{$forum[name]}</a>
+            <!--{/loop}-->
+            </div>
+        </div>
+        <div class="bmzx"><img src="images/zjlogo.jpg" /></div>
+        <div class="bmlist">
+            <div class="subbm-item">
+            <!--<span class="subtitle">{$catlist[72][name]}:&nbsp;</span>-->
+            <!--{loop $catlist[72][forums] $skey $forumid}-->
+            <!--{eval $forum=$forumlist[$forumid];}-->
+            <!--{eval $forumurl = !empty($forum['domain']) && !empty($_G['setting']['domain']['root']['forum']) ? 'http://'.$forum['domain'].'.'.$_G['setting']['domain']['root']['forum'] : 'forum.php?mod=forumdisplay&fid='.$forum['fid'];}-->
+            {if ($skey !=0)}| {/if}
+            <a href="$forumurl"{if $forum[redirect]} target="_blank"{/if}>{$forum[name]}</a>
+            <!--{/loop}-->
+            </div>
+        </div>
+    </div>
+    
+    
+    <div class="showstatus"><img src="images/showstatus.jpg"></div>
+    <div id="pt" class="bm cl">
+        <!--{if empty($gid) && $announcements}-->
+        <div class="y">
+            <div id="an">
+                <dl class="cl">
+                    <dt class="z xw1">{lang announcements}:&nbsp;</dt>
+                    <dd>
+                        <div id="anc"><ul id="ancl">$announcements</ul></div>
+                    </dd>
+                </dl>
+            </div>
+            <script type="text/javascript">announcement();</script>
+        </div>
+        <!--{/if}-->
+        <div class="z">
+            <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="forum.php">{$_G[setting][navs][2][navname]}</a>$navigation
+        </div>
+        <div class="z"><!--{hook/index_status_extra}--></div>
+    </div>
 	<div id="ct" class="wp cl{if $_G['forum']['allowside']} ct2{/if}"{if $leftside} style="margin-left:{$_G['leftsidewidth_mwidth']}px"{/if}>
 		<div class="mn">
+            <!--
 			<div class="bm bml pbn">
 				<div class="bm_h cl">
 					<!--{if $view != 'index' && $view != 'my'}-->
@@ -25,6 +70,7 @@
 						$lang['guide_'.$view]
 					</h1>
 				</div>
+                
 				<!--{if $view != 'my'}-->
 				<div class="bm_c cl pbn">
 					<div style=";" id="forum_rules_1163">
@@ -33,12 +79,53 @@
 				</div>
 				<!--{/if}-->
 			</div>
+            -->
+            <!--
 			<!--{if $view != 'index'}-->
 			<div id="pgt" class="bm bw0 pgs cl">
 				$multipage
 				<a onclick="showWindow('nav', this.href, 'get', 0)" href="forum.php?mod=misc&amp;action=nav"><img src="{IMGDIR}/pn_post.png" alt="{lang send_posts}" /></a>
 			</div>
 			<!--{/if}-->
+            -->
+            <!--{if empty($gid)}-->
+            <div id="chart" class="bm bw0 cl">
+                <p class="z clearfix">
+                    <!--{if $_G['uid']}-->
+                    <strong class="vwmy{if $_G['setting']['connect']['allow'] && $_G[member][conisbind]} qq{/if}"><a href="/home.php?mod=spacecp&ac=profile" title="{lang visit_my_space}">{$_G[member][username]}</a></strong> &nbsp;
+                    <a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a> |
+                    <a href="/home.php?mod=spacecp&ac=pm" title="{lang pm_center}">{lang pm_center}</a> &nbsp;
+                    <a href="/home.php?mod=spacecp" title="{lang setup}">{lang setup}</a>
+                    <!--{/if}-->
+
+                    <!--{if $_G['uid']}-->                    
+                    <span class='user-profile'>
+                    <!--{eval $creditid=$_G['setting']['creditstrans'];}-->
+                    <!--{if $_G['setting']['extcredits'][$creditid]}-->
+                    <!--{eval $credit=$_G['setting']['extcredits'][$creditid]; }-->
+                    <em><!--{if $credit[img]}--> {$credit[img]}<!--{/if}--> {$credit[title]}: </em><!--{echo getuserprofile('extcredits'.$creditid);}--> {$credit[unit]} &nbsp; <!--{if ($_G['setting']['ec_ratio'] && ($_G['setting']['ec_tenpay_opentrans_chnid'] || $_G['setting'][ec_tenpay_bargainor] || $_G['setting']['ec_account'])) || $_G['setting']['card']['open']}--><a href="home.php?mod=spacecp&ac=credit&op=buy" class="xi2">{lang card_use}&raquo;</a><!--{/if}--> |
+                    <!--{/if}-->
+                    <!--{loop $_G['setting']['extcredits'] $id $credit}-->
+                    <!--{if $id!=$creditid}-->
+                    <em><!--{if $credit[img]}--> {$credit[img]}<!--{/if}--> {$credit[title]}: </em><!--{echo getuserprofile('extcredits'.$id);}--> {$credit[unit]}|
+                    <!--{/if}-->
+                    <!--{/loop}-->
+                    <em>{lang credits}: </em>$_G['member']['credits']
+                    </span>
+                    <!--{/if}-->
+                </p>
+            </div>
+        <!--{/if}-->
+        <!--[diy=diy_chart]--><div id="diy_chart" class="area"></div><!--[/diy]-->
+            <div class="thread-tabs">
+                <ul>
+                    <li class="tab <!--{if $sortid === '0' || $sortid =='all'}-->active<!--{/if}-->"><a href="/forum.php">{lang sort_all}</a></li>
+                    <li class="tab <!--{if ($sortid =='2')}-->active<!--{/if}-->"><a href="/forum.php?sortid=2">{lang sort_wait_accept}</a></li>
+                    <li class="tab <!--{if ($sortid =='3')}-->active<!--{/if}-->"><a href="/forum.php?sortid=3">{lang sort_accept}</a></li>
+                    <li class="tab <!--{if ($sortid =='4')}-->active<!--{/if}-->"><a href="/forum.php?sortid=4">{lang sort_replied}</a></li>
+                </ul>
+            </div>
+            <!--
 			<ul id="thread_types" class="ttp bm cl">
 				<li $currentview['hot']><a href="forum.php?mod=guide&view=hot">{lang guide_hot}</a></li>
 				<li $currentview['digest']><a href="forum.php?mod=guide&view=digest">{lang guide_digest}</a></li>
@@ -48,6 +135,7 @@
 				<li $currentview['my']><a id="filter_special" href="forum.php?mod=guide&view=my" onmouseover="showMenu(this.id)">{lang guide_my}</a></li>
 				<!--{hook/guide_nav_extra}-->
 			</ul>
+            -->
 			<!--{hook/guide_top}-->
 			<!--{if $view == 'index'}-->
 				<!--{loop $data $key $list}-->

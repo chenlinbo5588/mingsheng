@@ -1061,19 +1061,19 @@ a{
     margin-left: 10px;
     text-align: center;
 }
-.thread-tabs ul li.tab-24, .icon-24 {
+.thread-tabs ul li.tab-24 {
     background: url(../images/light_warn.gif) no-repeat left center;
 }
-.thread-tabs ul li.tab-3days,.icon-3days {
+.thread-tabs ul li.tab-3days {
     background: url(../images/light_green.gif) no-repeat left center;
 }
-.thread-tabs ul li.tab-5days,.icon-5days {
+.thread-tabs ul li.tab-5days {
     background: url(../images/light_yellow.gif) no-repeat left center;
 }
-.thread-tabs ul li.tab-5daysover,.icon-5daysover {
+.thread-tabs ul li.tab-5daysover {
     background: url(../images/light_gray.gif) no-repeat left center;
 }
-.thread-tabs ul li.tab-overtime,.icon-overtime {
+.thread-tabs ul li.tab-overtime {
     background: url(../images/light_red.gif) no-repeat left center;
 }
 .thread-tabs ul li.active {
@@ -1129,6 +1129,30 @@ a{
     text-align: center;
     margin-top: 10px;
 }
+
+.light-ico {
+    position:relative;
+    top:8px;
+    width:28px;
+    height:28px;
+}
+.icon-24 {
+    background: url(../images/light_warn.gif) no-repeat center center;
+}
+.icon-3days {
+    background: url(../images/light_green.gif) no-repeat center center;
+}
+.icon-5days {
+    background: url(../images/light_yellow.gif) no-repeat center center;
+}
+.icon-5daysover {
+    background: url(../images/light_gray.gif) no-repeat center center;
+}
+.icon-overtime {
+    background: url(../images/light_red.gif) no-repeat center center;
+}
+
+
 .btm-btn {
     position: relative;
 }

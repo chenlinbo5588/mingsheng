@@ -373,6 +373,7 @@ $lang = array (
   'guide_attend' => '人参与',
   'guide_digest' => '最新精华',
   'guide_forum_select' => '选择版块',
+  'guide_all' => '全部',
   'guide_hot' => '最新热门',
   'guide_index' => '导读首页',
   'guide_my' => '我的帖子',
@@ -1318,11 +1319,17 @@ $lang = array (
     'thread_5days_reply'=> '五天内回复',
     'thread_5more_days_reply'=> '五天外回复',
     'thread_over_time_noreply'=> '超时未回复',
-    'all_text' => '全部',
-    'wait_pass' => '待审核',
-    'wait_accept' => '未受理',
-    'accept' => '已受理',
-    'replied' => '已回复',
+    'sort_all' => '全部',
+    'sort_wait_verify' => '待审核',
+    'sort_wait_accept' => '未受理',
+    'sort_accept' => '已受理',
+    'sort_replied' => '已回复',
+    'sort_all_code' => 0,
+    'sort_wait_verify_code' => 1,
+    'sort_wait_accept_code' => 2,
+    'sort_accept_code' => 3,
+    'sort_replied_code' => 4
+    
 );
 
 ?>

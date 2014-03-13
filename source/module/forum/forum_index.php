@@ -15,7 +15,6 @@ require_once libfile('function/forumlist');
 
 $gid = intval(getgpc('gid'));
 $showoldetails = get_index_online_details();
-$list = array();
 
 if(!$_G['uid'] && !$gid && $_G['setting']['cacheindexlife'] && !defined('IN_ARCHIVER') && !defined('IN_MOBILE')) {
 	get_index_page_guest_cache();
@@ -274,7 +273,7 @@ if(!$gid && (!defined('FORUM_INDEX_PAGE_MEMORY') || !FORUM_INDEX_PAGE_MEMORY)) {
 			}
 			$forum['forumscount'] 	= 0;
 			$catlist[$forum['fid']] = $forum;
-            
+
 		}
 	}
 	unset($forum_access, $forum_fields);
@@ -429,89 +428,6 @@ if($gid && !empty($catlist)) {
 	$_G['fid'] = $gid;
 }
 
-$perpage = 50;
-$start = $perpage * ($_G['page'] - 1);
-$list['threadcount'] = 0;
-$extra = rawurlencode(!IS_ROBOT ? 'page='.$page.($forumdisplayadd['page'] ? '&filter='.$filter.$forumdisplayadd['page'] : '') : 'page=1');
-$threadtableids = !empty($_G['cache']['threadtableids']) ? $_G['cache']['threadtableids'] : array();
-
-$tableid = $_GET['archiveid'] && in_array($_GET['archiveid'], $threadtableids) ? intval($_GET['archiveid']) : 0;
-$sortid = isset($_GET['sortid']) ? $_GET['sortid'] : 'all';
-$filterarr = array(
-    'insort' => $sortid
-);
-/*
-switch ($tabKey) {
-    case '1': 
-        $filterarr['starttime'] = date('Y-m-d H:i:s');
-        $filterarr['insort'] = 2;
-        break;
-    case '2':
-        $filterarr['lastpostmore'] = time() - 3 * 24 * 3600;
-    case '3':
-        $filterarr['lastpostmore'] = time() - 5 * 24 * 3600;
-        break;
-    case '4':
-        $filterarr['lastpostless'] = time() - 5 * 24 * 3600;
-        break;
-    case '5':
-        $filterarr['lastpostless'] = time() - 7 * 24 * 3600;
-        break;
-    default:
-    case '0':
-        break;
-}*/
-$list['threadcount'] = C::t('forum_thread')->count_search($filterarr);
-
-$threadlist = C::t('forum_thread')->fetch_all_search($filterarr);
-$list['threadlist'] = format_index_list($threadlist);
-
-
-function addTimeMark($list){
-        //当前时间戳
-    $ts_now = time();
-    $hour24 = 60 * 60 * 24;
-    
-    foreach($list as $k => $thread){
-        
-        switch($thread['sortid']){
-            case 0:
-            case 1:
-                $thread['show_text'] = '待审核';
-                $thread['className'] = ($ts_now - $thread['dateline']) > $hour24 ? 'icon-24' : '';
-                break;
-            case 2:
-                $thread['show_text'] = '未受理';
-                $thread['className'] = ($ts_now - $thread['dateline']) > $hour24 ? 'icon-24' : '';
-                break;
-            case 3:
-            case 4:
-                if($thread['replies']){
-                    $days = ceil(($ts_now - $thread['dateline'])/$hour24);
-                    if($days > 5){
-                        $thread['className'] = 'icon-5daysover';
-                    }else{
-                        $thread['className'] = 'icon-'.$days.'days';
-                    }
-                    $thread['show_text'] = $days . "内回复";
-                }else{
-                    $thread['show_text'] = '超时未回复';
-                    $thread['className'] = 'icon-overtime';
-                }
-                break;
-            default:
-                break;
-        }
-        
-        $list[$k] = $thread;
-    }
-    
-    return $list;
-}
-//print_r($list['threadlist']);
-$list['threadlist'] = addTimeMark($list['threadlist']);
-//print_r($list['threadlist']);
-//print_r($catlist);
 include template('diy:forum/discuz:'.$gid);
 
 function get_index_announcements() {
@@ -611,109 +527,4 @@ function categorycollapse() {
 		}
 	}
 }
-
-function format_index_list($threadlist = array()) {
-    foreach($threadlist as $thread) {
-        $thread['allreplies'] = $thread['replies'] + $thread['comments'];
-        $thread['ordertype'] = getstatus($thread['status'], 4);
-        if($_G['forum']['picstyle'] && empty($_G['cookie']['forumdefstyle'])) {
-            if($thread['fid'] != $_G['fid'] && empty($thread['cover'])) {
-                continue;
-            }
-            $thread['coverpath'] = getthreadcover($thread['tid'], $thread['cover']);
-            $thread['cover'] = abs($thread['cover']);
-        }
-        $thread['forumstick'] = in_array($thread['tid'], $forumstickytids);
-        $thread['related_group'] = 0;
-        if($_G['forum']['relatedgroup'] && $thread['fid'] != $_G['fid']) {
-            if($thread['closed'] > 1) continue;
-            $thread['related_group'] = 1;
-            $grouptids[] = $thread['tid'];
-        }
-        $thread['lastposterenc'] = rawurlencode($thread['lastposter']);
-        if($thread['typeid'] && !empty($_G['forum']['threadtypes']['prefix']) && isset($_G['forum']['threadtypes']['types'][$thread['typeid']])) {
-            if($_G['forum']['threadtypes']['prefix'] == 1) {
-                $thread['typehtml'] = '<em>[<a href="forum.php?mod=forumdisplay&fid='.$_G['fid'].'&amp;filter=typeid&amp;typeid='.$thread['typeid'].'">'.$_G['forum']['threadtypes']['types'][$thread['typeid']].'</a>]</em>';
-            } elseif($_G['forum']['threadtypes']['icons'][$thread['typeid']] && $_G['forum']['threadtypes']['prefix'] == 2) {
-                $thread['typehtml'] = '<em><a title="'.$_G['forum']['threadtypes']['types'][$thread['typeid']].'" href="forum.php?mod=forumdisplay&fid='.$_G['fid'].'&amp;filter=typeid&amp;typeid='.$thread['typeid'].'">'.'<img style="vertical-align: middle;padding-right:4px;" src="'.$_G['forum']['threadtypes']['icons'][$thread['typeid']].'" alt="'.$_G['forum']['threadtypes']['types'][$thread['typeid']].'" /></a></em>';
-            }
-            $thread['typename'] = $_G['forum']['threadtypes']['types'][$thread['typeid']];
-        } else {
-            $thread['typename'] = $thread['typehtml'] = '';
-        }
-
-        $thread['sorthtml'] = $thread['sortid'] && !empty($_G['forum']['threadsorts']['prefix']) && isset($_G['forum']['threadsorts']['types'][$thread['sortid']]) ?
-            '<em>[<a href="forum.php?mod=forumdisplay&fid='.$_G['fid'].'&amp;filter=sortid&amp;sortid='.$thread['sortid'].'">'.$_G['forum']['threadsorts']['types'][$thread['sortid']].'</a>]</em>' : '';
-        $thread['multipage'] = '';
-        $topicposts = $thread['special'] ? $thread['replies'] : $thread['replies'] + 1;
-        $multipate_archive = $_GET['archiveid'] && in_array($_GET['archiveid'], $threadtableids) ? "archiveid={$_GET['archiveid']}" : '';
-        if($topicposts > $_G['ppp']) {
-            $pagelinks = '';
-            $thread['pages'] = ceil($topicposts / $_G['ppp']);
-            $realtid = $_G['forum']['status'] != 3 && $thread['isgroup'] == 1 ? $thread['closed'] : $thread['tid'];
-            for($i = 2; $i <= 6 && $i <= $thread['pages']; $i++) {
-                $pagelinks .= "<a href=\"forum.php?mod=viewthread&tid=$realtid&amp;".(!empty($multipate_archive) ? "$multipate_archive&amp;" : '')."extra=$extra&amp;page=$i\">$i</a>";
-            }
-            if($thread['pages'] > 6) {
-                $pagelinks .= "..<a href=\"forum.php?mod=viewthread&tid=$realtid&amp;".(!empty($multipate_archive) ? "$multipate_archive&amp;" : '')."extra=$extra&amp;page=$thread[pages]\">$thread[pages]</a>";
-            }
-            $thread['multipage'] = '&nbsp;...'.$pagelinks;
-        }
-
-        if($thread['highlight']) {
-            $string = sprintf('%02d', $thread['highlight']);
-            $stylestr = sprintf('%03b', $string[0]);
-
-            $thread['highlight'] = ' style="';
-            $thread['highlight'] .= $stylestr[0] ? 'font-weight: bold;' : '';
-            $thread['highlight'] .= $stylestr[1] ? 'font-style: italic;' : '';
-            $thread['highlight'] .= $stylestr[2] ? 'text-decoration: underline;' : '';
-            $thread['highlight'] .= $string[1] ? 'color: '.$_G['forum_colorarray'][$string[1]].';' : '';
-            if($thread['bgcolor']) {
-                $thread['highlight'] .= "background-color: $thread[bgcolor];";
-            }
-            $thread['highlight'] .= '"';
-        } else {
-            $thread['highlight'] = '';
-        }
-
-        $thread['recommendicon'] = '';
-        if(!empty($_G['setting']['recommendthread']['status']) && $thread['recommends']) {
-            foreach($_G['setting']['recommendthread']['iconlevels'] as $k => $i) {
-                if($thread['recommends'] > $i) {
-                    $thread['recommendicon'] = $k+1;
-                    break;
-                }
-            }
-        }
-
-        $thread['moved'] = $thread['heatlevel'] = $thread['new'] = 0;
-        $thread['icontid'] = $thread['forumstick'] || !$thread['moved'] && $thread['isgroup'] != 1 ? $thread['tid'] : $thread['closed'];
-        $thread['folder'] = 'common';
-        $thread['istoday'] = $thread['dateline'] > $todaytime ? 1 : 0;
-        $thread['dbdateline'] = $thread['dateline'];
-        $thread['dateline'] = dgmdate($thread['dateline'], 'u', '9999', getglobal('setting/dateformat'));
-        $thread['dblastpost'] = $thread['lastpost'];
-        $thread['lastpost'] = dgmdate($thread['lastpost'], 'u');
-        $thread['hidden'] = $_G['setting']['threadhidethreshold'] && $thread['hidden'] >= $_G['setting']['threadhidethreshold'] || in_array($thread['tid'], $thide);
-        if($thread['hidden']) {
-            $_G['hiddenexists']++;
-        }
-
-        if(isset($_G['setting']['verify']['enabled']) && $_G['setting']['verify']['enabled']) {
-            $verifyuids[$thread['authorid']] = $thread['authorid'];
-        }
-        $authorids[$thread['authorid']] = $thread['authorid'];
-        $thread['mobile'] = base_convert(getstatus($thread['status'], 13).getstatus($thread['status'], 12).getstatus($thread['status'], 11), 2, 10);
-        $thread['rushreply'] = getstatus($thread['status'], 3);
-        if($thread['rushreply']) {
-            $rushtids[$thread['tid']] = $thread['tid'];
-        }
-        $threadids[$threadindex] = $thread['tid'];
-        $_G['forum_threadlist'][$threadindex] = $thread;
-        $threadindex++;
-    }
-    return $threadlist;
-}
-
 ?>

@@ -12,9 +12,16 @@ if(!defined('IN_DISCUZ')) {
 }
 
 $view = $_GET['view'];
+$sortid = isset($_GET['sortid']) ? $_GET['sortid'] : 0;
+$filter = array();
+
+if($sortid){
+    $filter['sortid'] = $sortid;
+}
+
 loadcache('forum_guide');
-if(!in_array($view, array('hot', 'digest', 'new', 'my', 'newthread', 'sofa'))) {
-	$view = 'hot';
+if(!in_array($view, array('all', 'hot', 'digest', 'new', 'my', 'newthread', 'sofa'))) {
+	$view = 'all';
 }
 $lang = lang('forum/template');
 $navtitle = $lang['guide'].'-'.$lang['guide_'.$view];
@@ -111,7 +118,7 @@ if($view != 'index') {
 	} else {
 		$multipage = $data['my']['multi'];
 	}
-
+    
 } else {
 	$data['hot'] = get_guide_list('hot', 0, 30);
 	$data['digest'] = get_guide_list('digest', 0, 30);
@@ -121,14 +128,16 @@ if($view != 'index') {
 
 loadcache('stamps');
 $currentview[$view] = 'class="xw1 a"';
-
+//print_r($data);
+$data = thread_add_icon($data);
+//print_r($data);
 $navigation = $view != 'index' ? ' <em>&rsaquo;</em> <a href="forum.php?mod=guide&view='.$view.'">'.$lang['guide_'.$view].'</a>' : '';
 include template('forum/guide');
 
 function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 	global $_G;
 	$setting_guide = unserialize($_G['setting']['guide']);
-	if(!in_array($view, array('hot', 'digest', 'new', 'newthread', 'sofa'))) {
+	if(!in_array($view, array('all', 'hot', 'digest', 'new', 'newthread', 'sofa'))) {
 		return array();
 	}
 	loadcache('forums');
@@ -180,8 +189,8 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 		}
 		$updatecache = true;
 	}
-	$query = C::t('forum_thread')->fetch_all_for_guide($view, $limittid, $tids, $_G['setting']['heatthread']['guidelimit'], $dateline);
-	$n = 0;
+    $query = C::t('forum_thread')->fetch_all_for_guide($view, $limittid, $tids, $_G['setting']['heatthread']['guidelimit'], $dateline);
+    $n = 0;
 	foreach($query as $thread) {
 		if(empty($tids) && ($thread['isgroup'] || !in_array($thread['fid'], $fids))) {
 			continue;
