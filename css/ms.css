@@ -3,7 +3,7 @@
 	margin: 0;
     padding: 0;
     font-family:Verdana, Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-size: 14px;
 }
 
 .clearfix:before,
@@ -109,6 +109,7 @@ a{
 	font-weight: normal;
 	height: 22px;
 	line-height: 22px;
+        margin-bottom: 5px;
 }
 .dmain .mnav .mline{
 	
@@ -1228,18 +1229,29 @@ a{
 .plist ul li a {
     padding: 5px;
 }
-.plist li h4 {
-    font-size: 18px;
+.plist li h4 a {
+    font-size: 20px;
     line-height: 36px;
     overflow: hidden;
     color: #464646;
     font-weight: bold;
+    font-family: Microsoft YaHei,SimSun;
+}
+.plist li p {
+    color: #4E4E4E;
+    font-size: 14px;
+    line-height: 24px;
+    text-indent: 28px;
 }
 .plist li p a {
     color: #E06563;
 }
 .plist li p a:hover {
     color: #E61A42;
+}
+.report li {
+    padding-top: 0px;
+    margin-bottom: 15px;
 }
 .tl .ths, .ths {
     width:45px;
