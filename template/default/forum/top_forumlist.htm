@@ -1,0 +1,24 @@
+<div class="dmain">
+    <ul>
+    <!--{loop $_G['forum_list'] $key $forum}-->
+    <li class="bmzx_item">
+            <div class="bmzx"><img src="images/group{$forum[fid]}.jpg" /></div>
+            <div class="bmlist">
+                <!--{if !empty($_GET['gid']) && $_GET['gid'] == $forum['fid']}-->
+                <a href="forum.php?gid={$forum['fid']}" class="selected">{lang all}</a>&nbsp;|
+                <!--{else}-->
+                <a href="forum.php?gid={$forum['fid']}">{lang all}</a>&nbsp;|
+                <!--{/if}-->
+                <!--{loop $forum[list] $key2 $val}-->
+                    <!--{if $_GET['fid'] == $val['fid']}-->
+                    <a href="forum.php?mod=forumdisplay&fid={$val['fid']}" class="selected">{$val[name]}</a>&nbsp;|
+                    <!--{else}-->
+                    <a href="forum.php?mod=forumdisplay&fid={$val['fid']}">{$val[name]}</a>&nbsp;|
+                    <!--{/if}-->
+                <!--{/loop}-->
+            </div>
+        </li>
+    <!--{/loop}-->
+    </ul>
+</div>
+<div class="showstatus"><img src="images/showstatus.jpg"></div>

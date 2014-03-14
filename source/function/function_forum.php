@@ -11,7 +11,30 @@ if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
 
-function thread_add_icon_by_row($data,$datelineKey){
+function get_forums(){
+    global $_G;
+    loadcache('forums');
+    $forums = array();
+    foreach($_G['cache']['forums'] as $key => $val){
+        if($val['type'] == 'group'){
+            $forums[$val['fid']] = $val;
+        }else{
+            if(!isset($forums[$val['fup']])){
+                $forums[$val['fup']]['list'] = array();
+            }else{
+                $forums[$val['fup']]['list'][] = $val;
+            }
+        }
+    }
+    return $forums;
+}
+
+
+function wrapper_text($text,$classname = ''){
+    return '<span class="'.$classname.'">['.$text.']</span>';
+}
+
+function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
     global $lang;
     $ts_now = time();
     $hour24 = 60 * 60 * 24;
@@ -26,25 +49,25 @@ function thread_add_icon_by_row($data,$datelineKey){
             case $lang['sort_all_code']:
             case $lang['sort_wait_verify_code']:
             case $lang['sort_wait_accept_code']:
-                $thread['show_text'] = $lang['sort_wait_accept'];
+                $thread['show_text'] = wrapper_text($lang['sort_wait_accept'],'sort_wait_accept');
                 $thread['className'] = ($ts_now - $thread[$datelineKey]) > $hour24 ? 'icon-24' : '';
                 break;
             case $lang['sort_accept_code']:
                 if($days > 10){
                     $thread['className'] = 'icon-overtime';
                 }
-                $thread['show_text'] = $lang['sort_accept'];
+                $thread['show_text'] = wrapper_text($lang['sort_accept'],'sort_accept');
                 break;
             case $lang['sort_replied_code']:
                 if($days > 5){
                     $thread['className'] = 'icon-5daysover';
-                    $thread['show_text'] = '5天外回复';
+                    $thread['show_text'] = wrapper_text($lang['sort_replied'],'sort_replied');
                 }else{
                     if($days <= 3){
-                        $thread['show_text'] = '3天内回复';
+                        $thread['show_text'] = wrapper_text($lang['sort_replied'],'sort_replied');
                         $thread['className'] = 'icon-3days';
                     }else{
-                        $thread['show_text'] = '5天内回复';
+                        $thread['show_text'] = wrapper_text($lang['sort_replied'],'sort_replied');
                         $thread['className'] = 'icon-5days';
                     }
                 }

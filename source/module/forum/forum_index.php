@@ -427,7 +427,7 @@ if($gid && !empty($catlist)) {
 	}
 	$_G['fid'] = $gid;
 }
-
+$_G['forum_list'] = get_forums();
 include template('diy:forum/discuz:'.$gid);
 
 function get_index_announcements() {

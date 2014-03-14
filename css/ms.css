@@ -95,7 +95,6 @@ a{
 	width: 998px;
 	margin:0 auto;
 	border: 1px solid #dadddd;
-	padding-bottom:20px;
 	clear: both;
 }
 .dmain .mleft{
@@ -244,16 +243,31 @@ a{
     font-size: 14px;
     color: #464646;
 }
+
+.bmzx_item .selected {
+    color: #fff;
+	font-weight: bold;
+	background-color: #52a0e5;
+}
+
 .bmzx{
 	height: 38px;
 	background: url("../images/bmzx.jpg") repeat-x;
+    margin:0 0 10px 0;
 }
+
+.bmlist {
+    line-height:28px;
+    padding:5px 10px 20px 10px;
+}
+
+
 .bmlist div{
 	padding: 10px;
 	color: #7e7c7d;
 }
 .bmlist a{
-	padding: 0 8px;
+	padding:3px 5px;
 	font-size: 14px;
 	color: #7e7c7d;
 	white-space:nowrap;
@@ -1220,4 +1234,31 @@ a{
     overflow: hidden;
     color: #464646;
     font-weight: bold;
+}
+.plist li p a {
+    color: #E06563;
+}
+.plist li p a:hover {
+    color: #E61A42;
+}
+.tl .ths, .ths {
+    width:45px;
+    padding:0px;
+    
+}
+.ths div {
+    width:28px;
+    height:28px;
+}
+
+.sort_wait_accept {
+    color:#000000;
+}
+
+.sort_accept {
+    color:#009000;
+}
+
+.sort_replied {
+    color:#FF0000;
 }

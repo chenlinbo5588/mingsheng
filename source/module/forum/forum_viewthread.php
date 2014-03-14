@@ -914,7 +914,7 @@ if(defined('IN_ARCHIVER')) {
 	include loadarchiver('forum/viewthread');
 	exit();
 }
-
+//print_r($_G['forum_thread']);
 $_G['forum_thread']['heatlevel'] = $_G['forum_thread']['recommendlevel'] = 0;
 if($_G['setting']['heatthread']['iconlevels']) {
 	foreach($_G['setting']['heatthread']['iconlevels'] as $k => $i) {
