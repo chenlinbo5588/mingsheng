@@ -38,19 +38,40 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
     global $lang;
     $ts_now = time();
     $hour24 = 60 * 60 * 24;
+    $tids = array();
+    $tidsMod = array();
+    
+    foreach($data as $k => $thread){
+        $tids[] = $thread['tid'];
+    }
+    
+    $lastlog = C::t('forum_threadmod')->fetch_all_by_tid($tids,'MOD');
+    foreach($lastlog as $k => $v){
+        $tidsMod[$v['tid']] = $v;
+    }
     
     foreach($data as $k => $thread){
         //$duration = $ts_now - $tv2['dbdateline'];
         $thread['className'] =  '';
         $thread['show_text'] = '';
-        $days = ceil(($ts_now - $thread[$datelineKey])/$hour24);
+        
+        if(isset($tidsMod[$thread['tid']])){
+            $days = ceil(($ts_now - $tidsMod[$thread['tid']]['dateline'])/$hour24);
+        }else{
+            ////没有看审核前的帖子，上面的数据是空的 兼容处理,上线后应该不会到这里
+            $days = ceil(($ts_now - $thread[$datelineKey])/$hour24);
+        }
         
         switch($thread['sortid']){
             case $lang['sort_all_code']:
             case $lang['sort_wait_verify_code']:
             case $lang['sort_wait_accept_code']:
                 $thread['show_text'] = wrapper_text($lang['sort_wait_accept'],'sort_wait_accept');
-                $thread['className'] = ($ts_now - $thread[$datelineKey]) > $hour24 ? 'icon-24' : '';
+                if(isset($tidsMod[$thread['tid']])){
+                    $thread['className'] = ($ts_now - $tidsMod[$thread['tid']]['dateline']) > $hour24 ? 'icon-24' : '';
+                }else{
+                    $thread['className'] = ($ts_now - $thread[$datelineKey]) > $hour24 ? 'icon-24' : '';
+                }
                 break;
             case $lang['sort_accept_code']:
                 if($days > 10){
@@ -77,6 +98,9 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
         }
         $data[$k] = $thread;
     }
+    
+    
+    
     return $data;
 }
 

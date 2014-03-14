@@ -265,6 +265,12 @@ if($_GET['action'] == 'checkusername') {
 	$time = intval($_GET['time']);
 
 	if(!$_GET['uncheck']) {
+        //检查是否更新
+        /**
+         *  返回如下
+         *  <?xml version="1.0" encoding="utf-8"?>
+            <root><![CDATA[1]]></root> 
+         */
 		$foruminfo = C::t('forum_forum')->fetch($fid);
 		$lastpost_str = $foruminfo['lastpost'];
 		if($lastpost_str) {
@@ -289,7 +295,8 @@ if($_GET['action'] == 'checkusername') {
 				$thread['icontid'] = $thread['closed'] > 1 ? $thread['closed'] : $thread['tid'];
 			}
 			list($thread['subject'], $thread['author'], $thread['lastposter']) = daddslashes(array($thread['subject'], $thread['author'], $thread['lastposter']));
-			$thread['dateline'] = $thread['dateline'] > $todaytime ? "<span class=\"xi1\">".dgmdate($thread['dateline'], 'd')."</span>" : "<span>".dgmdate($thread['dateline'], 'd')."</span>";
+            $thread['dbdateline'] = $thread['dateline'];
+            $thread['dateline'] = $thread['dateline'] > $todaytime ? "<span class=\"xi1\">".dgmdate($thread['dateline'], 'd')."</span>" : "<span>".dgmdate($thread['dateline'], 'd')."</span>";
 			$thread['lastpost'] = dgmdate($thread['lastpost']);
 			if($forum_field['threadtypes']['prefix']) {
 				if($forum_field['threadtypes']['prefix'] == 1) {
@@ -341,6 +348,9 @@ if($_GET['action'] == 'checkusername') {
 		if($threadlist) {
 			krsort($threadlist);
 		}
+        $lang = lang('forum/template');
+        $threadlist = thread_add_icon_by_row($threadlist,'dbdateline');
+        //file_put_contents("text.txt",print_r($threadlist,true));
 		include template('forum/ajax_threadlist');
 
 	}
