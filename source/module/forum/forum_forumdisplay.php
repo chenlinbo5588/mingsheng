@@ -850,8 +850,12 @@ if(!empty($threadids)) {
 		$_G['forum_threadlist'][$index]['views'] += $value['addviews'];
 	}
 }
-$threadlist = thread_add_icon_by_row($threadlist);
-//print_r($threadlist);
+
+
+$_G['forum_list'] = get_forums();
+$_G['forum_threadlist'] = thread_add_icon_by_row($_G['forum_threadlist'],'dbdateline');
+
+//print_r($_G);
 if($_G['setting']['verify']['enabled'] && $verifyuids) {
 	foreach(C::t('common_member_verify')->fetch_all($verifyuids) as $value) {
 		foreach($_G['setting']['verify'] as $vid => $vsetting) {

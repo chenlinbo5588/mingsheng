@@ -1,32 +1,5 @@
 <!--{template common/header}-->
-<div class="dmain">
-	<div class="bmzx"><img src="images/bmlogo.jpg" /></div>
-	<div class="bmlist">
-		<div class="subbm-item">
-		<!--<span class="subtitle">{$catlist[1][name]}:&nbsp;</span>-->
-		<!--{loop $catlist[1][forums] $skey $forumid}-->
-		<!--{eval $forum=$forumlist[$forumid];}-->
-		<!--{eval $forumurl = !empty($forum['domain']) && !empty($_G['setting']['domain']['root']['forum']) ? 'http://'.$forum['domain'].'.'.$_G['setting']['domain']['root']['forum'] : 'forum.php?mod=forumdisplay&fid='.$forum['fid'];}-->
-		{if ($skey !=0)}| {/if}
-		<a href="$forumurl"{if $forum[redirect]} target="_blank"{/if}>{$forum[name]}</a>
-		<!--{/loop}-->
-		</div>
-	</div>
-    <div class="bmzx"><img src="images/zjlogo.jpg" /></div>
-	<div class="bmlist">
-		<div class="subbm-item">
-		<!--<span class="subtitle">{$catlist[72][name]}:&nbsp;</span>-->
-		<!--{loop $catlist[72][forums] $skey $forumid}-->
-		<!--{eval $forum=$forumlist[$forumid];}-->
-		<!--{eval $forumurl = !empty($forum['domain']) && !empty($_G['setting']['domain']['root']['forum']) ? 'http://'.$forum['domain'].'.'.$_G['setting']['domain']['root']['forum'] : 'forum.php?mod=forumdisplay&fid='.$forum['fid'];}-->
-		{if ($skey !=0)}| {/if}
-		<a href="$forumurl"{if $forum[redirect]} target="_blank"{/if}>{$forum[name]}</a>
-		<!--{/loop}-->
-		</div>
-	</div>
-</div>
-
-<div class="showstatus"><img src="images/showstatus.jpg"></div>
+<!--{template forum/top_forumlist}-->
 <div id="pt" class="bm cl">
 	<!--{if empty($gid) && $announcements}-->
 	<div class="y">

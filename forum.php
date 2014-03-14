@@ -38,7 +38,7 @@ $modcachelist = array(
 	'group'		=> array('grouptype', 'diytemplatenamegroup'),
 );
 
-$mod = !in_array(C::app()->var['mod'], $modarray) ? 'index' : C::app()->var['mod'];
+$mod = !in_array(C::app()->var['mod'], $modarray) ? 'guide' : C::app()->var['mod'];
 
 define('CURMODULE', $mod);
 $cachelist = array();
