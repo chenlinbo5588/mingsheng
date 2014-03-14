@@ -243,7 +243,9 @@ function procthread($thread, $timeformat = 'd') {
 	if(!$thread['forumname']) {
 		$thread['forumname'] = empty($_G['cache']['forums'][$thread['fid']]['name']) ? 'Forum' : $_G['cache']['forums'][$thread['fid']]['name'];
 	}
+    $thread['dbdateline'] = $thread['dateline'];
 	$thread['dateline'] = dgmdate($thread['dateline'], $timeformat);
+    $thread['dblastpost'] = $thread['lastpost'];
 	$thread['lastpost'] = dgmdate($thread['lastpost'], 'u');
 	$thread['lastposterenc'] = rawurlencode($thread['lastposter']);
 

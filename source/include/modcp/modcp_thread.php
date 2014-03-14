@@ -20,7 +20,7 @@ $modtpl = 'forum/'.$modtpl;
 $threadoptionselect = array('','','','','','', '', '', '', '', 999=>'', 888=>'');
 $threadoptionselect[getgpc('threadoption')] = 'selected';
 
-
+$lang = lang('forum/template');
 if($op == 'thread') {
 
 	$result = array();
@@ -135,6 +135,8 @@ if($op == 'thread') {
 				$postlist[] = procthread($thread);
 			}
 		}
+        $postlist = thread_add_icon_by_row($postlist ,'dbdateline');
+        //print_r($postlist);
 	}
 	return;
 }

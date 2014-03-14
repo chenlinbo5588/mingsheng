@@ -13,11 +13,7 @@ if(!defined('IN_DISCUZ')) {
 
 $view = $_GET['view'];
 $sortid = isset($_GET['sortid']) ? $_GET['sortid'] : 0;
-$filter = array();
-
-if($sortid){
-    $filter['sortid'] = $sortid;
-}
+$gid = isset($_GET['gid']) ? $_GET['gid'] : 0;
 
 loadcache('forum_guide');
 if(!in_array($view, array('all', 'hot', 'digest', 'new', 'my', 'newthread', 'sofa'))) {
@@ -128,10 +124,8 @@ if($view != 'index') {
 
 loadcache('stamps');
 $currentview[$view] = 'class="xw1 a"';
-//print_r($data);
 $_G['forum_list'] = get_forums();
 $data = thread_add_icon($data,'dbdateline');
-//print_r($data);
 $navigation = $view != 'index' ? ' <em>&rsaquo;</em> <a href="forum.php?mod=guide&view='.$view.'">'.$lang['guide_'.$view].'</a>' : '';
 include template('forum/guide');
 
@@ -143,7 +137,9 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 	}
 	loadcache('forums');
 	$cachetimelimit = ($view != 'sofa') ? 900 : 60;
-	$cache = $_G['cache']['forum_guide'][$view.($view=='sofa' && $_G['fid'] ? $_G['fid'] : '')];
+    if($view != 'all'){
+        $cache = $_G['cache']['forum_guide'][$view.($view=='sofa' && $_G['fid'] ? $_G['fid'] : '')];
+    }
 	if($cache && (TIMESTAMP - $cache['cachetime']) < $cachetimelimit) {
 		$tids = $cache['data'];
 		$threadcount = count($tids);
@@ -167,11 +163,25 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 			}
 			$tids = array();
 		}
-		foreach($_G['cache']['forums'] as $fid => $forum) {
-			if($forum['type'] != 'group' && $forum['status'] > 0 && !$forum['viewperm'] && !$forum['havepassword']) {
-				$fids[] = $fid;
-			}
-		}
+        
+        if(!empty($_GET['gid'])){
+            // 如果是 父级板块
+            $tempForums = C::t('forum_forum')->fetch_all_fids(0,'',$_GET['gid']);
+            foreach($tempForums as $forum) {
+                //获取可用板块
+                if($forum['type'] != 'group' && $forum['status'] > 0 && !$forum['viewperm'] && !$forum['havepassword']) {
+                    $fids[] = $forum['fid'];
+                }
+            }
+        }else{
+            foreach($_G['cache']['forums'] as $fid => $forum) {
+                //获取可用板块
+                if($forum['type'] != 'group' && $forum['status'] > 0 && !$forum['viewperm'] && !$forum['havepassword']) {
+                    $fids[] = $fid;
+                }
+            }
+        }
+		
 		if(empty($fids)) {
 			return array();
 		}

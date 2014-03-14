@@ -1079,7 +1079,12 @@ class table_forum_thread extends discuz_table
 		return $tableid ? "forum_thread_$tableid" : 'forum_thread';
 	}
 	public function fetch_all_for_guide($type, $limittid, $tids = array(), $heatslimit = 3, $dateline = 0, $start = 0, $limit = 600, $fids = 0) {
-		switch ($type) {
+        switch ($type) {
+            case 'all':
+                $addsql = '';
+                if(isset($_GET['sortid']) || $_GET['sortid'] != 0 ){
+                    $addsql = ' AND sortid = '.intval($_GET['sortid']);
+                }
 			case 'hot' :
 				$addsql = ' AND heats>='.intval($heatslimit);
 				break;
@@ -1087,12 +1092,9 @@ class table_forum_thread extends discuz_table
 				$addsql = ' AND digest>0';
 				break;
 			default :
-                if(isset($_GET['sortid']) || $_GET['sortid'] != 0 ){
-                    $addsql = ' AND sortid = '.intval($_GET['sortid']);
-                }else{
-                    $addsql = '';
-                }
+                $addsql = '';
 		}
+        
 		if(getglobal('setting/followforumid')) {
 			$addsql .= ' AND '.DB::field('fid', getglobal('setting/followforumid'), '<>');
 		}

@@ -11,6 +11,9 @@ if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
 
+/**
+ * 跳过三级子板块
+ */
 function get_forums(){
     global $_G;
     loadcache('forums');
@@ -18,7 +21,7 @@ function get_forums(){
     foreach($_G['cache']['forums'] as $key => $val){
         if($val['type'] == 'group'){
             $forums[$val['fid']] = $val;
-        }else{
+        }elseif ($val['type'] == 'forum'){
             if(!isset($forums[$val['fup']])){
                 $forums[$val['fup']]['list'] = array();
             }else{

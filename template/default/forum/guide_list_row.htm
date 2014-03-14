@@ -34,7 +34,10 @@
 										<!--{/if}-->
 										</a>
 									</td>
+                                    <td class="ths"><div class="{$thread[className]}"></div></td>
 									<th class="$thread[folder]">
+                                        $thread[show_text]
+                                        <a href="forum.php?mod=forumdisplay&fid={$thread[fid]}" style="color:{$_G[cache][forums][$thread[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$thread[fid]][name]}]</b></a>
 										<!--{if !$thread['forumstick'] && $thread['closed'] > 1 && ($thread['isgroup'] == 1 || $thread['fid'] != $_G['fid'])}-->
 												<!--{eval $thread[tid]=$thread[closed];}-->
 										<!--{/if}-->

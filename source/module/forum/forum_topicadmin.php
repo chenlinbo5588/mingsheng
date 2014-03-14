@@ -65,7 +65,8 @@ $_GET['handlekey'] = 'mods';
 
 
 if(preg_match('/^\w+$/', $_GET['action']) && file_exists($topicadminfile = libfile('topicadmin/'.$_GET['action'], 'include'))) {
-	require_once $topicadminfile;
+	//file_put_contents('text.txt',$topicadminfile);
+    require_once $topicadminfile;
 } else {
 	showmessage('undefined_action', NULL);
 }

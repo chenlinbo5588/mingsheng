@@ -20,6 +20,10 @@ class table_forum_threadtype extends discuz_table
 
 		parent::__construct();
 	}
+    
+    public function fetch_all_types(){
+        return DB::fetch_all("SELECT * FROM %t ", array($this->_table));
+    }
 
 	public function fetch_all_for_cache() {
 		return DB::fetch_all("SELECT t.typeid AS sortid, tt.optionid, tt.title, tt.type, tt.unit, tt.rules, tt.identifier, tt.description, tt.permprompt, tv.required, tv.unchangeable, tv.search, tv.subjectshow, tt.expiration, tt.protect
