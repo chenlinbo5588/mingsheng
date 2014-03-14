@@ -1214,3 +1214,10 @@ a{
 .plist ul li a {
     padding: 5px;
 }
+.plist li h4 {
+    font-size: 18px;
+    line-height: 36px;
+    overflow: hidden;
+    color: #464646;
+    font-weight: bold;
+}
