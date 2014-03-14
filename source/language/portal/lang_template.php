@@ -317,6 +317,8 @@ $lang = array (
   'filename' => '文件名',
     'view_count' => '浏览次数',
     'font_size' => '文字',
+    //自定义
+    'view_content_defined' => '正文',
 );
 
 ?>

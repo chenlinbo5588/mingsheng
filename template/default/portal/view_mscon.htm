@@ -4,7 +4,13 @@
 <div class="dmain">
 	<div class="mleft">
 		<div class="mnav">
-			<h1>首页&gt;<span>民生快递</span>
+			<h1>
+                <a href="$_G[setting][navs][1][filename]">{lang nav_index}</a> <em>&rsaquo;</em>
+                <!--{loop $cat[ups] $value}-->
+                    <a href="{echo getportalcategoryurl($value[catid])}">$value[catname]</a><em>&rsaquo;</em>
+                <!--{/loop}-->
+                <a href="{echo getportalcategoryurl($cat[catid])}">$cat[catname]</a> <em>&rsaquo;</em>
+                {lang view_content_defined}
             </h1>
 			<div class="mline"></div>
 		</div>
