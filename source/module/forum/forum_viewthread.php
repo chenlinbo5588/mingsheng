@@ -287,8 +287,8 @@ $usesigcheck = $_G['uid'] && $_G['group']['maxsigsize'];
 $postlist = $_G['forum_attachtags'] = $attachlist = $_G['forum_threadstamp'] = array();
 $aimgcount = 0;
 $_G['forum_attachpids'] = array();
-//显示评分按钮标示
-$showGradeBtn = false;
+//版主是否回复标示
+$moderatorReplied = false;
     
 if(!empty($_GET['action']) && $_GET['action'] == 'printable' && $_G['tid']) {
 	require_once libfile('thread/printable', 'include');
@@ -778,8 +778,8 @@ if($postusers) {
         $ismoderator = C::t('forum_moderator')->fetch_uid_by_fid_uid($post['fid'], $post['authorid']);//判断发帖人是否是版主
         if ($ismoderator && 
             !$post['first'] && 
-            !$showGradeBtn) {
-            $showGradeBtn = 1;
+            !$moderatorReplied) {
+            $moderatorReplied = 1;
         }
 		$postlist[$pid] = viewthread_procpost($post, $_G['member']['lastvisit'], $ordertype, $maxposition);
 	}
@@ -800,8 +800,8 @@ if($postlist && $rushids) {
         $ismoderator = C::t('forum_moderator')->fetch_uid_by_fid_uid($post['fid'], $post['authorid']);//判断发帖人是否是版主
         if ($ismoderator && 
             !$post['first'] && 
-            !$showGradeBtn) {
-            $showGradeBtn = 1;
+            !$moderatorReplied) {
+            $moderatorReplied = 1;
         }
 		$post['number'] = $post['position'];
 		$postlist[$pid] = checkrushreply($post);

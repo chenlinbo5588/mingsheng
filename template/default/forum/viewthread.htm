@@ -149,28 +149,28 @@
   <!--{if !empty($threadGrade)}-->
               此次回复满意度为：<img src="images/{$threadGrade['gradepic']}" alt="{$threadGrade['gradename']}" border="0">
   <!--{else}-->
-      <!--{if $showGradeBtn}-->
-          <!--{if $_G[uid] == $_G['forum_thread'][authorid]}-->
-          <span id='return-grade'></span>
-          <form name="gradeform" id="grade-form" method="post" autocomplete="off" action="forum.php?mod=ajax&action=applygrade&tid={$_G['forum_thread']['tid']}">
-              <select id="grade-slt" name="grade">
-                  <option value="0">请选择满意度</option>
-                  <option value="3">很满意</option>
-                  <option value="2">一般</option>
-                  <option value="1">不满意</option>
-              </select>
-              <button class="grade_btn" type='submit'><img src="static/image/common/agree.gif" alt="评分">评分</button>
-          </form>
-          <!--{else}-->
-              只有发帖的楼主才能评价
-          <!--{/if}-->
+      <!--{if !$moderatorReplied}-->
+          部门未回复，暂时不能评价
       <!--{else}-->
           <!--{eval $subtime = time() - $_G['forum_thread']['dateline']}-->
           <!--{eval $maxsubtime = 30*3600}-->
           <!--{if $subtime > $maxsubtime}-->
               此次回复满意度为：<img src="images/general.gif" alt="一般" border="0">
           <!--{else}-->
-              只有发帖的楼主才能评价
+              <!--{if $_G[uid] == $_G['forum_thread'][authorid]}-->
+                <span id='return-grade'></span>
+                <form name="gradeform" id="grade-form" method="post" autocomplete="off" action="forum.php?mod=ajax&action=applygrade&tid={$_G['forum_thread']['tid']}">
+                    <select id="grade-slt" name="grade">
+                        <option value="0">请选择满意度</option>
+                        <option value="3">很满意</option>
+                        <option value="2">一般</option>
+                        <option value="1">不满意</option>
+                    </select>
+                    <button class="grade_btn" type='submit'><img src="static/image/common/agree.gif" alt="评分">评分</button>
+                </form>
+                <!--{else}-->
+                    只有发帖的楼主才能评价
+                <!--{/if}-->
           <!--{/if}-->
       <!--{/if}-->
   <!--{/if}-->
