@@ -68,7 +68,7 @@
                                 <select name="threadtypeid" id="threadtypeid"  width="168">
                                     <option value="">{lang please_select}{lang threadtype_option}</option>
                                     <!--{loop $thread_types $type}-->
-                                    <option value="$type[typeid]">$type[name]</option>
+                                    <option value="$type[typeid]" {if $_GET['threadtypeid'] == $type[typeid]}selected{/if}>$type[name]</option>
                                     <!--{/loop}-->
                                 </select>
                             </span>
