@@ -96,7 +96,7 @@ EOT;
 	showsetting('threads_search_keyword', 'keywords', $_GET['keywords'], 'text');
 
 	showtagheader('tbody', 'advanceoption');
-	showsetting('threads_search_sort', '', '', '<select name="insort"><option value="all">&nbsp;&nbsp;> '.$lang['all'].'</option><option value="">&nbsp;</option><option value="0">&nbsp;&nbsp;> '.$lang['threads_search_type_none'].'</option>'.$sortselect.'</select>');
+	//showsetting('threads_search_sort', '', '', '<select name="insort"><option value="all">&nbsp;&nbsp;> '.$lang['all'].'</option><option value="">&nbsp;</option><option value="0">&nbsp;&nbsp;> '.$lang['threads_search_type_none'].'</option>'.$sortselect.'</select>');
 	showsetting('threads_search_viewrange', array('viewsmore', 'viewsless'), array($_GET['viewsmore'], $_GET['viewsless']), 'range');
 	showsetting('threads_search_replyrange', array('repliesmore', 'repliesless'), array($_GET['repliesmore'], $_GET['repliesless']), 'range');
 	showsetting('threads_search_readpermmore', 'readpermmore', $_GET['readpermmore'], 'text');
@@ -155,7 +155,7 @@ EOT;
 		$conditions['inforum'] = $_GET['inforum'] != '' && $_GET['inforum'] != 'all' && $_GET['inforum'] != 'isgroup' ? $_GET['inforum'] : '';
 		$conditions['isgroup'] = $_GET['inforum'] != '' && $_GET['inforum'] == 'isgroup' ? 1 : 0;
 		$conditions['intype'] = $_GET['intype'] !== '' ? $_GET['intype'] : '';
-		$conditions['insort'] = $_GET['insort'] != '' && $_GET['insort'] != 'all' ? $_GET['insort'] : '';
+		//$conditions['insort'] = $_GET['insort'] != '' && $_GET['insort'] != 'all' ? $_GET['insort'] : '';
 		$conditions['viewsless'] = $_GET['viewsless'] != '' ? $_GET['viewsless'] : '';
 		$conditions['viewsmore'] = $_GET['viewsmore'] != '' ? $_GET['viewsmore'] : '';
 		$conditions['repliesless'] = $_GET['repliesless'] != '' ? $_GET['repliesless'] : '';
@@ -308,11 +308,12 @@ EOT;
 				$lang['threads_move_type'].' <span id="threadtypes"><select name="threadtypeid" onchange="$(\'optype_moveforum\').checked=\'checked\'"><option value="0"></option></select></span>'
 			));
 			if($operation != 'group') {
-				showtablerow('', array('class="td25"', 'class="td24"', 'class="rowform" style="width:auto;"'), array(
+				/*
+                showtablerow('', array('class="td25"', 'class="td24"', 'class="rowform" style="width:auto;"'), array(
 					'<input class="radio" type="radio" id="optype_movesort" name="optype" value="movesort" onclick="this.form.modsubmit.disabled=false;">',
 					$lang['threads_move_sort'],
 					'<select name="tosort" onchange="$(\'optype_movesort\').checked=\'checked\';"><option value="0">&nbsp;&nbsp;> '.$lang['threads_search_type_none'].'</option>'.$sortselect.'</select>'
-				));
+				));*/
 				showtablerow('', array('class="td25"', 'class="td24"', 'class="rowform" style="width:auto;"'), array(
 					'<input class="radio" type="radio" id="optype_stick" name="optype" value="stick" onclick="this.form.modsubmit.disabled=false;">',
 					$lang['threads_stick'],
