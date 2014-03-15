@@ -328,10 +328,9 @@ a{
 	border: 1px solid #DADDDD;
 }
 .mscon h3,.mscon h3 a{
-	font-family:'微软雅黑';
-	
+	font-family: '微软雅黑';
 	text-align: center;
-	font-size: 28px;
+	font-size: 22px;
 	color: #000;
 }
 .mscon .hot2{
@@ -465,6 +464,7 @@ a{
 .mmskd .xld dd {
     font-weight: normal;
     margin-bottom: 8px;
+    font-size: 18px;
 }
 
 .zxask a {
