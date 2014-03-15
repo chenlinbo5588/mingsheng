@@ -19,7 +19,7 @@ $tidarray = array();
 $action = $_GET['action'];
 
 $result = array();
-foreach (array('threadoption', 'viewsless', 'viewsmore', 'repliesless', 'repliesmore', 'noreplydays', 'typeid') as $key) {
+foreach (array('threadoption', 'viewsless', 'viewsmore', 'repliesless', 'repliesmore', 'noreplydays','threadtypeid', 'typeid') as $key) {
 	$$key = isset($_GET[''.$key]) && is_numeric($_GET[''.$key]) ? intval($_GET[''.$key]) : '';
 	$result[$key] = $$key;
 }
@@ -101,6 +101,10 @@ if($_G['fid'] && $_G['forum']['ismoderator'] && $modforums['recyclebins'][$_G['f
 		if(trim($users)) {
 			$conditions['users'] = trim($users);
 		}
+        
+        if($_GET['threadtypeid']) {
+            $conditions['insort'] = $_GET['threadtypeid'];
+        }
 
 		if($_GET['typeid']) {
 			$conditions['intype'] = $_GET['typeid'];
