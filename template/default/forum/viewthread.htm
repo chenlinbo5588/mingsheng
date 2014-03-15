@@ -141,6 +141,65 @@
 
 <!--{hook/viewthread_beginline}-->
 
+<!--显示评分区域开始-->
+<div class="grade_define">
+    <div class="grade_inner">
+        <div class="grade_forum">[<a href="forum.php?mod=forumdisplay&fid={$_G['forum_thread'][fid]}" style="color:#002459"><b>{$forum['name']}</b></a>]</div>
+          <div class="grade_info">
+  <!--{if !empty($threadGrade)}-->
+              此次回复满意度为：<img src="images/{$threadGrade['gradepic']}" alt="{$threadGrade['gradename']}" border="0">
+  <!--{else}-->
+      <!--{if $showGradeBtn}-->
+          <!--{if $_G[uid] == $_G['forum_thread'][authorid]}-->
+          <span id='return-grade'></span>
+          <form name="gradeform" id="grade-form" method="post" autocomplete="off" action="forum.php?mod=ajax&action=applygrade&tid={$_G['forum_thread']['tid']}">
+              <select id="grade-slt" name="grade">
+                  <option value="0">请选择满意度</option>
+                  <option value="3">很满意</option>
+                  <option value="2">一般</option>
+                  <option value="1">不满意</option>
+              </select>
+              <button class="grade_btn" type='submit'><img src="static/image/common/agree.gif" alt="评分">评分</button>
+          </form>
+          <!--{else}-->
+              只有发帖的楼主才能评价
+          <!--{/if}-->
+      <!--{else}-->
+          <!--{eval $subtime = time() - $_G['forum_thread']['dateline']}-->
+          <!--{eval $maxsubtime = 30*3600}-->
+          <!--{if $subtime > $maxsubtime}-->
+              此次回复满意度为：<img src="images/general.gif" alt="一般" border="0">
+          <!--{else}-->
+              只有发帖的楼主才能评价
+          <!--{/if}-->
+      <!--{/if}-->
+  <!--{/if}-->
+      </div>
+  </div>
+</div>
+<script type='text/javascript'>
+    var jq = jQuery.noConflict();
+    jq('#grade-form').submit(function(e){
+        e.preventDefault();
+        var gradeval = parseInt(jq('#grade-slt').val());
+        if (!gradeval) {
+            alert('请选择满意度。');
+        } else {
+            jq.post(jq(this).attr('action'), jq(this).serialize(),
+                function(response){
+                    if (!response.error) {
+                        var res = response.data;
+                        var reshtm = '此次回复满意度为：<img src="images/'+res.gradepic+'" alt="'+res.gradename+'" border="0">';
+                        jq('#return-grade').html(reshtm);
+                    } else {
+                        alert('操作失败。');
+                    }
+                });
+        }
+    });
+</script>
+<!--显示评分区域结束-->
+
 <div id="postlist" class="pl bm">
 	<table cellspacing="0" cellpadding="0">
 		<tr>

@@ -287,7 +287,9 @@ $usesigcheck = $_G['uid'] && $_G['group']['maxsigsize'];
 $postlist = $_G['forum_attachtags'] = $attachlist = $_G['forum_threadstamp'] = array();
 $aimgcount = 0;
 $_G['forum_attachpids'] = array();
-
+//显示评分按钮标示
+$showGradeBtn = false;
+    
 if(!empty($_GET['action']) && $_GET['action'] == 'printable' && $_G['tid']) {
 	require_once libfile('thread/printable', 'include');
 	dexit();
@@ -772,6 +774,13 @@ if($postusers) {
 			$locationpids[] = $pid;
 		}
 		$post = array_merge($postlist[$pid], (array)$postusers[$post['authorid']]);
+        //帖子显示评分 
+        $ismoderator = C::t('forum_moderator')->fetch_uid_by_fid_uid($post['fid'], $post['authorid']);//判断发帖人是否是版主
+        if ($ismoderator && 
+            !$post['first'] && 
+            !$showGradeBtn) {
+            $showGradeBtn = 1;
+        }
 		$postlist[$pid] = viewthread_procpost($post, $_G['member']['lastvisit'], $ordertype, $maxposition);
 	}
 }
@@ -784,11 +793,38 @@ if($locationpids) {
 	$locations = C::t('forum_post_location')->fetch_all($locationpids);
 }
 
+
 if($postlist && $rushids) {
 	foreach($postlist as $pid => $post) {
+        //帖子显示评分     
+        $ismoderator = C::t('forum_moderator')->fetch_uid_by_fid_uid($post['fid'], $post['authorid']);//判断发帖人是否是版主
+        if ($ismoderator && 
+            !$post['first'] && 
+            !$showGradeBtn) {
+            $showGradeBtn = 1;
+        }
 		$post['number'] = $post['position'];
 		$postlist[$pid] = checkrushreply($post);
 	}
+}
+
+//查找帖子评分
+$threadGrade = C::t('forum_threadgrade')->fetch_grade_by_tid($_G['forum_thread']['tid']);
+$threadGrade = $threadGrade[0];
+if (!empty($threadGrade)) {
+    switch ($threadGrade['grade']) {
+        case '1':
+            $threadGrade['gradepic'] = 'dissatisfied.jpg';
+            $threadGrade['gradename'] = '不满意';
+            break;
+        case '2':
+            $threadGrade['gradepic'] = 'general.gif';
+            $threadGrade['gradename'] = '一般';
+            break;
+        case '3':
+            $threadGrade['gradepic'] = 'verygood.gif';
+            $threadGrade['gradename'] = '很满意';
+    }
 }
 
 if($_G['setting']['repliesrank'] && $postlist) {

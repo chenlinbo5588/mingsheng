@@ -693,6 +693,37 @@ EOF;
 	}
 	include template('common/footer_ajax');
 	exit;
+} elseif ($_GET['action'] == 'applygrade') {
+	$threadid = $_GET['tid'];
+    $grade = isset($_POST['grade']) ? $_POST['grade'] : 0;
+    $return = array('error' => 1);
+    if ($threadid && $grade) {
+        $gradeinfo = array(
+            'tid'       => $threadid,
+            'grade'     => $grade,
+            'dateline'  => time()
+        );
+        $gradeid = C::t('forum_threadgrade')->insert($gradeinfo, true);
+        if ($gradeid) {
+            switch ($gradeid) {
+                case '1':
+                    $gradeinfo['gradepic'] = 'dissatisfied.jpg';
+                    $gradeinfo['gradename'] = '不满意';
+                    break;
+                case '2':
+                    $gradeinfo['gradepic'] = 'general.gif';
+                    $gradeinfo['gradename'] = '一般';
+                    break;
+                case '3':
+                    $gradeinfo['gradepic'] = 'verygood.gif';
+                    $gradeinfo['gradename'] = '很满意';
+            }
+            $return['error'] = 0;
+            $return['data'] = $gradeinfo;
+        }
+    }
+	die(json_encode($return));
+    exit;
 }
 
 function tmpiconv($s, $d, $str) {
