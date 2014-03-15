@@ -520,6 +520,7 @@ class table_forum_thread extends discuz_table
 				}
 			}
 		}
+        
 		$data = DB::fetch_all("SELECT * FROM ".DB::table($this->get_table_name($tableid))." $forceindex".$this->search_condition($conditions)." $ordersql ".DB::limit($start, $limit));
 		if($firstpage && !empty($tlkey) && ($ttl = getglobal('setting/memory/forum_thread_forumdisplay')) !== null) {
 			$this->store_cache($tlkey, $data, $ttl, 'forumdisplay_');

@@ -25,7 +25,7 @@ if($op == 'thread') {
 
 	$result = array();
 
-	foreach (array('threadoption', 'viewsless', 'viewsmore', 'repliesless', 'repliesmore', 'noreplydays', 'typeid') as $key) {
+	foreach (array('threadoption', 'viewsless', 'viewsmore', 'repliesless', 'repliesmore', 'noreplydays','threadtypeid', 'typeid') as $key) {
 		$_GET[''.$key] = isset($_GET[''.$key]) && is_numeric($_GET[''.$key]) ? intval($_GET[''.$key]) : '';
 		$result[$key] = $_GET[''.$key];
 	}
@@ -65,6 +65,10 @@ if($op == 'thread') {
 			if(trim($_GET['users'])) {
 				$conditions['users'] = trim($_GET['users']);
 			}
+            
+            if($_GET['threadtypeid']) {
+                $conditions['insort'] = $_GET['threadtypeid'];
+            }
 
 			if($_GET['typeid']) {
 				$conditions['intype'] = $_GET['typeid'];
@@ -134,9 +138,9 @@ if($op == 'thread') {
 			foreach($threads as $thread) {
 				$postlist[] = procthread($thread);
 			}
+            $postlist = thread_add_icon_by_row($postlist ,'dbdateline');
+            //print_r($postlist);
 		}
-        $postlist = thread_add_icon_by_row($postlist ,'dbdateline');
-        //print_r($postlist);
 	}
 	return;
 }

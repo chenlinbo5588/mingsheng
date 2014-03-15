@@ -64,8 +64,7 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
             ////没有看审核前的帖子，上面的数据是空的 兼容处理,上线后应该不会到这里
             $days = ceil(($ts_now - $thread[$datelineKey])/$hour24);
         }
-        
-        switch($thread['sortid']){
+        switch(intval($thread['sortid'])){
             case $lang['sort_all_code']:
             case $lang['sort_wait_verify_code']:
             case $lang['sort_wait_accept_code']:
