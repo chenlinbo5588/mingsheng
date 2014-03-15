@@ -145,7 +145,7 @@
 									<!--{/if}-->
                                     <td class="ths"><div class="{$thread[className]}"></div></td>
 									<th class="$thread[folder]">
-                                        $thread[show_text]
+                                        $thread['show_text']
                                         <a href="forum.php?mod=forumdisplay&fid={$thread[fid]}" style="color:{$_G[cache][forums][$thread[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$thread[fid]][name]}]</b></a>
 										<a href="javascript:;" id="content_$thread[tid]" class="showcontent y" title="{lang content_actions}" onclick="CONTENT_TID='$thread[tid]';CONTENT_ID='$thread[id]';showMenu({'ctrlid':this.id,'menuid':'content_menu'})"></a>
 										<!--{if in_array($thread['displayorder'], array(1, 2, 3, 4))}-->

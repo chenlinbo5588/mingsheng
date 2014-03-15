@@ -18,6 +18,7 @@ $do = !empty($_GET['do']) ? dhtmlspecialchars($_GET['do']) : '';
 $tidarray = array();
 $action = $_GET['action'];
 
+$lang = lang('forum/template');
 $result = array();
 foreach (array('threadoption', 'viewsless', 'viewsmore', 'repliesless', 'repliesmore', 'noreplydays','threadtypeid', 'typeid') as $key) {
 	$$key = isset($_GET[''.$key]) && is_numeric($_GET[''.$key]) ? intval($_GET[''.$key]) : '';
@@ -201,11 +202,15 @@ if($_G['fid'] && $_G['forum']['ismoderator'] && $modforums['recyclebins'][$_G['f
 		}
 		if($postlist) {
 			$tids = array_keys($postlist);
+            //获取原因
 			foreach(C::t('forum_threadmod')->fetch_all_by_tid($tids) as $row) {
 				if(empty($postlist[$row['tid']]['reason'])) {
 					$postlist[$row['tid']]['reason'] = $row['reason'];
 				}
 			}
+            
+            $postlist = thread_add_icon_by_row($postlist ,'dbdateline');
+            
 		}
 	}
 
