@@ -114,10 +114,6 @@ class forum_sendmsg {
      */   
     public function send_message($message = '', $mnumber = '') {
         
-        if(!preg_match("/^\+?\d{11,}",$mnumber)){
-            return false;
-        }
-        
         if (!$message || !$mnumber) {
             return false;
         }
