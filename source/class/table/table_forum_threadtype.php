@@ -21,8 +21,8 @@ class table_forum_threadtype extends discuz_table
 		parent::__construct();
 	}
     
-    public function fetch_all_types(){
-        return DB::fetch_all("SELECT * FROM %t ", array($this->_table));
+    public function fetch_all_types($where){
+        return DB::fetch_all("SELECT * FROM ".DB::table('forum_threadtype')." $where ORDER BY displayorder");
     }
 
 	public function fetch_all_for_cache() {

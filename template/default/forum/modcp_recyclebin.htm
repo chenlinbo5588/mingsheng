@@ -144,7 +144,12 @@
                                 <th class="$thread[folder]">
                                     $thread[show_text]
                                     <a href="forum.php?mod=forumdisplay&fid={$thread[fid]}" style="color:{$_G[cache][forums][$thread[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$thread[fid]][name]}]</b></a>
-									<span id="thread_$thread[tid]"><a href="forum.php?mod=viewthread&tid=$thread[tid]&modthreadkey=$thread[modthreadkey]" target="_blank" $thread['highlight']>$thread[subject]</a></span>
+									<!--{if !$_GET['archiveid'] && $_G['forum']['ismoderator']}-->
+                                        <!--{if strpos($thread['show_text'],'sort_wait_accept') !== false}-->
+                                        [<a class="shouli" href="javascript:void(0);" data-tid="$thread[tid]" onclick="tmodthreads(6, 'setsortid',this);return false;" title="{lang click_to_sl}">{lang click_to_sl}</a>]
+                                        <!--{/if}-->
+                                    <!--{/if}-->
+                                    <span id="thread_$thread[tid]"><a href="forum.php?mod=viewthread&tid=$thread[tid]&modthreadkey=$thread[modthreadkey]" target="_blank" $thread['highlight']>$thread[subject]</a></span>
 									<!--{if $thread['readperm']}--> - [{lang readperm} <span class="xw1">$thread[readperm]</span>]<!--{/if}-->
 									<!--{if $thread['price'] > 0}-->
 										<!--{if $thread['special'] == '3'}-->

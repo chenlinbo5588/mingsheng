@@ -17,7 +17,7 @@ $isfirstpost = 0;
 $_G['group']['allowimgcontent'] = 0;
 $showthreadsorts = 0;
 $quotemessage = '';
-
+loadcache('forums');
 if($special == 5) {
 	$debate = array_merge($thread, daddslashes(C::t('forum_debate')->fetch($_G['tid'])));
 	$firststand = C::t('forum_debatepost')->get_firststand($_G['tid'], $_G['uid']);
@@ -416,10 +416,10 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
 
 	$modpost->attach_before_methods('newreply', $bfmethods);
 	$modpost->attach_after_methods('newreply', $afmethods);
-
+    
 	$return = $modpost->newreply($params);
 	$pid = $modpost->pid;
-
+    
 	if($specialextra) {
 
 		@include_once DISCUZ_ROOT.'./source/plugin/'.$_G['setting']['threadplugins'][$specialextra]['module'].'.class.php';
@@ -429,6 +429,30 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
 		}
 
 	}
+    
+    /**
+     * 添加回复 版主回复逻辑
+     */
+    
+    if($pid && $thread['sortid'] == 3 && $_G['forum']['ismoderator'] && in_array($_G['groupid'],array(2,3))){
+        
+        //最新位置和2楼互换位置
+        $twoFloor = C::t('forum_post')->fetch_all_by_tid_position(0,$thread['tid'],2);
+        $newPidInfo = C::t('forum_post')->fetch(0 ,$pid);
+        
+        if(count($twoFloor) > 0 && $twoFloor[0]['authorid'] != $_G['uid']){
+            C::t('forum_post')->update(0,$twoFloor[0]['pid'],array('position' => 0));
+            C::t('forum_post')->update(0,$pid,array('position' => 2));
+            C::t('forum_post')->update(0,$twoFloor[0]['pid'],array('position' => $newPidInfo['position']));
+        }
+        
+        //已受理 版主回复自动变为4 
+        C::t('forum_thread')->update($thread['tid'],array('sortid' => 4));
+        
+        // 
+        // @todo 发送短信
+    }
+    
 
 	if($modpost->pid && !$modpost->param('modnewreplies')) {
 

@@ -1292,6 +1292,7 @@ a{
 .sort_replied {
     color:#FF0000;
 }
+
 .grade_define {
     border: 1px solid #C2D5E3;
     margin-bottom: 10px;    
@@ -1329,4 +1330,9 @@ a{
     background-color: #eff4fb;
     cursor: pointer;
     border: 1px solid #C2D5E3;
+
+
+.shouli {
+    color:#FF0000;
+
 }

@@ -15,7 +15,7 @@ if(!empty($_G['tid'])) {
 	$_GET['moderate'] = array($_G['tid']);
 }
 
-$allow_operation = array('delete', 'highlight', 'open', 'close', 'stick', 'digest', 'bump', 'down', 'recommend', 'type', 'move', 'recommend_group');
+$allow_operation = array('setsortid', 'delete', 'highlight', 'open', 'close', 'stick', 'digest', 'bump', 'down', 'recommend', 'type', 'move', 'recommend_group');
 
 $operations = empty($_GET['operations']) ? array() : $_GET['operations'];
 if($operations && $operations != array_intersect($operations, $allow_operation) || (!$_G['group']['allowdelpost'] && in_array('delete', $operations)) || (!$_G['group']['allowstickthread'] && in_array('stick', $operations))) {
@@ -54,7 +54,11 @@ if($_GET['moderate']) {
 		}
 	}
 }
-if(empty($threadlist)) {
+
+$optgroup = $_GET['optgroup'] = isset($_GET['optgroup']) ? intval($_GET['optgroup']) : 0;
+$expirationstick = getgpc('expirationstick');
+
+if($optgroup != 6 && empty($threadlist)) {
 	if($recommend_group_count) {
 		showmessage('recommend_group_invalid');
 	}
@@ -81,8 +85,6 @@ switch($frommodcp) {
 		break;
 }
 
-$optgroup = $_GET['optgroup'] = isset($_GET['optgroup']) ? intval($_GET['optgroup']) : 0;
-$expirationstick = getgpc('expirationstick');
 
 $defaultcheck = array();
 foreach ($allow_operation as $v) {
@@ -122,7 +124,9 @@ if(!submitcheck('modsubmit')) {
 		include_once libfile('function/member');
 		$crimenum = crime('getcount', $threadlist[$_G['tid']]['authorid'], 'crime_delpost');
 		$crimeauthor = $threadlist[$_G['tid']]['author'];
-	}
+	} elseif($_GET['optgroup'] == 6){
+        // add logic here
+    }
 
 	$imgattach = array();
 	if(count($threadlist) == 1 && $operation == 'recommend') {
@@ -654,10 +658,22 @@ if(!submitcheck('modsubmit')) {
 					showmessage('admin_succeed', $_G['referer']);
 				}
 				$modaction = 'REG';
-			}
+			} elseif($operation == 'setsortid') {
+                /**
+                 * update thread sortid
+                 */
+                //file_put_contents("1.txt",print_r($threadlist,true));
+                C::t('forum_thread')->update($tidsarr, array('sortid'=>3, 'moderated'=>1), true);
+                
+                /**
+                 * @todo add logic of 短信
+                 */
+                
+                $modaction = 'SOR';
+            }
 
 			if($updatemodlog) {
-				if($operation != 'delete') {
+				if($operation != 'delete' && $operation != 'setsortid') {
 					updatemodlog($moderatetids, $modaction, $expiration);
 				} else {
 					updatemodlog($moderatetids, $modaction, $expiration, 0, $reason);
@@ -687,6 +703,7 @@ if(!submitcheck('modsubmit')) {
 			}
 
 		}
+        //file_put_contents("1.txt",print_r($_G['referer'],true),FILE_APPEND);
 		showmessage('admin_succeed', $_G['referer']);
 	}
 

@@ -110,16 +110,22 @@ function tmodclick(obj) {
 	}
 }
 
-function tmodthreads(optgroup, operation) {
+function tmodthreads(optgroup, operation,obj) {
 	var checked = 0;
 	var operation = !operation ? '' : operation;
+    
+    if(obj){
+        //jq(obj).closest("tr").find("input[type=checkbox]").prop("checked",true);
+        $('moderate').current_row_tid.value = jq(obj).attr("data-tid");
+    }
+    
 	for(var i = 0; i < $('moderate').elements.length; i++) {
 		if($('moderate').elements[i].name.match('moderate') && $('moderate').elements[i].checked) {
 			checked = 1;
 			break;
 		}
 	}
-	if(!checked) {
+	if(!obj && !checked) {
 		alert('请选择需要操作的帖子');
 	} else {
 		$('moderate').optgroup.value = optgroup;

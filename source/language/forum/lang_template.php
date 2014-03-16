@@ -1328,7 +1328,9 @@ $lang = array (
     'sort_wait_verify_code' => 1,
     'sort_wait_accept_code' => 2,
     'sort_accept_code' => 3,
-    'sort_replied_code' => 4
+    'sort_replied_code' => 4,
+    'click_to_sl' => '点击受理',
+    'souli' => '受理'
     
 );
 

@@ -10,7 +10,11 @@
 
 <div class="tm_c" id="floatlayout_topicadmin">
 	<h3 class="flb">
+        <!--{if $_GET['optgroup'] == 6}-->
+        <em id="return_mods">{lang souli}</em>
+        <!--{else}-->
 		<em id="return_mods">{lang admin_select_piece}</em>
+        <!--{/if}-->
 		<span>
 			<a href="javascript:;" class="flbc" onclick="hideWindow('mods')" title="{lang close}">{lang close}</a>
 		</span>
@@ -25,6 +29,9 @@
 		<!--{loop $threadlist $thread}-->
 			<input type="hidden" name="moderate[]" value="$thread[tid]" />
 		<!--{/loop}-->
+        <!--{if $_GET['current_row_tid']}-->
+        <input type="hidden" name="moderate[]" value="$_GET['current_row_tid']" />
+        <!--{/if}-->
 		<div class="c">
 			<!--{if $_GET['optgroup'] == 1}-->
 				<ul class="tpcl">
@@ -358,16 +365,30 @@
 						</p>
 					<!--{/if}-->
 				</div>
+            <!--{elseif $_GET['optgroup'] == 6}-->
+                <!-- 受理 -->
+                <div class="tpclg">
+                    <!--{if empty($hiddensubmit)}-->
+                    <h4 class="cl"><span>{lang admin_reason}:</span></h4>
+                    <input name="operations[]" type="hidden" value="setsortid"/>
+                    <p>
+                        <textarea id="reason" name="reason" class="pt" onkeyup="seditor_ctlent(event, '$(\'modsubmit\').click();')" rows="3"></textarea>
+                    </p>
+                    <ul id="reasonselect" style="display: none"><!--{echo modreasonselect()}--></ul>
+                    <!--{/if}-->
+                </div>
+            <!--{else}-->
+                <div class="tpclg">
+                    <!--{if empty($hiddensubmit)}-->
+                    <h4 class="cl"><a onclick="showselect(this, 'reason', 'reasonselect')" class="dpbtn" href="javascript:;">^</a><span>{lang admin_reason}:</span></h4>
+                    <p>
+                        <textarea id="reason" name="reason" class="pt" onkeyup="seditor_ctlent(event, '$(\'modsubmit\').click();')" rows="3"></textarea>
+                    </p>
+                    <ul id="reasonselect" style="display: none"><!--{echo modreasonselect()}--></ul>
+                    <!--{/if}-->
+                </div>
 			<!--{/if}-->
-			<div class="tpclg">
-				<!--{if empty($hiddensubmit)}-->
-				<h4 class="cl"><a onclick="showselect(this, 'reason', 'reasonselect')" class="dpbtn" href="javascript:;">^</a><span>{lang admin_reason}:</span></h4>
-				<p>
-					<textarea id="reason" name="reason" class="pt" onkeyup="seditor_ctlent(event, '$(\'modsubmit\').click();')" rows="3"></textarea>
-				</p>
-				<ul id="reasonselect" style="display: none"><!--{echo modreasonselect()}--></ul>
-				<!--{/if}-->
-			</div>
+			
 		</div>
 		<!--{if empty($hiddensubmit)}-->
 			<p class="o pns">

@@ -147,7 +147,12 @@
 									<th class="$thread[folder]">
                                         $thread['show_text']
                                         <a href="forum.php?mod=forumdisplay&fid={$thread[fid]}" style="color:{$_G[cache][forums][$thread[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$thread[fid]][name]}]</b></a>
-										<a href="javascript:;" id="content_$thread[tid]" class="showcontent y" title="{lang content_actions}" onclick="CONTENT_TID='$thread[tid]';CONTENT_ID='$thread[id]';showMenu({'ctrlid':this.id,'menuid':'content_menu'})"></a>
+										<!--{if !$_GET['archiveid'] && $_G['forum']['ismoderator']}-->
+                                            <!--{if strpos($thread['show_text'],'sort_wait_accept') !== false}-->
+                                            [<a class="shouli" href="javascript:void(0);" data-tid="$thread[tid]" onclick="tmodthreads(6, 'setsortid',this);return false;" title="{lang click_to_sl}">{lang click_to_sl}</a>]
+                                            <!--{/if}-->
+                                        <!--{/if}-->
+                                        <a href="javascript:;" id="content_$thread[tid]" class="showcontent y" title="{lang content_actions}" onclick="CONTENT_TID='$thread[tid]';CONTENT_ID='$thread[id]';showMenu({'ctrlid':this.id,'menuid':'content_menu'})"></a>
 										<!--{if in_array($thread['displayorder'], array(1, 2, 3, 4))}-->
 											<a href="javascript:void(0);" onclick="hideStickThread('$thread[tid]')" class="showhide y" title="{lang hidedisplayorder}">{lang hidedisplayorder}</a></em>
 										<!--{/if}-->

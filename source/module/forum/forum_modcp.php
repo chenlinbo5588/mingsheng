@@ -66,7 +66,7 @@ if($modforums === null) {
 
 	$modsession->set('modforums', $modforums, true);
 }
-$thread_types = C::t('forum_threadtype')->fetch_all_types();
+$thread_types = C::t('forum_threadtype')->fetch_all_types('where typeid !=1');
 $threadclasslist = array();
 if($_G['fid'] && in_array($_G['fid'], explode(',', $modforums['fids']))) {
 	foreach(C::t('forum_threadclass')->fetch_all_by_fid($_G['fid']) as $tc) {
