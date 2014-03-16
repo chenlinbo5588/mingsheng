@@ -1207,7 +1207,11 @@ a{
 }
 .search_submit {
     width: 30px;
-    height: 32px;
+    height: 35px;
+    height: 32px;\9\0;
+    *height: 32px;#FFF;
+    +height: 32px;#FFF;
+    _background-color:#FFF; 
     float: left;
     overflow: hidden;
     display: block;
@@ -1217,12 +1221,12 @@ a{
     background: url(../images/search.png) 50% 50% no-repeat #fff;
     border: none;
     width: 30px;
-    height: 30px;
+    height: 31px;
     cursor: pointer;
     text-indent: -999px;
     position: absolute;
     right: 0;
-    top: 2px;
+    top: 3px;
 }
 .plist {
     margin-top: 10px
@@ -1246,6 +1250,7 @@ a{
 }
 .plist ul li a {
     padding: 5px;
+    font-size: 14px;
 }
 .plist li h4 a {
     font-size: 20px;
