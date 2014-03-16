@@ -1188,19 +1188,6 @@ a{
     right:0;
     top:5px;
 }
-.search_submit {
-    width: 30px;
-    float: left;
-    overflow: hidden;
-}
-.search_submit button {
-    background: url(../images/search.png) 50% 50% no-repeat #fff;
-    border: none;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    text-indent: -999px;
-}
 .soso .search_ipt {
     float:left;
     width: 196px;
@@ -1214,6 +1201,25 @@ a{
     line-height: 28px;
     border: 1px solid #B0B0B0;
     color: #999999;
+}
+.search_submit {
+    width: 30px;
+    height: 32px;
+    float: left;
+    overflow: hidden;
+    display: block;
+    position: relative;
+}
+.search_submit button {
+    background: url(../images/search.png) 50% 50% no-repeat #fff;
+    border: none;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    text-indent: -999px;
+    position: absolute;
+    right: 0;
+    top: 2px;
 }
 .plist {
     margin-top: 10px
