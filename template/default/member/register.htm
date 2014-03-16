@@ -200,7 +200,30 @@
 								<table>
 									<tr>
 										<th><!--{if $field['required']}--><span class="rq">*</span><!--{/if}--><label for="$field['fieldid']">$field[title]:</label></th>
-										<td>$htmls[$field['fieldid']]</td>
+										<td>$htmls[$field['fieldid']]
+                                            <!--{if $field['fieldid'] == 'mobile'}-->
+                                                <a id="valide-code-btn" href="javascript:void(0);">获取验证码</a>
+                                                
+<script type='text/javascript'>
+    var jq = jQuery.noConflict();
+    jq('#valide-code-btn').click(function(e){
+        var mipt = jq(this).parent().find('input[name=mobile]');
+        if (mipt.val() != '') {
+            jq.post('forum.php?mod=ajax&action=sendchkcode', {'mnumber': mipt.val()},
+                function(response){
+                    if (!response.error) {
+                        alert('验证码已经成功发送到您的手机，请注意查收。');
+                    } else {
+                        alert('操作失败。');
+                    }
+                });
+        } else {
+            alert('请输入手机号码。');
+        }
+    });
+</script>
+                                            <!--{/if}-->
+                                        </td>
 										<td class="tipcol"><i id="tip_$field['fieldid']" class="p_tip"><!--{if $field['description']}--><!--{echo dhtmlspecialchars($field[description])}--><!--{/if}--></i><kbd id="chk_$field['fieldid']" class="p_chk"></kbd></td>
 									</tr>
 								</table>
@@ -209,16 +232,25 @@
 						<!--{/loop}-->
 					<!--{/if}-->
 					<!--{hook/register_input}-->
-
+                    
+                    <!--
 					<!--{if $secqaacheck || $seccodecheck}-->
 						<!--{block sectpl}--><div class="rfm"><table><tr><th><span class="rq">*</span><sec>: </th><td><sec><br /><sec></td></tr></table></div><!--{/block}-->
 						<!--{subtemplate common/seccheck}-->
 					<!--{/if}-->
-
+                    -->
+                    <div class="rfm">
+                        <table>
+                            <tbody><tr>
+                                    <th><span class="rq">*</span><label for="mobile">验证码:</label></th>
+                                    <td><input id="mverifycode" name="mverifycode" type="text" autocomplete="off" style="ime-mode:disabled;width:100px" class="txt px vm">
+                                    </td>
+                                    <td class="tipcol"><i id="tip_mverifycode" class="p_tip" style="display: block;"></i><kbd id="chk_mverifycode" class="p_chk"></kbd></td>
+                                </tr>
+                            </tbody></table>
+                    </div>
 				</div>
-
 			</div>
-
 		</div>
 
 		<div id="layer_reginfo_b">

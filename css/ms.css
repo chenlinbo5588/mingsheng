@@ -1309,6 +1309,7 @@ a{
     line-height: 60px;
     margin-left: 15px;
     float: left;
+    font-size: 20px;
 }
 .grade_inner .grade_forum a {
     font-size: 20px;
@@ -1317,6 +1318,7 @@ a{
 .grade_inner .grade_info {
     float: right;
     margin-right: 15px;
+    font-size: 20px;
 }
 .grade_info img {
     vertical-align: middle;

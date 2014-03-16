@@ -87,7 +87,7 @@
                     <span class="thread-search">热帖搜索：</span>
                     <div class="psoso">
                         <form method="post" autocomplete="off" action="search.php?mod=forum" onsubmit="if ($('scform_fmtxt'))  searchFocus($('scform_srchtxt'));">
-                            <input type="hidden" name="formhash" value="63cbf93d">
+                            <input type="hidden" name="formhash" value="{FORMHASH}">
                             <input class="pkey" type="text" id="scform_fmtxt" name="srchtxt" value="" tabindex="1" placeholder="请输入搜索内容">
                             <input type="hidden" name="searchsubmit" value="yes">
                             <input class="psub" type="submit" id="scform_submit1" value="">
@@ -97,7 +97,7 @@
             </div>
         </div>
         <div class="secright w240">
-            <div class="wxbgtop"><a href="/portal.php?mod=list&catid=3" class="moreLink"  target="_blank">&nbsp;更多</a></div>
+            <div class="wxbgtop"><a href="/portal.php?mod=list&catid=14" class="moreLink"  target="_blank">&nbsp;更多</a></div>
             <div class="wxbgcen">
                 <div class="bgtj">
                     <ul><li><span class="forum-num">总发帖：</span>{$allposts}</li>
