@@ -56,8 +56,8 @@ class forum_sendmsg {
     public function send_msg_tid($tid = 0, $usefid = false, $message = '',$extra = '已审核') {
         $res = false;
 
-        $msgpre = '民e通提醒：';
-        $msgend = '【慈溪网络民生服务平台】';
+        $msgpre = $this->msgPre;
+        $msgend = $this->msgEnd;
 
         if ($tid) {
             $thread = C::t('forum_thread')->fetch($tid);
@@ -100,9 +100,9 @@ class forum_sendmsg {
             
             foreach($userinfo as $u){
                 // @todo delete test code
-                //file_put_contents('dx.txt',print_r($u,true),FILE_APPEND);
+                file_put_contents('dx.txt',print_r($u,true),FILE_APPEND);
                 $res = $this->send_message($message, $u['mobile']);
-                //file_put_contents('dx.txt',print_r($res,true),FILE_APPEND);
+                file_put_contents('dx.txt',print_r($res,true),FILE_APPEND);
             }
 
         }
