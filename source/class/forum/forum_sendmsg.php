@@ -79,6 +79,7 @@ class forum_sendmsg {
             $userinfo = C::t('common_member_profile')->count_by_field('uid', $uid);
             $mobile = $userinfo['mobile'];
             $res = $this->send_message($message, $userinfo['mobile']);
+            return $res['error'] ? false : true;
         }
         return $res;
     }
@@ -87,15 +88,13 @@ class forum_sendmsg {
      * 使用螺丝帽借口发送短信
      */   
     public function send_message($message = '', $mnumber = '') {
-        $res = array('error' => 1);
         
         if(!preg_match("/^\+?\d{11,}",$mnumber)){
             return false;
         }
         
         if (!$message || !$mnumber) {
-            $res['msg'] = 'No message or number.';
-            return $res;
+            return false;
         }
         $message = $this->msgPre.$message.$this->msgEnd;
         $ch = curl_init();
@@ -119,7 +118,7 @@ class forum_sendmsg {
 
         $res = curl_exec($ch);
         curl_close($ch);
-        return $res;
+        return $res['error'] ? false : true;
     }
 
     /*
