@@ -9,7 +9,7 @@ if (!defined('IN_DISCUZ')) {
 class forum_sendmsg {
     
     //Api url
-    private $apiUrl = 'https://sms-api.luosimao.com/v1/send.json';
+    private $apiUrl = 'https://sms-api.luosimao.com/v1/send.xml';
     
     //Api Key
     private $apiKey = 'api:key-033c6d22cc138b989cfba829f68e17f1';
@@ -89,10 +89,10 @@ class forum_sendmsg {
      */   
     public function send_message($message = '', $mnumber = '') {
         
-        if(!preg_match("/^\+?\d{11,}",$mnumber)){
-            return false;
-        }
-        
+//        if(!preg_match("/^\+?\d{11,}",$mnumber)){
+//            return false;
+//        }
+
         if (!$message || !$mnumber) {
             return false;
         }
@@ -118,7 +118,7 @@ class forum_sendmsg {
 
         $res = curl_exec($ch);
         curl_close($ch);
-        return $res['error'] ? false : true;
+        return ($res['error']==1) ? false : true;
     }
 
     /*

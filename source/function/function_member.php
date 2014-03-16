@@ -309,4 +309,20 @@ function checkemail($email) {
 		showmessage('profile_email_duplicate', '', array(), array('handle' => false));
 	}
 }
+
+function check_mobile_code($mobile, $code) {
+    if (!$mobile || !$code) return false;
+    $info = C::t('common_member_regcode')->fetch_info_by_phone_code($mobile, $code);
+
+    if ($info) {
+        $subtime = time() - $info['dateline'];
+        if ($subtime > $info['expiretime']) {
+            return false;
+        } else {
+            return true;
+        }
+    } else {
+        return false;
+    }
+}
 ?>

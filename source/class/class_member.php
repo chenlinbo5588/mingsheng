@@ -683,7 +683,7 @@ class register_ctl {
 
 				if(!profile_check($field_key, $field_val)) {
 					$showid = !in_array($field['fieldid'], array('birthyear', 'birthmonth')) ? $field['fieldid'] : 'birthday';
-					showmessage($field['title'].lang('message', 'profile_illegal'), '', array(), array(
+					showmessage($field['title'].lang('message', 'profile_illegal').$field['fieldid'], '', array(), array(
 						'showid' => 'chk_'.$showid,
 						'extrajs' => $field['title'].lang('message', 'profile_illegal').($field['formtype'] == 'text' ? '<script type="text/javascript">'.
 							'$(\'registerform\').'.$field['fieldid'].'.className = \'px er\';'.
@@ -695,6 +695,19 @@ class register_ctl {
 					$verifyarr[$field_key] = $field_val;
 				} else {
 					$profile[$field_key] = $field_val;
+				}
+                
+                if(!check_mobile_code($_POST['mobile'], $_POST['mverifycode'])) {
+					$showid = 'mverifycode';
+                    $ftitle = '验证码';
+                    $fieldid = 'mverifycode';
+					showmessage($ftitle.lang('message', 'profile_illegal'), '', array(), array(
+						'showid' => 'chk_'.$showid,
+						'extrajs' => '<script type="text/javascript">'.
+							'$(\'registerform\').'.$fieldid.'.className = \'px er\';'.
+							'$(\'registerform\').'.$fieldid.'.onblur = function () { if(this.value != \'\') {this.className = \'px\';$(\'chk_'.$showid.'\').innerHTML = \'\';}}'.
+							'</script>')
+					);
 				}
 			}
 

@@ -1229,4 +1229,31 @@ function getreplybg($replybg = '') {
 	return $style;
 }
 
+/**
+ * 在指定数据范围内实现随机字符组合
+ *
+ * @param int $length
+ * @param int $type
+ *
+ * @return string
+ */
+function randVar($length = 0, $type = 0) {
+		$range = array(0	=>	'0123456789',
+					   1	=>	'abcdefghijklmnopqrstuvwxyz',
+					   2	=>	'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+					   3	=>	'0123456789abcdefghijklmnopqrstuvwxyz',
+					   4	=>	'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+					   5	=>	'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+					   6	=>	'0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ',
+					   7	=>	'3456789abcdefghijkmnpqrstuvwxyABCDEFGHJKLMNPQRSTUVWXY');
+		if (false === array_key_exists($type, $range)) {
+			$type = 6;
+		}
+		$character = '';
+		$maxLength = strlen($range[$type])-1;
+		for ($i = 0; $i < $length; ++$i) {
+			$character .= $range[$type][mt_rand(0, $maxLength)];
+		}
+		return $character;
+}
 ?>

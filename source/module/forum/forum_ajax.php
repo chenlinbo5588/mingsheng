@@ -724,6 +724,35 @@ EOF;
     }
 	die(json_encode($return));
     exit;
+} elseif ($_GET['action'] == 'sendchkcode') {
+    $return = array('error' => 1);
+    $regmobile = isset($_POST['mnumber']) ? $_POST['mnumber'] : 0;
+    if ($regmobile) {
+        $chkcode = randVar(6);
+        $data = array(
+            'mobile'        => $regmobile,
+            'code'          => $chkcode,
+            'dateline'      => time(),
+            'expiretime'    => 24 * 3600
+        );
+        C::t('common_member_regcode')->delete_by_phone($regmobile, 1000);
+        $insertid = C::t('common_member_regcode')->insert($data, true);
+        if (!$insertid) {
+            $return['error'] = 0;
+        } else {
+            
+            $msg = "您的手机号：$regmobile, 民e通注册验证码：$chkcode, 一天内提交有效！";
+            
+            $sendmsg = new forum_sendmsg();
+            $res = $sendmsg->send_message($msg, $regmobile);
+
+            if ($res) {
+                $return['error'] = 0;
+            }
+        }
+    }
+    die(json_encode($return));
+    exit;
 }
 
 function tmpiconv($s, $d, $str) {
