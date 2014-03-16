@@ -36,5 +36,42 @@ $allposts = DB::result_first("SELECT SUM(posts) AS totalposts FROM ".DB::table('
 $allmembers = DB::result_first("SELECT count(*) FROM ".DB::table('common_member'));
 $allreplies = DB::result_first("SELECT SUM(replies) AS totalreplies FROM ".DB::table('forum_thread'));
 
+/**
+ *  
+ * 
+ * 网友正在问取[未受理][已受理]，最新15条
+ * 部门正在答取[已回复]，最新15条
+ *  
+ */
+loadcache('forums');
+
+
+
+require './source/function/function_forum.php';
+
+
+$indexThreads['asking'] = C::t('forum_thread')->fetch_by_sortid(array(0,1,2,3), " dateline DESC " ,0,15);
+$indexThreads['answering'] = C::t('forum_thread')->fetch_by_sortid(array(4)," lastpost DESC " ,0,15);
+
+
+$lang = lang('forum/template');
+
+foreach($indexThreads['asking'] as $k => $val) {
+    $val['dbdateline'] = $val['dateline'];
+    $val['dateline'] = date("Y-m-d",$val['dateline']);
+    $indexThreads['asking'][$k] = $val;
+    
+}
+
+foreach($indexThreads['answering'] as $k =>  $val) {
+    $val['dbdateline'] = $val['dateline'];
+    $val['dateline'] = date("Y-m-d",$val['dateline']);
+    
+    $indexThreads['answering'][$k] = $val;
+}
+
+$indexThreads['asking'] = thread_add_icon_by_row($indexThreads['asking']);
+$indexThreads['answering'] = thread_add_icon_by_row($indexThreads['answering']);
+
 include_once template('diy:portal/index');
 ?>

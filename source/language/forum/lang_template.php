@@ -1330,7 +1330,8 @@ $lang = array (
     'sort_accept_code' => 3,
     'sort_replied_code' => 4,
     'click_to_sl' => '点击受理',
-    'souli' => '受理'
+    'souli' => '受理',
+    'govreply' => '部门回复：'
     
 );
 

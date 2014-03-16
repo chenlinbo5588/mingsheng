@@ -24,6 +24,10 @@ class table_common_member_regcode extends discuz_table_archive
         
     }
     
+    public function delete_expired_data($where,$limit = 100){
+        $res = DB::query("DELETE FROM ".DB::table($this->_table)." WHERE $where LIMIT $limit");
+    }
+    
     public function delete_by_phone($phone, $limit) {
         $where = ' WHERE '.DB::field('mobile', $phone);
         $res = DB::query("DELETE FROM ".DB::table($this->_table)." $where LIMIT $limit");

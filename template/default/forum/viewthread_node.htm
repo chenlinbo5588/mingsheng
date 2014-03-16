@@ -252,6 +252,9 @@ $postshowavatars = !($_G['setting']['bannedmessages'] & 2 && ($post['memberstatu
 		<!--{ad ad_a_pr/thread/a_pr/3/$postcount}-->
 
 		<div class="pct">
+            <!--{if $post['position'] == 2 && $thread['sortid'] == 4 }-->
+            <div class="govreply">{lang govreply}</div>
+            <!--{/if}-->
 			<!--{ad/thread/a_pt/2/$postcount}-->
 			<!--{if empty($ad_a_pr_css)}-->
 				<style type="text/css">.pcb{margin-right:0}</style>

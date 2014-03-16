@@ -78,16 +78,12 @@ class forum_sendmsg {
                 }
 
                 if ($message == '') {
-                    $message = $msgpre.'您好,你有一条新的未受理主题,请访问 http://'.$_SERVER['SERVER_NAME'].'/forum.php?mod=modcp&action=thread&op=thread&fid='.$thread['fid'].' ,请速处理。'.$msgend;
-                } else {
-                    $message = $msgpre.$message.$msgend;
+                    $message = '您好,你有一条新的未受理主题,http://'.$_SERVER['SERVER_NAME'].'/forum.php?mod=viewthread&tid='.$thread['tid'].' ,请速处理。';
                 }
             } else {
                 $uid = $authorid;
                 if ($message == '') {
-                    $message = $msgpre.'您好,你提交的问题'.$extra.',请访问 http://'.$_SERVER['SERVER_NAME'].' 查阅。'.$msgend;
-                } else {
-                    $message = $msgpre.$message.$msgend;
+                    $message = '您好,你提交的问题'.$extra.',http://'.$_SERVER['SERVER_NAME'].' 查阅。';
                 }
             }
 
@@ -100,9 +96,10 @@ class forum_sendmsg {
             
             foreach($userinfo as $u){
                 // @todo delete test code
-                file_put_contents('dx.txt',print_r($u,true),FILE_APPEND);
+                //file_put_contents('dx.txt',print_r($u,true));
+                //file_put_contents('dx.txt',print_r($message,true),FILE_APPEND);
                 $res = $this->send_message($message, $u['mobile']);
-                file_put_contents('dx.txt',print_r($res,true),FILE_APPEND);
+                
             }
 
         }
@@ -139,6 +136,8 @@ class forum_sendmsg {
 
         $res = curl_exec($ch);
         curl_close($ch);
+        //file_put_contents('dx.txt',print_r($res,true),FILE_APPEND);
+        
         return ($res['error']==1) ? false : true;
     }
 

@@ -201,25 +201,54 @@
 									<tr>
 										<th><!--{if $field['required']}--><span class="rq">*</span><!--{/if}--><label for="$field['fieldid']">$field[title]:</label></th>
 										<td>$htmls[$field['fieldid']]
+                                            <style type="text/css">
+                                                #mobile {width:120px;}
+                                            </style>
                                             <!--{if $field['fieldid'] == 'mobile'}-->
-                                                <a id="valide-code-btn" href="javascript:void(0);">获取验证码</a>
+                                            <input id="mverifycode" name="mverifycode" style="width:80px;" type="text" autocomplete="off" style="ime-mode:disabled;width:100px" class="txt px vm">
+                                                <button type="button" id="valide-code-btn" data-text="获取验证码">获取验证码</button>
                                                 
 <script type='text/javascript'>
-    var jq = jQuery.noConflict();
     jq('#valide-code-btn').click(function(e){
         var mipt = jq(this).parent().find('input[name=mobile]');
-        if (mipt.val() != '') {
-            jq.post('forum.php?mod=ajax&action=sendchkcode', {'mnumber': mipt.val()},
-                function(response){
-                    if (!response.error) {
-                        alert('验证码已经成功发送到您的手机，请注意查收。');
-                    } else {
-                        alert('操作失败。');
-                    }
-                });
-        } else {
-            alert('请输入手机号码。');
+        if(jq.trim(mipt.val()).length == 0 || !/^1[3|4|5|8][0-9]\d{4,8}$/.test(mipt.val())){
+            alert("请输入正确的手机号");
+            return;
         }
+        var sec = 60;
+        var interval;
+        
+        var timeout = setTimeout(function(){
+            if(interval){
+                clearInterval(interval);
+            }
+        },60000);
+        
+        mipt.prop("disabled",true);
+        jq.post('forum.php?mod=ajax&action=sendchkcode', {'mnumber': mipt.val()},
+            function(response){
+                clearTimeout(timeout);
+                clearInterval(interval);
+
+                mipt.html(mipt.attr("data-text"));
+                mipt.prop("disabled",false);
+
+                if (!response.error) {
+                    alert('验证码已经成功发送到您的手机，请注意查收。');
+                } else {
+                    alert('操作失败。');
+                }
+            });
+                
+        interval = setInterval(function(){
+            if(sec == 0){
+                mipt.html(mipt.attr("data-text"));
+                mipt.prop("disabled",false);
+            }
+            mipt.html(sec +"后重新获取");
+            sec--;
+        },1000);
+        
     });
 </script>
                                             <!--{/if}-->
@@ -238,16 +267,6 @@
 						<!--{subtemplate common/seccheck}-->
 					<!--{/if}-->
 
-                    <div class="rfm">
-                        <table>
-                            <tbody><tr>
-                                    <th><span class="rq">*</span><label for="mobile">验证码:</label></th>
-                                    <td><input id="mverifycode" name="mverifycode" type="text" autocomplete="off" style="ime-mode:disabled;width:100px" class="txt px vm">
-                                    </td>
-                                    <td class="tipcol"><i id="tip_mverifycode" class="p_tip" style="display: block;"></i><kbd id="chk_mverifycode" class="p_chk"></kbd></td>
-                                </tr>
-                            </tbody></table>
-                    </div>
 				</div>
 			</div>
 		</div>

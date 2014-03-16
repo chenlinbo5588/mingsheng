@@ -997,6 +997,11 @@ if($_G['forum_thread']['replies'] > $_G['forum_thread']['views']) {
 	$_G['forum_thread']['views'] = $_G['forum_thread']['replies'];
 }
 
+//@todo 添加帖子浏览状态显示
+$lang = lang('forum/template');
+$tempThread = thread_add_icon_by_row(array($thread));
+$thread = $tempThread[0];
+
 require_once libfile('function/upload');
 $swfconfig = getuploadconfig($_G['uid'], $_G['fid']);
 $_G['forum_thread']['relay'] = 0;

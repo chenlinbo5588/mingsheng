@@ -1339,9 +1339,24 @@ a{
     background-color: #eff4fb;
     cursor: pointer;
     border: 1px solid #C2D5E3;
-
+}
 
 .shouli {
     color:#FF0000;
+}
 
+.threadstatus {
+    display:inline-block;
+    width:28px;
+    height:28px;
+    position:relative;
+    top:8px;
+}
+
+.govreply {
+    color:#0549af;
+    font-size: 14px;
+    font-weight:bold;
+    margin: 0 0 10px 0;
+        
 }

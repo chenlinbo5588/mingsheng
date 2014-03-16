@@ -144,7 +144,10 @@
 <!--显示评分区域开始-->
 <div class="grade_define">
     <div class="grade_inner">
-        <div class="grade_forum">[<a href="forum.php?mod=forumdisplay&fid={$_G['forum_thread'][fid]}" style="color:#002459"><b>{$forum['name']}</b></a>]</div>
+        <div class="grade_forum">[<a href="forum.php?mod=forumdisplay&fid={$_G['forum_thread'][fid]}" style="color:#002459"><b>{$forum['name']}</b></a>]  
+            <span class="threadstatus $thread[className]"></span>
+            $thread[show_text]
+        </div>
           <div class="grade_info">
   <!--{if !empty($threadGrade)}-->
               此次回复满意度为：<img src="images/{$threadGrade['gradepic']}" alt="{$threadGrade['gradename']}" border="0">
