@@ -9,14 +9,14 @@ if (!defined('IN_DISCUZ')) {
 class forum_sendmsg {
     
     //Api url
-    private $apiUrl = 'https://sms-api.luosimao.com/v1/send.xml';
+    private $apiUrl = 'https://sms-api.luosimao.com/v1/send.json';
     
     //Api Key
     private $apiKey = 'api:key-033c6d22cc138b989cfba829f68e17f1';
     
     private $msgPre = '民e通提醒：';
     
-    private $msgEnd = '【慈溪网络民生服务台】';
+    private $msgEnd = '【慈溪网络民生服务平台】';
     
     /*
      * 获取apiurl
@@ -53,33 +53,58 @@ class forum_sendmsg {
      * 
      * @return 信息发送状态true/false
      */
-    public function send_msg_tid($tid = 0, $usefid = false, $message = '') {
+    public function send_msg_tid($tid = 0, $usefid = false, $message = '',$extra = '已审核') {
         $res = false;
-        $msgpre = $this->msgPre;
-        $msgend = $this->msgEnd;
+
+        $msgpre = '民e通提醒：';
+        $msgend = '【慈溪网络民生服务平台】';
+
         if ($tid) {
             $thread = C::t('forum_thread')->fetch($tid);
             $subject = cutstr($thread['subject'], 20, '......');
             $authorid = $thread['authorid'];
             if ($usefid) {
-                $uid = C::t('forum_moderator')->fetch_uid_by_tid($tid);
+
+                $uidIds = C::t('forum_moderator')->fetch_uid_by_fid($thread['fid']);
+                $moderator = array();
+                foreach($uidIds as $u){
+                    $moderator[] = $u['uid'];
+                }
+                
+                $uinfo = C::t('common_member')->fetch_all_by_uid($moderator,' AND groupid IN (3) ');
+                $uid = array();
+                foreach($uinfo as $v){
+                    $uid[] = $v['uid'];
+                }
+
                 if ($message == '') {
-                    $message = "$msgpre您提交的”$subject“,现已答复，请访问".$_SERVER['SERVER_NAME']."查阅。$msgend";
+                    $message = $msgpre.'您好,你有一条新的未受理主题,请访问 http://'.$_SERVER['SERVER_NAME'].'/forum.php?mod=modcp&action=thread&op=thread&fid='.$thread['fid'].' ,请速处理。'.$msgend;
                 } else {
-                    $message = "$msgpre$message$msgend";
+                    $message = $msgpre.$message.$msgend;
                 }
             } else {
                 $uid = $authorid;
                 if ($message == '') {
-                    $message = "$msgpre”$subject“[未受理],请速处理。$msgend";
+                    $message = $msgpre.'您好,你提交的问题'.$extra.',请访问 http://'.$_SERVER['SERVER_NAME'].' 查阅。'.$msgend;
                 } else {
-                    $message = "$msgpre$message$msgend";
+                    $message = $msgpre.$message.$msgend;
                 }
             }
-            $userinfo = C::t('common_member_profile')->count_by_field('uid', $uid);
-            $mobile = $userinfo['mobile'];
-            $res = $this->send_message($message, $userinfo['mobile']);
-            return $res['error'] ? false : true;
+
+            
+            if(!is_array($uid)){
+                $uid = (array)$uid;
+            }
+            
+            $userinfo = C::t('common_member_profile')->fetch_all($uid);
+            
+            foreach($userinfo as $u){
+                // @todo delete test code
+                //file_put_contents('dx.txt',print_r($u,true),FILE_APPEND);
+                $res = $this->send_message($message, $u['mobile']);
+                //file_put_contents('dx.txt',print_r($res,true),FILE_APPEND);
+            }
+
         }
         return $res;
     }
@@ -89,10 +114,6 @@ class forum_sendmsg {
      */   
     public function send_message($message = '', $mnumber = '') {
         
-//        if(!preg_match("/^\+?\d{11,}",$mnumber)){
-//            return false;
-//        }
-
         if (!$message || !$mnumber) {
             return false;
         }

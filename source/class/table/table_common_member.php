@@ -135,6 +135,10 @@ class table_common_member extends discuz_table_archive
 		}
 		return $users;
 	}
+    
+    public function fetch_all_by_uid($uid,$addwhere = ''){
+        return DB::fetch_all('SELECT * FROM %t WHERE uid IN (%n) '.$addwhere.' ORDER BY uid', array($this->_table, (array)$uid));
+    }
 
 	public function fetch_all_groupid() {
 		return DB::fetch_all('SELECT DISTINCT(groupid) FROM '.DB::table($this->_table), null, 'groupid');
