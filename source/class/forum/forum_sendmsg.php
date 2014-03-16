@@ -55,8 +55,10 @@ class forum_sendmsg {
      */
     public function send_msg_tid($tid = 0, $usefid = false, $message = '',$extra = '已审核') {
         $res = false;
-        $msgpre = $this->msgPre;
-        $msgend = $this->msgEnd;
+
+        $msgpre = '民e通提醒：';
+        $msgend = '【慈溪网络民生服务平台】';
+
         if ($tid) {
             $thread = C::t('forum_thread')->fetch($tid);
             $subject = cutstr($thread['subject'], 20, '......');
