@@ -14,6 +14,10 @@ class forum_sendmsg {
     //Api Key
     private $apiKey = 'api:key-033c6d22cc138b989cfba829f68e17f1';
     
+    private $msgPre = '民e通提醒：';
+    
+    private $msgEnd = '【慈溪网络民生服务台】';
+    
     /*
      * 获取apiurl
      */
@@ -51,8 +55,8 @@ class forum_sendmsg {
      */
     public function send_msg_tid($tid = 0, $usefid = false, $message = '') {
         $res = false;
-        $msgpre = '民e通提醒：';
-        $msgend = '【慈溪网络民生服务台】';
+        $msgpre = $this->msgPre;
+        $msgend = $this->msgEnd;
         if ($tid) {
             $thread = C::t('forum_thread')->fetch($tid);
             $subject = cutstr($thread['subject'], 20, '......');
@@ -88,6 +92,7 @@ class forum_sendmsg {
             $res['msg'] = 'No message or number.';
             return $res;
         }
+        $message = $this->msgPre.$message.$this->msgEnd;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $this->apiUrl);
 

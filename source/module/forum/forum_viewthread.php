@@ -788,9 +788,7 @@ if($postusers) {
 if($_G['allblocked']) {
 	$_G['blockedpids'] = array();
 }
-//$testmsg = new forum_sendmsg();
-//$dd = $testmsg->send_message('明天见','13641983463');
-//var_dump($dd);
+
 if($locationpids) {
 	$locations = C::t('forum_post_location')->fetch_all($locationpids);
 }

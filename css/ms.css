@@ -212,7 +212,10 @@ a{
 	text-align: center;
 }
 .mfoot .bqxx .p1{
+        font-size: 18px;
+        font-weight: bold;
 	padding-top: 18px;
+        font-family: '微软雅黑';
 }
 .mfoot .bqxx .p2{
 	padding-top: 8px;
@@ -328,10 +331,10 @@ a{
 	height: 229px;
 	border: 1px solid #DADDDD;
 }
-.mscon h3,.mscon h3 a{
+.mscon h3, .mscon h3 a{
 	font-family: '微软雅黑';
 	text-align: center;
-	font-size: 22px;
+	font-size: 20px;
 	color: #000;
 }
 .mscon .hot2{
@@ -465,7 +468,7 @@ a{
 .mmskd .xld dd {
     font-weight: normal;
     margin-bottom: 8px;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .zxask a {
