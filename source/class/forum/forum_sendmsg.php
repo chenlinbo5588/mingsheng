@@ -9,7 +9,7 @@ if (!defined('IN_DISCUZ')) {
 class forum_sendmsg {
     
     //Api url
-    private $apiUrl = 'https://sms-api.luosimao.com/v1/send.xml';
+    private $apiUrl = 'https://sms-api.luosimao.com/v1/send.json';
     
     //Api Key
     private $apiKey = 'api:key-033c6d22cc138b989cfba829f68e17f1';
@@ -88,6 +88,11 @@ class forum_sendmsg {
      */   
     public function send_message($message = '', $mnumber = '') {
         $res = array('error' => 1);
+        
+        if(!preg_match("/^\+?\d{11,}",$mnumber)){
+            return false;
+        }
+        
         if (!$message || !$mnumber) {
             $res['msg'] = 'No message or number.';
             return $res;
