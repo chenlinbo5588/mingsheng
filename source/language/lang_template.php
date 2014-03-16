@@ -83,6 +83,7 @@ $lang = array (
   'portal_manage' => '门户管理',
   'remind' => '提醒',
   'setup' => '设置',
+  'notify' => '通知中心',
   'freeze' => '已冻结',
   'switch_narrow' => '切换到窄版',
   'switch_wide' => '切换到宽版',

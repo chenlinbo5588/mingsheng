@@ -30,7 +30,7 @@ if(isset($_G['makehtml'])){
 }
 $allposts = 0;
 $allmembers = 0;
-$nowdeals = 0;
+$nowdeals = DB::result_first("SELECT SUM(replies) AS totalreplies FROM ".DB::table('forum_thread').' WHERE displayorder >= 0 AND sortid !=4');;
 $allreplies = 0;
 $allposts = DB::result_first("SELECT SUM(posts) AS totalposts FROM ".DB::table('forum_forum'));
 $allmembers = DB::result_first("SELECT count(*) FROM ".DB::table('common_member'));
@@ -50,28 +50,28 @@ loadcache('forums');
 require './source/function/function_forum.php';
 
 
-$indexThreads['asking'] = C::t('forum_thread')->fetch_by_sortid(array(0,1,2,3), " dateline DESC " ,0,15);
-$indexThreads['answering'] = C::t('forum_thread')->fetch_by_sortid(array(4)," lastpost DESC " ,0,15);
+$askingThreads = C::t('forum_thread')->fetch_by_sortid(array(0,1,2,3), " dateline DESC " ,0,15);
+$answeringThreads = C::t('forum_thread')->fetch_by_sortid(array(4)," lastpost DESC " ,0,15);
 
 
 $lang = lang('forum/template');
 
-foreach($indexThreads['asking'] as $k => $val) {
+foreach($askingThreads as $k => $val) {
     $val['dbdateline'] = $val['dateline'];
     $val['dateline'] = date("Y-m-d",$val['dateline']);
-    $indexThreads['asking'][$k] = $val;
+    $askingThreads[$k] = $val;
     
 }
 
-foreach($indexThreads['answering'] as $k =>  $val) {
+foreach($answeringThreads as $k =>  $val) {
     $val['dbdateline'] = $val['dateline'];
     $val['dateline'] = date("Y-m-d",$val['dateline']);
     
-    $indexThreads['answering'][$k] = $val;
+    $answeringThreads[$k] = $val;
 }
 
-$indexThreads['asking'] = thread_add_icon_by_row($indexThreads['asking']);
-$indexThreads['answering'] = thread_add_icon_by_row($indexThreads['answering']);
+$askingThreads = thread_add_icon_by_row($askingThreads);
+$answeringThreads = thread_add_icon_by_row($answeringThreads);
 
 include_once template('diy:portal/index');
 ?>

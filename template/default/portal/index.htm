@@ -74,7 +74,7 @@
             <div class="askul">
                 <div class="showno zxwd_1">
                     <ul>
-                        <!--{loop $indexThreads['asking'] $val}-->
+                        <!--{loop $askingThreads $val}-->
                         <li><div class="p1"><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" title="{$val['subject']}" target="_blank">{$val['subject']}</a></div>
                             <div class="p2">{$val['dateline']}</div>
                             <div class="p3"><a href="forum.php?mod=forumdisplay&fid={$thread[fid]}" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$val[fid]][name]}]</b></a></div>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="showno zxwd_2">
                     <ul>
-                        <!--{loop $indexThreads['answering'] $val}-->
+                        <!--{loop $answeringThreads $val}-->
                         <li><div class="p1"><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" title="{$val['subject']}" target="_blank">{$val['subject']}</a></div>
                             <div class="p2">{$val['dateline']}</div>
                             <div class="p3"><a href="forum.php?mod=forumdisplay&fid={$thread[fid]}" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$val[fid]][name]}]</b></a></div>
