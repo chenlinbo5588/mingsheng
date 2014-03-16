@@ -17,7 +17,7 @@ class table_common_member_regcode extends discuz_table_archive
         
         if(($phone!='') && ($code!='')) {
 			$where = ' WHERE '.DB::field('mobile', $phone).' AND '.DB::field('code', $code);
-            return DB::fetch_first("SELECT * FROM ".DB::table($this->_table)." $where ".' ORDER BY '.DB::order('dateline', 'DESC').' '.DB::limit(0, 1));
+            return DB::fetch_all("SELECT * FROM ".DB::table($this->_table)." $where ".' ORDER BY '.DB::order('dateline', 'DESC').' '.DB::limit(0, 1));
 		} else {
             return false;
         }

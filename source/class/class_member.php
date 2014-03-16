@@ -698,6 +698,7 @@ class register_ctl {
 				}
                 
                 if(!check_mobile_code($_POST['mobile'], $_POST['mverifycode'])) {
+                    file_put_contents("dx.txt", print_r($_POST,true));
 					$showid = 'mverifycode';
                     $ftitle = '验证码';
                     $fieldid = 'mverifycode';
