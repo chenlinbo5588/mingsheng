@@ -449,8 +449,13 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
         //已受理 版主回复自动变为4 
         C::t('forum_thread')->update($thread['tid'],array('sortid' => 4));
         
-        // 
-        // @todo 发送短信
+        /**
+         * 版主回复后 发送短信通知给 用户 
+         */
+        $sm = new forum_sendmsg();
+        $status = $sm->send_msg_tid($thread['tid'],false,'','已被回复');
+        
+        
     }
     
 

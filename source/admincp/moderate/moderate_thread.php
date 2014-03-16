@@ -282,16 +282,23 @@ if(!submitcheck('modsubmit') && !$_GET['fast']) {
 			foreach($posttableids as $id) {
 				C::t('forum_post')->update_by_tid($id, $tids, array('invisible' => '0'), false, false, 1);
 			}
-			$validates = C::t('forum_thread')->update($tids, array('displayorder' => 0, 'moderated' => 1));
+			$validates = C::t('forum_thread')->update($tids, array('sortid' => 2, 'displayorder' => 0, 'moderated' => 1));
 
 			foreach(array_unique($forums) as $fid) {
 				updateforumcount($fid);
 			}
-
+            
 			updatemodworks('MOD', $validates);
 			updatemodlog($tidstr, 'MOD');
 			updatemoderate('tid', $tids, 2);
-
+            
+            /**
+             * 后台管理中审核通过 ,短信通知用户
+             */
+            $sm = new forum_sendmsg();
+            foreach($tids as $vv){
+                $status = $sm->send_msg_tid($vv,false,'','已被审核通过');
+            }
 		}
 	}
 

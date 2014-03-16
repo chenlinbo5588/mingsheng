@@ -43,7 +43,11 @@ class table_forum_moderator extends discuz_table
 	}
 
 	public function fetch_uid_by_fid_uid($fid, $uid) {
-		return DB::result_first('SELECT uid FROM %t WHERE fid=%d AND uid=%d', array($this->_table, $fid, $uid));
+		return DB::fetch_all('SELECT uid FROM %t WHERE fid=%d AND uid=%d', array($this->_table, $fid, $uid));
+	}
+    
+    public function fetch_uid_by_fid($fid) {
+		return DB::fetch_all('SELECT uid FROM %t WHERE fid=%d ', array($this->_table, $fid));
 	}
 
 	public function fetch_uid_by_tid($tid, $uid, $archiveid) {

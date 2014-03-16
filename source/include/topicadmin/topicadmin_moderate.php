@@ -665,11 +665,18 @@ if(!submitcheck('modsubmit')) {
                 //file_put_contents("1.txt",print_r($threadlist,true));
                 C::t('forum_thread')->update($tidsarr, array('sortid'=>3, 'moderated'=>1), true);
                 
-                /**
-                 * @todo add logic of 短信
-                 */
-                
                 $modaction = 'SOR';
+                /**
+                 * 前台管理面板 受理通过 发送短信通知 
+                 */
+                /**
+                 * 受理不需要发送短信通知，注释掉 
+                 */
+                /**
+                $sm = new forum_sendmsg();
+                foreach($tidsarr as $vv){
+                    $status = $sm->send_msg_tid($vv,false,'','已被审核通过');
+                }*/
             }
 
 			if($updatemodlog) {

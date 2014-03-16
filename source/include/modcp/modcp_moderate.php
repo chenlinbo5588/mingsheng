@@ -477,7 +477,8 @@ if($op == 'replies') {
 
 				$tidstr = dimplode($tids);
 				C::t('forum_post')->update_by_tid(0, $tids, array('invisible' => 0), true, false, 1);
-				C::t('forum_thread')->update($tids, array('displayorder'=>0, 'moderated'=>1));
+                //变为未受理状态
+				C::t('forum_thread')->update($tids, array('sortid' => 2, 'displayorder'=>0, 'moderated'=>1));
 				$threadsmod = DB::affected_rows();
 
 				if($_G['fid']) {
@@ -491,7 +492,14 @@ if($op == 'replies') {
 				updatemodworks('MOD', $threadsmod);
 				updatemodlog($tidstr, 'MOD');
 				updatemoderate('tid', $tids, 2);
-
+                
+                /**
+                 * 管理面板 审核通过 ,发送短信通知 版主
+                 */
+                $sm = new forum_sendmsg();
+                foreach($tids as $vv){
+                    $status = $sm->send_msg_tid($vv,true);
+                }
 			}
 		}
 
