@@ -453,7 +453,7 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
          * 版主回复后 发送短信通知给 用户 
          */
         $sm = new forum_sendmsg();
-        $status = $sm->send_msg_tid($thread['tid'],false,'','已被回复');
+        $status = $sm->send_msg_tid($thread['tid'],false,'','已经答复');
         
         
     }

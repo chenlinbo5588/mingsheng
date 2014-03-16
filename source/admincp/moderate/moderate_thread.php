@@ -293,11 +293,11 @@ if(!submitcheck('modsubmit') && !$_GET['fast']) {
 			updatemoderate('tid', $tids, 2);
             
             /**
-             * 后台管理中审核通过 ,短信通知用户
+             * 后台管理中审核通过 ,短信通知版主
              */
             $sm = new forum_sendmsg();
             foreach($tids as $vv){
-                $status = $sm->send_msg_tid($vv,false,'','已被审核通过');
+                $status = $sm->send_msg_tid($vv,true);
             }
 		}
 	}
