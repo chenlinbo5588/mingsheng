@@ -61,7 +61,7 @@ class forum_sendmsg {
             $thread = C::t('forum_thread')->fetch($tid);
             $subject = cutstr($thread['subject'], 20, '......');
             $authorid = $thread['authorid'];
-            if (!$usefid) {
+            if ($usefid) {
                 $uid = C::t('forum_moderator')->fetch_uid_by_tid($tid);
                 if ($message == '') {
                     $message = "$msgpre您提交的”$subject“,现已答复，请访问".$_SERVER['SERVER_NAME']."查阅。$msgend";
