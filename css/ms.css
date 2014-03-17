@@ -381,7 +381,6 @@ a{
 
 .mscons{
 	width: 728px;
-	height:220px;
 	border: 1px solid #DADDDD;
 	overflow: hidden;
 	position: relative;
@@ -404,6 +403,8 @@ a{
 }
 .mlisthome ul li{
 	font-size: 14px;
+        line-height: 30px;
+        height: 30px;
 }
 .mlisthome ul li a{
 	color: #000;
