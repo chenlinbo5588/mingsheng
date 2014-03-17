@@ -29,9 +29,7 @@
 		<!--{loop $threadlist $thread}-->
 			<input type="hidden" name="moderate[]" value="$thread[tid]" />
 		<!--{/loop}-->
-        <!--{if $_GET['current_row_tid']}-->
-        <input type="hidden" name="moderate[]" value="$_GET['current_row_tid']" />
-        <!--{/if}-->
+        <input type="hidden" name="current_row_tid" value="$_GET['current_row_tid']" />
 		<div class="c">
 			<!--{if $_GET['optgroup'] == 1}-->
 				<ul class="tpcl">

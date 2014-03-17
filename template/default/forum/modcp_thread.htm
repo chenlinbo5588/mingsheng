@@ -106,6 +106,7 @@
 			<form method="post" autocomplete="off" name="moderate" id="moderate" action="forum.php?mod=topicadmin&action=moderate&fid=$_G[fid]&infloat=yes&nopost=yes">
 				<input type="hidden" name="formhash" value="{FORMHASH}" />
 				<input type="hidden" name="frommodcp" value="{if $op == 'thread'}1{else}2{/if}" />
+                <input type="hidden" name="current_row_tid" value="{$_GET['current_row_tid']}" />
 				<table cellspacing="0" cellpadding="0">
 					<tbody class="th">
 						<tr>

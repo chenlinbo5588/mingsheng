@@ -12,7 +12,7 @@ if(!defined('IN_DISCUZ')) {
 }
 
 if(!empty($_G['tid'])) {
-	$_GET['moderate'] = array($_G['tid']);
+	$_GET['moderate'] = array($_G['tid']);   
 }
 
 $allow_operation = array('setsortid', 'delete', 'highlight', 'open', 'close', 'stick', 'digest', 'bump', 'down', 'recommend', 'type', 'move', 'recommend_group');
@@ -31,6 +31,10 @@ $threadtableids = !empty($_G['cache']['threadtableids']) ? $_G['cache']['threadt
 if(!in_array(0, $threadtableids)) {
 	$threadtableids = array_merge(array(0), $threadtableids);
 }
+
+
+$optgroup = $_GET['optgroup'] = isset($_GET['optgroup']) ? intval($_GET['optgroup']) : 0;
+$expirationstick = getgpc('expirationstick');
 
 if($_GET['moderate']) {
 	foreach($threadtableids as $tableid) {
@@ -53,10 +57,27 @@ if($_GET['moderate']) {
 			break;
 		}
 	}
+}else{
+    //$_GET['current_row_tid']
+    if($optgroup == 6){
+        foreach(C::t('forum_thread')->fetch_all_by_tid(array($_GET['current_row_tid'])) as $thread) {
+            if($thread['closed'] > 1 && $operation && !in_array($operation, array('delete', 'highlight', 'stick', 'digest', 'bump', 'down')) || $thread['displayorder'] < 0 && $thread['displayorder'] != -4) {
+                if($operation == 'recommend_group') {
+                    $recommend_group_count ++;
+                }
+                continue;
+            }
+            $thread['lastposterenc'] = rawurlencode($thread['lastposter']);
+            $thread['dblastpost'] = $thread['lastpost'];
+            $thread['lastpost'] = dgmdate($thread['lastpost'], 'u');
+            $posttablearr[$thread['posttableid'] ? $thread['posttableid'] : 0][] = $thread['tid'];
+            $authors[$thread['authorid']] = 1;
+            $threadlist[$thread['tid']] = $thread;
+            $_G['tid'] = empty($_G['tid']) ? $thread['tid'] : $_G['tid'];
+        }
+    }
 }
 
-$optgroup = $_GET['optgroup'] = isset($_GET['optgroup']) ? intval($_GET['optgroup']) : 0;
-$expirationstick = getgpc('expirationstick');
 
 if($optgroup != 6 && empty($threadlist)) {
 	if($recommend_group_count) {
