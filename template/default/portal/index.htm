@@ -225,8 +225,12 @@
     } 
     }) 
 })(jQuery); 
-jq(document).ready(function(){ 
-    jq("#index-asking").scrollnews({line:1,speed:800,timer:2000}); 
-    jq("#index-answering").scrollnews({line:1,speed:800,timer:2000}); 
+jq(document).ready(function(){
+    if (jq("#index-asking li").length > 6) {
+        jq("#index-asking").scrollnews({line:1,speed:800,timer:2000});
+    }
+    if (jq("#index-answering li").length > 6) {
+        jq("#index-answering").scrollnews({line:1,speed:800,timer:2000}); 
+    }
 }); 
 </script> 
