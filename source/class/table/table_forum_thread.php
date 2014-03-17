@@ -23,7 +23,10 @@ class table_forum_thread extends discuz_table
 		parent::__construct();
 	}
     public function fetch_by_sortid($sortid = array(),$order = 'dateline DESC',$start =0, $limit = 0){
-        return DB::fetch_all('SELECT * FROM %t WHERE displayorder >= 0 AND sortid IN(%n)  ORDER BY '.$order.DB::limit($start, $limit), array($this->_table, implode(',',$sortid)));
+        if (!$sortid) return array();
+        $sortStr = is_array($sortid) ? 'sortid IN (' . implode(',', $sortid) . ')' : 'sortid='.$sortid;
+        return DB::fetch_all('SELECT * FROM '.DB::table($this->_table).' WHERE displayorder >= 0 AND ' . $sortStr . '  ORDER BY '.$order.DB::limit($start, $limit));
+        //return DB::fetch_all('SELECT * FROM %t WHERE displayorder >= 0 AND sortid IN(%n)  ORDER BY '.$order.DB::limit($start, $limit), array($this->_table, implode(',',$sortid)));
     }
 	public function fetch($tid, $tableid = 0) {
 		$tid = intval($tid);

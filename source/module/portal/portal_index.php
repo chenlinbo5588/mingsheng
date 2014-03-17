@@ -51,8 +51,7 @@ require './source/function/function_forum.php';
 
 
 $askingThreads = C::t('forum_thread')->fetch_by_sortid(array(0,1,2,3), " dateline DESC " ,0,15);
-$answeringThreads = C::t('forum_thread')->fetch_by_sortid(array(4)," lastpost DESC " ,0,15);
-
+$answeringThreads = C::t('forum_thread')->fetch_by_sortid(4," lastpost DESC " ,0,15);
 
 $lang = lang('forum/template');
 

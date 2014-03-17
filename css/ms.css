@@ -85,7 +85,6 @@ a{
 	float:right;
 	padding-right:10px;
 	width: 228px;
-	height: 31px;
 	padding-top:1px;
 }
 .dlogo .menu .soso .key{
@@ -1193,42 +1192,45 @@ a{
     right:0;
     top:5px;
 }
+.soso form {
+    width: 228px;
+    height: 32px;
+    padding-top: 2px;
+}
 .soso .search_ipt {
     float:left;
-    width: 196px;
+    width: 198px;
     height: 32px;
+    overflow: hidden;
 }
 .soso input {
     display: inline-block;
     border: 0px;
+    width: 196px;
     height: 30px;
-    width: 194px;
-    line-height: 28px;
+    line-height: 30px;
     border: 1px solid #B0B0B0;
     color: #999999;
 }
 .search_submit {
     width: 30px;
-    height: 35px;
-    height: 32px;\9\0;
-    *height: 32px;#FFF;
-    +height: 32px;#FFF;
+    height: 30px;
     _background-color:#FFF; 
-    float: left;
-    overflow: hidden;
+    float: right;
     display: block;
+    margin-top: 1px;
     position: relative;
 }
 .search_submit button {
-    background: url(../images/search.png) 50% 50% no-repeat #fff;
+    background: url(../images/search.png) center center no-repeat #fff;
     border: none;
     width: 30px;
-    height: 31px;
+    height: 30px;
     cursor: pointer;
     text-indent: -999px;
     position: absolute;
     right: 0;
-    top: 3px;
+    top: 1px;
 }
 .plist {
     margin-top: 10px
