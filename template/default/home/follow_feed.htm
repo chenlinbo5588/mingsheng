@@ -89,7 +89,7 @@
 						<div id="fastpostreturn" style="margin:-5px 0 5px"></div>
 						<div id="flw_post_subject" style="display:none;">
 							<span id="flw_checklen" class="y"><span id="checklen" class="xg1">80</span></span>
-							<input type="text" id="subject" name="subject" onkeyup="strLenCalc(this, 'checklen', 80);" tabindex="11" />
+							<input type="text" id="subject" name="subject" onkeyup="strLenCalc(this, 'checklen', 200);" tabindex="11" />
 						</div>
 
 						<div id="flw_post_extra" class="mtn cl">
@@ -220,7 +220,7 @@
 						display('forumlistdev');
 						var sObj = $('subject');
 						sObj.value = '';
-						strLenCalc(sObj, 'checklen', 80);
+						strLenCalc(sObj, 'checklen', 200);
 					}
 					function fastpostvalidateextra() {
 						var sObj = $('subject');
@@ -359,7 +359,7 @@
 							//清空上次的输入
 							var sObj = $('subject');
 							$('attachlist').innerHTML = $('fastpostmessage').value = sObj.value = '';
-							strLenCalc(sObj, 'checklen', 80);
+							strLenCalc(sObj, 'checklen', 200);
 							if(values.sechash) {
 								updatesecqaa(values.sechash);
 								updateseccode(values.sechash);
@@ -387,7 +387,7 @@
 						if($('flw_post_subject').style.display== 'none') {
 							var sObj = $('subject');
 							sObj.value = '';
-							strLenCalc(sObj, 'checklen', 80);
+							strLenCalc(sObj, 'checklen', 200);
 							obj.innerHTML = '{lang follow_add_title}';
 						} else {
 							obj.innerHTML = '{lang follow_auto_title}';
