@@ -48,7 +48,12 @@ class model_forum_thread extends discuz_model
 		if(!$this->param['sortid'] && !$this->param['special'] && trim($this->param['message']) == '') {
 			return $this->showmessage('post_sm_isnull');
 		}
-		list($this->param['modnewthreads'], $this->param['modnewreplies']) = threadmodstatus($this->param['subject']."\t".$this->param['message'].$this->param['extramessage']);
+        /**
+         * 如果是版主发的帖子，不需要走审核流程,就算后台审核主题开关开启 也不需要审核
+         */
+        if(!$this->forum['ismoderator']){
+            list($this->param['modnewthreads'], $this->param['modnewreplies']) = threadmodstatus($this->param['subject']."\t".$this->param['message'].$this->param['extramessage']);
+        }
 
 		if(($post_invalid = checkpost($this->param['subject'], $this->param['message'], ($this->param['special'] || $this->param['sortid'])))) {
 			return $this->showmessage($post_invalid, '', array('minpostsize' => $this->setting['minpostsize'], 'maxpostsize' => $this->setting['maxpostsize']));

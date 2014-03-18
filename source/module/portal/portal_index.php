@@ -30,7 +30,7 @@ if(isset($_G['makehtml'])){
 }
 $allposts = 0;
 $allmembers = 0;
-$nowdeals = DB::result_first("SELECT SUM(replies) AS totalreplies FROM ".DB::table('forum_thread').' WHERE displayorder >= 0 AND sortid !=4');;
+$nowdeals = DB::result_first("SELECT count(*) AS totalreplies FROM ".DB::table('forum_thread').' WHERE displayorder >= 0 AND sortid = 3 ');;
 $allreplies = 0;
 $allposts = DB::result_first("SELECT SUM(posts) AS totalposts FROM ".DB::table('forum_forum'));
 $allmembers = DB::result_first("SELECT count(*) FROM ".DB::table('common_member'));
@@ -50,7 +50,7 @@ loadcache('forums');
 require './source/function/function_forum.php';
 
 
-$askingThreads = C::t('forum_thread')->fetch_by_sortid(array(0,1,2,3), " dateline DESC " ,0,15);
+$askingThreads = C::t('forum_thread')->fetch_by_sortid(array(2,3), " dateline DESC " ,0,15);
 $answeringThreads = C::t('forum_thread')->fetch_by_sortid(4," lastpost DESC " ,0,15);
 
 $lang = lang('forum/template');

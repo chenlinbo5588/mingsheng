@@ -137,7 +137,7 @@ a{
 	height: 25px;
 	line-height: 25px;
 	background: url("../images/dian.jpg") left center no-repeat;
-	padding: 0px 30px 0 10px;
+	padding: 0px 20px 0 10px;
 }
 .mlist ul li.liline{
 	background: url("../images/liline.jpg") left center repeat-x;
@@ -350,11 +350,11 @@ a{
 .mlisth ul li{
 	display: inline;
 	float: left;
-	width: 220px;
+	width: 238px;
 }
 
 .mlisth ul li:nth-child(2n){
-    margin-right:10px;
+    margin-right:5px;
 }
 
 .hotline{
@@ -544,6 +544,10 @@ a{
 .askul ul li div a{
 	font-size:14px;
 	color: #000;
+    overflow: hidden;
+    display: inline-block;
+    width: 375px;
+    height: 32px;
 }
 .askul ul li div.p1{
 	background: url("../images/dian.jpg") left center no-repeat;

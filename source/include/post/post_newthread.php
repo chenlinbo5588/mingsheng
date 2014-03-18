@@ -162,7 +162,7 @@ if(!submitcheck('topicsubmit', 0, $seccodecheck, $secqaacheck)) {
 		'sortid' => $sortid,
 		'special' => $special,
 	);
-
+    
 	$_GET['save'] = $_G['uid'] ? $_GET['save'] : 0;
 
 	if ($_G['group']['allowsetpublishdate'] && $_GET['cronpublish'] && $_GET['cronpublishdate']) {

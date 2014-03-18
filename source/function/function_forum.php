@@ -66,6 +66,7 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
         }
         switch(intval($thread['sortid'])){
             case $lang['sort_all_code']:
+                break;
             case $lang['sort_wait_verify_code']:
             case $lang['sort_wait_accept_code']:
                 $thread['show_text'] = wrapper_text($lang['sort_wait_accept'],'sort_wait_accept');
