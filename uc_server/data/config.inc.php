@@ -1,7 +1,7 @@
 <?php 
 define('UC_DBHOST', 'localhost');
-define('UC_DBUSER', 'root');
-define('UC_DBPW', '123456');
+define('UC_DBUSER', 'minsheng');
+define('UC_DBPW', 'w8u5p4h9');
 define('UC_DBNAME', 'minsheng');
 define('UC_DBCHARSET', 'utf8');
 define('UC_DBTABLEPRE', 'ms_ucenter_');
