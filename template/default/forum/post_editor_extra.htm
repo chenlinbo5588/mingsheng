@@ -2,6 +2,7 @@
 	<!--{if $sortid}-->
 		<input type="hidden" name="sortid" value="$sortid" />
 	<!--{/if}-->
+    <!--{subtemplate forum/post_editor_forumlist}-->
 	<!--{if $isfirstpost && !empty($_G['forum'][threadtypes][types])}-->
 		<div class="ftid">
 			<!--{if $_G['forum']['ismoderator'] || empty($_G['forum']['threadtypes']['moderators'][$thread[typeid]])}-->

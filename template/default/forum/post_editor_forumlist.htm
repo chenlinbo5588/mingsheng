@@ -1,0 +1,15 @@
+    <select id="forumlist" style="float:left;">
+        $forumlist
+    </select>
+
+    <!--{if $_GET['special']}-->
+    <script>var addurl += '&special=' + {$_GET['special']};</script>
+    <!--{else}-->
+    <script>var addurl = '';</script>
+    <!--{/if}-->
+    <script>
+        jq("#forumlist").bind("change",function(e){
+            var url = 'forum.php?mod=post&action=newthread&fid=' + jq(e.target).val();
+            location.href = url + addurl;
+        });
+    </script>

@@ -335,6 +335,10 @@ if(helper_access::check_module('album') && $_G['group']['allowupload'] && $_G['s
 }
 $navtitle = lang('core', 'title_'.$_GET['action'].'_post');
 
+require_once libfile('function/forumlist');
+$forumlist = forumselect(FALSE, 0, intval($_GET['fid']));
+
+
 if($_GET['action'] == 'newthread' || $_GET['action'] == 'newtrade') {
 	loadcache('groupreadaccess');
 	$navtitle .= ' - '.$_G['forum']['name'];

@@ -135,7 +135,7 @@ if(!submitcheck('topicsubmit', 0, $seccodecheck, $secqaacheck)) {
 
 	!isset($attachs['unused']) && $attachs['unused'] = array();
 	!isset($imgattachs['unused']) && $imgattachs['unused'] = array();
-
+    
 	getgpc('infloat') ? include template('forum/post_infloat') : include template('forum/post');
 
 } else {
