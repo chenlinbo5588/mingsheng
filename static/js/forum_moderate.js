@@ -116,7 +116,7 @@ function tmodthreads(optgroup, operation,obj) {
     
     if(obj){
         //jq(obj).closest("tr").find("input[type=checkbox]").prop("checked",true);
-        $('moderate').current_row_tid.value = jq(obj).attr("data-tid");
+        jq('input[name=current_row_tid]').val(jq(obj).attr("data-tid"));
     }
     
 	for(var i = 0; i < $('moderate').elements.length; i++) {
