@@ -444,6 +444,10 @@ a{
 	background: url("../images/zxask.jpg") no-repeat;
 	position: relative;
 }
+.zxask a {
+    text-decoration: none;
+}
+
 .wxsytop{
 	height: 50px;
 	background: url("../images/wxsytop.jpg") no-repeat;
