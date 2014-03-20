@@ -1371,3 +1371,9 @@ a{
     margin: 0 0 10px 0;
         
 }
+.sendsuccess {
+    color:#009000;
+}
+.sendfailed {
+    color:red;
+}

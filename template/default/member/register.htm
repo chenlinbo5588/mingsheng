@@ -205,8 +205,9 @@
                                                 #mobile {width:120px;}
                                             </style>
                                             <!--{if $field['fieldid'] == 'mobile'}-->
-                                            <input id="mverifycode" name="mverifycode" style="width:80px;" type="text" autocomplete="off" style="ime-mode:disabled;width:100px" class="txt px vm">
+                                            <input id="mverifycode" name="mverifycode" style="width:80px;" type="text" autocomplete="off" style="ime-mode:disabled;width:100px" class="txt px vm"/>
                                                 <button type="button" id="valide-code-btn" data-text="获取验证码">获取验证码</button>
+                                                <p id="feedback"></p>
                                                 
 <script type='text/javascript'>
     jq('#valide-code-btn').click(function(e){
@@ -215,6 +216,9 @@
             alert("请输入正确的手机号");
             return;
         }
+        
+        var sendButton = jq("#valide-code-btn");
+        var feedBack =  jq("#feedback");
         var sec = 60;
         var interval;
         
@@ -230,22 +234,24 @@
                 clearTimeout(timeout);
                 clearInterval(interval);
 
-                mipt.html(mipt.attr("data-text"));
-                mipt.prop("disabled",false);
-
+                sendButton.html(sendButton.attr("data-text"));
+                sendButton.prop("disabled",false);
+                
+                feedBack.removeClass();
+                
                 if (!response.error) {
-                    alert('验证码已经成功发送到您的手机，请注意查收。');
+                    feedBack.addClass("sendsuccess").html('验证码已经成功发送到您的手机，请注意查收。');
                 } else {
-                    alert('操作失败。');
+                    feedBack.addClass("sendfailed").html('操作失败。');
                 }
             });
                 
         interval = setInterval(function(){
             if(sec == 0){
-                mipt.html(mipt.attr("data-text"));
-                mipt.prop("disabled",false);
+                sendButton.html(mipt.attr("data-text"));
+                sendButton.prop("disabled",false);
             }
-            mipt.html(sec +"后重新获取");
+            sendButton.html(sec +"后重新获取");
             sec--;
         },1000);
         
