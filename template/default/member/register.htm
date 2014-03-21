@@ -220,19 +220,16 @@
         var sendButton = jq("#valide-code-btn");
         var feedBack =  jq("#feedback");
         var sec = 60;
-        var interval;
+        var interval,timeout;
         
-        var timeout = setTimeout(function(){
-            if(interval){
-                clearInterval(interval);
-            }
-        },60000);
         
-        mipt.prop("disabled",true);
+        sendButton.prop("disabled",true);
         jq.post('forum.php?mod=ajax&action=sendchkcode', {'mnumber': mipt.val()},
             function(response){
                 clearTimeout(timeout);
                 clearInterval(interval);
+                
+                sec = 0;
 
                 sendButton.html(sendButton.attr("data-text"));
                 sendButton.prop("disabled",false);
@@ -245,10 +242,16 @@
                     feedBack.addClass("sendfailed").html('操作失败。');
                 }
             });
-                
+            
+        timeout = setTimeout(function(){
+            if(interval){
+                clearInterval(interval);
+            }
+        },60000);
+        
         interval = setInterval(function(){
             if(sec == 0){
-                sendButton.html(mipt.attr("data-text"));
+                sendButton.html(sendButton.attr("data-text"));
                 sendButton.prop("disabled",false);
             }
             sendButton.html(sec +"后重新获取");
