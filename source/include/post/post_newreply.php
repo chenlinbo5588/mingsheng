@@ -449,6 +449,9 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
         //已受理 版主回复自动变为4 
         C::t('forum_thread')->update($thread['tid'],array('sortid' => 4));
         
+        //记录版主回复的时间,这样就与审核时间就可以确定 帖子的亮等状态
+        updatemodlog($thread['tid'], 'RLP', 0, 0, '');
+        
         /**
          * 版主回复后 发送短信通知给 用户 
          */

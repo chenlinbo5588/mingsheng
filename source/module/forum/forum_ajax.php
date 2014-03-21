@@ -703,9 +703,24 @@ EOF;
             'grade'     => $grade,
             'dateline'  => time()
         );
-        $gradeid = C::t('forum_threadgrade')->insert($gradeinfo, true);
+        
+        $return['error'] = 1;
+        $return['data'] = array();
+        
+        /**
+         * 防止重复评分 
+         */
+        $ifexists = C::t('forum_threadgrade')->fetch_grade_by_tid($threadid);
+        
+        if($ifexists){
+            $gradeid = $ifexists[0]['gid'];
+            $grade = $ifexists[0]['grade'];
+        }else{
+            $gradeid = C::t('forum_threadgrade')->insert($gradeinfo, true);
+        }
+        
         if ($gradeid) {
-            switch ($gradeid) {
+            switch ($grade) {
                 case '1':
                     $gradeinfo['gradepic'] = 'dissatisfied.jpg';
                     $gradeinfo['gradename'] = '不满意';
@@ -717,6 +732,11 @@ EOF;
                 case '3':
                     $gradeinfo['gradepic'] = 'verygood.gif';
                     $gradeinfo['gradename'] = '很满意';
+                    break;
+                default:
+                    $gradeinfo['gradepic'] = 'general.gif';
+                    $gradeinfo['gradename'] = '一般';
+                    break;
             }
             $return['error'] = 0;
             $return['data'] = $gradeinfo;

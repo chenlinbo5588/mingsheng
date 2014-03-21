@@ -152,10 +152,10 @@
   <!--{if !empty($threadGrade)}-->
               此次回复满意度为：<img src="images/{$threadGrade['gradepic']}" alt="{$threadGrade['gradename']}" border="0">
   <!--{else}-->
-      <!--{if !$moderatorReplied}-->
+      <!--{if !$thread['RLP_dateline']}-->
           部门未回复，暂时不能评价
       <!--{else}-->
-          <!--{eval $subtime = time() - $_G['forum_thread']['dateline']}-->
+          <!--{eval $subtime = time() - $thread['RLP_dateline']}-->
           <!--{eval $maxsubtime = 30*3600}-->
           <!--{if $subtime > $maxsubtime}-->
               此次回复满意度为：<img src="images/general.gif" alt="一般" border="0">
@@ -181,7 +181,6 @@
   </div>
 </div>
 <script type='text/javascript'>
-    var jq = jQuery.noConflict();
     jq('#grade-form').submit(function(e){
         e.preventDefault();
         var gradeval = parseInt(jq('#grade-slt').val());
@@ -193,11 +192,12 @@
                     if (!response.error) {
                         var res = response.data;
                         var reshtm = '此次回复满意度为：<img src="images/'+res.gradepic+'" alt="'+res.gradename+'" border="0">';
+                        jq("#grade-form").remove();
                         jq('#return-grade').html(reshtm);
                     } else {
                         alert('操作失败。');
                     }
-                });
+                },"json");
         }
     });
 </script>

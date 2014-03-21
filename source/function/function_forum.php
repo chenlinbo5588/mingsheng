@@ -48,9 +48,13 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
         $tids[] = $thread['tid'];
     }
     
-    $lastlog = C::t('forum_threadmod')->fetch_all_by_tid($tids,'MOD');
+    /**
+     * 获取审核和版主回复的时间 
+     */
+    $lastlog = C::t('forum_threadmod')->fetch_all_by_tid($tids,array('MOD','RLP'));
+    
     foreach($lastlog as $k => $v){
-        $tidsMod[$v['tid']] = $v;
+        $tidsMod[$v['tid']][$v['action']] = $v;
     }
     
     foreach($data as $k => $thread){
@@ -58,20 +62,28 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
         $thread['className'] =  '';
         $thread['show_text'] = '';
         
-        if(isset($tidsMod[$thread['tid']])){
-            $days = ceil(($ts_now - $tidsMod[$thread['tid']]['dateline'])/$hour24);
+        $thread['MOD_dateline'] = isset($tidsMod[$thread['tid']]['MOD']) ? $tidsMod[$thread['tid']]['MOD']['dateline'] : $ts_now;
+        $thread['RLP_dateline'] = isset($tidsMod[$thread['tid']]['RLP']) ? $tidsMod[$thread['tid']]['MOD']['dateline'] : $ts_now;
+        
+        if(isset($tidsMod[$thread['tid']]['RLP']) && isset($tidsMod[$thread['tid']]['MOD'])){
+            //正确的时间
+            $days = ceil(($tidsMod[$thread['tid']]['RLP']['dateline'] - $tidsMod[$thread['tid']]['MOD']['dateline'])/$hour24);
+        }elseif(isset($tidsMod[$thread['tid']]['MOD'])){
+            //兼容处理,为了界面有显示，实际上是不正确的
+            $days = ceil(($tidsMod[$thread['tid']]['MOD']['dateline'] - $thread[$datelineKey])/$hour24);
         }else{
-            ////没有看审核前的帖子，上面的数据是空的 兼容处理,上线后应该不会到这里
+            //兼容处理,为了界面有显示,实际上是不正确的
             $days = ceil(($ts_now - $thread[$datelineKey])/$hour24);
         }
+      
         switch(intval($thread['sortid'])){
             case $lang['sort_all_code']:
                 break;
             case $lang['sort_wait_verify_code']:
             case $lang['sort_wait_accept_code']:
                 $thread['show_text'] = wrapper_text($lang['sort_wait_accept'],'sort_wait_accept');
-                if(isset($tidsMod[$thread['tid']])){
-                    $thread['className'] = ($ts_now - $tidsMod[$thread['tid']]['dateline']) > $hour24 ? 'icon-24' : '';
+                if(isset($tidsMod[$thread['tid']]['MOD'])){
+                    $thread['className'] = ($ts_now - $tidsMod[$thread['tid']]['MOD']['dateline']) > $hour24 ? 'icon-24' : '';
                 }else{
                     $thread['className'] = ($ts_now - $thread[$datelineKey]) > $hour24 ? 'icon-24' : '';
                 }

@@ -774,13 +774,7 @@ if($postusers) {
 			$locationpids[] = $pid;
 		}
 		$post = array_merge($postlist[$pid], (array)$postusers[$post['authorid']]);
-        //帖子显示评分 
-        $ismoderator = C::t('forum_moderator')->fetch_uid_by_fid_uid($post['fid'], $post['authorid']);//判断发帖人是否是版主
-        if ($ismoderator && 
-            !$post['first'] && 
-            !$moderatorReplied) {
-            $moderatorReplied = 1;
-        }
+        
 		$postlist[$pid] = viewthread_procpost($post, $_G['member']['lastvisit'], $ordertype, $maxposition);
 	}
 }
@@ -796,13 +790,7 @@ if($locationpids) {
 
 if($postlist && $rushids) {
 	foreach($postlist as $pid => $post) {
-        //帖子显示评分     
-        $ismoderator = C::t('forum_moderator')->fetch_uid_by_fid_uid($post['fid'], $post['authorid']);//判断发帖人是否是版主
-        if ($ismoderator && 
-            !$post['first'] && 
-            !$moderatorReplied) {
-            $moderatorReplied = 1;
-        }
+        
 		$post['number'] = $post['position'];
 		$postlist[$pid] = checkrushreply($post);
 	}
