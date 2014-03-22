@@ -1148,7 +1148,11 @@ function viewthread_procpost($post, $lastvisit, $ordertype, $maxposition = 0) {
 		$post['usernameenc'] = rawurlencode($post['username']);
 		$post['readaccess'] = $_G['cache']['usergroups'][$post['groupid']]['readaccess'];
 		if($_G['cache']['usergroups'][$post['groupid']]['userstatusby'] == 1) {
-			$post['authortitle'] = $_G['cache']['usergroups'][$post['groupid']]['grouptitle'];
+            if ('版主' == $_G['cache']['usergroups'][$post['groupid']]['grouptitle']) {
+                $post['authortitle'] = '网络发言人';
+            } else {
+                $post['authortitle'] = $_G['cache']['usergroups'][$post['groupid']]['grouptitle'];
+            }
 			$post['stars'] = $_G['cache']['usergroups'][$post['groupid']]['stars'];
 		}
 		$post['upgradecredit'] = false;
