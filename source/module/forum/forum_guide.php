@@ -20,7 +20,8 @@ if(!in_array($view, array('all', 'hot', 'digest', 'new', 'my', 'newthread', 'sof
 	$view = 'all';
 }
 $lang = lang('forum/template');
-$navtitle = $lang['guide'].'-'.$lang['guide_'.$view];
+//$navtitle = $lang['guide'].'-'.$lang['guide_'.$view];
+$navtitle = '阿拉帮侬忙 - '.$lang['guide_'.$view];
 $perpage = 50;
 $start = $perpage * ($_G['page'] - 1);
 $data = array();
