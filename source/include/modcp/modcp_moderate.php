@@ -177,8 +177,8 @@ $start_limit = ($page - 1) * $tpp;
 $postlist = array();
 $posttableselect = '';
 
-$modpost = array('validate' => 0, 'delete' => 0, 'ignore' => 0);
-$moderation = array('validate' => array(), 'delete' => array(), 'ignore' => array());
+$modpost = array('validate' => 0, 'delete' => 0, 'ignore' => 0, 'moveToForum' => 0);
+$moderation = array('validate' => array(), 'delete' => array(), 'ignore' => array() , 'moveToForum' => array());
 
 require_once libfile('function/post');
 
@@ -199,7 +199,8 @@ if(submitcheck('dosubmit', 1) || submitcheck('modsubmit')) {
 		$modpost = array(
 			'ignore' => count($moderation['ignore']),
 			'delete' => count($moderation['delete']),
-			'validate' => count($moderation['validate'])
+			'validate' => count($moderation['validate']),
+            'moveToForum' => count($moderation['moveToForum'])
 		);
 	} elseif(submitcheck('dosubmit', 1)) {
 		$_GET['handlekey'] = 'mods';

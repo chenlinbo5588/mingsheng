@@ -208,6 +208,16 @@ if($operation == 'members') {
 		remove_element(node2);
 		remove_element(node3);
 	}
+    
+    function moveToForum(targetId,url){
+        var form = $('cpform');
+        var forumDropdownList = $(targetId);
+        
+        var targetFid = forumDropdownList.options[forumDropdownList.selectedIndex].value;
+        
+        form.action = url + '&moveToForum=' + targetFid;
+        form.submit();
+    }
 
 	window.onload = function() {
 		if(getcookie("foldall")) {
@@ -239,7 +249,7 @@ $submenu = array(
 );
 
 if($operation == 'threads') {
-
+    
 	require_once libfile('moderate/thread', 'admincp');
 
 } elseif($operation == 'replies') {

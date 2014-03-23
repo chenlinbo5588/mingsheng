@@ -87,6 +87,9 @@ if(!submitcheck('modsubmit') && !$_GET['fast']) {
 		}
 		$multipage = multi($modcount, $tpp, $page, ADMINSCRIPT."?action=moderate&operation=threads&filter=$filter&modfid=$modfid&dateline={$_GET['dateline']}&username={$_GET['username']}&title={$_GET['title']}&tpp=$tpp&showcensor=$showcensor");
 	}
+    /**
+     * @clb  后台审核 展开折叠
+     */
 	echo '<p class="margintop marginbot"><a href="javascript:;" onclick="expandall();">'.cplang('moderate_all_expand').'</a> &nbsp;<a href="javascript:;" onclick="foldall();">'.cplang('moderate_all_fold').'</a><p>';
 	loadcache('forums');
 	require_once libfile('function/misc');
@@ -152,7 +155,7 @@ if(!submitcheck('modsubmit') && !$_GET['fast']) {
 			"<a target=\"_blank\" href=\"forum.php?mod=viewthread&tid=$thread[tid]&modthreadkey=$thread[modthreadkey]\">$lang[view]</a>&nbsp;<a href=\"forum.php?mod=post&action=edit&fid=$thread[fid]&tid=$thread[tid]&pid=$thread[pid]&modthreadkey=$thread[modthreadkey]\" target=\"_blank\">$lang[edit]</a>",
 		));
 		showtablerow("id=\"mod_$thread[tid]_row2\"", 'colspan="4" style="padding: 10px; line-height: 180%;"', '<div style="overflow: auto; overflow-x: hidden; max-height:120px; height:auto !important; height:120px; word-break: break-all;">'.$thread['message'].'<br /><br />'.$threadsortinfo.'</div>');
-		showtablerow("id=\"mod_$thread[tid]_row3\"", 'class="threadopt threadtitle" colspan="4"', "<a href=\"?action=moderate&operation=threads&fast=1&fid=$thread[fid]&tid=$thread[tid]&moderate[$thread[tid]]=validate&page=$page&frame=no\" target=\"fasthandle\">$lang[validate]</a> | <a href=\"?action=moderate&operation=threads&fast=1&fid=$thread[fid]&tid=$thread[tid]&moderate[$thread[tid]]=delete&page=$page&frame=no\" target=\"fasthandle\">$lang[delete]</a> | <a href=\"?action=moderate&operation=threads&fast=1&fid=$thread[fid]&tid=$thread[tid]&moderate[$thread[tid]]=ignore&page=$page&frame=no\" target=\"fasthandle\">$lang[ignore]</a> | <a href=\"forum.php?mod=post&action=edit&fid=$thread[fid]&tid=$thread[tid]&pid=$thread[pid]&page=1&modthreadkey=$thread[modthreadkey]\" target=\"_blank\">".$lang['moderate_edit_thread']."</a> &nbsp;&nbsp;|&nbsp;&nbsp; ".$lang['moderate_reasonpm']."&nbsp; <input type=\"text\" class=\"txt\" name=\"pm_$thread[tid]\" id=\"pm_$thread[tid]\" style=\"margin: 0px;\"> &nbsp; <select style=\"margin: 0px;\" onchange=\"$('pm_$thread[tid]').value=this.value\">$modreasonoptions</select>");
+		showtablerow("id=\"mod_$thread[tid]_row3\"", 'class="threadopt threadtitle" colspan="4"', "<a href=\"?action=moderate&operation=threads&fast=1&fid=$thread[fid]&tid=$thread[tid]&moderate[$thread[tid]]=validate&page=$page&frame=no\" target=\"fasthandle\">$lang[validate]</a> | <a href=\"?action=moderate&operation=threads&fast=1&fid=$thread[fid]&tid=$thread[tid]&moderate[$thread[tid]]=delete&page=$page&frame=no\" target=\"fasthandle\">$lang[delete]</a> | <a href=\"?action=moderate&operation=threads&fast=1&fid=$thread[fid]&tid=$thread[tid]&moderate[$thread[tid]]=ignore&page=$page&frame=no\" target=\"fasthandle\">$lang[ignore]</a> | <a href=\"forum.php?mod=post&action=edit&fid=$thread[fid]&tid=$thread[tid]&pid=$thread[pid]&page=1&modthreadkey=$thread[modthreadkey]\" target=\"_blank\">".$lang['moderate_edit_thread']."</a> &nbsp;&nbsp;|&nbsp;&nbsp; ".$lang['moderate_reasonpm']."&nbsp; <input type=\"text\" class=\"txt\" name=\"pm_$thread[tid]\" id=\"pm_$thread[tid]\" style=\"margin: 0px;\"> &nbsp; <select style=\"margin: 0px;\" onchange=\"$('pm_$thread[tid]').value=this.value\">$modreasonoptions</select> | &nbsp;&nbsp; <select id=\"targetForum_".$thread['fid']."\">".forumselect(FALSE, 0, intval($thread['fid']))."</select>&nbsp;<a href=\"javascript:moveToForum('targetForum_$thread[fid]','?action=moderate&operation=threads&fast=1&fid=$thread[fid]&tid=$thread[tid]&moderate[$thread[tid]]=moveToForum&page=$page&frame=no');\" target=\"fasthandle\" class=\"btn\">".$lang['moderate_move'].'</a>');
 		showtagfooter('tbody');
 	}
 
@@ -162,16 +165,16 @@ if(!submitcheck('modsubmit') && !$_GET['fast']) {
 
 } else {
 
-	$validates = $ignores = $recycles = $deletes = 0;
+	$validates = $ignores = $recycles = $deletes = $moveToForums = 0;
 	$validatedthreads = $pmlist = array();
-	$moderation = array('validate' => array(), 'delete' => array(), 'ignore' => array());
+	$moderation = array('validate' => array(), 'delete' => array(), 'ignore' => array(),'moveToForum' => array());
 
 	if(is_array($moderate)) {
 		foreach($moderate as $tid => $act) {
 			$moderation[$act][] = intval($tid);
 		}
 	}
-
+    
 	if($_GET['apply_all']) {
 		$apply_all_action = $_GET['apply_all'];
 		$author = $dateline = $isgroup = $displayorder = null;
@@ -201,6 +204,38 @@ if(!submitcheck('modsubmit') && !$_GET['fast']) {
 		}
 	}
 
+    
+    //file_put_contents("1.txt",print_r($moderation,true),FILE_APPEND);
+    
+    /**
+     *后台审核前 主题转移板块 
+     */
+    if($moderation['moveToForum']){
+        //file_put_contents("1.txt",print_r('do moveToForum',true),FILE_APPEND);
+        
+        if(!C::t('forum_forum')->check_forum_exists($_GET['moveToForum'])) {
+            cpmsg('threads_move_invalid', '', 'error');
+        }
+        C::t('forum_thread')->update($moderation['moveToForum'], array('fid'=>$_GET['moveToForum'],'isgroup'=>0));
+        loadcache('posttableids');
+        $posttableids = $_G['cache']['posttableids'] ? $_G['cache']['posttableids'] : array('0');
+        foreach($posttableids as $id) {
+            C::t('forum_post')->update_by_tid($id, $moderation['moveToForum'], array('fid' => $_GET['moveToForum']));
+        }
+
+        foreach(explode(',', $_GET['fid'].','.$_GET['moveToForum']) as $fid) {
+            updateforumcount(intval($fid));
+        }
+
+        $log_handler = Cloud::loadClass('Cloud_Service_SearchHelper');
+        //foreach($_GET['tidarray'] as $tid) {
+            $log_handler->myThreadLog('move', array('tid' => $_GET['tid'], 'otherid' => $_GET['moveToForum']));
+        //}
+
+        //$cpmsg = cplang('threads_succeed');
+        //file_put_contents("1.txt",print_r('do moveToForum end',true),FILE_APPEND);
+    }
+    
 	if($moderation['ignore']) {
 		$ignores = C::t('forum_thread')->update_displayorder_by_tid_displayorder($moderation['ignore'], -2, -3);
 		updatemoderate('tid', $moderation['ignore'], 1);
@@ -308,7 +343,12 @@ if(!submitcheck('modsubmit') && !$_GET['fast']) {
 		}
 	}
 	if($_GET['fast']) {
-		echo callback_js($_GET['tid']);
+        if(isset($_GET['moveToForum'])){
+            //主题移动板块 直接刷新
+            cpmsg('move_threads_succeed', "action=moderate&operation=threads&page=$page&filter=$filter&modfid=$modfid&username={$_GET['username']}&title={$_GET['title']}&tpp={$_GET['tpp']}&showcensor=$showcensor&dateline={$_GET['dateline']}", 'succeed', array('moveToForum' => 1));
+        }else{
+            echo callback_js($_GET['tid']);
+        }
 		exit;
 	} else {
 		cpmsg('moderate_threads_succeed', "action=moderate&operation=threads&page=$page&filter=$filter&modfid=$modfid&username={$_GET['username']}&title={$_GET['title']}&tpp={$_GET['tpp']}&showcensor=$showcensor&dateline={$_GET['dateline']}", 'succeed', array('validates' => $validates, 'ignores' => $ignores, 'recycles' => $recycles, 'deletes' => $deletes));
