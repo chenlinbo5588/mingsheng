@@ -1183,18 +1183,23 @@ a{
 }
 .icon-24 {
     background: url(../images/light_warn.gif) no-repeat center center;
+    cursor:pointer;
 }
 .icon-3days {
     background: url(../images/light_green.gif) no-repeat center center;
+    cursor:pointer;
 }
 .icon-5days {
     background: url(../images/light_yellow.gif) no-repeat center center;
+    cursor:pointer;
 }
 .icon-5daysover {
     background: url(../images/light_gray.gif) no-repeat center center;
+    cursor:pointer;
 }
 .icon-overtime {
     background: url(../images/light_red.gif) no-repeat center center;
+    cursor:pointer;
 }
 
 
@@ -1370,6 +1375,7 @@ a{
     height:28px;
     position:relative;
     top:8px;
+    cursor:pointer;
 }
 
 .govreply {

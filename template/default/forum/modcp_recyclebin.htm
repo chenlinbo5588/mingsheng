@@ -140,7 +140,7 @@
 									<!--{/if}-->
 								</td>
 								<td class="o"><input class="pc" type="checkbox" name="moderate[]" value="$thread[tid]" /></td>
-								<td class="ths"><div class="{$thread[className]}"></div></td>
+								<td class="ths"><div class="{$thread[className]}"  title="{$thread[statusTitle]}"></div></td>
                                 <th class="$thread[folder]">
                                     $thread[show_text]
                                     <a href="forum.php?mod=forumdisplay&fid={$thread[fid]}" style="color:{$_G[cache][forums][$thread[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$thread[fid]][name]}]</b></a>

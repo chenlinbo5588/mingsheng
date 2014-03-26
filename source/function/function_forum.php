@@ -61,6 +61,7 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
         //$duration = $ts_now - $tv2['dbdateline'];
         $thread['className'] =  '';
         $thread['show_text'] = '';
+        $thread['statusTitle'] = '';
         
         $thread['MOD_dateline'] = isset($tidsMod[$thread['tid']]['MOD']) ? $tidsMod[$thread['tid']]['MOD']['dateline'] : 0;
         $thread['RLP_dateline'] = isset($tidsMod[$thread['tid']]['RLP']) ? $tidsMod[$thread['tid']]['MOD']['dateline'] : 0;
@@ -87,24 +88,31 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
                 }else{
                     $thread['className'] = ($ts_now - $thread[$datelineKey]) > $hour24 ? 'icon-24' : '';
                 }
+                if($thread['className']){
+                    $thread['statusTitle'] = '24小时未受理';
+                }
                 break;
             case $lang['sort_accept_code']:
                 if($days > 10){
                     $thread['className'] = 'icon-overtime';
+                    $thread['statusTitle'] = '超时未回复';
                 }
                 $thread['show_text'] = wrapper_text($lang['sort_accept'],'sort_accept');
                 break;
             case $lang['sort_replied_code']:
                 if($days > 5){
                     $thread['className'] = 'icon-5daysover';
+                    $thread['statusTitle'] = "5天外回复";
                     $thread['show_text'] = wrapper_text($lang['sort_replied'],'sort_replied');
                 }else{
                     if($days <= 3){
                         $thread['show_text'] = wrapper_text($lang['sort_replied'],'sort_replied');
                         $thread['className'] = 'icon-3days';
+                        $thread['statusTitle'] = "3天内回复";
                     }else{
                         $thread['show_text'] = wrapper_text($lang['sort_replied'],'sort_replied');
                         $thread['className'] = 'icon-5days';
+                        $thread['statusTitle'] = "5天内回复";
                     }
                 }
                 break;
