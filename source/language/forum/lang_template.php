@@ -369,6 +369,7 @@ $lang = array (
   'view_thread' => '浏览帖子',
   'view_thread_imagemode' => '图片模式',
   'forum_password_require' => '本版块需要密码，您必须在下面输入正确的密码才能浏览这个版块',
+  'forum_index' => '阿拉帮侬帮',
   'guide' => '导读',
   'guide_attend' => '人参与',
   'guide_digest' => '最新精华',
