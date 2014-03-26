@@ -291,6 +291,14 @@ a{
 	text-align: center;
 	padding: 10px 0;
 }
+
+.working_notify {
+    color: red;
+    font-size: 14px;
+    padding: 5px 0;
+}
+
+
 .mfirst{
 	width: 1000px;
 	margin: 0 auto;
