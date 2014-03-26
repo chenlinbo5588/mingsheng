@@ -98,6 +98,7 @@ a{
 .dmain{
 	width: 998px;
 	margin:0 auto;
+        margin-left: auto;
 	border: 1px solid #dadddd;
 	clear: both;
 }
@@ -502,6 +503,9 @@ a{
 .asktop{
 	position: relative;
 }
+.asktop ul {
+    width: 230px;
+}
 .asktop ul,.asktop ul li{
 	list-style: none;
 }
@@ -554,11 +558,12 @@ a{
 	float: left;
 }
 .askul ul li div a{
-	font-size:14px;
-	color: #000;
+    font-size:14px;
+    color: #000;
     overflow: hidden;
     display: inline-block;
-    width: 375px;
+     _zoom:1;
+     *display:inline;
     height: 32px;
 }
 .askul ul li div.p1{
@@ -888,8 +893,8 @@ a{
 .showno {
     height: 210px;
     overflow:hidden;
+    position:relative;
 }
-
 
 .hotlink {
     text-decoration: none;
@@ -1094,11 +1099,13 @@ a{
     overflow: hidden;
 }
 .thread-tabs ul li {
-    display: block;
+    display: inline-block;
     float: left;
     height: 30px;
     text-align: left;
-    display: inline;
+    _zoom:1;
+    *display:inline;
+    *width: 75px;
     font-size: 14px;
     border-left: 1px solid #ccc;
     border-top: 1px solid #ccc;
@@ -1229,6 +1236,7 @@ a{
     display: inline-block;
     border: 0px;
     width: 196px;
+    _width: 198px;
     height: 30px;
     line-height: 30px;
     border: 1px solid #B0B0B0;
@@ -1237,10 +1245,11 @@ a{
 .search_submit {
     width: 30px;
     height: 30px;
-    _background-color:#FFF; 
+    _height: 28px;
     float: right;
     display: block;
     margin-top: 1px;
+    margin-top: 0px\0;
     position: relative;
 }
 .search_submit button {
@@ -1248,6 +1257,7 @@ a{
     border: none;
     width: 30px;
     height: 30px;
+    _height: 28px;
     cursor: pointer;
     text-indent: -999px;
     position: absolute;

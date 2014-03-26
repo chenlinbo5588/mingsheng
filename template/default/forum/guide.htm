@@ -66,7 +66,11 @@
                     <!--{if $_G['uid']}-->
                     <strong class="vwmy{if $_G['setting']['connect']['allow'] && $_G[member][conisbind]} qq{/if}"><a href="/home.php?mod=spacecp&ac=profile" title="{lang visit_my_space}">{$_G[member][username]}</a></strong> &nbsp;
                     <a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a> |
-                    <a href="home.php?mod=space&do=pm" title="{lang pm_center}">{lang pm_center}</a> &nbsp;
+                    <a href="home.php?mod=space&do=pm" title="{lang pm_center}">{lang pm_center}
+                        <!--{if $newpmcount > 0}-->
+                        ({$newpmcount})
+                        <!--{/if}-->
+                    </a> &nbsp;
                     <a href="home.php?mod=spacecp" title="{lang setup}">{lang setup}</a>
                     <!--{/if}-->
 

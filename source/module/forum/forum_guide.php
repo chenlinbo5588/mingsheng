@@ -128,6 +128,22 @@ $currentview[$view] = 'class="xw1 a"';
 $_G['forum_list'] = get_forums();
 $data = thread_add_icon($data,'dbdateline');
 $navigation = $view != 'index' ? ' <em>&rsaquo;</em> <a href="forum.php?mod=guide&view='.$view.'">'.$lang['guide_'.$view].'</a>' : '';
+
+//获取用户消息数
+$newpmcount = $announcepm  = 0;
+if ($_G['uid']) {
+    loaducenter();
+    foreach(C::t('common_member_grouppm')->fetch_all_by_uid($_G['uid'], 1) as $gpmid => $gpuser) {
+        $gpmstatus[$gpmid] = $gpuser['status'];
+        if($gpuser['status'] == 0) {
+            $announcepm ++;
+        }
+    }
+    $newpmarr = uc_pm_checknew($_G['uid'], 1);
+    $newpm = $newpmarr['newpm'];
+    $newpmcount = $newpm + $announcepm;
+}
+        
 include template('forum/guide');
 
 function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
