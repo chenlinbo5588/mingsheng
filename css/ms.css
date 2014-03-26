@@ -1259,7 +1259,7 @@ a{
     height: 30px;
     _height: 28px;
     cursor: pointer;
-    text-indent: -999px;
+    text-indent: -9999px;
     position: absolute;
     right: 0;
     top: 1px;
