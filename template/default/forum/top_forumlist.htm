@@ -25,3 +25,20 @@
     <img src="images/showstatus.jpg">
     <div class="working_notify">告知：网络发言人帖文受理时间为正常上班工作日，遇节假日顺延处理。</div>
 </div>
+
+<div class="block-thread-search clearfix">
+    <form method="post" autocomplete="off" action="search.php?mod=forum" onsubmit="if ($('scform_fmtxt'))  searchFocus($('scform_srchtxt'));">
+        <input type="hidden" name="formhash" value="{FORMHASH}">
+        <input type="hidden" name="searchsubmit" value="yes">
+        <span  class="zi1">
+            <label style="margin-left:50px;">帖子搜索：<input class="input1" type="text"  id="scform_fmtxt" name="srchtxt" value="" tabindex="1" placeholder="请输入搜索内容"></label><input type="image" src="images/search_button.jpg"/>
+        </span>
+    </form>
+    <div class="wyw">
+        <!--{if $_GET['fid']}-->
+        <a href="forum.php?mod=post&action=newthread&fid={$_GET['fid']}"><img src="images/list_wyw.jpg"></a>
+        <!--{else}-->
+        <a href="forum.php?mod=post&action=newthread&fid=2"><img src="images/list_wyw.jpg"></a>
+        <!--{/if}-->
+    </div>
+</div>

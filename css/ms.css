@@ -1391,3 +1391,27 @@ a{
 .sendfailed {
     color:red;
 }
+
+.block-thread-search {
+    height: 40px;
+    background: #f2f1f1 url(../images/search_icon.jpg) no-repeat left center;
+    position:relative;
+    padding: 10px 0;
+}
+
+.block-thread-search .wyw {
+    position:absolute;
+    right:20px;
+    top:15px;
+}
+
+.block-thread-search label {float:left;}
+
+.block-thread-search .input1 {
+    width: 315px;
+    height: 34px;
+    line-height: 24px;
+    border: 1px solid #ccc;
+    background: #fff;
+    font-size: 14px;
+}
