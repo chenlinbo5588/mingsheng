@@ -137,6 +137,30 @@ loadcache('stamps');
 $currentview[$view] = 'class="xw1 a"';
 $_G['forum_list'] = get_forums();
 $data = thread_add_icon($data,'dbdateline');
+/**
+ * 获取全局置顶 
+ */
+$gst = C::t('forum_thread')->fetch_all_by_displayorder(3,'>=',0 , 10);
+$globalStickTids = array();
+$globlStickList = array();
+// 全局置顶帖子
+foreach($gst as $v){
+    $globalStickTids[] = $v['tid'];
+    $v['dbdateline'] = $v['dateline'];
+    $v['dateline'] = dgmdate($v['dateline'],'u');
+    $globlStickList[$v['tid']] = $v;
+}
+
+if($globalStickTids){
+    $globlStickInfo = C::t('forum_threadmod')->fetch_all_by_tid_status($globalStickTids, array('STK','EST'), array('status' =>1));
+    foreach($globlStickInfo as $v){
+        if($v['action'] == 'EST' && $v['expiration'] >= TIMESTAMP){
+            unset($globlStickList[$v['tid']]);
+        }
+    }
+}
+
+$globlStickList = thread_add_icon_by_row($globlStickList,'dbdateline');
 $navigation = $view != 'index' ? ' <em>&rsaquo;</em> <a href="forum.php?mod=guide&view='.$view.'">'.$lang['guide_'.$view].'</a>' : '';
 
 //获取用户消息数

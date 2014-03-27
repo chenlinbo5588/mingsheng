@@ -16,9 +16,15 @@
                         </tbody>
                     <!--{/if}-->
                     
+                    <!--{subtemplate forum/guide_stick_list_row}-->
+                    
                     <!--{if $list['threadcount']}-->
 						<!--{loop $list['threadlist'] $key $thread}-->
-							<tbody id="$thread[id]">
+                            <!--{if !empty($globlStickList[$thread[tid]])}-->
+							<tbody id="$thread[id]" style="display:none;">
+                            <!--{else}-->
+                            <tbody id="$thread[id]">
+                            <!--{/if}-->
 								<tr>
 									<td class="icn">
 										<a href="forum.php?mod=viewthread&tid=$thread[icontid]&{if $_GET['archiveid']}archiveid={$_GET['archiveid']}&{/if}extra=$extra" title="{if $thread['displayorder'] == 1}{lang thread_type1} - {/if}

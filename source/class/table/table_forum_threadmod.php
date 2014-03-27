@@ -26,6 +26,25 @@ class table_forum_threadmod extends discuz_table
 	public function fetch_by_tid_action_status($tid, $action, $status = 1) {
 		return DB::fetch_first('SELECT * FROM %t WHERE tid=%d AND action=%s AND status=%d ORDER BY dateline DESC LIMIT 1', array($this->_table, $tid, $action, $status));
 	}
+    public function fetch_all_by_tid_status($tid, $action = '', $status = 1, $start = 0, $limit = 0) {
+		$tid = dintval($tid, true);
+		$parameter = array($this->_table, $tid);
+		$wherearr = array();
+		$wherearr[] = is_array($tid) && $tid ? 'tid IN(%n)' : 'tid=%d';
+		if($action) {
+			$parameter[] = $action;
+			$wherearr[] = is_array($action) && $action ? 'action IN(%n)' : 'action=%s';
+		}
+        
+        if($status){
+            $parameter[] = $status;
+            $wherearr[] = is_array($status) && $status ? 'status IN(%n)' : 'status=%s';
+        }
+        
+		$wheresql = ' WHERE '.implode(' AND ', $wherearr);
+		return DB::fetch_all("SELECT * FROM %t $wheresql ORDER BY dateline DESC ".DB::limit($start, $limit), $parameter);
+	}
+    
 	public function fetch_by_tid_magicid($tid, $magicid = 0) {
 		return DB::fetch_first('SELECT * FROM %t WHERE tid=%d AND magicid=%d', array($this->_table, $tid, $magicid));
 	}
