@@ -25,6 +25,16 @@ $navtitle = '阿拉帮侬忙 - '.$lang['guide_'.$view];
 $perpage = 50;
 $start = $perpage * ($_G['page'] - 1);
 $data = array();
+
+$announcement = array();
+
+if($_G['page'] == 1) {
+    $announcement = C::t('forum_announcement')->fetch_by_displayorder(TIMESTAMP);
+    if($announcement){
+        $announcement['starttime'] = dgmdate($announcement['starttime'], 'u');
+    }
+}
+
 if($_GET['rss'] == 1) {
 	if($view == 'index' || $view == 'my') {
 		showmessage('URL_ERROR');
