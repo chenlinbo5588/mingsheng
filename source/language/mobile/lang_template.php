@@ -164,6 +164,8 @@ $lang = array (
   'clicktovisitwapmobile' => '访问手机版',
   'downloadnow' => '立即下载',
   'downloadzslttoshareview' => '下载新版掌上论坛客户端，尊享多项看帖特权!',
+  'mobile' => '手机',
+    'getverifycode' => '获取验证码',
 );
 
 ?>

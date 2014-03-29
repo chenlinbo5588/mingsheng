@@ -1,113 +1,124 @@
 <!--{template common/header}-->
-    <ul class="mainNav">
-		<a href="m.php?mobile=yes" class="current"  target="_self">首页</a>|<a href="forum.php?mobile=yes" target="_self">问效</a>|<a href="#mskd" target="_self">民声快递</a>
-	</ul>
-	<ul class="headbor"></ul>
-	<!--hot_start-->
-	<div class="headTips mb10 mt10 clearfix">
-		<ul class="hd"><li class="current">便民/公告</li><li>天气/空气</li></ul>
-		<ul class="bd">
-			<li>
-				<p><span style="widows: 2; text-transform: none; background-color: rgb(250,250,250); text-indent: 0px; display: inline !important; font: 14px/23px Arial, Helvetica, sans-serif; white-space: normal; orphans: 2; float: none; letter-spacing: normal; color: rgb(51,51,51); word-spacing: 0px; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px">为响应&ldquo;地球一小时&rdquo;号召，３月２９日晚上８：３０～９：３０将关闭三江六岸、天一广场、公园绿地等地的１７万余盏景观灯。 </span></p>
-			</li>
-			<li style="display:none;">今天阴有阵雨，部分地区雨量中等，下午转阴到多云。东南风4～5级。今天最高气温21～23℃，明天最低气温15～17℃。</li>
-		</ul>
-	</div>
-	<div class="mb10 mt10 clearfix bmzs">
-		<a href="forum.php?mobile=yes">{$bm_count}个部门在线值守</a>
-	</div>
-    
-	<ul class="tab_hd1" id="sjwxlilist"><li class="current">手机问效</li><li>部门回复</li><li>综合排名</li></ul>
-    
-	<div class="mb10 swipe" id="sjwx">
-		<ul class="tab_bd_list swipe-wrap">
-            <!--{eval $fid = empty($_GET['fid']) ? 2 : $_GET['fid'];}--> 
-            <ul class="glink clearfix" style="padding-left:100px;"><li class="cbt"><a href="forum.php?mod=post&action=newthread&fid={$fid}" style="color:#057894; font-size:16px;font-weight:bold;">马上留言</a></li></ul>
-			<div class="sublist">
-				<ul id="sjwx_mobile">
-                    <!--{loop $askingThreads $val}-->
-                    <li class="sjsjwz">
-                        <div class="clearfix">
-                            <ul class="sjsjwzl fl"><img src="/uc_server/avatar.php?uid={$val['authorid']}&size=small" class="touxiang"></ul>
-                            <ul class="sjsjwzr fr"><h6><a href="forum.php?mod=forumdisplay&fid={$val[fid]}" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$val[fid]][name]}]</b></a><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" title="{$val['subject']}">{$val['subject']}</a></h6>
-                            <div class="sjtime">发表时间:{$val['dateline']}</div>
-                            </ul>
-                        </div>
-                        <div class="clearfix">
-                            <ul class="sjsjwzl zuozhe fl">{$val['author']}</ul>
-                            <ul class="sjsjwzr qita fr">
-                                <div class="fl">状态:{$val['show_text']}</div>
-                                <span title="{$val['statusTitle']}" class="threadstatus  {$val['className']}"></span>
-                                <div class="fr tr">回复/查看:{$val['views']}/{$val['replies']}</div>
-                            </ul>
-                        </div>
-                    </li>
-                    <!--{/loop}-->
-                </ul>
-			</div>
-			
-            <div class="sublist" style="display:none;">
-				<ul>
-                    <!--{loop $answeringThreads $val}-->
-                    <li class="sjsjwz">
-                        <div class="clearfix">
-                            <ul class="sjsjwzl fl"><img src="/uc_server/avatar.php?uid={$val['authorid']}&size=small" class="touxiang"></ul>
-                            <ul class="sjsjwzr fr"><h6><a href="forum.php?mod=forumdisplay&fid={$val[fid]}" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$val[fid]][name]}]</b></a><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" title="{$val['subject']}">{$val['subject']}</a></h6>
-                            <div class="sjtime">发表时间:{$val['dateline']}</div>
-                            </ul>
-                        </div>
-                        <div class="clearfix">
-                            <ul class="sjsjwzl zuozhe fl">{$val['author']}</ul>
-                            <ul class="sjsjwzr qita fr">
-                                <div class="fl">状态:{$val['show_text']}</div>
-                                <span title="{$val['statusTitle']}" class="threadstatus {$val['className']}"></span>
-                                <div class="fr tr">回复/查看:{$val['views']}/{$val['replies']</div>
-                            </ul>
-                        </div>
-                    </li>
-                    <!--{/loop}-->
-				</ul>
-			</div>
-            <div class="sublist" style="display:none;">
-				<ul>
-                    <li><a href="/plus/mobile_view.php?aid=456837">【体育局3】奥体中心将计划年内开工</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=456134">【鄞州区】泰寓路拥堵因学生上下学</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=456093">【规划局】未来将明确重点发展西部</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=456090">【人社局】慢性病不超7日量开处方</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=456077">【人社局】工作人员未泄露考生信息</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=455760">北仑鲍家洋村大型飞灰处理厂已被停运</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=454919">【规划局】3号线一期线路起于陈婆渡</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=454910">【海曙】文昌酒店对面尚未列入计划</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=453996">【轨交】环线方案需进一步研究论证</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=453988">【江东】晓筑小区的入户调查已张贴</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=453708">关于韵升科技工业二园扩建的四个问题</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=453709">【一院】联通手机无法预约因未合作</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=452655">【鄞州区】信访问题由政法机关处理</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=452654">【交通】道路运输驾驶两年一次教育</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=452085">【环卫】渣土车密闭化不合格将处罚</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=452082">【规划局】图纸以审批后的版本为准</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=452002">【人社局】2013年会计合格证未下发</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=451827">锦绣东城一套三室二厅改成7室7厨7卫</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=451826">废气超标的镇海通宝纸业 何时能关闭</a></li>
-                    <li><a href="/plus/mobile_view.php?aid=450574">【公安】公铁立交桥下已安装隔离栏</a></li>
-				</ul>
-				
-			</div>
-            <ul class="glink"><a href="forum.php?mobile=yes" class="link2">更多</a></ul>
-			
-		</ul>
-	</div>
-    
-    <script>
-        $("#sjwxlilist li").bind("click",function(e){
-            var index = $(this).index();
-            $(this).siblings("li").removeClass("current");
-            $(this).addClass("current");
-            $("#sjwx .sublist").hide();
-            $("#sjwx .sublist:eq("+ index +")").show();
-        });
-    </script>
+    <div id="navbox">
+        <a href="m.php?mobile=yes" class="current"  target="_self">首页</a>|<a href="forum.php?mobile=yes" target="_self">问效</a>|<a href="#mskd" target="_self">民生快递</a>
+    </div>
 
+    <div id="slidebox">
+        <div class="notice">
+            <div class="nt_name">
+                <span>便民公告</span><span>天气预报</span>
+            </div>
+            <div class="nt_conts">
+                <p class="show">今天阴有阵雨，部分地区雨量中等，下午转阴到多云。东南风4～5级。今天最高气温21～23℃，明天最低气温15～17℃。</p>
+            </div>
+        </div>
+        <div class="bar" id="slideBar">
+            <div class="tempWrap" style="overflow:hidden; position:relative;"><div class="container" style="width: 3200px; position: relative; overflow: hidden; padding: 0px; margin: 0px; transition: 300ms; -webkit-transition: 300ms; -webkit-transform: translate(-1280px, 0px) translateZ(0px);">
+                    <a href="#" style="display: table-cell; vertical-align: top; width: 640px;"><img src="images/mobile/tmp_01.jpg" alt=""></a><a href="#" style="display: table-cell; vertical-align: top; width: 640px;"><img src="images/mobile/tmp_01.jpg" alt=""></a>
+                    <a href="#" style="display: table-cell; vertical-align: top; width: 640px;"><img src="images/mobile/tmp_01.jpg" alt=""></a>
+                    <a href="#" style="display: table-cell; vertical-align: top; width: 640px;"><img src="images/mobile/tmp_01.jpg" alt=""></a>
+                    <a href="#" style="display: table-cell; vertical-align: top; width: 640px;"><img src="images/mobile/tmp_01.jpg" alt=""></a></div></div>
+            <ul class="pager"><li class="">1</li><li class="navOn">2</li><li class="">3</li></ul>
+        </div>
+    </div>
+
+	<!--hot_start-->
+    <div id="topicbox">
+        <div class="t_online"><a href="forum.php?mobile=yes">{$bm_count}个部门在线值守</a></div>
+        
+        <div id="sjwxlilist" class="t_tab slideTab">
+            <span class="navOn">手机问效</span><span class="">部门回复</span><span class="">综合排名</span>
+        </div>
+
+        <div class="mb10 swipe" id="sjwx">
+            <ul class="tab_bd_list swipe-wrap">
+                <!--{eval $fid = empty($_GET['fid']) ? 2 : $_GET['fid'];}--> 
+                <ul class="glink clearfix" style="padding-left:100px;"><li class="cbt"><a href="forum.php?mod=post&action=newthread&fid={$fid}" style="color:#057894; font-size:16px;font-weight:bold;">马上留言</a></li></ul>
+                <div class="sublist">
+                    <ul id="sjwx_mobile">
+                        <!--{loop $askingThreads $val}-->
+                        <li class="sjsjwz">
+                            <div class="clearfix">
+                                <ul class="sjsjwzl fl"><img src="/uc_server/avatar.php?uid={$val['authorid']}&size=small" class="touxiang"></ul>
+                                <ul class="sjsjwzr fr"><h6><a href="forum.php?mod=forumdisplay&fid={$val[fid]}" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$val[fid]][name]}]</b></a><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" title="{$val['subject']}">{$val['subject']}</a></h6>
+                                <div class="sjtime">发表时间:{$val['dateline']}</div>
+                                </ul>
+                            </div>
+                            <div class="clearfix">
+                                <ul class="sjsjwzl zuozhe fl">{$val['author']}</ul>
+                                <ul class="sjsjwzr qita fr">
+                                    <div class="fl">状态:{$val['show_text']}</div>
+                                    <span title="{$val['statusTitle']}" class="threadstatus  {$val['className']}"></span>
+                                    <div class="fr tr">回复/查看:{$val['views']}/{$val['replies']}</div>
+                                </ul>
+                            </div>
+                        </li>
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+
+                <div class="sublist" style="display:none;">
+                    <ul>
+                        <!--{loop $answeringThreads $val}-->
+                        <li class="sjsjwz">
+                            <div class="clearfix">
+                                <ul class="sjsjwzl fl"><img src="/uc_server/avatar.php?uid={$val['authorid']}&size=small" class="touxiang"></ul>
+                                <ul class="sjsjwzr fr"><h6><a href="forum.php?mod=forumdisplay&fid={$val[fid]}" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$val[fid]][name]}]</b></a><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" title="{$val['subject']}">{$val['subject']}</a></h6>
+                                <div class="sjtime">发表时间:{$val['dateline']}</div>
+                                </ul>
+                            </div>
+                            <div class="clearfix">
+                                <ul class="sjsjwzl zuozhe fl">{$val['author']}</ul>
+                                <ul class="sjsjwzr qita fr">
+                                    <div class="fl">状态:{$val['show_text']}</div>
+                                    <span title="{$val['statusTitle']}" class="threadstatus {$val['className']}"></span>
+                                    <div class="fr tr">回复/查看:{$val['views']}/{$val['replies']</div>
+                                </ul>
+                            </div>
+                        </li>
+                        <!--{/loop}-->
+                    </ul>
+                </div>
+                <div class="sublist" style="display:none;">
+                    <ul>
+                        <li><a href="/plus/mobile_view.php?aid=456837">【体育局3】奥体中心将计划年内开工</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=456134">【鄞州区】泰寓路拥堵因学生上下学</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=456093">【规划局】未来将明确重点发展西部</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=456090">【人社局】慢性病不超7日量开处方</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=456077">【人社局】工作人员未泄露考生信息</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=455760">北仑鲍家洋村大型飞灰处理厂已被停运</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=454919">【规划局】3号线一期线路起于陈婆渡</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=454910">【海曙】文昌酒店对面尚未列入计划</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=453996">【轨交】环线方案需进一步研究论证</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=453988">【江东】晓筑小区的入户调查已张贴</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=453708">关于韵升科技工业二园扩建的四个问题</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=453709">【一院】联通手机无法预约因未合作</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=452655">【鄞州区】信访问题由政法机关处理</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=452654">【交通】道路运输驾驶两年一次教育</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=452085">【环卫】渣土车密闭化不合格将处罚</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=452082">【规划局】图纸以审批后的版本为准</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=452002">【人社局】2013年会计合格证未下发</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=451827">锦绣东城一套三室二厅改成7室7厨7卫</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=451826">废气超标的镇海通宝纸业 何时能关闭</a></li>
+                        <li><a href="/plus/mobile_view.php?aid=450574">【公安】公铁立交桥下已安装隔离栏</a></li>
+                    </ul>
+
+                </div>
+                <ul class="glink"><a href="forum.php?mobile=yes" class="link2">更多</a></ul>
+
+            </ul>
+        </div>
+
+        <script>
+            $("#sjwxlilist span").bind("click",function(e){
+                var index = $(this).index();
+                $(this).siblings("li").removeClass("navOn");
+                $(this).addClass("navOn");
+                $("#sjwx .sublist").hide();
+                $("#sjwx .sublist:eq("+ index +")").show();
+            });
+        </script>
+    </div>
 	<ul class="tab_hd1" id="mskd"><li class="current">民声快递</li></ul>
 	<div class="mb10 swipe" id="zcjd">
 		<ul class="tab_bd_list swipe-wrap">
