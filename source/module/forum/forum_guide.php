@@ -148,6 +148,7 @@ foreach($gst as $v){
     $globalStickTids[] = $v['tid'];
     $v['dbdateline'] = $v['dateline'];
     $v['dateline'] = dgmdate($v['dateline'],'u');
+    $v['lastpost'] = dgmdate($v['lastpost'],'u');
     $globlStickList[$v['tid']] = $v;
 }
 

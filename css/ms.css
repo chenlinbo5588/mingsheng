@@ -286,11 +286,16 @@ a{
 	white-space:nowrap;
 }
 .showstatus{
-	width: 998px;
 	border: 1px solid #DADDDD;
 	margin-top: 6px;
 	text-align: center;
 	padding: 10px 0;
+}
+
+.showstatus label {
+    font-size:15px;
+    font-weight:bold;
+    padding:0 5px;
 }
 
 .working_notify {

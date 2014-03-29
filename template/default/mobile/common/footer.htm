@@ -1,9 +1,22 @@
 </div>
 <!--{hook/global_footer_mobile}-->
 <div class="ft">
-	<p><a href="$_G['setting']['siteurl']" target="_blank">$_G['setting']['sitename']</a></p>
-	<p>Powered by <strong><a href="http://www.discuz.net" target="_blank">Discuz!</a></strong> <em>$_G['setting']['version']</em></p>
-	<p><a href="$nav">{lang homepage}</a><span class="pipe">|</span>{lang no_simplemobiletype}<span class="pipe">|</span><a href="{$_G['setting']['mobile']['simpletypeurl'][2]}" class="xw0" title="{lang mobile2version}">{lang mobile2version}</a><span class="pipe">|</span><a href="{$_G['setting']['mobile']['nomobileurl']}" class="xw0" title="{lang nomobiletype}">{lang nomobiletype}</a></p>
+	<!--<p><a href="$_G['setting']['siteurl']" target="_blank">$_G['setting']['sitename']</a></p>-->
+	<!--<p>Powered by <strong><a href="http://www.discuz.net" target="_blank">Discuz!</a></strong> <em>$_G['setting']['version']</em></p>-->
+	<!--<p><a href="$nav">{lang homepage}</a><span class="pipe">|</span>{lang no_simplemobiletype}<span class="pipe">|</span><a href="{$_G['setting']['mobile']['simpletypeurl'][2]}" class="xw0" title="{lang mobile2version}">{lang mobile2version}</a><span class="pipe">|</span><a href="{$_G['setting']['mobile']['nomobileurl']}" class="xw0" title="{lang nomobiletype}">{lang nomobiletype}</a></p>-->
+    <p  class="bot_info"><a href="m.php?mobile=yes">返回首页</a> <a href="javascript:void(0)" onclick="window.scrollTo(0, 0);">返回顶部</a>
+</div>
+<div class="footNav" id="footNav">
+    <ul>
+        <li class="floatIcon1"><a href="m.php?mobile=yes" class="current">首页</a></li>
+        <li class="floatIcon2"><a href="forum.php?mobile=yes">问效</a></li>
+        <li class="floatIcon3"><a href="portal.php?mod=list&catid=2&mobile=yes">民声快递</a></li>
+        <!--{if $_G['uid']}-->
+        <li class="floatIcon4"><a href="home.php?mod=space&uid={$_G['uid']}&do=profile&mobile=yes">个人中心</a></li>
+        <!--{else}-->
+        <li class="floatIcon4"><a href="member.php?mod=logging&action=login&mobile=yes">个人中心</a></li>
+        <!--{/if}-->
+    </ul>
 </div>
 </body>
 </html>
