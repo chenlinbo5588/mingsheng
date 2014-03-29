@@ -50,6 +50,14 @@ loadcache('forums');
 require './source/function/function_forum.php';
 
 
+$bm_count = 0;
+foreach($_G['cache']['forums'] as $key => $val){
+    if($val['type'] == 'group'){
+        continue;
+    }
+    $bm_count++;
+}
+
 $askingThreads = C::t('forum_thread')->fetch_by_sortid(array(2,3), " dateline DESC " ,0,15);
 $answeringThreads = C::t('forum_thread')->fetch_by_sortid(4," lastpost DESC " ,0,15);
 

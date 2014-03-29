@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8"/>
 <meta http-equiv="Cache-control" content="{if $_G['setting']['mobile'][mobilecachetime] > 0}{$_G['setting']['mobile'][mobilecachetime]}{else}no-cache{/if}" />
-<meta name="viewport" content="width=device-width; initial-scale=1.3;  minimum-scale=1.0; maximum-scale=2.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="MobileOptimized" content="240"/>
 <meta name="Iphone-content" content="320"/>
 <meta name="format-detection" content="telephone=no" />
@@ -133,7 +133,7 @@ body {background: #FFF; background-image:none; line-height: 130%; font-size: 10p
         {eval $nav = "forum.php";}
     <!--{/if}-->
     <div class="hd" id="top_hd">
-        <a href="#">$navtitle</a>
+        <a href="#">$_G['setting']['bbname']</a>
         <a class="pc_v" href="portal.php?mobile=no" title="<!--{if empty($nobbname)}--> $_G['setting']['bbname'] - <!--{/if}-->电脑版"><!--{if $_G['setting']['mobile']['mobilesimpletype'] == 1}--><!--{if empty($nobbname)}--> $_G['setting']['bbname'] - <!--{/if}--> {lang waptitle}<!--{else}-->电脑版<!--{/if}--></a></div>
     <div class="wp">
         <div class="pd2 headMsg">

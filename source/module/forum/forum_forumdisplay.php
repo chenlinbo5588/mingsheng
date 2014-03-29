@@ -13,6 +13,7 @@ if(!defined('IN_DISCUZ')) {
 
 require_once libfile('function/forumlist');
 $lang = lang('forum/template');
+$forumlist = forumselect(FALSE, 0, intval($_GET['fid']));
 if($_G['forum']['redirect']) {
 	dheader("Location: {$_G[forum][redirect]}");
 } elseif($_G['forum']['type'] == 'group') {

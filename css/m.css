@@ -204,10 +204,9 @@ a:hover {text-decoration:underline;}
 }
 
 .showstatus{
-	border: 1px solid #DADDDD;
-	margin-top: 6px;
+	border: 1px solid #d8d7d8;
+    border-width:1px 0 1px 0;
 	text-align: center;
-	padding: 10px 0;
 }
 
 .showstatus label {
@@ -216,45 +215,39 @@ a:hover {text-decoration:underline;}
 
 .working_notify {
     color: red;
-    font-size: 14px;
+    font-size: 12px;
     padding: 5px 0;
 }
 
-
-.tl table {
-    border-collapse: separate;
-    table-layout: fixed;
-    width: 100%;
-}
-.tl th, .tl td {
-    border-bottom: 1px solid #C2D5E3;
-    padding: 5px 0;
-}
-.emptb th, .emptb td {
-    border-bottom: medium none;
-    padding: 0;
-}
-.tl tr:hover th, .tl tr:hover td {
-    background-color: #F2F2F2;
-}
-.tl .threadpre td, .tl .threadpre:hover td {
-    background-color: #FCFCFC;
-}
-.tl .threadpre .threadpretd {
-    border-left: 1px solid #C2D5E3;
-    border-right: 1px solid #C2D5E3;
+.filter a {
+    padding:5px;
 }
 
-.tl .ths, .ths {
-    padding: 0;
-    width: 45px;
+.filter .current {
+    color:#fff;
+    background: #057894;
 }
 
-.ths div {
-    height: 28px;
-    width: 28px;
+#filter_condition, #forum_list {
+    border: 1px solid #d8d7d8;
+    border-width:0 0 1px 0;
+    padding: 10px 0 10px 20px;
+}
+#filter_condition label,#forum_list label {
+    width: 60px;
+    display: inline-block;
+}
+.wyw {
+   border: 1px solid #d8d7d8;
+   border-width:0 0 1px 0;
+   text-align:center;
+   padding: 10px 20px;
 }
 
+.wyw p {
+    background: #eeeeee;
+    padding:5px;
+}
 
 .footNav{background:url(../images/mobile/mobile_bottom.png) no-repeat;height:52px;width:320px;margin:0 auto;overflow:hidden;position:fixed;_position:absolute;z-index:9999;bottom:0px;left:50%;margin-left:-160px;}
 .footNav li{display:block;float:left;width:64px;height:52px;text-align:center;color:#D3D1D1;overflow:hidden;cursor:pointer;}
@@ -290,7 +283,7 @@ a:hover {text-decoration:underline;}
 	.search_select_list a:hover{font-weight:bold;color:#fff;text-decoration:none;background:#206F96;}
 	.search_select:hover{color:#000;background-color: #f7f7f7;}
 	.search_submit{border:1px solid #D8D7D8;width:30px;height:30px;margin-left:-1px;}
-    .search_submit button{background:url(../images/mobilebg/icons.png) 6px -96px no-repeat #fff;border:none;width:30px;height:30px;cursor:pointer;text-indent:-999px;overflow:hidden;}
+    .search_submit button{background:url(../images/mobile/icons.png) 6px -96px no-repeat #fff;border:none;width:30px;height:30px;cursor:pointer;text-indent:-999px;overflow:hidden;}
     
 .mainNav{background-color:#EDECED;height:30px;line-height:30px;overflow:hidden;color:#B2AFB2;font-size:16px;text-align:center;}/*dyy*/
 	.mainNav a{color:#4E4E4E;padding:7px 9px;}
@@ -363,3 +356,31 @@ a:hover {text-decoration:underline;}
 .sjwy_mobile .tagpic, .sjwf_mobile .tagpic {display:inline-block;_display:inline;}
 
 .bot_info {text-align: center;}
+
+/** 分页 */
+
+
+.pg {
+    
+}
+
+.pg label input[type=text] {
+    width:30px;
+    text-align: center;
+    height:13px;
+}
+
+.pg a {
+    border:1px solid #cccccc;
+    color:#1f3a87;
+    padding:5px;
+    margin:0 2px 0 0;
+}
+
+.pg strong {
+    border:1px solid #cccccc;
+    color:#ffffff;
+    background: #1f3a87;
+    padding:5px;
+    margin:0 2px 0 0;
+}

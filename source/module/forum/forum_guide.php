@@ -10,7 +10,7 @@
 if(!defined('IN_DISCUZ')) {
 	exit('Access Denied');
 }
-
+require_once libfile('function/forumlist');
 $view = $_GET['view'];
 $sortid = isset($_GET['sortid']) ? $_GET['sortid'] : 0;
 $gid = isset($_GET['gid']) ? $_GET['gid'] : 0;
@@ -137,6 +137,8 @@ loadcache('stamps');
 $currentview[$view] = 'class="xw1 a"';
 $_G['forum_list'] = get_forums();
 $data = thread_add_icon($data,'dbdateline');
+$forumlist = forumselect(FALSE, 0, intval($_GET['fid']));
+
 /**
  * 获取全局置顶 
  */
