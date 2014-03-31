@@ -206,7 +206,6 @@ a:hover {text-decoration:underline;}
 .showstatus{
 	border: 1px solid #d8d7d8;
     border-width:1px 0 1px 0;
-	text-align: center;
 }
 
 .showstatus label {
@@ -216,7 +215,7 @@ a:hover {text-decoration:underline;}
 .working_notify {
     color: red;
     font-size: 12px;
-    padding: 5px 0;
+    padding: 5px 10px;
 }
 
 .filter a {
@@ -514,9 +513,9 @@ a:hover {text-decoration:underline;}
 	min-width: 220px;
 }
 #topicbox .topic1 .t1_list li .rt h6 {
-	height: 40px;
+	1height: 40px;
 	line-height: 20px;
-	margin-bottom: 10px;
+	margin-bottom: 3px;
 	margin-right: 10px;
 	overflow: hidden;
 }
@@ -536,6 +535,7 @@ a:hover {text-decoration:underline;}
 #topicbox .topic1 .t1_list li .rt span.status {
 	float: left;
 	color: #666;
+    margin-top: -10px;
 }
 #topicbox .topic1 .t1_list li .rt span.status em.green {
 	font-style: normal;
@@ -674,6 +674,22 @@ a:hover {text-decoration:underline;}
 	background-color: #000;
 }
 
+#selectbox{line-height:22px;width:100%;}
+#selectbox .bydd{border-bottom:1px solid #d8d7d8;padding-bottom:10px;color:#4e4e4e;}
+#selectbox .bydd a{display:block;float:left;height:22px;padding-left:15px;margin-left:10px;_display:inline;color:#4e4e4e;}
+#selectbox .bydd a.d1{background:url(../images/mob_icon5.jpg) left center no-repeat;}
+#selectbox .bydd a.d2{background:url(../images/mob_icon6.jpg) left center no-repeat;}
+#selectbox .bydd a.d3{background:url(../images/mob_icon7.jpg) left center no-repeat;}
+#selectbox .bydd a.d4{background:url(../images/mob_icon8.jpg) left center no-repeat;}
+#selectbox .bydd a.d5{background:url(../images/mob_icon9.jpg) left center no-repeat;}
+#selectbox .bypx{border-bottom:1px solid #d8d7d8;padding:10px;}
+#selectbox .bypx span{float:left;}
+#selectbox .bypx a{float:left;padding:0px 5px;margin-left:5px;_display:inline;color:#4e4e4e;}
+#selectbox .bypx a:hover,#selectbox .bypx a.navOn{border-radius:2px;background:#057894;color:#FFF;}
+#selectbox .bydm{padding:10px;}
+#selectbox .bydm span{float:left;}
+#selectbox .bydm select{float:left;width:50%;margin-left:5px;_display:inline;}
+
 #top_hd {border-bottom:0;background:url(../images/mobile/top_bg.png) repeat-x;height:40px;}
 #top_hd a {color:#fff;}
 
@@ -797,4 +813,9 @@ a:hover {text-decoration:underline;}
     background: #1f3a87;
     padding:5px;
     margin:0 2px 0 0;
+}
+
+.separatorline {
+    background: #eeeeee;
+    padding: 5px;
 }

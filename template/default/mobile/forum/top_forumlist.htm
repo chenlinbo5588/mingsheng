@@ -1,38 +1,41 @@
-<div class="showstatus">
-    <label title="24小时未受理"><span class="threadstatus icon-24"></span>24小时未受理</label>
-    <label title="三天内回复"><span class="threadstatus icon-3days"></span>三天内回复</label>
-    <label title="五天内回复"><span class="threadstatus icon-5days"></span>五天内回复</label>
-    <label title="五天外回复"><span class="threadstatus icon-5daysover"></span>五天外回复</label>
-    <label title="超时未回复"><span class="threadstatus icon-overtime"></span>超时未回复</label>
-    <div class="working_notify">告知：网络发言人帖文受理时间为正常上班工作日，遇节假日顺延处理。</div>
-</div>
-<div class="filter" id="filter_condition">
-    <label>排序时间:</label>
-    <!--{eval $addstring = empty($_GET['fid']) ? '' : 'mod=forumdisplay&fid='.$_GET['fid'].'&' ;}-->
-    <a href="forum.php?{$addstring}filter=lastpost&orderby=lastpost&mobile=yes" <!--{if $_GET['orderby'] == 'lastpost'}-->class="current"<!--{/if}-->>最后发表</a>
-    <a href="forum.php?{$addstring}filter=dateline&orderby=dateline&mobile=yes" <!--{if $_GET['orderby'] == 'dateline'}-->class="current"<!--{/if}-->>发帖时间</a>
-</div>
-<div class="forum_list" id="forum_list">
-    <label>部门:</label>
-    <select name="forum_list" style="width:200px;" id="forumlist" onchange="">
-        <option value="0" <!--{if $_GET['fid']}-->selected<!--{/if}-->>所有部门</option>
-        $forumlist
-    </select>
-    <script>
-        $(function(){
-            $("#forumlist").bind("change",function(e){
-                var t = $(e.target);
-                var url = '';
-                if(t.val() == '0'){
-                   url = 'forum.php?mobile=yes';
-                }else{
-                   url  = 'forum.php?mod=forumdisplay&fid=' + t.val() + '&mobile=yes';
-                }
-                location.href = url;
+<div id="selectbox">
+    <div class="showstatus">
+        <label title="24小时未受理"><span class="threadstatus icon-24"></span>24小时未受理</label>
+        <label title="三天内回复"><span class="threadstatus icon-3days"></span>三天内回复</label>
+        <label title="五天内回复"><span class="threadstatus icon-5days"></span>五天内回复</label>
+        <label title="五天外回复"><span class="threadstatus icon-5daysover"></span>五天外回复</label>
+        <label title="超时未回复"><span class="threadstatus icon-overtime"></span>超时未回复</label>
+        <div class="working_notify">告知：网络发言人帖文受理时间为正常上班工作日，遇节假日顺延处理。</div>
+    </div>
+    <div class="bypx clearfix">
+        <span>排序时间:</span>
+        <!--{eval $addstring = empty($_GET['fid']) ? '' : 'mod=forumdisplay&fid='.$_GET['fid'].'&' ;}-->
+        <a href="forum.php?{$addstring}filter=reply&orderby=replies&mobile=yes" <!--{if $_GET['orderby'] == 'replies'}-->class="navOn"<!--{/if}-->>帖子热度</a>
+        <a href="forum.php?{$addstring}filter=lastpost&orderby=lastpost&mobile=yes" <!--{if $_GET['orderby'] == 'lastpost'}-->class="navOn"<!--{/if}-->>回帖时间</a>
+        <a href="forum.php?{$addstring}filter=dateline&orderby=dateline&mobile=yes" <!--{if $_GET['orderby'] == 'dateline' || $_GET['orderby'] == ''}-->class="navOn"<!--{/if}-->>发帖时间</a>
+    </div>
+    <div class="bydm clearfix" id="forum_list">
+        <span>部门:</span>
+        <select name="forum_list" id="forumlist">
+            <option value="0" <!--{if $_GET['fid']}-->selected<!--{/if}-->>所有部门</option>
+            $forumlist
+        </select>
+        <script>
+            $(function(){
+                $("#forumlist").bind("change",function(e){
+                    var t = $(e.target);
+                    var url = '';
+                    if(t.val() == '0'){
+                    url = 'forum.php?mobile=yes';
+                    }else{
+                    url  = 'forum.php?mod=forumdisplay&fid=' + t.val() + '&mobile=yes';
+                    }
+                    location.href = url;
+                });
             });
-        });
-        
-    </script>
+
+        </script>
+    </div>
 </div>
 <div class="wyw">
     <p>

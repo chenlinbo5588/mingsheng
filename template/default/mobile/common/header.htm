@@ -113,10 +113,6 @@ body {background: #FFF; background-image:none; line-height: 130%; font-size: 10p
 	.profile_table th { border-top: 2px #efefef solid;}
 .jammer { font-size: 10px; color:#FFF;}
 
-.header,.ft,.content {
-    width:320px;
-    margin:0 auto;
-}
 .ft {
     margin:0 auto 60px;
 }
@@ -124,6 +120,7 @@ body {background: #FFF; background-image:none; line-height: 130%; font-size: 10p
 </style>
 <link type="text/css" rel="stylesheet" href="css/m.css" />
 <script src="{STATICURL}js/mobile/jquery-1.8.3.min.js?{VERHASH}"></script>
+<script src="{STATICURL}js/mobile/TouchSlide.1.1.js"></script>
 </head>
 <body>
 <div id="header">
@@ -141,11 +138,12 @@ body {background: #FFF; background-image:none; line-height: 130%; font-size: 10p
         <!--{if $_G['uid']}--><a href="home.php?mod=space&uid={$_G['uid']}&do=profile">{$_G['member']['username']}</a><span class="pipe">|</span><a href="home.php?mod=space&do=pm" {if $_G[member][newpm]}class="xi1"{/if}>{if $_G[member][newpm]}{lang new_pm}{else}{lang pm_center}{/if}</a><span class="pipe">|</span><a href="home.php?mod=space&uid={$_G[uid]}&do=favorite&view=me&type=forum">{lang favorite}</a><span class="pipe">|</span><a href="home.php?mod=space&uid={$_G[uid]}&do=thread&view=me">{lang my_posts}</a><span class="pipe">|</span><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}" title="{lang logout}">{lang logout}</a><!--{elseif $_G['connectguest']}-->{$_G['member']['username']}<span class="pipe">|</span><a href="member.php?mod=logging&action=logout&formhash={FORMHASH}" title="{lang logout}">{lang logout}</a><!--{else}--><a href="member.php?mod=logging&action=login" title="{lang login}">{lang login}</a><!--{if $_G['setting']['regstatus']}--><span class="pipe">|</span><a href="member.php?mod={$_G[setting][regname]}" title="{$_G['setting']['reglinkname']}">{$_G['setting']['reglinkname']}</a><!--{/if}--><!--{if $_G['setting']['connect']['allow'] && !$_G['setting']['bbclosed']}--><span class="pipe">|</span><a href="$_G[connect][login_url]&statfrom=login_simple">{lang qqconnect:connect_mobile_login}</a><!--{/if}--><!--{/if}-->
     </div>
     <div class="srh clearfix">
-        <form action="/plus/search.php" name="formsearch" target="_blank" onSubmit="if(keyword.value==''){alert('请输入搜索的关键词');return false;}">
-            <input type="text" name="keyword" autocomplete="off" maxlength="2048" onFocus="this.value=''" onBlur="if(!value){value=defaultValue;}" value="输入搜索关键词" /></li>
-                <input type="hidden" id="ref" name="typeid" value="1" />
-                <input type="hidden" name="searchtype"  id="search-option" value="1" />
-                <button type="submit">&nbsp;</button>
+        <form action="search.php?mod=forum" name="formsearch" target="_blank" onSubmit="if(keyword.value==''){alert('请输入搜索的关键词');return false;}">
+            <input type="hidden" name="formhash" value="{FORMHASH}">
+            <input type="hidden" name="searchsubmit" value="yes">
+            <input type="hidden" name="searchid" value="3">
+            <input type="text" name="srchtxt" autocomplete="off" maxlength="2048" onFocus="this.value=''" onBlur="if(!value){value=defaultValue;}" value="输入搜索关键词" /></li>
+            <button type="submit">&nbsp;</button>
         </form>
     </div>
 </div>

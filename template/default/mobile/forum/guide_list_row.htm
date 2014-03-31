@@ -1,15 +1,16 @@
                     <!--{subtemplate forum/guide_stick_list_row}-->
                     
                     <!--{if $list['threadcount']}-->
+                        <ul class="t1_list clearfix">
 						<!--{loop $list['threadlist'] $key $thread}-->
                             <!--{if !empty($globlStickList[$thread[tid]])}-->
-							<li class="sjsjwz" id="$thread[id]" style="display:none;">
+							<li id="$thread[id]" style="display:none;">
                             <!--{else}-->
-                            <li class="sjsjwz id="$thread[id]">
+                            <li id="$thread[id]">
                             <!--{/if}-->
-                                <div class="clearfix">
-                                    <ul class="sjsjwzl fl"><img src="/uc_server/avatar.php?uid={$thread['authorid']}&size=small" class="touxiang"></ul>
-                                    <ul class="sjsjwzr fr"><h6><a href="forum.php?mod=viewthread&tid=$thread[tid]&{if $_GET['archiveid']}archiveid={$_GET['archiveid']}&{/if}extra=$extra" title="{if $thread['displayorder'] == 1}{lang thread_type1} - {/if}
+                                <div class="lt"><img src="/uc_server/avatar.php?uid={$thread['authorid']}&size=middle" /><span>{$thread['author']}</span></div>
+                                <div class="rt">
+                                    <h6><a href="forum.php?mod=viewthread&tid=$thread[tid]&{if $_GET['archiveid']}archiveid={$_GET['archiveid']}&{/if}extra=$extra" title="{if $thread['displayorder'] == 1}{lang thread_type1} - {/if}
 											{if $thread['displayorder'] == 2}{lang thread_type2} - {/if}
 											{if $thread['displayorder'] == 3}{lang thread_type3} - {/if}
 											{if $thread['displayorder'] == 4}{lang thread_type4} - {/if}
@@ -19,7 +20,7 @@
 											{if $thread['special'] == 3}{lang thread_reward} - {/if}
 											{if $thread['special'] == 4}{lang thread_activity} - {/if}
 											{if $thread['special'] == 5}{lang thread_debate} - {/if}
-											{if $thread[folder] == "new"}{lang have_newreplies}{/if}>
+											{if $thread[folder] == 'new'}{lang have_newreplies}{/if}">
 										<!--{if $thread[folder] == 'lock'}-->
 											<img src="{IMGDIR}/folder_lock.gif" />
 										<!--{elseif $thread['special'] == 1}-->
@@ -37,19 +38,16 @@
 										<!--{else}-->
 											<img src="{IMGDIR}/folder_$thread[folder].gif" />
 										<!--{/if}-->
-										</a><a href="forum.php?mod=forumdisplay&fid={$thread[fid]}" style="color:{$_G[cache][forums][$thread[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$thread[fid]][name]}]</b></a><a href="forum.php?mod=viewthread&amp;tid={$thread['tid']}" title="{$thread['subject']}">{$thread['subject']}</a></h6>
-                                        <div class="sjtime">发表时间:{$thread['dateline']}</div>
-                                    </ul>
+										</a><a href="forum.php?mod=forumdisplay&fid={$thread[fid]}" class="town" style="color:{$_G[cache][forums][$thread[fid]][extra][namecolor]}">[{$_G[cache][forums][$thread[fid]][name]}]</a><a href="forum.php?mod=viewthread&amp;tid={$thread['tid']}" class="title">{$thread['subject']}</a></h6>
+                                    <div class="date">发表时间：{$thread['dateline']}</div>
+                                    <div class="clearfix">
+                                        <span class="status" >状态：<em class="threadstatus {$thread['className']}" title="{$thread['statusTitle']}" ></em>{$thread['show_text']}</span>
+                                        <span class="reply">回复{$thread['views']} | 查看{$thread['replies']}</span>
+                                    </div>
                                 </div>
-                                <div class="clearfix">
-                                    <ul class="sjsjwzl zuozhe fl">{$thread['author']}</ul>
-                                    <ul class="sjsjwzr qita fr">
-                                        <div class="fl">状态:{$thread['show_text']}</div>
-                                        <span title="{$thread['statusTitle']}" class="threadstatus  {$thread['className']}"></span>
-                                        <div class="fr tr">回复/查看:{$thread['views']}/{$thread['replies']}</div>
-                                    </ul>
-                                </div>
+                            </li>
 						<!--{/loop}-->
+                        </ul>
 				<!--{else}-->
 						<div><p class="emp">{lang guide_nothreads}</p></div>
 				<!--{/if}-->
