@@ -819,3 +819,32 @@ a:hover {text-decoration:underline;}
     background: #eeeeee;
     padding: 5px;
 }
+/*用户注册*/
+#regbox{width:100%;min-width:320px;border-top:1px solid #FFF;margin-top:10px;}
+#regbox dl dt{height:30px;line-height:30px;text-align:center;background:#cce8fe;text-shadow:1px 1px 0px #FFF;font-weight:bold;font-size:15px;color:#1084a0;}
+#regbox dl dd{padding:15px 0px;}
+#regbox dl dd li{min-width:300px;padding:3px 10px;color:#4e4e4e;}
+#regbox dl dd li span{display:inline-block;width:80px;}
+#regbox dl dd li input.txt{width:180px;}
+#regbox dl dd li input.vkey{width:60px;}
+#regbox dl dd li select{width:180px;color:#4e4e4e;}
+#regbox dl dd li textarea{width:210px;height:100px;margin-top:5px;color:#4e4e4e;}
+#regbox dl dd li em{display:block;line-height:20px;font-style:normal;color:#8a8a8a;}
+#regbox dl dd li #lgbtn,#regbox dl dd li .registerbtn{width:90px;height:30px;background:url(../images/mobile/mob_lgbtn.jpg) left top repeat-x;border:1px solid #87b3cb;font-family:"Microsoft YaHei",sans-serif;color:#0a5481;}
+#mobile {width: 180px;}
+#regbox dl dd li #lgbtn{margin:10px 15px 10px 25px;}
+#userbox{width:100%;min-width:320px;margin-top:10px;}
+#userbox dl dt{height:30px;line-height:30px;text-align:center;background:#cce8fe;text-shadow:1px 1px 0px #FFF;font-weight:bold;font-size:15px;color:#1084a0;}
+#userbox dl dd{background-color:#eff9fe;padding:15px;}
+#userbox dl dd .uhead{float:left;}
+#userbox dl dd .uinfo{float:left;line-height:18px;padding-left:15px;color:#4e4e4e;}
+#userbox dl dd .uinfo h6{margin-bottom:10px;color:#000;}
+#userbox ul{padding:15px;}
+#userbox ul li{float:left;margin-right:10px;margin-bottom:5px;_display:inline;}
+#userbox ul li a{display:block;width:60px;height:25px;line-height:25px;text-align:center;padding-top:37px;font-size:12px;color:#666;}
+#userbox ul li a.jf{background:url(../images/mobile/mob_ucon1.jpg) center 5px no-repeat;}
+#userbox ul li a.hy{background:url(../images/mobile/mob_ucon2.jpg) center 5px no-repeat;}
+#userbox ul li a.xx{background:url(../images/mobile/mob_ucon3.jpg) center 5px no-repeat;}
+#userbox ul li a.sz{background:url(../images/mobile/mob_ucon4.jpg) center 5px no-repeat;}
+#userbox ul li img{display:block;width:32px;height:32px;margin:0 auto;}
+#valide-code-btn {height: 27px; padding: 0 5px;}
