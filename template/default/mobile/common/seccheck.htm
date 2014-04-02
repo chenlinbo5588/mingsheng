@@ -12,22 +12,15 @@
 <!--{/if}-->
 <!--{if $sectpl}-->
 	<!--{if $secqaacheck}-->
-		<p>
-        
-        <strong>{lang secqaa}</strong>
-        <br />
+        <span>{lang secqaa}</span>
         <span class="xg2">$secqaa</span>
-	<input name="secqaahash" type="hidden" value="$sechash" />
+        <input name="secqaahash" type="hidden" value="$sechash" />
         <input name="secanswer" id="secqaaverify_$sechash" type="text" class="txt" />
-        </p>
 	<!--{/if}-->
 	<!--{if $seccodecheck}-->
-    	<p>
-		<strong>{lang seccode}</strong><br />
-        <img src="misc.php?mod=seccode&update={$ran}&idhash={$sechash}&mobile=yes&modid={$_G[basescript]}::{CURMODULE}" />
-        <br />
-	<input name="seccodehash" type="hidden" value="$sechash" />
-        <input name="seccodeverify" id="seccodeverify_$sechash" type="text" autocomplete="off" class="txt" />
-        </p>
+		<span>{lang seccode}</span>
+        <input name="seccodehash" type="hidden" value="$sechash" />
+        <input name="seccodeverify" id="seccodeverify_$sechash" type="text" autocomplete="off" class="txt vkey" />
+        <img style="width:88px;float:left;margin-left: 5px;" src="misc.php?mod=seccode&update={$ran}&idhash={$sechash}&mobile=yes&modid={$_G[basescript]}::{CURMODULE}" />
 	<!--{/if}-->
 <!--{/if}-->
