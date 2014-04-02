@@ -852,7 +852,6 @@ a:hover {text-decoration:underline;}
 #userbox{width:100%;min-width:320px;margin-top:10px;}
 #userbox dl dt{height:30px;line-height:30px;text-align:center;background:#cce8fe;text-shadow:1px 1px 0px #FFF;font-weight:bold;font-size:15px;color:#1084a0;}
 #userbox dl dd{background-color:#eff9fe;padding:15px;}
-#userbox dl dd .uhead{float:left;}
 #userbox dl dd .uinfo{float:left;line-height:18px;padding-left:15px;color:#4e4e4e;}
 #userbox dl dd .uinfo h6{margin-bottom:10px;color:#000;}
 #userbox ul{padding:15px;}
@@ -863,4 +862,5 @@ a:hover {text-decoration:underline;}
 #userbox ul li a.xx{background:url(../images/mobile/mob_ucon3.jpg) center 5px no-repeat;}
 #userbox ul li a.sz{background:url(../images/mobile/mob_ucon4.jpg) center 5px no-repeat;}
 #userbox ul li img{display:block;width:32px;height:32px;margin:0 auto;}
+#userbox .user-photo img {width: 65px; height: 65px;float:left;}
 #valide-code-btn {height: 27px; padding: 0 5px;}
