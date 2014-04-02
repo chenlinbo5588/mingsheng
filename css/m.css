@@ -322,6 +322,7 @@ a:hover {text-decoration:underline;}
 #loginbox dl dd li span{display:block;float:left;width:80px;line-height:24px;text-align:center;font-size:12px;color:#000;}
 #loginbox .username,#loginbox .pass,#loginbox .vkey{display:block;float:left;width:120px;height:20px;line-height:20px;border:1px solid #bab8b8;padding:2px 5px;}
 #loginbox .vkey{width:50px;}
+#seccode_wrap img {width:88px;float:left;margin-left: 5px;}
 #loginbox #submit,#loginbox #rgbtn{width:100px;height:32px;padding:0px;border-radius:4px;cursor:pointer;font-family:"Microsoft YaHei",sans-serif;font-size:14px;}
 #loginbox #submit{border:1px solid #84b1ca;background:url(../images/mobile/mob_lgbtn.jpg) left top repeat-x;margin:10px 10px 0px 12px;color:#0e5489;}
 #loginbox #rgbtn{border:1px solid #d09763;background:url(../images/mobile/mob_rgbtn.jpg) left top repeat-x;color:#a57b0e;}
