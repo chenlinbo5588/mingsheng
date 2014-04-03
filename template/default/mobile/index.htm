@@ -6,10 +6,13 @@
     <div id="slidebox">
         <div class="notice">
             <div class="nt_name">
-                <span>便民公告</span><span>天气预报</span>
+                <span class="show">便民公告</span><span>天气预报</span>
             </div>
             <div class="nt_conts">
-                <p class="show">今天阴有阵雨，部分地区雨量中等，下午转阴到多云。东南风4～5级。今天最高气温21～23℃，明天最低气温15～17℃。</p>
+                <p class="show"><!--{if $announcement['type'] == 1}--><a href="{$announcement['message']}&mobile=yes">{$announcement['subject']}</a><!--{else}-->{$announcement['subject']}<!--{/if}--></p>
+            </div>
+            <div class="nt_conts">
+                <p class="show">今天 温度 {$weather['weatherinfo']['temp']}摄氏度,{$weather['weatherinfo']['WD']}{$weather['weatherinfo']['WS']},湿度{$weather['weatherinfo']['SD']} </p>
             </div>
         </div>
         <div class="bar" id="slideBar">
@@ -21,7 +24,19 @@
             <ul class="pager"><li class="">1</li><li class="navOn">2</li><li class="">3</li></ul>
         </div>
     </div>
-
+    <script>
+        $(function(){
+            $('.notice .nt_name span').each(function(index){
+                $(this).click(function(){
+                    $('.notice .nt_name span').removeClass('show');
+                    $(this).addClass("show");
+                    $(".notice .nt_conts").hide();
+                    $(".notice .nt_conts:eq(" + index + ")").show();
+                });
+            });
+            
+        });
+    </script>
 	<!--hot_start-->
     <div id="topicbox">
         <div class="t_online"><a href="forum.php?mobile=yes">{$bm_count}个部门在线值守</a></div>

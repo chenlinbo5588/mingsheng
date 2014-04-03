@@ -375,7 +375,7 @@ a:hover {text-decoration:underline;}
 	margin-left: -1px;
 	cursor: pointer;
 }
-#slidebox .notice .nt_name span:hover, #slidebox .notice .nt_name span.show {
+#slidebox .notice .nt_name span.current, #slidebox .notice .nt_name span.show {
 	border-right: none;
 	background: url(../images/mobile/mob_icon2.jpg) right center no-repeat;
 }

@@ -58,6 +58,32 @@ foreach($_G['cache']['forums'] as $key => $val){
     $bm_count++;
 }
 
+
+$ch = curl_init();
+curl_setopt($ch, CURLOPT_URL, 'http://www.weather.com.cn/data/sk/101210403.html');
+curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+curl_setopt($ch, CURLOPT_POST, false);
+
+$resp = curl_exec($ch);
+curl_close($ch);
+
+$weather = $resp ? json_decode($resp,true) : '';
+
+/*
+$weather = file_get_contents("http://www.weather.com.cn/data/sk/101210403.html");
+
+ */
+
+$announcement = array();
+
+if($_G['page'] == 1) {
+    $announcement = C::t('forum_announcement')->fetch_by_displayorder(TIMESTAMP);
+    if($announcement){
+        $announcement['starttime'] = dgmdate($announcement['starttime'], 'u');
+    }
+}
 $askingThreads = C::t('forum_thread')->fetch_by_sortid(array(2,3), " dateline DESC " ,0,15);
 $answeringThreads = C::t('forum_thread')->fetch_by_sortid(4," lastpost DESC " ,0,15);
 
