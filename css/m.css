@@ -326,6 +326,7 @@ a:hover {text-decoration:underline;}
 #loginbox #submit,#loginbox #rgbtn{width:100px;height:32px;padding:0px;border-radius:4px;cursor:pointer;font-family:"Microsoft YaHei",sans-serif;font-size:14px;}
 #loginbox #submit{border:1px solid #84b1ca;background:url(../images/mobile/mob_lgbtn.jpg) left top repeat-x;margin:10px 10px 0px 12px;color:#0e5489;}
 #loginbox #rgbtn{border:1px solid #d09763;background:url(../images/mobile/mob_rgbtn.jpg) left top repeat-x;color:#a57b0e;}
+#loginbox .verify-box a {display:block;text-align: right;margin-bottom: 5px;}
 
 
 #navbox {
@@ -841,14 +842,16 @@ a:hover {text-decoration:underline;}
 #regbox dl dd{padding:15px 0px;}
 #regbox dl dd li{min-width:300px;padding:3px 10px;color:#4e4e4e;}
 #regbox dl dd li span{display:inline-block;width:80px;}
-#regbox dl dd li input.txt{width:180px;}
+#regbox dl dd li input.txt,
+#regbox dl dd li input.px{width:180px;background: none;padding: 2px 0;}
 #regbox dl dd li input.vkey{width:60px;}
-#regbox dl dd li select{width:180px;color:#4e4e4e;}
+#regbox dl dd li select{width:178px;color:#4e4e4e;}
 #regbox dl dd li textarea{width:210px;height:100px;margin-top:5px;color:#4e4e4e;}
 #regbox dl dd li em{display:block;line-height:20px;font-style:normal;color:#8a8a8a;}
 #regbox dl dd li #lgbtn,#regbox dl dd li .registerbtn{width:90px;height:30px;background:url(../images/mobile/mob_lgbtn.jpg) left top repeat-x;border:1px solid #87b3cb;font-family:"Microsoft YaHei",sans-serif;color:#0a5481;}
 #mobile {width: 180px;}
 #regbox dl dd li #lgbtn{margin:10px 15px 10px 25px;}
+#seccode_wrap img {float: none;}
 #userbox{width:100%;min-width:320px;margin-top:10px;}
 #userbox dl dt{height:30px;line-height:30px;text-align:center;background:#cce8fe;text-shadow:1px 1px 0px #FFF;font-weight:bold;font-size:15px;color:#1084a0;}
 #userbox dl dd{background-color:#eff9fe;padding:15px;}

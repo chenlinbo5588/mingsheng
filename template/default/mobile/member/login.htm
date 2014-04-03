@@ -25,12 +25,12 @@
                         <!--{/if}-->
                         <option value="email">Email</option>
                         </select>
-                        <span>{lang username}</span><input type="text" name="username" id="username_{$loginhash}" class="txt username" />
+                        <span>{lang username}：</span><input type="text" name="username" id="username_{$loginhash}" class="txt username" />
                     </li>
                     <li>
-                        <span>{lang password}:</span><input type="password" name="password" id="password3_$loginhash" class="txt pass" value='' />
+                        <span>{lang password}：</span><input type="password" name="password" id="password3_$loginhash" class="txt pass" value='' />
                     </li>
-                    <li style="position:relative;">
+                    <li class="verify-box">
                         <!--{if $seccodecheck}-->
                             <!--{subtemplate common/seccheck}-->
                         <!--{/if}-->

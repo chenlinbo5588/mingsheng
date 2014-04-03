@@ -18,11 +18,11 @@
         <input name="secanswer" id="secqaaverify_$sechash" type="text" class="txt" />
 	<!--{/if}-->
 	<!--{if $seccodecheck}-->
-		<span>{lang seccode}</span>
+		<span>{lang seccode}：</span>
         <input name="seccodehash" type="hidden" value="$sechash" />
         <input name="seccodeverify" id="seccodeverify_$sechash" type="text" autocomplete="off" class="txt vkey" />
         <strong id="seccode_wrap"><img src="misc.php?mod=seccode&update={$ran}&idhash={$sechash}&mobile=yes&modid={$_G[basescript]}::{CURMODULE}" /></strong>
-        <a href="javascript:void(0);" style="display:block;position: absolute;bottom: -6px;right: 45px;" onclick="updateseccode()">{lang mobile:change_seccode}</a>
+        <a href="javascript:void(0);" onclick="updateseccode()">{lang mobile:change_seccode}</a>
         <script type="text/javascript">
         var updateseccode = function () {document.getElementById('seccode_wrap').innerHTML = '<img id="seccode" src="$_G[siteurl]api/mobile/index.php?module=seccode&sechash=$sechash&mobile=no&version={if empty($_GET['secversion'])}1{else}$_GET['secversion']{/if}&random=' + Math.random() + '" />';}
         updateseccode();
