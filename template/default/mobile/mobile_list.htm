@@ -1,0 +1,19 @@
+<!--{template common/header}-->
+    <div id="navbox">
+        <a href="m.php?mobile=yes" target="_self">首页</a>|<a href="forum.php?mobile=yes" target="_self">民生论坛</a>|<a href="m.php?mod=mobile_list&catid=2&mobile=yes" class="current"  target="_self">民生快递</a>
+    </div>
+
+    <div id="newsbox">
+        <div class="n_tab">
+            <span>民生快递</span>
+        </div>
+        <ul class="n_list clearfix">
+            <!--{loop $list['list'] $value}-->
+            <li><a href="m.php?mod=mobile_view&aid={$value['aid']}" target="_self">$value[title]</a></li>
+            <!--{/loop}-->
+        </ul>
+        <div class="pgs">{$list['multi']}</div>
+    </div>
+
+<!--{template common/footer}-->
+

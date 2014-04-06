@@ -649,6 +649,34 @@ a:hover {text-decoration:underline;}
 	padding: 0px 10px;
 	color: #333;
 }
+/* 详情样式 */
+#detialbox{width:100%;min-width:320px;}
+#detialbox .ms_title{border-top:1px solid #d8d7d8;border-bottom:1px solid #d8d7d8;padding:20px 10px;font-size:18px;color:#000;}
+#detialbox .curdate{text-align:center;padding:10px 10px;font-size:12px;color:#999;}
+#detialbox .abstract{line-height:18px;background:#f5f5f5;padding:12px;margin:0px 10px;color:#4e4e4e;}
+#detialbox .curtext{padding:20px 10px 30px 10px;line-height:20px;}
+#detialbox .curtext p{text-indent:2em;}
+#detialbox .qt_title strong{display:block;text-align:center;padding:0px 10px;margin:10px 0px;font-size:18px;color:#002459;}
+#detialbox .qt_title h2{background:#e8e8e8;padding:8px 10px;color:#4e4e4e;}
+#detialbox .qt_title h2 em{margin-right:5px;font-style:normal;font-weight:bold;}
+#detialbox .qt_title h2 em.green{color:#0b7f9b;}
+#detialbox .qt_title h2 em.red{color:#F00;}
+#detialbox .reply_list{border-top:1px dotted #d8d7d8;margin:20px 0px;}
+#detialbox .reply_list li{border-bottom:1px dotted #d8d7d8;padding:10px;}
+#detialbox .reply_list li .uname{padding-bottom:5px;color:#929292;}
+#detialbox .thread{padding:20px 10px;}
+#detialbox .thread .curname label{margin-left:10px;}
+#detialbox .thread textarea{width:95%;min-width:290px;height:100px;margin-top:10px;}
+#detialbox .thread #subbtn{display:block;width:80px;height:30px;background:url(../images/mob_rpbtn.jpg) left top repeat-x;border:1px solid #949494;border-radius:4px;box-shadow:1px 1px 2px #CCC;margin:15px auto;cursor:pointer;font-family:"Microsoft YaHei",sans-serif;color:#333;}
+
+
+#turnpage{height:60px;border:1px solid #d8d7d8;border-width: 1px 0 1px 0;}
+#turnpage a{display:inline-block;width:50%;line-height:60px;text-align:center;}
+#turnpage a.home{width:49%;background:url(../images/mobile/mob_icon3.jpg) 30px center no-repeat;border-right:1px solid #CCC;}
+#turnpage a.top{background:url(../images/mobile/mob_icon4.jpg) 35px center no-repeat;}
+
+
+
 
 /* 底部浮动菜单 */
 #floatbox {
@@ -805,16 +833,11 @@ a:hover {text-decoration:underline;}
 .bot_info {text-align: center;}
 
 /** 分页 */
-
-
-.pg {
-    
-}
-
 .pg label input[type=text] {
     width:30px;
     text-align: center;
-    height:13px;
+    height:10px;
+    display:none;
 }
 
 .pg a {
@@ -824,18 +847,15 @@ a:hover {text-decoration:underline;}
     margin:0 2px 0 0;
 }
 
-.pg strong {
-    border:1px solid #cccccc;
-    color:#ffffff;
-    background: #1f3a87;
-    padding:5px;
-    margin:0 2px 0 0;
-}
-
 .separatorline {
     background: #eeeeee;
     padding: 5px;
 }
+
+.pg {height:22px;text-align:right;padding:0px 10px;margin:15px 0px;}
+.pg a,.pg strong {display:inline-block;height:20px;line-height:20px;text-align:center;border:1px solid #CCC;padding:0px 5px;font-size:12px;font-weight:bold;color:#1f3a87;}
+.pg a:hover , .pg a.navOn , .pg strong {background:#1f3a87;color:#FFF;}
+
 /*用户注册*/
 #regbox{width:100%;min-width:320px;border-top:1px solid #FFF;margin-top:10px;}
 #regbox dl dt{height:30px;line-height:30px;text-align:center;background:#cce8fe;text-shadow:1px 1px 0px #FFF;font-weight:bold;font-size:15px;color:#1084a0;}

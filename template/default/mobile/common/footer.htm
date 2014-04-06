@@ -1,15 +1,15 @@
 </div>
 <!--{hook/global_footer_mobile}-->
-<!--{if empty($loginPage)}-->
-<div class="ft">
-    <p  class="bot_info"><a href="m.php?mobile=yes">返回首页</a> <a href="javascript:void(0)" onclick="window.scrollTo(0, 0);">返回顶部</a>
+<!--{if empty($turnpage)}-->
+<div id="turnpage" class="ft">
+    <a class="home" href="m.php?mobile=yes">返回首页</a> <a href="javascript:void(0)" class="top" onclick="window.scrollTo(0, 0);">返回顶部</a>
 </div>
 <!--{/if}-->
 <div id="floatbox">
     <div class="ft_main">
         <a href="m.php?mobile=yes" class="nav1">首页</a>
         <a href="forum.php?mobile=yes" class="nav2">问效</a>
-        <a href="portal.php?mod=list&catid=2&mobile=yes" class="nav3">民生快递</a>
+        <a href="m.php?mod=mobile_list&catid=2&mobile=yes" class="nav3">民生快递</a>
         <!--{if $_G['uid']}-->
         <a href="home.php?mod=space&uid={$_G['uid']}&do=profile&mobile=yes" class="nav4">个人中心</a>
         <!--{else}-->
