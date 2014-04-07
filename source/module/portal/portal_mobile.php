@@ -113,7 +113,7 @@ foreach($zhThreads as $k =>  $val) {
 $askingThreads = thread_add_icon_by_row($askingThreads);
 $answeringThreads = thread_add_icon_by_row($answeringThreads);
 
-$wheresql = 'catid = 2';
+$wheresql = 'catid = 2 AND status=0 ';
 $list = C::t('portal_article_title')->fetch_all_by_sql($wheresql, 'ORDER BY at.dateline DESC', 0, 10, 0, 'at');
 
 include_once template('index');
