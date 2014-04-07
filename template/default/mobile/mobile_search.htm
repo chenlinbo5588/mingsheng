@@ -1,0 +1,58 @@
+<!--{template mobile/common/header}-->
+    <div id="topicbox">
+        <div class="topic1">
+            <!--{if count($threadlist)}-->
+            <ul class="t1_list clearfix">
+            <!--{loop $threadlist $key $thread}-->
+                <li id="{$view}_stickthread_$thread[tid]">
+                    <div class="lt"><img src="/uc_server/avatar.php?uid={$thread['authorid']}&size=middle" /><span>{$thread['author']}</span></div>
+                    <div class="rt">
+                        <h6><a href="forum.php?mod=viewthread&tid=$thread[tid]&{if $_GET['archiveid']}archiveid={$_GET['archiveid']}&{/if}extra=$extra" title="{if $thread['displayorder'] == 1}{lang thread_type1} - {/if}
+                                {if $thread['displayorder'] == 2}{lang thread_type2} - {/if}
+                                {if $thread['displayorder'] == 3}{lang thread_type3} - {/if}
+                                {if $thread['displayorder'] == 4}{lang thread_type4} - {/if}
+                                {if $thread[folder] == 'lock'}{lang closed_thread} - {/if}
+                                {if $thread['special'] == 1}{lang thread_poll} - {/if}
+                                {if $thread['special'] == 2}{lang thread_trade} - {/if}
+                                {if $thread['special'] == 3}{lang thread_reward} - {/if}
+                                {if $thread['special'] == 4}{lang thread_activity} - {/if}
+                                {if $thread['special'] == 5}{lang thread_debate} - {/if}
+                                {if $thread[folder] == 'new'}{lang have_newreplies}{/if}">
+                            <!--{if $thread[folder] == 'lock'}-->
+                                <img src="{IMGDIR}/folder_lock.gif" />
+                            <!--{elseif $thread['special'] == 1}-->
+                                <img src="{IMGDIR}/pollsmall.gif" alt="{lang thread_poll}" />
+                            <!--{elseif $thread['special'] == 2}-->
+                                <img src="{IMGDIR}/tradesmall.gif" alt="{lang thread_trade}" />
+                            <!--{elseif $thread['special'] == 3}-->
+                                <img src="{IMGDIR}/rewardsmall.gif" alt="{lang thread_reward}" />
+                            <!--{elseif $thread['special'] == 4}-->
+                                <img src="{IMGDIR}/activitysmall.gif" alt="{lang thread_activity}" />
+                            <!--{elseif $thread['special'] == 5}-->
+                                <img src="{IMGDIR}/debatesmall.gif" alt="{lang thread_debate}" />
+                            <!--{elseif in_array($thread['displayorder'], array(1, 2, 3, 4))}-->
+                                <img src="{IMGDIR}/pin_$thread[displayorder].gif" alt="$_G[setting][threadsticky][3-$thread[displayorder]]" />
+                            <!--{else}-->
+                                <img src="{IMGDIR}/folder_$thread[folder].gif" />
+                            <!--{/if}-->
+                            </a><a href="forum.php?mod=forumdisplay&fid={$thread[fid]}" class="town" style="color:{$_G[cache][forums][$thread[fid]][extra][namecolor]}">[{$_G[cache][forums][$thread[fid]][name]}]</a><a href="forum.php?mod=viewthread&amp;tid={$thread['tid']}" class="title">{$thread['subject']}</a></h6>
+                        <div class="date">发表时间：{$thread['dateline']}</div>
+                        <div class="clearfix">
+                            <span class="status" >状态：<em class="threadstatus {$thread['className']}" title="{$thread['statusTitle']}" ></em>{$thread['show_text']}</span>
+                            <span class="reply">回复{$thread['views']} | 查看{$thread['replies']}</span>
+                        </div>
+                    </div>
+                </li>
+            <!--{/loop}-->
+            </ul>
+            <!--{else}-->
+            找不到结果
+            <!--{/if}-->
+        </div>
+        <div class="pgs">$multipage</div>
+    </div>
+
+
+
+<!--{template mobile/common/footer}-->
+
