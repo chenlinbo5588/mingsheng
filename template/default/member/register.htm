@@ -193,6 +193,27 @@
 						</div>
 						<!--{eval $invitecode = 1;}-->
 						<!--{/if}-->
+                        
+<!--                        <div class="rfm">
+                            <table>
+                                <tbody><tr>
+                                        <th><label for="questionid">安全问题：</label></th>
+                                        <td><select name="questionid" id="questionid" >
+                                            <option value="0">{lang security_question}</option>
+                                            <option value="1">{lang security_question_1}</option>
+                                            <option value="2">{lang security_question_2}</option>
+                                            <option value="3">{lang security_question_3}</option>
+                                            <option value="4">{lang security_question_4}</option>
+                                            <option value="5">{lang security_question_5}</option>
+                                            <option value="6">{lang security_question_6}</option>
+                                            <option value="7">{lang security_question_7}</option>
+                                        </select>
+                                            <input type="text" name="answer" id="answer" class="px" /></td>
+                                        <td class="tipcol"><i id="tip_answer" class="p_tip"></i><kbd id="chk_answer" class="p_chk"></kbd></td>
+                                    </tr>
+                                </tbody></table>
+                        </div>-->
+                        
 
 						<!--{loop $_G['cache']['fields_register'] $field}-->
 							<!--{if $htmls[$field['fieldid']]}-->
@@ -202,7 +223,7 @@
 										<th><!--{if $field['required']}--><span class="rq">*</span><!--{/if}--><label for="$field['fieldid']">$field[title]:</label></th>
 										<td>$htmls[$field['fieldid']]
                                             <style type="text/css">
-                                                #mobile {width:120px;}
+                                                #mobile {width:120px;}#answer {width: 150px;}
                                             </style>
                                             <!--{if $field['fieldid'] == 'mobile'}-->
                                             <input id="mverifycode" name="mverifycode" style="width:80px;" type="text" autocomplete="off" style="ime-mode:disabled;width:100px" class="txt px vm"/>

@@ -521,7 +521,7 @@ class register_ctl {
 			include template($this->template);
 
 		} else {
-
+;
 			$activationauth = array();
 			if(isset($_GET['activationauth']) && $_GET['activationauth']) {
 				$activationauth = explode("\t", authcode($_GET['activationauth'], 'DECODE'));
@@ -711,6 +711,30 @@ class register_ctl {
 					);
 				}
 			}
+
+            if (defined('IN_MOBILE')) {
+                if(isset($_POST['mmobile'])) {
+                    $profile['mobile'] = $_POST['mmobile'];
+                    if(!check_mobile_code($_POST['mmobile'], $_POST['mverifycode'])) {
+                        $showid = 'mverifycode';
+                        $ftitle = '验证码';
+                        $fieldid = 'mverifycode';
+                        showmessage($ftitle.lang('message', 'profile_illegal'), '', array(), array(
+                            'showid' => 'chk_'.$showid,
+                            'extrajs' => '<script type="text/javascript">'.
+                                '$(\'registerform\').'.$fieldid.'.className = \'px er\';'.
+                                '$(\'registerform\').'.$fieldid.'.onblur = function () { if(this.value != \'\') {this.className = \'px\';$(\'chk_'.$showid.'\').innerHTML = \'\';}}'.
+                                '</script>')
+                        );
+                    }
+                }
+                
+                if(isset($_POST['gender'])) {
+                    $profile['gender'] = $_POST['gender'];
+                }
+            }
+            
+                
 
 			if(!$activation) {
 				$uid = uc_user_register(addslashes($username), $password, $email, $questionid, $answer, $_G['clientip']);
