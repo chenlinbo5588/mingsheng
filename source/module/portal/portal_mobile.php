@@ -43,23 +43,22 @@ foreach($_G['cache']['forums'] as $key => $val){
     $bm_count++;
 }
 
+if(function_exists('curl_init')){
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, 'http://www.weather.com.cn/data/sk/101210403.html');
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    curl_setopt($ch, CURLOPT_HEADER, FALSE);
+    curl_setopt($ch, CURLOPT_POST, false);
 
-$ch = curl_init();
-curl_setopt($ch, CURLOPT_URL, 'http://www.weather.com.cn/data/sk/101210403.html');
-curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-curl_setopt($ch, CURLOPT_HEADER, FALSE);
-curl_setopt($ch, CURLOPT_POST, false);
+    $resp = curl_exec($ch);
+    curl_close($ch);
 
-$resp = curl_exec($ch);
-curl_close($ch);
+}else{
+    $resp = file_get_contents("http://www.weather.com.cn/data/sk/101210403.html");
+}
 
 $weather = $resp ? json_decode($resp,true) : '';
-
-/*
-$weather = file_get_contents("http://www.weather.com.cn/data/sk/101210403.html");
-
- */
 
 $announcement = array();
 
