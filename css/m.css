@@ -670,7 +670,7 @@ a:hover {text-decoration:underline;}
 
 
 #turnpage{height:60px;border:1px solid #d8d7d8;border-width: 1px 0 1px 0;}
-#turnpage a{display:inline-block;width:50%;line-height:60px;text-align:center;}
+#turnpage a{display:inline-block;width:49%;line-height:60px;text-align:center;}
 #turnpage a.home{width:49%;background:url(../images/mobile/mob_icon3.jpg) 30px center no-repeat;border-right:1px solid #CCC;}
 #turnpage a.top{background:url(../images/mobile/mob_icon4.jpg) 35px center no-repeat;}
 
