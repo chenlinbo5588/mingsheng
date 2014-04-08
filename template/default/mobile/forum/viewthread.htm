@@ -27,7 +27,7 @@
           部门未回复，暂时不能评价
       <!--{else}-->
           <!--{eval $subtime = time() - $thread['RLP_dateline']}-->
-          <!--{eval $maxsubtime = 30*3600}-->
+          <!--{eval $maxsubtime = 30*3600*24}-->
           <!--{if $subtime > $maxsubtime}-->
               此次回复满意度为：<img src="images/general.gif" alt="一般" border="0">
           <!--{else}-->

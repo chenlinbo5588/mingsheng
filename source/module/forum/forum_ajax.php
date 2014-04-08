@@ -696,6 +696,9 @@ EOF;
 } elseif ($_GET['action'] == 'applygrade') {
 	$threadid = $_GET['tid'];
     $grade = isset($_POST['grade']) ? $_POST['grade'] : 0;
+    if(!in_array($grade,array('1','2','3'))){
+        $grade = 0;
+    }
     $return = array('error' => 1);
     if ($threadid && $grade) {
         $gradeinfo = array(
