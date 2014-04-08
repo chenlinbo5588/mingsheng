@@ -328,7 +328,7 @@ function checkmobile() {
 	$useragent = strtolower($_SERVER['HTTP_USER_AGENT']);
 
 	if(dstrpos($useragent, $pad_list)) {
-		return false;
+		//return false;
 	}
 	if(($v = dstrpos($useragent, $mobilebrowser_list, true))){
 		$_G['mobile'] = $v;
@@ -336,7 +336,8 @@ function checkmobile() {
 	}
 	if(($v = dstrpos($useragent, $touchbrowser_list, true))){
 		$_G['mobile'] = $v;
-		return '2';
+        //全部强制跳转到手机版本
+		return '1';
 	}
 	if(($v = dstrpos($useragent, $wmlbrowser_list))) {
 		$_G['mobile'] = $v;

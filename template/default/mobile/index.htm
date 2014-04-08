@@ -49,7 +49,7 @@
             <span class="navOn">手机问效</span><span>部门回复</span><span>综合排名</span>
         </div>
         <div class="t_main slideTopic">
-            <div class="topic1">
+            <div class="topic_item topic1">
                 <!--{eval $fid = empty($_GET['fid']) ? 2 : $_GET['fid'];}--> 
                 <a href="forum.php?mod=post&action=newthread&fid={$fid}" class="msg">马上留言</a>
                 <ul class="t1_list clearfix">
@@ -70,7 +70,7 @@
                 <a href="forum.php?mobile=yes" class="more">更多</a>
             </div>
 
-            <div class="topic1">
+            <div class="topic_item topic1">
                 <a href="forum.php?mod=post&action=newthread&fid={$fid}" class="msg">马上留言</a>
                 <ul class="t1_list clearfix">
                     <!--{loop $answeringThreads $val}-->
@@ -89,7 +89,7 @@
                 </ul>
                 <a href="forum.php?mobile=yes" class="more">更多</a>
             </div>
-            <div class="topic3">
+            <div class="topic_item topic3">
                 <a href="forum.php?mod=post&action=newthread&fid={$fid}" class="msg">马上留言</a>
                 <ul class="t3_list clearfix">
                     <!--{loop $zhThreads $key $val}-->
@@ -115,8 +115,22 @@
         <a href="m.php?mod=mobile_list&catid=2&mobile=yes" class="more">更多</a>
     </div>
 <script type="text/javascript">
+    
+    $(function(){
+        $('#topicbox .t_tab:eq(0) span').each(function(index){
+            $(this).click(function(){
+                $('#topicbox .t_tab:eq(0) span').removeClass('navOn');
+                $(this).addClass("navOn");
+                
+                $("#topicbox .slideTopic .topic_item").hide();
+                $("#topicbox .slideTopic .topic_item:eq(" + index + ")").show();
+            });
+        });
+    });
+/*
 TouchSlide({slideCell:"#slideBar",effect:"leftLoop",titCell:".pager",mainCell:".container",autoPlay:true,autoPage:true,switchLoad:"data-src"});
 TouchSlide({slideCell:"#topicbox",effect:"leftLoop",titCell:".slideTab span",mainCell:".slideTopic"});
+*/
 </script>
 <!--{template common/footer}-->
 
