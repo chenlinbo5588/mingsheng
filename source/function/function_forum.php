@@ -64,7 +64,7 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
         $thread['statusTitle'] = '';
         
         $thread['MOD_dateline'] = isset($tidsMod[$thread['tid']]['MOD']) ? $tidsMod[$thread['tid']]['MOD']['dateline'] : 0;
-        $thread['RLP_dateline'] = isset($tidsMod[$thread['tid']]['RLP']) ? $tidsMod[$thread['tid']]['MOD']['dateline'] : 0;
+        $thread['RLP_dateline'] = isset($tidsMod[$thread['tid']]['RLP']) ? $tidsMod[$thread['tid']]['RLP']['dateline'] : 0;
         
         if(isset($tidsMod[$thread['tid']]['RLP']) && isset($tidsMod[$thread['tid']]['MOD'])){
             //正确的时间
