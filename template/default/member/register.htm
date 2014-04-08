@@ -271,12 +271,22 @@
         },60000);
         
         interval = setInterval(function(){
-            if(sec == 0){
+            if(sec != 0 && sec <= 3){
                 sendButton.html(sendButton.attr("data-text"));
                 sendButton.prop("disabled",false);
+                sec = 0;
+                clearInterval(interval);
             }
-            sendButton.html(sec +"后重新获取");
-            sec--;
+            
+            if(sec == 0){
+                clearInterval(interval);
+                sendButton.html(sendButton.attr("data-text"));
+                sendButton.prop("disabled",false);
+            }else{
+                sendButton.html(sec +"后重新获取");
+                sec--;
+            }
+            
         },1000);
         
     });
