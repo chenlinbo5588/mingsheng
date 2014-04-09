@@ -12,7 +12,7 @@
         <!--{eval $addstring = empty($_GET['fid']) ? '' : 'mod=forumdisplay&fid='.$_GET['fid'].'&' ;}-->
         <a href="forum.php?{$addstring}filter=dateline&orderby=dateline&mobile=yes" <!--{if $_GET['orderby'] == 'dateline' || $_GET['orderby'] == ''}-->class="navOn"<!--{/if}-->>发帖时间</a>
         <a href="forum.php?{$addstring}filter=lastpost&orderby=lastpost&mobile=yes" <!--{if $_GET['orderby'] == 'lastpost'}-->class="navOn"<!--{/if}-->>回帖时间</a>
-        <a href="forum.php?{$addstring}filter=heat&orderby=heats&mobile=yes" <!--{if $_GET['orderby'] == 'replies'}-->class="navOn"<!--{/if}-->>帖子热度</a>
+        <a href="forum.php?{$addstring}filter=heat&orderby=heats&mobile=yes" <!--{if $_GET['orderby'] == 'heats'}-->class="navOn"<!--{/if}-->>帖子热度</a>
     </div>
     <div class="bydm clearfix" id="forum_list">
         <span>部门:</span>

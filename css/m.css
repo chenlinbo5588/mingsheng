@@ -162,23 +162,23 @@ a:hover {text-decoration:underline;}
 .ml30{margin-left:30px;}
 
 .icon-24 {
-    background: url(../images/light_warn.gif) no-repeat center center;
+    background: url(../images/light_warn.gif) no-repeat 50% 30%;
     cursor:pointer;
 }
 .icon-3days {
-    background: url(../images/light_green.gif) no-repeat center center;
+    background: url(../images/light_green.gif) no-repeat 50% 30%;
     cursor:pointer;
 }
 .icon-5days {
-    background: url(../images/light_yellow.gif) no-repeat center center;
+    background: url(../images/light_yellow.gif) no-repeat 50% 30%;
     cursor:pointer;
 }
 .icon-5daysover {
-    background: url(../images/light_gray.gif) no-repeat center center;
+    background: url(../images/light_gray.gif) no-repeat 50% 30%;
     cursor:pointer;
 }
 .icon-overtime {
-    background: url(../images/light_red.gif) no-repeat center center;
+    background: url(../images/light_red.gif) no-repeat 50% 30%;
     cursor:pointer;
 }
 
@@ -199,7 +199,7 @@ a:hover {text-decoration:underline;}
     width:14px;
     height:18px;
     position:relative;
-    top:8px;
+    top:5px;
     cursor:pointer;
 }
 
