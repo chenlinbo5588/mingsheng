@@ -15,18 +15,14 @@
                 <p class="show">今天 温度 {$weather['weatherinfo']['temp']}摄氏度,{$weather['weatherinfo']['WD']}{$weather['weatherinfo']['WS']},湿度{$weather['weatherinfo']['SD']} </p>
             </div>
         </div>
+        <script src="{STATICURL}js/mobile/TouchSlide.1.1.js"></script>
         <div class="bar" id="slideBar">
-<!--            <div class="tempWrap" style="overflow:hidden; position:relative;">
-                <div class="container" style="width: 3200px; position: relative; overflow: hidden; padding: 0px; margin: 0px; transition: 300ms; -webkit-transition: 300ms; -webkit-transform: translate(-1280px, 0px) translateZ(0px);">
-                    <a href="#" style="display: table-cell; vertical-align: top; width: 640px;"><img src="images/mobile/tmp_01.jpg" alt=""></a><a href="#" style="display: table-cell; vertical-align: top; width: 640px;"><img src="images/mobile/tmp_01.jpg" alt=""></a>
-                    <a href="#" style="display: table-cell; vertical-align: top; width: 640px;"><img src="images/mobile/tmp_01.jpg" alt=""></a>
-                    <a href="#" style="display: table-cell; vertical-align: top; width: 640px;"><img src="images/mobile/tmp_01.jpg" alt=""></a>
-                    <a href="#" style="display: table-cell; vertical-align: top; width: 640px;"><img src="images/mobile/tmp_01.jpg" alt=""></a>
-                </div>
-            </div>
-            <ul class="pager"><li class="">1</li><li class="navOn">2</li><li class="">3</li></ul>-->
             <!--{block/28}-->
         </div>
+        <script type="text/javascript">
+            TouchSlide({slideCell:"#slideBar",effect:"leftLoop",titCell:".pager",mainCell:".container",autoPlay:true,autoPage:true,switchLoad:"data-src"});
+            TouchSlide({slideCell:"#topicbox",effect:"leftLoop",titCell:".slideTab span",mainCell:".slideTopic"});
+        </script>
     </div>
     <script>
         $(function(){

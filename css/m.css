@@ -430,9 +430,9 @@ a:hover {text-decoration:underline;}
 #topicbox .t_tab{height:25px;border-bottom:1px solid #057894;padding:10px 0px 5px 10px;}
 #topicbox .t_tab span{display:block;float:left;width:97px;height:25px;line-height:25px;text-align:center;background:#ebeaeb;border-radius:4px;margin-right:5px;_display:inline;cursor:pointer;color:#333;}
 #topicbox .t_tab span.navOn{background:#057894;color:#FFF;}
-#topicbox .t_main a.msg{display:block;width:100px;height:30px;line-height:30px;text-align:center;background:url(../images/mob_btn.jpg) left top repeat-x;border:1px solid #c4c1c4;border-radius:4px;margin:0 auto;margin-bottom:10px;box-shadow:1px 1px 3px #CCC;color:#057894;}
+#topicbox .t_main a.msg{display:block;width:100px;height:30px;line-height:30px;text-align:center;background:url(../images/mobile/mob_btn.jpg) left top repeat-x;border:1px solid #c4c1c4;border-radius:4px;margin:0 auto;margin-bottom:10px;box-shadow:1px 1px 3px #CCC;color:#057894;}
 #topicbox .t_main a.msg2{display:block;height:30px;line-height:30px;margin:10px;text-align:center;background:#eee;color:#666;}
-#topicbox .t_main a.more, #newsbox a.more{display:block;width:100px;height:22px;line-height:22px;text-align:center;background:url(../images/mob_btn.jpg) left top repeat-x;border:1px solid #c4c1c4;border-radius:12px;margin:0 auto;margin-top:15px;box-shadow:1px 1px 3px #CCC;color:#057894;}
+#topicbox .t_main a.more, #newsbox a.more{display:block;width:100px;height:22px;line-height:22px;text-align:center;background:url(../images/mobile/mob_btn.jpg) left top repeat-x;border:1px solid #c4c1c4;border-radius:12px;margin:0 auto;margin-top:15px;box-shadow:1px 1px 3px #CCC;color:#057894;}
 #topicbox .topic1{width:100%;min-width:320px;padding:15px 0px 20px 0px;margin:0 auto;}
 #topicbox .topic1 .t1_list li{float:left;width:100%;min-width:320px;height:85px;border-bottom:1px solid #d8d7d8;padding:10px 0px;}
 #topicbox .topic1 .t1_list li .lt{float:left;width:65px;padding-left:10px;}
@@ -736,3 +736,4 @@ a:hover {text-decoration:underline;}
 #userbox ul li img{display:block;width:32px;height:32px;margin:0 auto;}
 #userbox .user-photo img {width: 65px; height: 65px;float:left;}
 #valide-code-btn {height: 27px; padding: 0 5px;}
+.navlist {margin-top: 8px;padding-left: 4px;}
