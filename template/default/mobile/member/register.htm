@@ -58,7 +58,7 @@
                                                 
 <script type='text/javascript'>
     $('#valide-code-btn').click(function(e){
-        var mipt = $(this).parent().find('input[name=mmobile]');
+        var mipt = $('#mobile');
         if($.trim(mipt.val()).length == 0 || !/^1[3|4|5|8][0-9]\d{4,8}$/.test(mipt.val())){
             alert("请输入正确的手机号");
             return;
