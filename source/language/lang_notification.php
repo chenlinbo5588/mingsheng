@@ -102,6 +102,9 @@ $lang = array
 	'reason_live_update' => '您的主题 <a href="forum.php?mod=viewthread&tid={tid}" target="_blank">{subject}</a> 被 {actor} 设置为直播贴 <div class="quote"><blockquote>{reason}</blockquote></div>',
 	'reason_live_cancle' => '您的主题 <a href="forum.php?mod=viewthread&tid={tid}" target="_blank">{subject}</a> 被 {actor} 取消直播 <div class="quote"><blockquote>{reason}</blockquote></div>',
 
+    'modthreads_ignore' => '您发表的主题 {threadsubject} 未通过审核，现已被忽略！',
+    'modthreads_ignore_reason' => '您发表的主题 {threadsubject} 未通过审核，现已被忽略！<div class="quote"><blockquote>{reason}</blockquote></div>',
+    
 	'modthreads_delete' => '您发表的主题 {threadsubject} 未通过审核，现已被删除！',
 
 	'modthreads_delete_reason' => '您发表的主题 {threadsubject} 未通过审核，现已被删除！<div class="quote"><blockquote>{reason}</blockquote></div>',

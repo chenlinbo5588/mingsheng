@@ -239,6 +239,20 @@ if(!submitcheck('modsubmit') && !$_GET['fast']) {
 	if($moderation['ignore']) {
 		$ignores = C::t('forum_thread')->update_displayorder_by_tid_displayorder($moderation['ignore'], -2, -3);
 		updatemoderate('tid', $moderation['ignore'], 1);
+        $log_handler = Cloud::loadClass('Cloud_Service_SearchHelper');
+        foreach(C::t('forum_thread')->fetch_all_by_tid_displayorder($moderation['ignore'], -3, '=', $fidadd[fids]) as $thread) {
+			$log_handler->myThreadLog('ignore', array('tid' => $thread['tid']));
+
+			$pm = 'pm_'.$thread['tid'];
+			if($thread['authorid'] && $thread['authorid'] != $_G['uid']) {
+				$pmlist[] = array(
+					'action' =>  $_GET[$pm] ? 'modthreads_ignore_reason' : 'modthreads_ignore',
+					'notevar' => array('threadsubject' => $thread['subject'], 'reason' => $_GET[$pm]),
+					'authorid' => $thread['authorid'],
+				);
+			}
+		}
+        
 	}
 
 	if($moderation['delete']) {
@@ -338,6 +352,7 @@ if(!submitcheck('modsubmit') && !$_GET['fast']) {
 	}
 
 	if($pmlist) {
+        //file_put_contents("pmlist.txt",print_r($pmlist,true));
 		foreach($pmlist as $pm) {
 			notification_add($pm['authorid'], 'system', $pm['action'], $pm['notevar'], 1);
 		}

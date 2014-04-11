@@ -223,7 +223,23 @@ if($op == 'replies') {
 		if($ignorepids = dimplode($moderation['ignore'])) {
 			C::t('forum_post')->update($posttableid, $moderation['ignore'], array('invisible' => -3), true, false, 0, -2, ($modfids ? explode(',', $modfids) : null));
 			updatemoderate('pid', $moderation['ignore'], 1);
-		}
+		
+            /**
+             * 回复的忽略 
+             * @todo ignore
+             */
+            
+            foreach(C::t('forum_thread')->fetch_all_by_tid_displayorder($moderation['ignore'], -3, '=', $modfids) as $thread) {
+				if($thread['authorid'] && $thread['authorid'] != $_G['uid']) {
+					$pmlist[] = array(
+						'act' => 'modthreads_ignore',
+						'notevar' => array('reason' => dhtmlspecialchars($_GET['reason']), 'threadsubject' => $thread['subject']),
+						'authorid' => $thread['authorid'],
+					);
+				}
+			}
+            
+        }
 
 		if($deletepids = dimplode($moderation['delete'])) {
 			$recyclebinpids = array();
@@ -411,13 +427,26 @@ if($op == 'replies') {
 } else {
 
 	if(submitcheck('modsubmit')) {
+        
+        $threadsmod = 0;
+		$pmlist = array();
+		$reason = trim($_GET['reason']);
+        
 		if(!empty($moderation['ignore'])) {
 			C::t('forum_thread')->update_by_tid_displayorder($moderation['ignore'], -2, array('displayorder'=>-3), $modfids);
 			updatemoderate('tid', $moderation['ignore'], 1);
+            
+            foreach(C::t('forum_thread')->fetch_all_by_tid_displayorder($moderation['ignore'], -3, '=', $modfids) as $thread) {
+				if($thread['authorid'] && $thread['authorid'] != $_G['uid']) {
+					$pmlist[] = array(
+						'act' => 'modthreads_ignore',
+						'notevar' => array('reason' => dhtmlspecialchars($_GET['reason']), 'threadsubject' => $thread['subject']),
+						'authorid' => $thread['authorid'],
+					);
+				}
+			}
 		}
-		$threadsmod = 0;
-		$pmlist = array();
-		$reason = trim($_GET['reason']);
+		
 
 		if(!empty($moderation['delete'])) {
 			$deletetids = array();

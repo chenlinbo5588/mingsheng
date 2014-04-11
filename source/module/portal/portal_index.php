@@ -49,6 +49,9 @@ loadcache('forums');
 
 require './source/function/function_forum.php';
 
+if($_G['uid']){
+    $noticeCount = C::t('home_notification')->count_by_uid($_G['uid'], 1, 'system');
+}
 
 $askingThreads = C::t('forum_thread')->fetch_by_sortid(array(2,3), " dateline DESC " ,0,15);
 $answeringThreads = C::t('forum_thread')->fetch_by_sortid(4," lastpost DESC " ,0,15);
