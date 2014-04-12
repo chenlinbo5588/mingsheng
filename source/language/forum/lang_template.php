@@ -520,10 +520,16 @@ $lang = array (
   'signature' => '个人签名',
   'valid_before' => '有效期至',
   'ignore' => '忽略',
+  //@modify clb
+  'handle' => '处理',
   'invalidate' => '否决',
   'mod_message_moderate_nopermission' => '抱歉，您没有管理任何版块的权限，无法执行此操作',
   'mod_moderate_ignorereply_num' => '已忽略回复',
+  //@modify clb
+  'mod_moderate_handlereply_num' => '已处理回复',
   'mod_moderate_ignorethread_num' => '已忽略主题',
+  //@modify clb
+  'mod_moderate_handlethread_num' => '已处理主题',
   'mod_moderate_member_already' => '已否决的用户',
   'mod_moderate_member_info' => '审核信息',
   'mod_moderate_member_mod_admin' => '上次审核者',

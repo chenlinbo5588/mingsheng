@@ -75,7 +75,7 @@
 								<span class="ftid">
 									<select name="filter" id="filter" width="124" class="ps">
 										<option value="0" $filtercheck[0]><!--{if $op == 'replies'}-->{lang mod_moderate_reply_num}<!--{else}-->{lang mod_moderate_thread_num}<!--{/if}--></option>
-										<option value="-3" $filtercheck[-3]><!--{if $op == 'replies'}-->{lang mod_moderate_ignorereply_num}<!--{else}-->{lang mod_moderate_ignorethread_num}<!--{/if}--></option>
+										<option value="-3" $filtercheck[-3]><!--{if $op == 'replies'}-->{lang mod_moderate_handlereply_num}<!--{else}-->{lang mod_moderate_handlethread_num}<!--{/if}--></option>
 									</select>
 								</span>
 							</td>
@@ -116,7 +116,7 @@
 							<span class="y">
 								<a href="forum.php?mod=modcp&action=$_GET[action]&op=$op&posttableid=$posttableid&moderate[]={$post[id]}&modact=validate&filter=$filter&dosubmit=1" onclick="showWindow('mods', this.href)" class="xi2">{lang pass}</a><span class="pipe">|</span>
 								<a href="forum.php?mod=modcp&action=$_GET[action]&op=$op&posttableid=$posttableid&moderate[]={$post[id]}&modact=delete&filter=$filter&dosubmit=1" onclick="showWindow('mods', this.href)" class="xi2">{lang delete}</a><span class="pipe">|</span>
-								<a href="forum.php?mod=modcp&action=$_GET[action]&op=$op&posttableid=$posttableid&moderate[]={$post[id]}&modact=ignore&filter=$filter&dosubmit=1" onclick="showWindow('mods', this.href)" class="xi2">{lang ignore}</a><span class="pipe">|</span>
+								<a href="forum.php?mod=modcp&action=$_GET[action]&op=$op&posttableid=$posttableid&moderate[]={$post[id]}&modact=ignore&filter=$filter&dosubmit=1" onclick="showWindow('mods', this.href)" class="xi2">{lang handle}</a><span class="pipe">|</span>
 								<a href="javascript:;" onclick="toggle_post($post[id]);" class="xi2">{lang open}</a>
 							</span>
 							<input type="checkbox" name="moderate[]" id="pidcheck_{$post[id]}" class="pc" value="$post[id]" onclick="recountobj()"/>
@@ -136,7 +136,7 @@
 					<label for="chkall"><input type="checkbox" class="pc" name="chkall" id="chkall" onclick="modcheckall()" />{lang checkall}</label>
 					<button onclick="modthreads('validate'); return false;" class="pn"><strong>{lang validate}</strong></button>
 					<button onclick="modthreads('delete'); return false;" class="pn"><strong>{lang delete}</strong></button>
-					<button onclick="modthreads('ignore'); return false;" class="pn"><strong>{lang ignore}</strong></button>
+					<button onclick="modthreads('ignore'); return false;" class="pn"><strong>{lang handle}</strong></button>
 					<label>{lang mod_moderate_select}</label>
 				</div>
 			</form>

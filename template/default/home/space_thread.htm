@@ -1,5 +1,5 @@
 {eval
-	$filter = array( 'common' => '{lang have_posted}', 'save' => '{lang draft}', 'close' => '{lang closed}', 'aduit' => '{lang pending}', 'ignored' => '{lang ignored}', 'recyclebin' => '{lang recyclebin}');
+	$filter = array( 'common' => '{lang have_posted}', 'save' => '{lang draft}', 'close' => '{lang closed}', 'aduit' => '{lang pending}', 'ignored' => '{lang handle}', 'recyclebin' => '{lang recyclebin}');
 	$_G[home_tpl_spacemenus][] = "<a href=\"home.php?mod=space&uid=$space[uid]&do=thread&view=me\">{lang they_thread}</a>";
 }
 
@@ -53,7 +53,7 @@
 	<div class="wp">
 		<!--[diy=diy1]--><div id="diy1" class="area"></div><!--[/diy]-->
 	</div>
-	<div id="ct" class="ct2_a wp cl">
+	<div id="ct" class="ct2_a cl">
 	<!--{if $_G[setting][homestyle]}-->
 		<div class="appl">
 			<!--{subtemplate common/userabout}-->

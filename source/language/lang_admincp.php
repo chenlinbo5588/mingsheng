@@ -50,6 +50,8 @@ $lang = array
 	'invalidate' => '否决',
 	'validate' => '通过',
 	'ignore' => '忽略',
+    //@modify clb
+	'handle' => '处理',
 	'open' => '打开',
 	'closed' => '关闭',
 	'public' => '公开',
@@ -4864,6 +4866,8 @@ $lang = array
 	'moderate_all_invalidate' => '全部否决',
 	'moderate_all_validate' => '全部通过',
 	'moderate_all_delete' => '全部删除',
+    //@modify clb
+	'moderate_all_handle' => '全部处理',
 	'moderate_all_ignore' => '全部忽略',
 	'moderate_all_cancel' => '全部取消',
 	'moderate_apply_all' => '将操作应用到其他所有页面',
@@ -4873,6 +4877,8 @@ $lang = array
 	'moderate_validate_list' => '审核操作成功，共 {validates} 个主题被通过，{ignores} 个主题被忽略，{recycles} 个主题被放入回收站，{deletes} 个主题被删除 。<br />您可以<a href="'.ADMINSCRIPT.'?action=moderate&operation=threads">继续审核新主题</a>',
 	'moderate_none' => '未审核',
 	'moderate_ignore' => '已忽略',
+    //@modify clb
+	'moderate_handle' => '已处理',
 	'moderate_all_fields' => '所有帖子',
 	'moderate_all_groups' => '仅群组',
 	'moderate_edit_thread' => '编辑主题',
@@ -4920,6 +4926,8 @@ $lang = array
 	'recyclebin_all_delete' => '全部删除',
 	'recyclebin_all_undelete' => '全部还原',
 	'recyclebin_all_ignore' => '全部忽略',
+    //@modify clb
+	'recyclebin_all_handle' => '全部处理',
 	'recyclebin_delete_time' => '删除时间',
 
 	'recyclebin_clean' => '批量清空回收站',
