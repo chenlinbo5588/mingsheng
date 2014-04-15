@@ -1,0 +1,55 @@
+<!--{eval $turnpage = 1}-->
+<!--{template common/header}-->
+<!--{subtemplate common/userbox}-->
+		<!--{hook/spacecp_credit_top}-->
+        <div id="personalbox">
+		<!--{if in_array($_GET['op'], array('base', 'buy', 'transfer', 'exchange'))}-->
+			<div class="list">
+			<!--{eval $creditid=0;}-->
+            <!--{if  $_GET['op'] == 'base'}-->
+				<span>{lang credits}: $_G['member']['credits'] </span>
+			<!--{/if}-->
+			<!--{if $_GET['op'] == 'base' && $_G['setting']['creditstrans']}-->
+				<!--{eval $creditid=$_G['setting']['creditstrans'];}-->
+				<!--{if $_G['setting']['extcredits'][$creditid]}-->
+				<!--{eval $credit=$_G['setting']['extcredits'][$creditid]; }-->
+				<span><!--{if $credit[img]}--> {$credit[img]}<!--{/if}--> {$credit[title]}: <!--{echo getuserprofile('extcredits'.$creditid);}--> {$credit[unit]}</span>
+				<!--{/if}-->
+			<!--{/if}-->
+			<!--{loop $_G['setting']['extcredits'] $id $credit}-->
+				<!--{if $id!=$creditid}-->
+				<span><!--{if $credit[img]}--> {$credit[img]}<!--{/if}--> {$credit[title]}: </em><!--{echo getuserprofile('extcredits'.$id);}--> {$credit[unit]}</span>
+				<!--{/if}-->
+			<!--{/loop}-->
+                <div class="tips">( $creditsformulaexp )</div>
+			<!--{hook/spacecp_credit_extra}-->
+			</div>
+		<!--{/if}-->
+		<!--{if $_GET['op'] == 'base'}-->
+        <div class="updlist">
+            <h6 class="tab">积分记录</h6>
+            <dl>
+				<!--<caption>
+					<h2 class="mbm xs2">
+						<a href="home.php?mod=spacecp&ac=credit&op=log" class="xi2 xs1 xw0 y">{lang viewmore}&raquo;</a>{lang memcp_credits_log}
+					</h2>
+				</caption>-->
+				<dt><span>{lang changedateline}</span><span>{lang logs_credit}</span><span>{lang detail}</span></dt>
+			<!--{if $loglist}-->
+				<!--{loop $loglist $value}-->
+				<!--{eval $value = makecreditlog($value, $otherinfo);}-->
+                <dt>
+                    <span>$value['dateline']</span>
+					<span>$value['credit']</span>
+					<span><!--{if $value['operation']}-->$value['opinfo']<!--{else}-->$value['text']<!--{/if}--></span>
+				</dt>
+				<!--{/loop}-->
+			<!--{else}-->
+				<dt>{lang memcp_credits_log_none}</dt>
+			<!--{/if}-->
+			</dl>
+        </div>
+		<!--{/if}-->
+        </div>
+		<!--{hook/spacecp_credit_bottom}-->
+<!--{template common/footer}-->

@@ -1,23 +1,6 @@
+<!--{eval $turnpage = 1}-->
 <!--{template common/header}-->
-<div id="userbox">
-        <dl>
-            <dt>个人中心</dt>
-            <dd class="clearfix">
-                <span class="user-photo"><!--{avatar($space[uid],big)}--></span>
-                <div class="uinfo">
-                    <h6>{$space[username]} (UID: {$space[uid]})</h6>
-                    <p>会员级别：{$space[group][grouptitle]}{$space[group][icon]}</p>
-                    <p>积分{$_G['member']['credits']}，发帖5，回贴110</p>
-                </div>
-            </dd>
-        </dl>
-        <ul>
-            <li><a href="home.php?mod=spacecp&do=credit&mobile=yes" class="jf">我的积分</a></li>
-            <li><a href="#" class="hy">我的好友</a></li>
-            <li><a href="home.php?mod=space&do=pm&mobile=yes" class="xx">我的消息</a></li>
-            <li><a href="home.php?mod=spacecp&mobile=yes" class="sz">我的设置</a></li>
-        </ul>
-    </div>
+<!--{template common/userbox}-->
 <!--
 <div class="box"><a href="forum.php">{lang return_forum}</a><span class="pipe">|</span><a href="javascript:history.back();" onclick="javascript:history.back();" title="{lang goback}" >{lang goback}</a></div>
 <div class="bm">

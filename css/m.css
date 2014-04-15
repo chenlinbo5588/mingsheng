@@ -737,3 +737,37 @@ a:hover {text-decoration:underline;}
 #userbox .user-photo img {width: 65px; height: 65px;float:left;}
 #valide-code-btn {height: 27px; padding: 0 5px;}
 .navlist {margin-top: 8px;padding-left: 4px;}
+
+/* 个人中心 */
+#personalbox{width:100%;min-width:320px;border-bottom:1px solid #CCC;margin-bottom:30px;}
+#personalbox .list{padding:10px 0px;border-top:1px solid #CCC;border-bottom:1px dashed #CCC;}
+#personalbox .list span{display:inline-block;width:25%;line-height:20px;padding-left:15px;color:#666;}
+#personalbox .list .tips{line-height:20px;padding-left:10px;font-size:12px;color:#999;}
+#personalbox .updlist{padding:15px 10px;}
+#personalbox .updlist h6.tab{margin-left:5px;margin-bottom:5px;color:#000;}
+#personalbox .updlist dl{font-size:12px;color:#444;}
+#personalbox .updlist dt{border:1px solid #cdcdcd;background:#f2f2f2;padding:7px 10px;margin-bottom:5px;}
+#personalbox .updlist dt span{display:inline-block;width:30%;min-width:90px;}
+#personalbox .updlist dd{padding:0px 10px;}
+#personalbox .updlist dd span{display:inline-block;width:30%;min-width:90px;line-height:20px;}
+#personalbox .setting{border-top:1px solid #CCC;padding:20px 0px;}
+#personalbox .setting li,#personalbox .msg_send li{padding:5px 10px;color:#4e4e4e;}
+#personalbox .setting li span,#personalbox .msg_send li span{display:inline-block;width:80px;}
+#personalbox .setting li .txt,#personalbox .msg_send li .txt{width:180px;}
+#personalbox .setting li #subbtn,#personalbox .setting li #rstbtn,#personalbox .msg_send li #sendbtn{width:90px;height:30px;background:url(../images/mob_lgbtn.jpg) left top repeat-x;border:1px solid #87b3cb;font-family:"Microsoft YaHei",sans-serif;color:#0a5481;}
+#personalbox .setting li textarea,#personalbox .msg_send li textarea{width:210px;height:80px;}
+#personalbox .post_tabs{padding:0px 10px;border-bottom:1px solid #cdcdcd;}
+#personalbox .post_tabs a{float:left;line-height:2;background:#e5edf2;border:1px solid #cdcdcd;border-bottom:none;padding:0px 10px;margin-right:5px;_display:inline;color:#666;}
+#personalbox .post_tabs a.navOn{background:#FFF;margin-bottom:-1px;border-bottom:1px solid #FFF;font-weight:bold;color:#333;}
+#personalbox .post_list dt{border-bottom:2px solid #e5edf2;padding:15px 15px 5px 15px;}
+#personalbox .post_list dt a{font-size:14px;font-weight:bold;color:#000;}
+#personalbox .post_list dt span{display:inline-block;line-height:20px;background:url(../images/mob_icon10.jpg) left center no-repeat;padding-left:22px;font-size:12px;color:#666;}
+#personalbox .post_list dd{line-height:1.5;border-bottom:1px dashed #cdcdcd;padding:5px 15px;font-size:12px;color:#666;}
+#personalbox .msg_list dl{border-bottom:1px dashed #cdcdcd;padding-bottom:10px;margin-bottom:15px;}
+#personalbox .msg_list dd{padding:0px 15px;margin:10px 0px;color:#444;}
+#personalbox .msg_list dd .datetime{display:inline-block;margin-bottom:5px;font-size:12px;color:#999;}
+#personalbox .msg_list dt{padding:0px 15px;}
+#personalbox .msg_list dt a{color:#666;}
+#personalbox .msg_list dt a.reply{margin-left:10px;color:#156fac;}
+#personalbox .msg_send{padding:20px 0px;}
+
