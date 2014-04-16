@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>{$navtitle}</title>
+
+<style type="text/css">
+    * {
+        margin:0;
+        padding:0;
+    }
+    
+    body {
+        font-size:14px;
+    }
+    
+    #container {
+        width:830px;
+        margin:0 auto;
+    }
+    table {
+        width:100%;
+    }
+    
+    th ,td {
+        padding:5px 0;
+        white-space:nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        font-size:14px;
+    }
+    
+    tr.even {
+        background:#f1f0f0;
+    }
+    a {
+        color:#000;
+        text-decoration: none;
+    }
+    a:hover,a:visited {
+        color:blue;
+        text-decoration:underline;
+    }
+    .pager {
+        font-size:14px;
+        border:1px solid #ddd;
+        padding:5px 20px 5px 0;
+        border-width:1px 0 1px 0;
+        
+    }
+</style>
+</head>
+<body>
+    <div id="container">
+    <table style="table-layout:fixed;">
+        <colgroup>
+            <col width="580"/>
+            <col width="110"/>
+            <col width="140"/>
+        </colgroup>
+        <thead>
+            <tr>
+                <th>内容标题</th>
+                <th>发布时间</th>
+                <th>状态</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!--{loop $data['threadlist'] $key $item}-->
+            <tr <!--{if $key % 2 == 0}-->class="even"<!--{else}-->class="odd"<!--{/if}-->>
+                <td><a href="/nb.php?mod=info&tid={$item['tid']}" title="{$item['subject']}">{$item['subject']}</a></td>
+                <td align="center">{date($item['dateline'],"Y-m-d")}</td>
+                <td align="center">已回复</td>
+            </tr>
+            <!--{/loop}-->
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">
+                    <p align="right" class="pager">
+                        <span>页数：{$_G['page']}/$totalPage</span> 
+                        <a href="/nb.php?page=1">首页</a>
+                        <a href="/nb.php?page={$prevPage}">上一页</a>
+                        <a href="/nb.php?page={$nextPage}">下一页</a>
+                        <a href="/nb.php?mod=info&page={$totalPage}">尾页</a>
+                        <strong>共有<em style="color:red;font-style:normal;">{$data['count']}</em>条</strong>
+                    </p>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    </div>
+</body>                                                                                                          
+</html>                                                                                                          
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                         
+                    
+                    
+                  
+                  
+                  
+                  
+              
+              

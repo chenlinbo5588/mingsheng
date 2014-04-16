@@ -1,0 +1,112 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>{$navtitle}</title>
+
+<style type="text/css">
+    * {
+        margin:0;
+        padding:0;
+        
+    }
+    
+    body {
+        font-size:14px;
+    }
+    #container {
+        width:830px;
+        margin:0 auto;
+    }
+    table {
+        width:100%;
+    }
+    
+    th ,td {
+        padding:5px 0;
+        font-size:14px;
+    }
+    
+    tr.even {
+        background:#F5F5F5;
+    }
+    a {
+        color:#000;
+        text-decoration: none;
+    }
+    a:hover,a:visited {
+        color:blue;
+        text-decoration:underline;
+    }
+    
+    .style1 {
+        color:#6633CC;
+    }
+    
+    .gray {
+        color:gray;
+    }
+    
+    strong {
+        font-weight: normal;
+    }
+    
+    .asking {
+        color: #009900;
+    }
+    
+    .from {
+        color:#999900;
+    }
+    .answer {
+        color: #0467E6;
+    }
+</style>
+</head>
+<body>
+    <div id="container">
+    <table style="border:1px solid #CECBD6;">
+        <tbody>
+            <tr>
+                <td class="style1"><label>姓名: {$showName} &nbsp;&nbsp;&nbsp;&nbsp;{$showSex}</label><span class="gray">({date($detailAsk['dateline'],"Y-m-d")})</span></td>
+            </tr>
+            <tr class="even">
+                <td class="style1"><label>电话: </label><span>{$showMobile}</span></td>
+            </tr>
+            <tr>
+                <td class="style1"><label>来自: </label><span class="from">{$showAddress}</span></td>
+            </tr>
+            <tr class="even">
+                <td class="style1"><label>留言: </label><strong class="asking">{$detailAsk['message']}</strong></td>
+            </tr>
+            <tr>
+                <td><label>回复: </label><strong class="answer">{$detailAnswer['message']}</strong></td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td align="right"><a style="margin-right:20px;" href="javascript:history.go(-1);">返回</a></td>
+            </tr>
+        </tfoot>
+    </table>
+    </div>
+</body>                                                                                                          
+</html>                                                                                                          
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                        
+                                                                       
+                                                                       
+                                                                       
+                                                                       
+                         
+                    
+                    
+                  
+                  
+                  
+                  
+              
+              

@@ -22,6 +22,17 @@ class table_forum_thread extends discuz_table
 		$this->_pre_cache_key = 'forum_thread_';
 		parent::__construct();
 	}
+    
+    public function fetch_by_fid_sortid($fid = array(),$sortid = array(),$order = 'dateline DESC',$start =0, $limit = 0){
+        if (!$sortid) return array();
+        if (!$fid) return array();
+        
+        $fidStr = is_array($fid) ? 'fid IN (' . implode(',', $fid) . ')' : 'fid='.$fid;
+        $sortStr = is_array($sortid) ? 'sortid IN (' . implode(',', $sortid) . ')' : 'sortid='.$sortid;
+        //echo 'SELECT * FROM '.DB::table($this->_table).' WHERE displayorder >= 0 AND '.$fidStr.' AND '.$sortStr. '  ORDER BY '.$order.DB::limit($start, $limit);
+        return DB::fetch_all('SELECT * FROM '.DB::table($this->_table).' WHERE displayorder >= 0 AND '.$fidStr.' AND '.$sortStr. '  ORDER BY '.$order.DB::limit($start, $limit));
+    }
+    
     public function fetch_by_sortid($sortid = array(),$order = 'dateline DESC',$start =0, $limit = 0){
         if (!$sortid) return array();
         $sortStr = is_array($sortid) ? 'sortid IN (' . implode(',', $sortid) . ')' : 'sortid='.$sortid;
@@ -974,6 +985,26 @@ class table_forum_thread extends discuz_table
 		return DB::result_first("SELECT COUNT(*) FROM %t WHERE replies{$glue}%d", array($this->get_table_name(), $number));
 	}
 
+    public function count_by_fid_sortid_displayorder($fid, $sortid = null, $displayorder = null, $glue = '=') {
+
+		$parameter = array($this->get_table_name(), $fid);
+		$wherearr = array();
+		$fid = dintval($fid, true);
+		$wherearr[] = is_array($fid) ? 'fid IN(%n)' : 'fid=%d';
+
+		if($sortid) {
+			$parameter[] = $sortid;
+			$wherearr[] = "sortid=%d";
+		}
+		if($displayorder !== null) {
+			$parameter[] = $displayorder;
+			$glue = helper_util::check_glue($glue);
+			$wherearr[] = "displayorder{$glue}%d";
+		}
+		$wheresql = !empty($wherearr) && is_array($wherearr) ? ' WHERE '.implode(' AND ', $wherearr) : '';
+        return DB::result_first("SELECT COUNT(*) FROM %t $wheresql", $parameter);
+	}
+    
 	public function count_by_fid_typeid_displayorder($fid, $typeid = null, $displayorder = null, $glue = '=') {
 
 		$parameter = array($this->get_table_name(), $fid);
