@@ -72,8 +72,7 @@ foreach($answeringThreads as $k =>  $val) {
     $answeringThreads[$k] = $val;
 }
 
-$askingThreads = thread_add_icon_by_row($askingThreads);
-$answeringThreads = thread_add_icon_by_row($answeringThreads);
-
+$askingThreads = thread_add_icon_by_row($askingThreads,'dbdateline');
+$answeringThreads = thread_add_icon_by_row($answeringThreads,'dbdateline');
 include_once template('diy:portal/index');
 ?>
