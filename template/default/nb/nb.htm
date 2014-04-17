@@ -67,7 +67,7 @@
         <tbody>
             <!--{loop $data['threadlist'] $key $item}-->
             <tr <!--{if $key % 2 == 0}-->class="even"<!--{else}-->class="odd"<!--{/if}-->>
-                <td><a href="/nb.php?mod=info&tid={$item['tid']}" title="{$item['subject']}">{$item['subject']}</a></td>
+                <td><a href="http://e.cxnews.cn/forum.php?mod=viewthread&tid={$item['tid']}&extra=" title="{$item['subject']}" target="_blank">{$item['subject']}</a></td>
                 <td align="center">{date($item['dateline'],"Y-m-d")}</td>
                 <td align="center">已回复</td>
             </tr>
