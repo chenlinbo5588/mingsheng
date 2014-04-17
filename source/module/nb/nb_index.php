@@ -71,6 +71,7 @@ function get_list($fids = array(), $start = 0, $num = 50) {
     
     $list = array();
 	foreach($query as $thread) {
+        $thread['subject'] = strip_tags($thread['subject']);
         $list[] = $thread;
 	}
 	return array('count' => $getCount, 'threadlist' => $list);

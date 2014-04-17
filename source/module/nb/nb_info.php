@@ -12,6 +12,7 @@ if(!defined('IN_DISCUZ')) {
 }
 
 require_once libfile('function/forumlist');
+require_once libfile('function/discuzcode');
 $lang = lang('forum/template');
 
 //print_r($_G['setting']['bbname']);
@@ -32,12 +33,14 @@ if($tid_info){
     
     
     $i = 0;
-    foreach($tid_info as $k => $v){
+    foreach($tid_info as $k => $post){
+        //$forum_allowbbcode = $_G['forum']['allowbbcode'] ? 1 : 0;
+        $post['message'] = discuzcode($post['message'], $post['smileyoff'], $post['bbcodeoff'], $post['htmlon'] & 1, $_G['forum']['allowsmilies'], 1, ($_G['forum']['allowimgcode'] && $_G['setting']['showimages'] ? 1 : 0), $_G['forum']['allowhtml'], ($_G['forum']['jammer'] && $post['authorid'] != $_G['uid'] ? 1 : 0), 0, $post['authorid'], $_G['cache']['usergroups'][$post['groupid']]['allowmediacode'] && $_G['forum']['allowmediacode'], $post['pid'], $_G['setting']['lazyload'], $post['dbdateline'], $post['first']);
         if($i == 0){
-            $detailAsk = $v;
-            $member = C::t('common_member_profile')->fetch_all(array($v['authorid']));
+            $detailAsk = $post;
+            $member = C::t('common_member_profile')->fetch_all(array($post['authorid']));
         }else{
-            $detailAnswer = $v;
+            $detailAnswer = $post;
         }
         
         $i++;
