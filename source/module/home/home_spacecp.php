@@ -56,7 +56,16 @@ if(lang('core', 'title_memcp_'.$ac)) {
 }
 
 $_G['disabledwidthauto'] = 0;
-
+if(IN_MOBILE){
+    /**
+ * 获取发帖数 
+ */
+    
+    require_once libfile('function/post');
+    
+    $_G['member']['postcount'] = C::t('forum_post')->count_post_by_uid($space['uid'],0);
+    $_G['member']['threadcount'] = C::t('forum_thread')->count_by_authorid($_G['uid'],0);
+}
 require_once libfile('spacecp/'.$ac, 'include');
 
 ?>

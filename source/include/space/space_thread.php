@@ -119,7 +119,7 @@ if($_GET['view'] == 'me') {
 		}
 		$pids = C::t('forum_post')->fetch_all(0, $pids);
 		$tids = C::t('forum_thread')->fetch_all($tids);
-
+        
 		$list = $fids = array();
 		foreach($postcommentarr as $value) {
 			$value['authorid'] = $pids[$value['pid']]['authorid'];
@@ -180,7 +180,9 @@ if($_GET['view'] == 'me') {
 		require_once libfile('function/post');
 		$posts = C::t('forum_post')->fetch_all_by_authorid(0, $space['uid'], true, 'DESC', $start, $perpage, 0, $invisible, $vfid);
 		$listcount = count($posts);
+        $tidsAr = array();
 		foreach($posts as $pid => $post) {
+            $tidsAr[] = $post['tid'];
 			$delrow = false;
 			if($post['anonymous'] && $post['authorid'] != $_G['uid']) {
 				$delrow = true;
@@ -250,6 +252,14 @@ if($_GET['view'] == 'me') {
 					}
 				}
 			}
+            
+            if($tidsAr){
+                $tidMessage = C::t('forum_post')->fetch_all_by_tid(0,$tidsAr, true, '', 0,  0, 1);
+                //print_r($tidMessage);
+                foreach($tidMessage as $key => $value){
+                    $threads[$value['tid']]['message'] = cutstr($value['message'],100);
+                }
+            }
 			$list = &$threads;
 		}
 
@@ -321,7 +331,7 @@ if($need_count) {
 		$list[$value['tid']] = procthread($value);
 		$forums[$value['fid']] = $list[$value['tid']]['forumname'];
 	}
-
+    
 	if(!empty($gids)) {
 		$gforumnames = C::t('forum_forum')->fetch_all_name_by_fid(array_keys($gids));
 		foreach($gids as $fid => $tid) {
@@ -329,7 +339,19 @@ if($need_count) {
 			$forums[$fid] = $gforumnames[$fid]['name'];
 		}
 	}
-
+    
+    $tidsAr = array();
+    foreach($list as $key => $ttt){
+        $tidsAr[] = $key;
+    }
+    
+    if($tidsAr){
+       $tidMessage = C::t('forum_post')->fetch_all_by_tid(0,$tidsAr, true, '', 0,  0, 1);
+       //print_r($tidMessage);
+       foreach($tidMessage as $key => $value){
+           $list[$value['tid']]['message'] = cutstr($value['message'],100);
+       }
+    }
 	$threads = &$list;
 
 

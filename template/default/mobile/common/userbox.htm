@@ -6,13 +6,13 @@
                 <div class="uinfo">
                     <h6>{$space[username]} (UID: {$space[uid]})</h6>
                     <p>会员级别：{$space[group][grouptitle]}{$space[group][icon]}</p>
-                    <p>积分{$_G['member']['credits']}，发帖5，回贴110</p>
+                    <p>积分{$_G['member']['credits']}，发帖{$_G['member']['threadcount']}，回贴{$_G['member']['postcount']}</p>
                 </div>
             </dd>
         </dl>
         <ul class="clearfix">
             <li><a href="home.php?mod=spacecp&ac=credit&mobile=yes" class="jf">我的积分</a></li>
-            <li><a href="#" class="hy">我的好友</a></li>
+            <li><a href="home.php?mod=space&do=thread&view=me&type=thread&mobile=yes" class="hy">我的帖子</a></li>
             <li><a href="home.php?mod=space&do=pm&mobile=yes" class="xx">我的消息</a></li>
             <li><a href="home.php?mod=spacecp&mobile=yes" class="sz">我的设置</a></li>
         </ul>

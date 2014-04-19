@@ -1,7 +1,14 @@
 <!--{template common/header}-->
-<div class="box"><a href="{if $forcefid}forum.php?mod=forumdisplay{$forcefid}{else}forum.php{/if}" title="{lang return_forum}">{lang return_forum}</a> <span class="pipe">|</span> <a href="home.php?mod=space&do=pm" title="{lang pm}">{lang pm}</a> <span class="pipe">|</span> <a href="home.php?mod=spacecp&ac=pm" title="{lang send_pm}" class="xw1">{lang send_pm}</a></div>
+<!--{eval $turnpage = 1}-->
+<!--{subtemplate common/userbox}-->
+<div id="personalbox">
+    <div class="post_tabs clearfix">
+        <a href="home.php?mod=space&do=pm&filter=privatepm&mobile=yes" >私人消息</a>
+        <!--<a href="home.php?mod=space&do=pm&filter=announcepm&mobile=yes" <!--{if $filter == 'announcepm'}-->class="navOn"<!--{/if}-->>公共消息</a>-->
+        <a href="home.php?mod=spacecp&ac=pm&mobile=yes" class="navOn">发送消息</a>
+    </div>
 <div class="bm mtn">
-	<div class="bm_h">{lang send_pm}</div>
+	<!--<div class="bm_h">{lang send_pm}</div>-->
 <!--{if $op != ''}-->
 	<div class="bm_c">{lang user_mobile_pm_error}</div>
 <!--{else}-->

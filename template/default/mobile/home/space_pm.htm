@@ -1,17 +1,24 @@
 <!--{eval $_G['home_tpl_titles'] = array('{lang pm}');}-->
+<!--{eval $turnpage = 1}-->
 <!--{template common/header}-->
-<div class="box"><a href="{if $forcefid}forum.php?mod=forumdisplay{$forcefid}{else}forum.php{/if}" title="{lang return_forum}">{lang return_forum}</a><span class="pipe">|</span> <a href="home.php?mod=space&do=pm" title="{lang send_pm}" class="xw1">{lang pm_center}</a> <span class="pipe">|</span><a href="home.php?mod=spacecp&ac=pm" title="{lang send_pm}">{lang send_pm}</a></div>
-
-<div class="bm mtn">
+<!--{subtemplate common/userbox}-->
+<div id="personalbox">
+    <div class="post_tabs clearfix">
+        <a href="home.php?mod=space&do=pm&filter=privatepm&mobile=yes" <!--{if $filter == 'privatepm'}-->class="navOn"<!--{/if}-->>私人消息</a>
+        <!--<a href="home.php?mod=space&do=pm&filter=announcepm&mobile=yes" <!--{if $filter == 'announcepm'}-->class="navOn"<!--{/if}-->>公共消息</a>-->
+        <a href="home.php?mod=spacecp&ac=pm&mobile=yes">发送消息</a>
+    </div>
 <!--{if in_array($filter, array('privatepm')) || in_array($_GET[subop], array('view'))}-->
-<div class="bm_h"><!--{if in_array($_GET[subop], array('view'))}--><a href="javascript:history.back();">[{lang back}]</a><!--{if $membernum >= 2 && $subject}-->{$membernum}{lang pm_members_message}:$subject<!--{elseif $tousername}-->{lang pm_with}{$tousername}{lang pm_totail}<!--{/if}--><!--{else}-->{lang pm}<!--{/if}--></div>
+<div class="msg_list">
 <!--{if in_array($filter, array('privatepm'))}-->
     <!--{loop $list $key $value}-->
-    <div class="bm_c">
-        <p class="{if $value[new]}xw1{/if}">
-        <a href="{if $value[touid]}home.php?mod=space&do=pm&subop=view&touid=$value[touid]{else}home.php?mod=space&do=pm&subop=view&plid={$value['plid']}&daterange=1&type=1{/if}"><!--{if $value['pmtype'] == 2}-->[{lang chatpm}]<!--{if $value[subject]}-->$value[subject]<br><!--{/if}--><!--{/if}--><!--{if $value['pmtype'] == 2 && $value['lastauthor']}-->$value['lastauthor'] : <!--{/if}-->$value[message]</a></p>
-        <p>
-        	<!--{if $value[touid]}-->
+    <dl class="bm_c">
+        <dd>
+            <span class="datetime"><!--{date($value[dateline], 'u')}--></span>
+            <p>$value[message]</p>
+        </dd>
+        <dt>
+            <!--{if $value[touid]}-->
 			<!--{if $value[msgfromid] == $_G[uid]}-->
 				<span class="xg1">{lang me}{lang you_to}{$value[tousername]}{lang say}</span>
 			<!--{else}-->
@@ -19,10 +26,11 @@
 			<!--{/if}-->
             <!--{elseif $value['pmtype'] == 2}-->
 			<span class="xg1">{lang chatpm_author}:$value['firstauthor']</span>
-		<!--{/if}-->
-            <span class="xg1"><!--{date($value[dateline], 'u')}--></span>
-        </p>
-    </div>
+            <!--{/if}-->
+            <a href="{if $value[touid]}home.php?mod=space&do=pm&subop=view&touid=$value[touid]{else}home.php?mod=space&do=pm&subop=view&plid={$value['plid']}&daterange=1&type=1{/if}">回复</a>
+        </dt>
+        
+    </dl>
     <!--{/loop}-->
 <!--{elseif in_array($_GET[subop], array('view'))}-->
 	<!--{if $list}-->

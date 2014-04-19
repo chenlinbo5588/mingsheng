@@ -100,10 +100,13 @@ class table_forum_post extends discuz_table
 	public function count_by_tid_authorid($tid, $authorid) {
 		return DB::result_first('SELECT COUNT(*) FROM %t WHERE tid=%d AND first=0 AND authorid=%d', array(self::get_tablename('tid:'.$tid), $tid, $authorid));
 	}
-
+    public function count_post_by_uid($authorid,$tableid){
+        return DB::result_first('SELECT COUNT(*) FROM %t  WHERE authorid=%d AND first = 0 AND invisible=0',array(self::get_tablename($tableid), $authorid));
+    }
+    
 	public function count_by_authorid($tableid, $authorid) {
 		return DB::result_first('SELECT COUNT(*) FROM %t WHERE authorid=%d AND invisible=0', array(self::get_tablename($tableid), $authorid));
-	}
+    }
 
 	public function count_group_authorid_by_fid($tableid, $fid) {
 		return DB::fetch_all('SELECT COUNT(*) as num, authorid FROM %t WHERE fid=%d AND first=0 GROUP BY authorid', array(self::get_tablename($tableid), $fid));

@@ -436,7 +436,7 @@ a:hover {text-decoration:underline;}
 #topicbox .topic1{width:100%;min-width:320px;padding:15px 0px 20px 0px;margin:0 auto;}
 #topicbox .topic1 .t1_list li{float:left;width:100%;min-width:320px;height:85px;border-bottom:1px solid #d8d7d8;padding:10px 0px;}
 #topicbox .topic1 .t1_list li .lt{float:left;width:65px;padding-left:10px;}
-#topicbox .topic1 .t1_list li .lt img{width:65px;height:65px;background:url(../images/tmp_02.jpg) left top no-repeat;}
+#topicbox .topic1 .t1_list li .lt img{width:65px;height:65px;background:url(../images/mobile/tmp_02.jpg) left top no-repeat;}
 #topicbox .topic1 .t1_list li .lt span{display:block;width:65px;height:20px;line-height:20px;text-align:center;overflow:hidden;font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:12px;color:#4e4e4e;}
 #topicbox .topic1 .t1_list li .rt{float:right;width:70%;min-width:220px;}
 #topicbox .topic1 .t1_list li .rt h6{height:40px;line-height:20px;margin-bottom:10px;margin-right:10px;overflow:hidden;}
@@ -761,7 +761,7 @@ a:hover {text-decoration:underline;}
 #personalbox .post_tabs a.navOn{background:#FFF;margin-bottom:-1px;border-bottom:1px solid #FFF;font-weight:bold;color:#333;}
 #personalbox .post_list dt{border-bottom:2px solid #e5edf2;padding:15px 15px 5px 15px;}
 #personalbox .post_list dt a{font-size:14px;font-weight:bold;color:#000;}
-#personalbox .post_list dt span{display:inline-block;line-height:20px;background:url(../images/mob_icon10.jpg) left center no-repeat;padding-left:22px;font-size:12px;color:#666;}
+#personalbox .post_list dt span{display:inline-block;line-height:20px;background:url(../images/mobile/mob_icon10.jpg) left center no-repeat;padding-left:22px;font-size:12px;color:#666;}
 #personalbox .post_list dd{line-height:1.5;border-bottom:1px dashed #cdcdcd;padding:5px 15px;font-size:12px;color:#666;}
 #personalbox .msg_list dl{border-bottom:1px dashed #cdcdcd;padding-bottom:10px;margin-bottom:15px;}
 #personalbox .msg_list dd{padding:0px 15px;margin:10px 0px;color:#444;}
