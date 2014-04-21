@@ -1,0 +1,125 @@
+<!--{eval $turnpage = 1}-->
+<!--{template common/header}-->
+<!--{template common/userbox}-->
+<div id="append_parent"></div><div id="ajaxwaitid"></div>
+<div id="personalbox">
+    <style>
+        .setting .px {
+            width:180px;
+        }
+        .setting .d {
+               color: #999999;
+                margin: 5px 0 0 85px;
+        }
+        
+        #li_affectivestatus,#li_lookingfor,#li_bloodtype {
+            display:none;
+        }
+        
+        #lb_interest,#lb_sightml {
+            float:left;
+        }
+        
+        #birthdistrictbox, #residedistrictbox {
+            margin-left:85px;
+        }
+        
+    </style>
+    <iframe id="frame_profile" name="frame_profile" style="display: none"></iframe>
+    <form action="home.php?mod=spacecp&ac=profile&op=shouji" method="post" enctype="multipart/form-data" autocomplete="off" target="frame_profile">
+    <input type="hidden" value="{FORMHASH}" name="formhash" />
+    <!--{if $_GET[vid]}-->
+    <input type="hidden" value="$_GET[vid]" name="vid" />
+    <!--{/if}-->
+    <ul class="setting">
+        <li><span>用户名：</span>$space['username']</li>
+        <!--
+        <li>
+            <span>{lang new_password}：</span>
+            <label>
+                <input type="password" name="newpassword" id="newpassword" class="px" />
+            </label>
+            <p class="d" id="chk_newpassword">{lang memcp_profile_passwd_comment}</p>
+        </li>
+        <li>
+            <span>{lang new_password_confirm}：</span>
+            <label>
+                <input type="password" name="newpassword2" id="newpassword2"class="px" />
+            </label>
+            <p class="d" id="chk_newpassword2">{lang memcp_profile_passwd_comment}</p>
+        </li>
+        -->
+        <!--{loop $settings $key $value}-->
+        <!--{if $value[available]}-->
+        <li id="li_$key">
+            <span id="lb_$key">$value[title]：</span>
+            <label id="td_$key">
+                $htmls[$key]
+            </label>
+            <strong class="p">
+                <!--{if $vid}-->
+                <input type="hidden" name="privacy[$key]" value="3" />
+                <!--{else}-->
+                <select style="display:none;" name="privacy[$key]">
+                    <option value="0"{if $privacy[$key] == "0"} selected="selected"{/if}>{lang open_privacy}</option>
+                    <option value="1"{if $privacy[$key] == "1"} selected="selected"{/if}>{lang friend_privacy}</option>
+                    <option value="3"{if $privacy[$key] == "3"} selected="selected"{/if}>{lang secrecy}</option>
+                </select>
+                <!--{/if}-->
+            </strong>
+        </li>
+        <!--{/if}-->
+        <!--{/loop}-->
+        <li id="li_sightml">
+            <span id="lb_sightml">个人签名：</span>
+            <label id="td_sightml">
+            <textarea class="pt" id="sightmlmessage" name="sightml" cols="40" rows="3">{$space['sightml']}</textarea>
+        </li>
+        <!--
+        <li>
+            <span>{lang security_question}：</span>
+            <label>
+                <select name="questionidnew" id="questionidnew">
+                    <option value="" selected>{lang memcp_profile_security_keep}</option>
+                    <option value="0">{lang security_question_0}</option>
+                    <option value="1">{lang security_question_1}</option>
+                    <option value="2">{lang security_question_2}</option>
+                    <option value="3">{lang security_question_3}</option>
+                    <option value="4">{lang security_question_4}</option>
+                    <option value="5">{lang security_question_5}</option>
+                    <option value="6">{lang security_question_6}</option>
+                    <option value="7">{lang security_question_7}</option>
+                </select>
+            </label>
+            <p class="d">{lang memcp_profile_security_comment}</p>
+        </li>
+        <li>
+            <span>{lang security_answer}：</span>
+            <label>
+                <input type="text" name="answernew" id="answernew" class="px" />
+            </label>
+            <p class="d">{lang memcp_profile_security_answer_comment}</p>
+        </li>
+        -->
+        <li style="text-align:center;"><input type="hidden" name="profilesubmit" value="true" /><input type="submit" id="subbtn" value="保 存" />&nbsp;&nbsp;&nbsp;<input type="reset" id="rstbtn" value="重 置" /></li>
+    </ul>
+    </form>
+</div>
+
+<script>
+var jq=$.noConflict();
+var JSPATH = 'static/js/';
+var VERHASH = '{VERHASH}',SITEURL = '$_G[siteurl]', JSPATH = '$_G[setting][jspath]';
+
+function show_error(fieldid, extrainfo) {
+    alert("{lang check_date_item}" + extrainfo);
+}
+function show_success(message) {
+    message = message == '' ? '{lang update_date_success}' : message;
+    alert(message);
+    location.reload();
+}
+
+</script>
+<script src="static/js/common.js?{VERHASH}" type="text/javascript"></script>
+<!--{template common/footer}-->

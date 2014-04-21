@@ -12,6 +12,24 @@ if(!defined('IN_DISCUZ')) {
 }
 $defaultop = '';
 	$profilegroup = C::t('common_setting')->fetch('profilegroup', true);
+    
+    //print_r($profilegroup);
+    if(defined('IN_MOBILE') && IN_MOBILE){
+        $profilegroup['shouji'] = array(
+            'title' => '个人信息',
+            'available' => 1,
+            'displayorder' => 4,
+            'field' => array(
+                'realname' => 'realname',
+                'gender' => 'gender',
+                'birthday' => 'birthday',
+                'birthcity' => 'birthcity',
+                'residecity' => 'residecity',
+                'interest' => 'interest'
+            )
+            
+       );
+    }
 	foreach($profilegroup as $key => $value) {
 		if($value['available']) {
 			$defaultop = $key;
@@ -19,10 +37,14 @@ $defaultop = '';
 		}
 	}
 
-$operation = in_array($_GET['op'], array('base', 'contact', 'edu', 'work', 'info', 'password', 'verify')) ? trim($_GET['op']) : $defaultop;
+$operation = in_array($_GET['op'], array('base', 'contact', 'edu', 'work', 'info', 'password', 'verify','shouji')) ? trim($_GET['op']) : $defaultop;
 $space = getuserbyuid($_G['uid']);
 space_merge($space, 'field_home');
 space_merge($space, 'profile');
+
+if($operation == 'shouji'){
+    space_merge($space, 'field_forum');
+}
 
 list($seccodecheck, $secqaacheck) = seccheck('password');
 @include_once DISCUZ_ROOT.'./data/cache/cache_domain.php';
@@ -274,6 +296,11 @@ if(submitcheck('profilesubmit')) {
 		}
 		C::t('common_member_field_home')->update($space['uid'], array('privacy'=>serialize($space['privacy'])));
 	}
+    
+    
+    if($operation == 'shouji'){
+        //$emailnew = dhtmlspecialchars($_POST['emailnew']);
+    }
 
 	manyoulog('user', $_G['uid'], 'update');
 
@@ -426,7 +453,7 @@ if($operation == 'password') {
 	$actives = array('profile' =>' class="a"');
 	$opactives = array($operation =>' class="a"');
 	$allowitems = array();
-	if(in_array($operation, array('base', 'contact', 'edu', 'work', 'info'))) {
+	if(in_array($operation, array('base', 'contact', 'edu', 'work', 'info','shouji'))) {
 		$allowitems = $profilegroup[$operation]['field'];
 	} elseif($operation == 'verify') {
 		if($vid == 0) {

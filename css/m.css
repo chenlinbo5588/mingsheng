@@ -752,7 +752,7 @@ a:hover {text-decoration:underline;}
 #personalbox .updlist dd span{display:inline-block;width:30%;min-width:90px;line-height:20px;}
 #personalbox .setting{border-top:1px solid #CCC;padding:20px 0px;}
 #personalbox .setting li,#personalbox .msg_send li{padding:5px 10px;color:#4e4e4e;}
-#personalbox .setting li span,#personalbox .msg_send li span{display:inline-block;width:80px;}
+#personalbox .setting li span,#personalbox .msg_send li span{display:inline-block;width:85px;}
 #personalbox .setting li .txt,#personalbox .msg_send li .txt{width:180px;}
 #personalbox .setting li #subbtn,#personalbox .setting li #rstbtn,#personalbox .msg_send li #sendbtn{width:90px;height:30px;background:url(../images/mob_lgbtn.jpg) left top repeat-x;border:1px solid #87b3cb;font-family:"Microsoft YaHei",sans-serif;color:#0a5481;}
 #personalbox .setting li textarea,#personalbox .msg_send li textarea{width:210px;height:80px;}
