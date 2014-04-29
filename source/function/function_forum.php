@@ -51,7 +51,7 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
     /**
      * 获取审核和版主回复的时间 
      */
-    $lastlog = C::t('forum_threadmod')->fetch_all_by_tid($tids,array('MOD','RLP'));
+    $lastlog = C::t('forum_threadmod')->fetch_all_by_tid($tids,array('MOD','SOR', 'RLP'));
     
     foreach($lastlog as $k => $v){
         $tidsMod[$v['tid']][$v['action']] = $v;
@@ -64,6 +64,7 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
         $thread['statusTitle'] = '';
         
         $thread['MOD_dateline'] = isset($tidsMod[$thread['tid']]['MOD']) ? $tidsMod[$thread['tid']]['MOD']['dateline'] : 0;
+        $thread['SOR_dateline'] = isset($tidsMod[$thread['tid']]['SOR']) ? $tidsMod[$thread['tid']]['SOR']['dateline'] : 0;
         $thread['RLP_dateline'] = isset($tidsMod[$thread['tid']]['RLP']) ? $tidsMod[$thread['tid']]['RLP']['dateline'] : 0;
         
         if(isset($tidsMod[$thread['tid']]['RLP']) && isset($tidsMod[$thread['tid']]['MOD'])){
@@ -123,10 +124,8 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
         }
         
         if(in_array($thread['sortid'],array($lang['sort_accept_code'],$lang['sort_replied_code']))){
-            if(isset($tidsMod[$thread['tid']]['MOD'])){
-                $extraClass = ($ts_now - $tidsMod[$thread['tid']]['MOD']['dateline']) > $hour24 ? 'with-icon-24' : '';
-            }else{
-                $extraClass = ($ts_now - $thread[$datelineKey]) > $hour24 ? 'with-icon-24' : '';
+            if(isset($thread['SOR_dateline']) && isset($thread['MOD_dateline'])){
+                $extraClass = ($thread['SOR_dateline'] - $thread['MOD_dateline']) > $hour24 ? 'with-icon-24' : '';
             }
             
             if($extraClass){
