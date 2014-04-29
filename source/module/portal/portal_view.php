@@ -275,7 +275,12 @@ $articleprimaltplname = $cat['articleprimaltplname'];
 if(strpos($articleprimaltplname, ':') !== false) {
 	list($tpldirectory, $articleprimaltplname) = explode(':', $articleprimaltplname);
 }
-include_once template("diy:portal/view:{$catid}", NULL, $tpldirectory, NULL, $articleprimaltplname);
+if(defined('IN_MOBILE')){
+    include_once template("mobile_view");
+}else{
+    include_once template("diy:portal/view:{$catid}", NULL, $tpldirectory, NULL, $articleprimaltplname);
+}
+//include_once template("diy:portal/view:{$catid}", NULL, $tpldirectory, NULL, $articleprimaltplname);
 
 function parseforumattach(&$post, $aids) {
 	global $_G;
