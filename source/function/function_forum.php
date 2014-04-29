@@ -96,6 +96,8 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
                 if($days > 10){
                     $thread['className'] = 'icon-overtime';
                     $thread['statusTitle'] = '超时未回复';
+                }else{
+                    $thread['statusTitle'] = '已受理';
                 }
                 $thread['show_text'] = wrapper_text($lang['sort_accept'],'sort_accept');
                 break;
@@ -119,6 +121,33 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
             default:
                 break;
         }
+        
+        if(in_array($thread['sortid'],array($lang['sort_accept_code'],$lang['sort_replied_code']))){
+            if(isset($tidsMod[$thread['tid']]['MOD'])){
+                $extraClass = ($ts_now - $tidsMod[$thread['tid']]['MOD']['dateline']) > $hour24 ? 'with-icon-24' : '';
+            }else{
+                $extraClass = ($ts_now - $thread[$datelineKey]) > $hour24 ? 'with-icon-24' : '';
+            }
+            
+            if($extraClass){
+                $extraText = '24小时未受理';
+            }
+            
+            if($thread['className']){
+                $thread['className'] .= ' '.$extraClass;
+            }else{
+                $thread['className'] = $extraClass;
+            }
+            
+            if($thread['statusTitle']){
+                $thread['statusTitle'] .= ' '.$extraText;
+            }else{
+                $thread['statusTitle'] = $extraText;
+            }
+        }
+        
+        
+        
         $data[$k] = $thread;
     }
     

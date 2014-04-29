@@ -1118,21 +1118,7 @@ a{
     margin-left: 10px;
     text-align: center;
 }
-.thread-tabs ul li.tab-24 {
-    background: url(../images/light_warn.gif) no-repeat left center;
-}
-.thread-tabs ul li.tab-3days {
-    background: url(../images/light_green.gif) no-repeat left center;
-}
-.thread-tabs ul li.tab-5days {
-    background: url(../images/light_yellow.gif) no-repeat left center;
-}
-.thread-tabs ul li.tab-5daysover {
-    background: url(../images/light_gray.gif) no-repeat left center;
-}
-.thread-tabs ul li.tab-overtime {
-    background: url(../images/light_red.gif) no-repeat left center;
-}
+
 .thread-tabs ul li.active {
     background-color: #F2F2F2;
 }
@@ -1201,19 +1187,35 @@ a{
     background: url(../images/light_green.gif) no-repeat center center;
     cursor:pointer;
 }
+.icon-3days.with-icon-24 {
+    background: url(../images/twolight.png) no-repeat 0 -3px;
+}
+
 .icon-5days {
     background: url(../images/light_yellow.gif) no-repeat center center;
     cursor:pointer;
 }
+.icon-5days.with-icon-24 {
+    background: url(../images/twolight.png) no-repeat 0 -37px;
+}
+
 .icon-5daysover {
     background: url(../images/light_gray.gif) no-repeat center center;
     cursor:pointer;
 }
+
+.icon-5daysover.with-icon-24 {
+    background: url(../images/twolight.png) no-repeat 0 -77px;
+}
+
 .icon-overtime {
     background: url(../images/light_red.gif) no-repeat center center;
     cursor:pointer;
 }
 
+.icon-overtime.with-icon-24 {
+    background: url(../images/twolight.png) no-repeat 0 -117px;
+}
 
 .btm-btn {
     position: relative;
@@ -1391,7 +1393,7 @@ a{
     width:28px;
     height:28px;
     position:relative;
-    top:8px;
+    top:5px;
     cursor:pointer;
 }
 
