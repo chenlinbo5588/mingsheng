@@ -6,7 +6,8 @@
  *
  *      $Id: index.php 33892 2013-08-28 06:27:12Z hypowang $
  */
-
+error_reporting(0);
+ini_set("display_errors",false);
 if(!empty($_SERVER['QUERY_STRING']) && is_numeric($_SERVER['QUERY_STRING'])) {
 	$_ENV['curapp'] = 'home';
 	$_GET = array('mod'=>'space', 'uid'=>$_SERVER['QUERY_STRING']);
@@ -18,7 +19,7 @@ if(!empty($_SERVER['QUERY_STRING']) && is_numeric($_SERVER['QUERY_STRING'])) {
 	@include_once './data/sysdata/cache_domain.php';
 	$_ENV['domain'] = $domain;
 	if(empty($_ENV['domain'])) {
-		$_ENV['curapp'] = 'forum';
+		$_ENV['curapp'] = 'portal';
 	} else {
 		$_ENV['defaultapp'] = array('portal.php' => 'portal', 'forum.php' => 'forum', 'group.php' => 'group', 'home.php' => 'home');
 		$_ENV['hostarr'] = explode('.', $_SERVER['HTTP_HOST']);
@@ -105,9 +106,9 @@ if(!empty($_SERVER['QUERY_STRING']) && is_numeric($_SERVER['QUERY_STRING'])) {
 				}
 			} else {
 				if($jump) {
-					$url = empty($_ENV['domain']['app']['default']) ? (!empty($_ENV['domain']['defaultindex']) ? $_ENV['domain']['defaultindex'] : 'forum.php') : 'http://'.$_ENV['domain']['app']['default'];
+					$url = empty($_ENV['domain']['app']['default']) ? (!empty($_ENV['domain']['defaultindex']) ? $_ENV['domain']['defaultindex'] : 'portal.php') : 'http://'.$_ENV['domain']['app']['default'];
 				} else {
-					$_ENV['curapp'] = 'forum';
+					$_ENV['curapp'] = 'portal';
 				}
 			}
 		}

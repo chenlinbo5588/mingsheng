@@ -743,6 +743,10 @@ class discuz_application extends discuz_base{
 				return false;
 			}
 		}
+        
+        if(empty($this->var['setting']['domain']['defaultindex'])){
+            $this->var['setting']['domain']['defaultindex'] = 'portal.php';
+        }
 
 		if(strpos($this->var['setting']['domain']['defaultindex'], CURSCRIPT) !== false && CURSCRIPT != 'forum' && !$_GET['mod']) {
 			if($this->var['setting']['domain']['app']['mobile']) {
