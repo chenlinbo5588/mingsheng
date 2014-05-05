@@ -25,6 +25,28 @@
 
 <!--{hook/forumdisplay_top_mobile}-->
 <!--//forumdisplay_list template start-->
+<!--{if !$_G[setting][mobile][mobilesimpletype]}-->
+    <!--{if ($_G['forum']['threadtypes'] && $_G['forum']['threadtypes']['listable']) || $_G['forum']['threadsorts']}-->
+        <!--{if $_G['forum']['threadtypes']}-->
+            <div class="box ttp">
+            <span class="xg2">{lang threadtype} </span>
+            <a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}" class="<!--{if $_GET['filter'] != 'typeid'}-->xw1<!--{/if}-->">{lang forum_viewall}</a>
+            <!--{loop $_G['forum']['threadtypes']['types'] $id $name}-->
+                 <a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=typeid&typeid=$id$forumdisplayadd[typeid]" {if $_GET['filter'] == 'typeid' && $_GET['typeid'] == $id} class="xw1"{/if}>$name</a>
+            <!--{/loop}-->
+            </div>
+        <!--{/if}-->
+
+        <!--{if $_G['forum']['threadsorts']}-->
+            <div class="box tst">
+            <span class="xg2">{lang threadsort} </span>
+            <!--{loop $_G['forum']['threadsorts']['types'] $id $name}-->
+                <a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=sortid&sortid=$id$forumdisplayadd[sortid]" class="<!--{if $_GET[sortid] == $id}-->xw1<!--{/if}-->">$name</a>
+            <!--{/loop}-->
+            </div>
+        <!--{/if}-->
+    <!--{/if}-->
+<!--{/if}-->
 <!--{if !$subforumonly}-->
 	$multipage
     <div id="topicbox" class="tl">
@@ -72,7 +94,7 @@
                         	[{lang thread_sticky}]
                         <!--{/if}-->
                     <!--{/if}-->
-                   	{$thread[subject]}</a></h6>
+                   	{$thread[typehtml]}{$thread[subject]}</a></h6>
                     <!--{if $_G['setting']['mobile']['mobilesimpletype'] == 0}-->
                         <!--{if $thread['displayorder'] == 0}-->
                                 <!--{if $thread[recommendicon] && $filter != 'recommend'}-->
@@ -110,28 +132,7 @@
     $multipage
 <!--{/if}-->
 
-<!--{if !$_G[setting][mobile][mobilesimpletype]}-->
-    <!--{if ($_G['forum']['threadtypes'] && $_G['forum']['threadtypes']['listable']) || $_G['forum']['threadsorts']}-->
-        <!--{if $_G['forum']['threadtypes']}-->
-            <div class="box ttp">
-            <span class="xg2">{lang threadtype} </span>
-            <a href="forum.php?mod=forumdisplay&fid=$_G[fid]{if $_GET['archiveid']}&archiveid={$_GET['archiveid']}{/if}" class="<!--{if $_GET['filter'] != 'typeid'}-->xw1<!--{/if}-->">{lang forum_viewall}</a>
-            <!--{loop $_G['forum']['threadtypes']['types'] $id $name}-->
-                 <a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=typeid&typeid=$id$forumdisplayadd[typeid]" {if $_GET['filter'] == 'typeid' && $_GET['typeid'] == $id} class="xw1"{/if}>$name</a>
-            <!--{/loop}-->
-            </div>
-        <!--{/if}-->
 
-        <!--{if $_G['forum']['threadsorts']}-->
-            <div class="box tst">
-            <span class="xg2">{lang threadsort} </span>
-            <!--{loop $_G['forum']['threadsorts']['types'] $id $name}-->
-                <a href="forum.php?mod=forumdisplay&fid=$_G[fid]&filter=sortid&sortid=$id$forumdisplayadd[sortid]" class="<!--{if $_GET[sortid] == $id}-->xw1<!--{/if}-->">$name</a>
-            <!--{/loop}-->
-            </div>
-        <!--{/if}-->
-    <!--{/if}-->
-<!--{/if}-->
 <!--//forumdisplay_list template end-->
 <!--{hook/forumdisplay_bottom_mobile}-->
 
