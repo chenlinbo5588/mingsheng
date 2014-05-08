@@ -37,15 +37,28 @@ function wrapper_text($text,$classname = ''){
     return '<span class="'.$classname.'">['.$text.']</span>';
 }
 
-function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
+function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = false){
     global $lang;
     $ts_now = time();
     $hour24 = 60 * 60 * 24;
     $tids = array();
     $tidsMod = array();
+    $fidList = array();
+    $allTypeList = array();
     
     foreach($data as $k => $thread){
         $tids[] = $thread['tid'];
+        $fidList[] = $thread['fid'];
+    }
+    
+    if($addTypeHtml){
+        $fidList = array_unique($fidList);
+        if($fidList){
+            $typeList = C::t('forum_threadclass')->fetch_all_by_fid($fidList);
+            foreach($typeList as $v){
+                $allTypeList[$v['fid']][$v['typeid']] = $v;
+            }
+        }
     }
     
     /**
@@ -145,7 +158,9 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
             }
         }
         
-        
+        if($addTypeHtml && !empty($allTypeList[$thread['fid']][$thread['typeid']])){
+            $thread['specify_typehtml'] = '<em>[<a href="forum.php?mod=forumdisplay&fid='.$thread['fid'].'&amp;filter=typeid&amp;typeid='.$thread['typeid'].'">'.$allTypeList[$thread['fid']][$thread['typeid']]['name'].'</a>]</em>';
+        }
         
         $data[$k] = $thread;
     }
@@ -155,10 +170,10 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline'){
     return $data;
 }
 
-function thread_add_icon($data,$datelineKey = 'dateline'){
+function thread_add_icon($data,$datelineKey = 'dateline',$addTypeHtml = false){
     foreach($data as $tk => $tv){
         if(!empty($tv['threadlist'])){
-            $data[$tk]['threadlist'] = thread_add_icon_by_row($tv['threadlist'],$datelineKey);
+            $data[$tk]['threadlist'] = thread_add_icon_by_row($tv['threadlist'],$datelineKey,$addTypeHtml);
         }
     }
     

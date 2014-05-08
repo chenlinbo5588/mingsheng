@@ -136,7 +136,7 @@ if($view != 'index') {
 loadcache('stamps');
 $currentview[$view] = 'class="xw1 a"';
 $_G['forum_list'] = get_forums();
-$data = thread_add_icon($data,'dbdateline');
+$data = thread_add_icon($data,'dbdateline',true);
 $forumlist = forumselect(FALSE, 0, intval($_GET['fid']));
 
 /**
@@ -163,7 +163,7 @@ if($globalStickTids){
     }
 }
 
-$globlStickList = thread_add_icon_by_row($globlStickList,'dbdateline');
+$globlStickList = thread_add_icon_by_row($globlStickList,'dbdateline',true);
 $navigation = $view != 'index' ? ' <em>&rsaquo;</em> <a href="forum.php?mod=guide&view='.$view.'">'.$lang['guide_'.$view].'</a>' : '';
 
 //获取用户消息数

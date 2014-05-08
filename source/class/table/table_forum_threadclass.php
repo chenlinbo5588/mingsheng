@@ -31,7 +31,8 @@ class table_forum_threadclass extends discuz_table
 		return array();
 	}
 	public function fetch_all_by_fid($fid) {
-		return DB::fetch_all('SELECT * FROM %t WHERE fid=%d ORDER BY displayorder', array($this->_table, $fid), $this->_pk);
+        $wheresql .= is_array($fid) && $fid ? 'fid IN(%n)' : 'fid=%d';
+		return DB::fetch_all('SELECT * FROM %t WHERE '.$wheresql.' ORDER BY displayorder', array($this->_table, $fid), $this->_pk);
 	}
 	public function fetch_all_by_typeid_fid($typeid, $fid) {
 		$typeid = dintval($typeid, is_array($typeid) ? true : false);
