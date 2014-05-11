@@ -40,7 +40,6 @@ a{
 	
 }
 .third {
-    height: 390px;
     overflow: hidden;
 }
 
@@ -305,71 +304,14 @@ a{
 }
 
 
-.mfirst{
-	width: 1000px;
-	margin: 0 auto;
-}
-.mfirst .mhdp{
-	float: left;
-}
-.mfirst .mhdp{
-	width: 428px;
-	height: 264px;
-	border: 1px solid #313332;
-}
-.mfirst .mmskd{
-	float: right;
-}
-.mfirst .mmskd{
-	width: 565px;
-	height: 266px;
-	overflow: hidden;
-}
-.mmskd h2{
-	height: 35px;
-	line-height: 35px;
-	background: url("../images/mslogo.jpg") no-repeat;
-	text-align: right;
-	font-weight: normal;
-	font-size: 14px;
-}
+
+
 /*
 .mmskd h2 a{
 	font-size: 14px;
 	font-weight: normal;
 }
 */
-.mscon{
-	width: 563px;
-	height: 229px;
-	border: 1px solid #DADDDD;
-}
-.mscon h3, .mscon h3 a{
-	font-family: '微软雅黑';
-	text-align: center;
-	font-size: 20px;
-	color: #000;
-}
-.mscon .hot2{
-	padding: 0px 10px;
-	text-align: center;
-	color: #434343;
-}
-.mscon .hot2 a{
-	font-size: 14px;
-	color: #434343;
-	padding: 0 10px;
-	
-}
-.mlisth ul li{
-	display: inline;
-	float: left;
-	width: 238px;
-}
-
-.mlisth ul li:nth-child(2n){
-    margin-right:5px;
-}
 
 .hotline{
 	width:550px;
@@ -382,6 +324,56 @@ a{
 	margin: 0 auto;
 	padding-top: 10px;
 }
+.msecond .mmskd{
+	width: 100%;
+	overflow: hidden;
+}
+.mmskd h2{
+	height: 35px;
+	line-height: 35px;
+	background: url("../images/mslogo.jpg") no-repeat;
+	text-align: right;
+	font-weight: normal;
+	font-size: 14px;
+}
+.mscon{
+	width: 748px;
+	border: 1px solid #DADDDD;
+        margin-bottom: 6px;
+}
+.mscon h3, .mscon h3 a{
+	font-family: '微软雅黑';
+	text-align: center;
+	font-size: 20px;
+	color: #000;
+}
+.mfirst{
+	width: 100%;
+        height: 226px;
+        overflow: hidden;
+        margin-bottom: 13px;
+}
+.mfirst .mhdp{
+    float: left;
+    width: 345px;
+    height: 264px;
+}
+.mlisth {
+    float: left;
+    width: 375px;
+    margin-left: 8px;
+    height: 224px;
+    border: 1px solid #DADDDD;
+}
+.mlisth ul li{
+	display: inline;
+	float: left;
+	width: 238px;
+}
+.mlisth ul li:nth-child(2n){
+    margin-right:5px;
+}
+
 .zxask-btm {
     width: 1000px;
     overflow: hidden;
@@ -389,17 +381,24 @@ a{
 }
 .secleft{
 	float: left;
-	width: 730px;
+	width: 750px;
         position: relative;
 }
 
 .mscons{
-	width: 728px;
-	border: 1px solid #DADDDD;
+	width: 100%;
 	overflow: hidden;
 	position: relative;
 }
-.secleft h2{
+.mscons .sublist {
+    width: 370px;
+     margin-left: 10px;
+    float: left;
+}
+.mscons .newspub {
+    margin-left: 0px;
+}
+.mscons h2{
 	height: 35px;
 	line-height: 35px;
 	background: url("../images/xwfblogo.jpg") no-repeat;
@@ -407,11 +406,15 @@ a{
 	font-weight: normal;
 	font-size: 14px;
 }
+.mscons .newspub h2 {
+    background: url("../images/zwxxlogo.jpg") no-repeat;
+}
 .mlisthome{
 	padding-top: 10px;
 	padding-left: 18px;
 	padding-bottom: 10px;
-	width: 420px;
+	width: 350px;
+        border: 1px solid #DADDDD;
 	overflow: hidden;
 
 }
@@ -443,8 +446,21 @@ a{
 	height: 379px;
 	background: url("../images/helpsound-top.jpg") no-repeat 0 0;
 }
-.asklc{
-	margin-top: 15px;
+.secright .right-btn {
+    display: block;
+    width: 239px;
+    height: 43px;
+    margin-bottom: 15px;
+    text-indent: -1000em;
+}
+.secright .forum-help {
+    background: url("../images/forum-help.jpg") no-repeat 0 0;
+}
+.secright .hp-login {
+    background: url("../images/hp-login.jpg") no-repeat 0 0;
+}
+.secright .hp-register {
+    background: url("../images/hp-register.jpg") no-repeat 0 0;
 }
 .bluebg{
 	font-size: 0px;
@@ -467,7 +483,12 @@ a{
 	background: url("../images/wxsytop.jpg") no-repeat;
 	position: relative;
 }
-
+.ask-online {
+    width: 100%;
+    height: 30px;
+    background: url("../images/hp-ask-online.jpg") no-repeat 0 0;
+    margin-top: 5px;
+}
 .wxsytop a {
     position: absolute;
     right:0px;
@@ -534,9 +555,6 @@ a{
     font-size: 16px;
     text-decoration: none;
 }
-.zxwd_2{
-	display: none;
-}
 .asktop ul li.askcur{
 	background-position: left top;
 }
@@ -557,7 +575,7 @@ a{
 	height: 34px;
 	line-height: 34px;
 	vertical-align: middle;
-	border-bottom: 1px dashed #d1d1d1;
+        text-align: center;
 }
 .askul ul li div{
 	float: left;
@@ -575,6 +593,8 @@ a{
 	background: url("../images/dian.jpg") left center no-repeat;
 	padding-left: 10px;
 	width:380px;
+        overflow: hidden;
+        text-align: left;
 }
 .askul ul li div.p2{
 	width: 140px;
@@ -582,15 +602,15 @@ a{
 	font-family: Arial;
 }
 .askul ul li div.p3{
-	width: 110px;
-	font-size: 14px;
-	font-weight: bold;
-	color: #000;
-	
+    width: 110px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
 }
 .askul ul li div.p4{
-	color: #ff5d00;
-	font-size: 14px;
+    width: 75px;
+    color: #ff5d00;
+    font-size: 14px;
 }
 .p4 p{
 	float: left;
@@ -605,6 +625,37 @@ a{
 .p4 p.light4{ background-position: -75px top; }
 .p4 p.light5{ background-position: -100px top;}
 
+.askul .hp-title {
+    border-top: 3px solid #7ec0f6;
+    background-color: #f1f7fc;
+    text-align: center;
+}
+.askul .hp-title .p1,
+.askul .hp-title .p2,
+.askul .hp-title .p3,
+.askul .hp-title .p4{
+    font-size: 14px;
+    font-weight: bold;
+    color: #000;
+    background: url('../images/hp-title-bg.jpg') 0 0 no-repeat;
+}
+.askul .hp-title .p1 {
+    background: none;
+    text-align: center;
+    width: 395px;
+}
+.askul h2 {
+    height: 27px;
+    line-height: 27px;
+    font-size: 16px;
+    background: url('../images/fm-title-bg.jpg') left center no-repeat;
+    padding: 5px 0 5px 16px;
+}
+
+.askul h2 .moreLink {
+    float: right;
+    font-weight: normal;
+}
 
 .w240{
 	width: 240px;
@@ -633,7 +684,6 @@ a{
         height: 45px;
 	padding: 5px 9px;
         background: url(../images/wxbg-top.jpg) no-repeat 0 0;
-	border-bottom: 1px dashed #d1d1d1;
 }
 .wxbgcen .bgtj ul li {
     float: left;
@@ -647,6 +697,57 @@ a{
 .wxbgcen .bgtj .forum-num {
     color: #0EA0B8;
     font-weight: bold;
+}
+.w240 .gzph {
+    margin-top: 20px;
+    background: url(../images/gzph.jpg) no-repeat 0 0;
+}
+.w240 .zxhf {
+    margin-top: 20px;
+    background: url(../images/zxhf.jpg) no-repeat 0 0;
+}
+.w240 .zxhf-list {
+    height: auto;
+    background: url(../images/zxhf-bg.jpg) left bottom repeat-x;
+}
+.w240 .zxhf-list ul li {
+    width: 100%;
+    list-style: none;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+    background: url('../images/zxhf-icon.png') left center no-repeat;
+    padding: 5px 0 5px 15px;
+    font-size: 14px;
+}
+.w240 .gzph-list {
+    background-image: none;
+    background-color: #dbf2fa;
+    height: auto;
+}
+.w240 .gzph-list ul li {
+    width: 100%;
+    list-style: none;
+    height: 20px;
+    line-height: 20px;
+    vertical-align: middle;
+    font-size: 14px;
+    padding: 5px 0;
+    border-bottom: 1px dashed #CDCDCD;
+}
+.w240 .gzph-list li .list-num {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    margin-right: 5px;
+    font-size: 10px;
+    background: url('../images/gzph-icon.png') left center no-repeat;
+}
+.w240 .gzph-list li .top-one {
+    background: url('../images/gzph-icon-hover.jpg') left center no-repeat;
 }
 .fttj {
     height: 175px;
@@ -899,6 +1000,8 @@ a{
     height: 210px;
     overflow:hidden;
     position:relative;
+    padding-left: 15px;
+    border-bottom: 1px solid #7ec0f6;
 }
 
 .hotlink {
@@ -906,7 +1009,7 @@ a{
     height:50px;
     display: block;
     text-indent: -1000em;
-    margin: 5px 0;
+    margin: 10px 0;
 }
 .hotlink:hover {
     text-decoration: none;
@@ -931,6 +1034,10 @@ a{
 }
 
 
+.asklc{
+        width: 100%;
+        height:80px;
+}
 .guide {
     background:url(/images/asklc.jpg) no-repeat ;
     width:146px;

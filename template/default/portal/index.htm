@@ -1,46 +1,45 @@
 <!--{template common/header}-->
-<div class="mfirst">
-    <div class="mhdp">
-        <!--{block/14}-->
-    </div>
-    <div class="mmskd">
-        <h2><a class="moreLink" href="/portal.php?mod=list&catid=2"  target="_blank">&gt;&nbsp;更多</a></h2>
-        <div class="mscon">
-            <h3><!--{block/7}--></h3>
-            <div class="hot2"></div>
-            <div class="hotline"></div>
+
+<div class="msecond">
+    <div class="secleft">
+        <div class="mmskd">
+            <h2><a class="moreLink" href="/portal.php?mod=list&catid=2"  target="_blank">&gt;&nbsp;更多</a></h2>
+            <div class="mscon">
+                <h3><!--{block/7}--></h3>
+            </div>
+        </div>
+        <div class="mfirst">
+            <div class="mhdp">
+                <!--{block/14}-->
+            </div>
             <div class="mlist mllist mlisth">
                 <!--{block/9}-->
             </div>
-        </div>
-    </div>
-    <div class="clr"></div>
-</div>
-<div class="msecond">
-    <div class="secleft">
-        <h2><a class="moreLink" href="/portal.php?mod=list&catid=3" target="_blank">&gt;&nbsp;更多</a></h2>
-        <div class="mscons">
-            <div class="mlist mlisthome">
-                <!--{block/11}-->
-            </div>
-
-            <div class="viewbg view-idx">
-                <!--{block/16}-->
-            </div>
             <div class="clr"></div>
         </div>
-        <div class="asklc">
-            <a href="/portal.php?mod=view&aid=12" class="guide guide1" target="_blank">发帖须知</a>
-            <a href="/portal.php?mod=list&catid=6" class="guide guide2" target="_blank">常见问题</a>
-            <a href="/portal.php?mod=list&catid=7" class="guide guide3" target="_blank">部门职责</a>
-            <a href="/forum.php" class="guide guide4" target="_blank">镇街连线</a>
-            <a href="/forum.php" class="guide guide5" target="_blank">我要提问</a>
-            <!--<img src="images/asklc.jpg" />-->
-
-
+        <div class="mscons">
+            <div class="sublist newspub">
+                <h2><a class="moreLink" href="/portal.php?mod=list&catid=20" target="_blank">&gt;&nbsp;更多</a></h2>
+                <div class="mlist mlisthome">
+                    <!--{block/11}-->
+                </div>
+            </div>
+            <div class="sublist">
+                <h2><a class="moreLink" href="/portal.php?mod=list&catid=3" target="_blank">&gt;&nbsp;更多</a></h2>
+                <div class="mlist mlisthome">
+                    <!--{block/11}-->
+                </div>
+            </div>
+<!--            <div class="viewbg view-idx">
+                {block/16}
+            </div>-->
+            <div class="clr"></div>
         </div>
     </div>
     <div class="secright">
+        <a class="right-btn forum-help" href="/forum.php" target="_blank">阿拉帮侬忙</a>
+        <a class="right-btn hp-login" href="/member.php?mod=logging&action=login">用户登入</a>
+        <a class="right-btn hp-register" href="/member.php?mod=register">用户注册</a>
         <div class="bncdsy">
             <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>
             <a class="hotlink hot-1" href="/portal.php?mod=view&aid=9" target="_blank">热线呼叫</a>
@@ -56,23 +55,31 @@
 <div class="bluebg"></div>
 
 <div class="third">
-    <div class="zxask">
-        <a href="/forum.php" class="a1" target="_blank">&nbsp;</a>
-        <a href="/portal.php?mod=view&aid=15" class="a2" target="_blank">&nbsp;</a>
-        <a href="/forum.php" class="a3" target="_blank">&nbsp;</a>
-    </div>
     <div class="zxask-btm">
         <div class="secleft">
-            <div class="asktop" id="zxwd">
-                <ul>
-                    <li class="askcur" lang="1">网友正在问</li>
-                    <li lang="2">部门正在答</li>
-                </ul>
-                <div class="clr"></div>
-                <div class="rightlc"><img src="images/rightlc.jpg" /></div>
+            
+            <div class="asklc">
+                <a href="/portal.php?mod=view&aid=12" class="guide guide1" target="_blank">发帖须知</a>
+                <a href="/portal.php?mod=list&catid=6" class="guide guide2" target="_blank">常见问题</a>
+                <a href="/portal.php?mod=list&catid=7" class="guide guide3" target="_blank">部门职责</a>
+                <a href="/forum.php" class="guide guide4" target="_blank">镇街连线</a>
+                <a href="/forum.php" class="guide guide5" target="_blank">我要提问</a>
+                <!--<img src="images/asklc.jpg" />-->
             </div>
+            <div class="ask-online"></div>
+          
             <div class="askul">
-                <div id="index-asking" class="showno zxwd_1">
+                <h2>咨询求助<a class="moreLink" href="#"  target="_blank">&gt;&nbsp;更多</a></h2>
+                <div class="hp-title">
+                    <ul>
+                        <li><div class="p1">内容</div>
+                            <div class="p2">发布时间</div>
+                            <div class="p3">受理单位</div>
+                            <div class="p4">当前状态</div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="index-asking" class="showno">
                     <ul>
                         <!--{loop $askingThreads $val}-->
                         <li><div class="p1"><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" title="{$val['subject']}" target="_blank">{$val['subject']}</a></div>
@@ -85,7 +92,43 @@
                         <!--{/loop}-->
                     </ul>
                 </div>
-                <div id="index-answering" class="showno zxwd_2">
+                
+                <h2>投诉举报<a class="moreLink" href="#"  target="_blank">&gt;&nbsp;更多</a></h2>
+                <div class="hp-title">
+                    <ul>
+                        <li><div class="p1">内容</div>
+                            <div class="p2">发布时间</div>
+                            <div class="p3">受理单位</div>
+                            <div class="p4">当前状态</div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="index-answering" class="showno">
+                    <ul>
+                        <!--{loop $answeringThreads $val}-->
+                        <li><div class="p1"><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" title="{$val['subject']}" target="_blank">{$val['subject']}</a></div>
+                            <div class="p2">{$val['dateline']}</div>
+                            <div class="p3"><a href="forum.php?mod=forumdisplay&fid={$val[fid]}" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$val[fid]][name]}]</b></a></div>
+                            <div class="p4">
+                                <p class="threadstatus {$val['className']}" title="{$val['statusTitle']}"></p><p>{$val['show_text']}</p>
+                            </div>
+                        </li>
+                        <!--{/loop}-->
+                    </ul>
+                    
+                </div>
+                
+                <h2>建言献策<a class="moreLink" href="#"  target="_blank">&gt;&nbsp;更多</a></h2>
+                <div class="hp-title">
+                    <ul>
+                        <li><div class="p1">内容</div>
+                            <div class="p2">发布时间</div>
+                            <div class="p3">受理单位</div>
+                            <div class="p4">当前状态</div>
+                        </li>
+                    </ul>
+                </div>
+                <div id="index-suggestion" class="showno">
                     <ul>
                         <!--{loop $answeringThreads $val}-->
                         <li><div class="p1"><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" title="{$val['subject']}" target="_blank">{$val['subject']}</a></div>
@@ -100,29 +143,10 @@
                     
                 </div>
                 <div class="clr"></div>
-                <div class="person">
-                    <p class="per1">
-                        <!--{if $_G['uid']}-->
-                        <a href="/home.php?mod=spacecp" target="_blank">个人中心</a>
-                        <!--{else}-->
-                        <a href="/member.php?mod=logging&action=login" target="_blank">个人中心</a>
-                        <!--{/if}--></p>
-                    <p class="per2"><a href="/portal.php?mod=view&aid=12" target="_blank">发帖须知</a></p>
-                    <p class="per3">e热线：63013581</p>
-                    <span class="thread-search">热帖搜索：</span>
-                    <div class="psoso">
-                        <form method="post" autocomplete="off" action="search.php?mod=forum" onsubmit="if ($('scform_fmtxt'))  searchFocus($('scform_srchtxt'));">
-                            <input type="hidden" name="formhash" value="{FORMHASH}">
-                            <input class="pkey" type="text" id="scform_fmtxt" name="srchtxt" value="" tabindex="1" placeholder="请输入搜索内容">
-                            <input type="hidden" name="searchsubmit" value="yes">
-                            <input class="psub" type="submit" id="scform_submit1" value="">
-                        </form>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="secright w240">
-            <div class="wxbgtop"><a href="/portal.php?mod=list&catid=14" class="moreLink"  target="_blank">&nbsp;更多</a></div>
+            <div class="wxbgtop"></div>
             <div class="wxbgcen">
                 <div class="bgtj">
                     <ul><li><span class="forum-num">总发帖：</span>{$allposts}</li>
@@ -130,15 +154,21 @@
                     <ul><li><span class="forum-num">在受理：</span>{$nowdeals}</li>
                     <li><span class="forum-num">总回复：</span>{$allreplies}</li></ul>
                 </div>
-                <div class="fttj">
-                    <!--{block/27}-->
+            </div>
+            
+            <div class="wxbgtop zxhf"><a class="moreLink" href="/forum.php?mod=guide&view=new"  target="_blank">更多</a></div>
+            <div class="wxbgcen">
+                <div class="bgtj zxhf-list">
+                    <!--{block/30}-->
+                    <div class="clr"></div>
                 </div>
-                <div class="wxbgbtm">
-                    <!--{block/22}-->
-                    <!--{block/23}-->
-                    <!--{block/24}-->
-                    <!--{block/25}-->
-                    <!--{block/26}-->
+            </div>
+            
+            <div class="wxbgtop gzph"><a class="moreLink" href="/forum.php?mod=guide&view=new"  target="_blank">更多</a></div>
+            <div class="wxbgcen">
+                <div class="bgtj gzph-list">
+                    <!--{block/31}-->
+                    <div class="clr"></div>
                 </div>
             </div>
         </div>
@@ -226,11 +256,14 @@
     }) 
 })(jQuery); 
 jq(document).ready(function(){
-    if (jq("#index-asking li").length > 6) {
-        jq("#index-asking").scrollnews({line:1,speed:800,timer:2000});
-    }
-    if (jq("#index-answering li").length > 6) {
-        jq("#index-answering").scrollnews({line:1,speed:800,timer:2000}); 
-    }
+//    if (jq("#index-asking li").length > 6) {
+//        jq("#index-asking").scrollnews({line:1,speed:800,timer:2000});
+//    }
+//    if (jq("#index-answering li").length > 6) {
+//        jq("#index-answering").scrollnews({line:1,speed:800,timer:2000}); 
+//    }
+//    if (jq("#index-suggestion li").length > 6) {
+//        jq("#index-suggestion").scrollnews({line:1,speed:800,timer:2000}); 
+//    }
 }); 
 </script> 
