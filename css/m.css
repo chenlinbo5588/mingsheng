@@ -570,7 +570,7 @@ a:hover {text-decoration:underline;}
 #floatbox .ft_main a {
 	display: block;
 	float: left;
-	width: 80px;
+	width: 60px;
 	height: 20px;
 	line-height: 20px;
 	text-align: center;
@@ -591,6 +591,10 @@ a:hover {text-decoration:underline;}
 #floatbox .ft_main a.nav4 {
 	background: url(../images/mobile/nav4.png) center 5px no-repeat;
 }
+#floatbox .ft_main a.nav5 {
+	background: url(../images/mobile/nav5.png) center 5px no-repeat;
+}
+
 #floatbox .ft_main a:hover {
 	background-color: #000;
 }

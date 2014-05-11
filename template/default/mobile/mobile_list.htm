@@ -5,7 +5,11 @@
 
     <div id="newsbox">
         <div class="n_tab">
+            <!--{if $_GET['catid'] == 2}-->
             <span>民生快递</span>
+            <!--{else}-->
+            <span>政务信息</span>
+            <!--{/if}-->
         </div>
         <ul class="n_list clearfix">
             <!--{loop $list['list'] $value}-->
