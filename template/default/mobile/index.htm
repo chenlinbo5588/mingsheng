@@ -37,6 +37,20 @@
             
         });
     </script>
+    
+    <div id="newsbox">
+        <div class="n_tab">
+            <span>政务信息</span>
+        </div>
+        
+        <ul class="n_list clearfix">
+            <!--{loop $zwlist $value}-->
+            <li><a href="m.php?mod=mobile_view&aid={$value['aid']}" target="_self">$value[title]</a></li>
+            <!--{/loop}-->
+        </ul>
+        <a href="m.php?mod=mobile_list&catid=20&mobile=yes" class="more">更多</a>
+    </div>
+    
 	<!--hot_start-->
     <div id="topicbox">
         <div class="t_online"><a href="forum.php?mobile=yes">{$bm_count}个部门在线值守</a></div>

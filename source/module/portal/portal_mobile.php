@@ -115,6 +115,9 @@ $answeringThreads = thread_add_icon_by_row($answeringThreads,'dbdateline');
 $wheresql = 'catid = 2 AND status=0 ';
 $list = C::t('portal_article_title')->fetch_all_by_sql($wheresql, 'ORDER BY at.dateline DESC', 0, 10, 0, 'at');
 
+$wheresql = 'catid = 20 AND status=0 ';
+$zwlist = C::t('portal_article_title')->fetch_all_by_sql($wheresql, 'ORDER BY at.dateline DESC', 0, 10, 0, 'at');
+
 include_once template('index');
 
 
