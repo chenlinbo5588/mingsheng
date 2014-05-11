@@ -32,7 +32,7 @@
                                     <!--{else}-->
                                         <img src="{IMGDIR}/folder_$thread[folder].gif" />
                                     <!--{/if}-->
-                                    </a><a href="forum.php?mod=forumdisplay&fid={$thread[fid]}" class="town" style="color:{$_G[cache][forums][$thread[fid]][extra][namecolor]}">[{$_G[cache][forums][$thread[fid]][name]}]</a><a href="forum.php?mod=viewthread&amp;tid={$thread['tid']}" class="title">{$thread['subject']}</a></h6>
+                                    </a>{$thread[specify_typehtml]}<a href="forum.php?mod=forumdisplay&fid={$thread[fid]}" class="town" style="color:{$_G[cache][forums][$thread[fid]][extra][namecolor]}">[{$_G[cache][forums][$thread[fid]][name]}]</a><a href="forum.php?mod=viewthread&amp;tid={$thread['tid']}" class="title">{$thread['subject']}</a></h6>
                                 <div class="date">发表时间：{$thread['dateline']}</div>
                                 <div class="clearfix">
                                     <span class="status" >状态：<em class="threadstatus {$thread['className']}" title="{$thread['statusTitle']}" ></em>{$thread['show_text']}</span>
