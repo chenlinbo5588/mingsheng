@@ -466,6 +466,7 @@ a:hover {text-decoration:underline;}
 #topicbox .topic1 .t1_list li .lt span{display:block;width:65px;height:20px;line-height:20px;text-align:center;overflow:hidden;font-family:Arial,Helvetica,sans-serif;font-weight:bold;font-size:12px;color:#4e4e4e;}
 #topicbox .topic1 .t1_list li .rt{float:right;width:70%;min-width:220px;}
 #topicbox .topic1 .t1_list li .rt h6{height:40px;line-height:20px;margin-bottom:10px;margin-right:10px;overflow:hidden;}
+#topicbox .topic1 .t1_list li .rt h6 em,#topicbox .topic1 .t1_list li .rt h6 em a {color: #007CD5;}
 #topicbox .topic1 .t1_list li .rt h6 a.town{margin-right:5px;font-weight:bold;color:#002459;}
 #topicbox .topic1 .t1_list li .rt h6 a.title{color:#333;}
 #topicbox .topic1 .t1_list li .rt .date{margin-right:10px;text-align:right;font-size:12px;color:#666;}
@@ -569,7 +570,7 @@ a:hover {text-decoration:underline;}
 #floatbox .ft_main a {
 	display: block;
 	float: left;
-	width: 80px;
+	width: 60px;
 	height: 20px;
 	line-height: 20px;
 	text-align: center;
@@ -590,6 +591,10 @@ a:hover {text-decoration:underline;}
 #floatbox .ft_main a.nav4 {
 	background: url(../images/mobile/nav4.png) center 5px no-repeat;
 }
+#floatbox .ft_main a.nav5 {
+	background: url(../images/mobile/nav5.png) center 5px no-repeat;
+}
+
 #floatbox .ft_main a:hover {
 	background-color: #000;
 }
