@@ -86,24 +86,12 @@
         <!--{/if}-->
         <!--[diy=diy_chart]--><div id="diy_chart" class="area"></div><!--[/diy]-->
             
-            <div class="thread-tabs">
-                <ul>
-                    <li class="tab <!--{if empty($_GET['sortid']) || $_GET['sortid'] == 'all' }-->active<!--{/if}-->"><a href="forum.php">{lang sort_all}</a></li>
-                    <li class="tab <!--{if $_GET['sortid'] == '2'}-->active<!--{/if}-->"><a href="forum.php?filter=sortid&sortid=2">{lang sort_wait_accept}</a></li>
-                    <li class="tab <!--{if $_GET['sortid'] =='3'}-->active<!--{/if}-->"><a href="forum.php?filter=sortid&sortid=3">{lang sort_accept}</a></li>
-                    <li class="tab <!--{if $_GET['sortid'] =='4'}-->active<!--{/if}-->"><a href="forum.php?filter=sortid&sortid=4">{lang sort_replied}</a></li>
-                </ul>
-            </div>
-            
-			<ul id="thread_types" class="ttp bm cl">
-				<li $currentview['hot']><a href="forum.php?mod=guide&view=hot">{lang guide_hot}</a></li>
-				<li $currentview['digest']><a href="forum.php?mod=guide&view=digest">{lang guide_digest}</a></li>
-				<li $currentview['new']><a href="forum.php?mod=guide&view=new">{lang guide_new}</a></li>
-				<li $currentview['newthread']><a href="forum.php?mod=guide&view=newthread">{lang guide_newthread}</a></li>
-				<li $currentview['sofa']><a href="forum.php?mod=guide&view=sofa">{lang guide_sofa}</a></li>
-				<li $currentview['my']><a id="filter_special" href="forum.php?mod=guide&view=my" onmouseover="showMenu(this.id)">{lang guide_my}</a></li>
-				<!--{hook/guide_nav_extra}-->
-			</ul>
+            <ul id="thread_types" class="ttp bm cl">
+                <li <!--{if empty($_GET['view']) || $_GET['view'] == 'all' }-->class="xw1 a"<!--{/if}-->><a href="forum.php<!--{if $_GET['gid']}-->?gid=$_GET['gid']<!--{/if}-->">{lang guide_all}</a></li>
+                <li <!--{if $_GET['view'] == 'zxqz'}-->class="xw1 a"<!--{/if}-->><a href="forum.php?mod=guide&view=zxqz<!--{if $_GET['gid']}-->&gid=$_GET['gid']<!--{/if}-->">{lang guide_zxqz}</a></li>
+                <li <!--{if $_GET['view'] =='tsjb'}-->class="xw1 a"<!--{/if}-->><a href="forum.php?mod=guide&view=tsjb<!--{if $_GET['gid']}-->&gid=$_GET['gid']<!--{/if}-->">{lang guide_tsjb}</a></li>
+                <li <!--{if $_GET['view'] =='jyxy'}-->class="xw1 a"<!--{/if}-->><a href="forum.php?mod=guide&view=jyxy<!--{if $_GET['gid']}-->&gid=$_GET['gid']<!--{/if}-->">{lang guide_jyxy}</a></li>
+            </ul>
 			<!--{hook/guide_top}-->
 			<!--{if $view == 'index'}-->
 				<!--{loop $data $key $list}-->

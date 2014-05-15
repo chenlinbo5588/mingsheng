@@ -1115,7 +1115,7 @@ class table_forum_thread extends discuz_table
 		$tableid = intval($tableid);
 		return $tableid ? "forum_thread_$tableid" : 'forum_thread';
 	}
-	public function fetch_all_for_guide($type, $limittid, $tids = array(), $heatslimit = 3, $dateline = 0, $start = 0, $limit = 600, $fids = 0) {
+	public function fetch_all_for_guide($type, $limittid, $tids = array(), $heatslimit = 3, $dateline = 0, $start = 0, $limit = 600, $fids = 0 , $typeids = array()) {
         switch ($type) {
 			case 'hot' :
 				$addsql = ' AND heats>='.intval($heatslimit);
@@ -1125,8 +1125,8 @@ class table_forum_thread extends discuz_table
 				break;
 			default :
                 $addsql = '';
-                if(isset($_GET['sortid']) || $_GET['sortid'] != 0 ){
-                    $addsql = ' AND sortid = '.intval($_GET['sortid']);
+                if(!empty($typeids)){
+                    $addsql = ' AND typeid IN ('.dimplode($typeids).')';
                 }
 		}
         
