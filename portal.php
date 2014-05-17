@@ -20,7 +20,7 @@ $discuz->init();
 require DISCUZ_ROOT.'./source/function/function_home.php';
 require DISCUZ_ROOT.'./source/function/function_portal.php';
 
-if(empty($_GET['mod']) || !in_array($_GET['mod'], array('list', 'view', 'comment', 'portalcp', 'topic', 'attachment', 'rss', 'block'))) $_GET['mod'] = 'index';
+if(empty($_GET['mod']) || !in_array($_GET['mod'], array('list', 'view', 'comment', 'portalcp', 'topic', 'attachment', 'rss', 'block','new'))) $_GET['mod'] = 'index';
 
 
 define('CURMODULE', $_GET['mod']);
