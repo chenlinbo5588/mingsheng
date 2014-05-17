@@ -16,7 +16,7 @@ $sortid = isset($_GET['sortid']) ? $_GET['sortid'] : 0;
 $gid = isset($_GET['gid']) ? $_GET['gid'] : 0;
 
 loadcache('forum_guide');
-if(!in_array($view, array('all', 'hot', 'digest', 'new', 'my', 'newthread', 'sofa'))) {
+if(!in_array($view, array('all','zxqz','tsjb','jyxy', 'hot', 'digest', 'new', 'my', 'newthread', 'sofa'))) {
 	$view = 'all';
 }
 $lang = lang('forum/template');
@@ -184,9 +184,9 @@ if ($_G['uid']) {
 include template('forum/guide');
 
 function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
-	global $_G;
+	global $_G ,$lang ;
 	$setting_guide = unserialize($_G['setting']['guide']);
-	if(!in_array($view, array('all', 'hot', 'digest', 'new', 'newthread', 'sofa'))) {
+	if(!in_array($view, array('all', 'zxqz','tsjb','jyxy', 'hot', 'digest', 'new', 'newthread', 'sofa'))) {
 		return array();
 	}
 	loadcache('forums');
@@ -239,6 +239,21 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 		if(empty($fids)) {
 			return array();
 		}
+        
+        $typeList = array();
+        $types = array();
+        if($fids){
+            $typeList = C::t('forum_threadclass')->fetch_all_by_fid($fids);
+            if(in_array($view,array('zxqz','tsjb','jyxy'))){
+                foreach($typeList as $v){
+                    if($v['name'] == $lang['guide_'.$view]){
+                        $types[] = $v['typeid'];
+                    }
+                }
+            }
+        }
+        
+        
 		if($view == 'sofa') {
 			if($_GET['fid']) {
 				$sofa = C::t('forum_sofa')->fetch_all_by_fid($_GET['fid'], $start, $num);
@@ -254,7 +269,7 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 		}
 		$updatecache = true;
 	}
-    $query = C::t('forum_thread')->fetch_all_for_guide($view, $limittid, $tids, $_G['setting']['heatthread']['guidelimit'], $dateline);
+    $query = C::t('forum_thread')->fetch_all_for_guide($view, $limittid, $tids, $_G['setting']['heatthread']['guidelimit'], $dateline, $start, $num , 0,$types);
     $n = 0;
 	foreach($query as $thread) {
 		if(empty($tids) && ($thread['isgroup'] || !in_array($thread['fid'], $fids))) {

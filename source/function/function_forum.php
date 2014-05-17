@@ -152,7 +152,7 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
             }
             
             if($thread['statusTitle']){
-                $thread['statusTitle'] .= ' '.$extraText;
+                $thread['statusTitle'] = $extraText . ' '.$thread['statusTitle'];
             }else{
                 $thread['statusTitle'] = $extraText;
             }
