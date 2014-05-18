@@ -411,9 +411,9 @@ a{
     background: url("../images/zwxxlogo.jpg") no-repeat;
 }
 .mlisthome{
-	padding-top: 10px;
+	padding-top: 5px;
 	padding-left: 18px;
-	padding-bottom: 10px;
+	padding-bottom: 5px;
 	width: 350px;
         border: 1px solid #DADDDD;
 	overflow: hidden;
