@@ -56,19 +56,19 @@
         <div class="t_online"><a href="forum.php?mobile=yes">{$bm_count}个部门在线值守</a></div>
         
         <div class="t_tab slideTab">
-            <span class="navOn">网友在问</span><span>部门回复</span><span>综合排名</span>
+            <span class="navOn">咨询求助</span><span>投诉举报</span><span>建言献策</span>
         </div>
         <div class="t_main slideTopic">
             <div class="topic_item topic1">
                 <!--{eval $fid = empty($_GET['fid']) ? 2 : $_GET['fid'];}--> 
                 <a href="forum.php?mod=post&action=newthread&fid={$fid}" class="msg">马上留言</a>
                 <ul class="t1_list clearfix">
-                    <!--{loop $askingThreads $val}-->
+                    <!--{loop $threadsList[0] $val}-->
                     <li>
                         <div class="lt"><img src="/uc_server/avatar.php?uid={$val['authorid']}&size=middle" /><span>{$val['author']}</span></div>
                         <div class="rt">
                             <h6><a href="forum.php?mod=forumdisplay&fid={$val[fid]}" class="town" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}">[{$_G[cache][forums][$val[fid]][name]}]</a><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" class="title">{$val['subject']}</a></h6>
-                            <div class="date">发表时间：{$val['dateline']}</div>
+                            <div class="date">发表时间：{date($val['dateline'],"Y-m-d")}</div>
                             <div class="clearfix">
                                 <span class="status" >状态：<em class="threadstatus {$val['className']}" title="{$val['statusTitle']}" ></em>{$val['show_text']}</span>
                                 <span class="reply">回复{$val['views']} | 查看{$val['replies']}</span>
@@ -83,12 +83,12 @@
             <div class="topic_item topic1" style="display:none;">
                 <a href="forum.php?mod=post&action=newthread&fid={$fid}" class="msg">马上留言</a>
                 <ul class="t1_list clearfix">
-                    <!--{loop $answeringThreads $val}-->
+                    <!--{loop $threadsList[1] $val}-->
                     <li>
                         <div class="lt"><img src="/uc_server/avatar.php?uid={$val['authorid']}&size=middle" /><span>{$val['author']}</span></div>
                         <div class="rt">
                             <h6><a href="forum.php?mod=forumdisplay&fid={$val[fid]}" class="town" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}">[{$_G[cache][forums][$val[fid]][name]}]</a><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" class="title">{$val['subject']}</a></h6>
-                            <div class="date">发表时间：{$val['dateline']}</div>
+                            <div class="date">发表时间：{date($val['dateline'],"Y-m-d")}</div>
                             <div class="clearfix">
                                 <span class="status" >状态：<em class="threadstatus {$val['className']}" title="{$val['statusTitle']}" ></em>{$val['show_text']}</span>
                                 <span class="reply">回复{$val['views']} | 查看{$val['replies']}</span>
@@ -99,12 +99,22 @@
                 </ul>
                 <a href="forum.php?mobile=yes" class="more">更多</a>
             </div>
-            <div class="topic_item topic3" style="display:none;">
+            
+            <div class="topic_item topic1" style="display:none;">
                 <a href="forum.php?mod=post&action=newthread&fid={$fid}" class="msg">马上留言</a>
-                <ul class="t3_list clearfix">
-                    <!--{loop $zhThreads $key $val}-->
-                    {eval $idx = $key + 1;}
-                    <li><em <!--{if in_array($idx,array('1','2','3'))}-->class="red"<!--{/if}-->>{$idx}</em><a href="forum.php?mod=forumdisplay&fid={$val[fid]}">{$val['subject']}</a></li>
+                <ul class="t1_list clearfix">
+                    <!--{loop $threadsList[2] $val}-->
+                    <li>
+                        <div class="lt"><img src="/uc_server/avatar.php?uid={$val['authorid']}&size=middle" /><span>{$val['author']}</span></div>
+                        <div class="rt">
+                            <h6><a href="forum.php?mod=forumdisplay&fid={$val[fid]}" class="town" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}">[{$_G[cache][forums][$val[fid]][name]}]</a><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" class="title">{$val['subject']}</a></h6>
+                            <div class="date">发表时间：{date($val['dateline'],"Y-m-d")}</div>
+                            <div class="clearfix">
+                                <span class="status" >状态：<em class="threadstatus {$val['className']}" title="{$val['statusTitle']}" ></em>{$val['show_text']}</span>
+                                <span class="reply">回复{$val['views']} | 查看{$val['replies']}</span>
+                            </div>
+                        </div>
+                    </li>
                     <!--{/loop}-->
                 </ul>
                 <a href="forum.php?mobile=yes" class="more">更多</a>

@@ -69,48 +69,42 @@ if($_G['page'] == 1) {
     }
 }
 
-/**
- *  
- * 
- * 网友正在问取[未受理][已受理]，最新15条
- * 部门正在答取[已回复]，最新15条
- *  
- */
+$fids = array();
+foreach($_G['cache']['forums'] as $fid => $forum) {
+    //获取可用板块
+    if($forum['type'] != 'group' && $forum['status'] > 0 && !$forum['viewperm'] && !$forum['havepassword']) {
+        $fids[] = $fid;
+    }
+}
 
-$askingThreads = C::t('forum_thread')->fetch_by_sortid(array(2,3), " dateline DESC " ,0,10);
-$answeringThreads = C::t('forum_thread')->fetch_by_sortid(4," lastpost DESC " ,0,10);
-
-$zhThreads =  C::t('forum_thread')->fetch_all_search(array(
-    'displayorder' => array(3,2,1,0)
-),0,0,30,'replies');
-
+$typeList = array();
+$types = array();
+$threadsList = array();
 $lang = lang('forum/template');
 
-foreach($askingThreads as $k => $val) {
-    $val['dbdateline'] = $val['dateline'];
-    $val['dateline'] = date("Y-m-d",$val['dateline']);
-    $askingThreads[$k] = $val;
+if($fids){
+    $typeList = C::t('forum_threadclass')->fetch_all_by_fid($fids);
+    foreach($typeList as $v){
+        if($v['name'] == $lang['guide_zxqz']){
+            $types[0][] = $v['typeid'];
+        }elseif($v['name'] == $lang['guide_tsjb']){
+            $types[1][] = $v['typeid'];
+        }elseif($v['name'] == $lang['guide_jyxc']){
+            $types[2][] = $v['typeid'];
+        }else{
+            $types[3][] = $v['typeid'];
+        }
+    }
     
+    foreach($types as $v){
+        $threadsList[] = C::t('forum_thread')->fetch_all_by_typeid($v,0,5);
+    }
 }
 
-foreach($answeringThreads as $k =>  $val) {
-    $val['dbdateline'] = $val['dateline'];
-    $val['dateline'] = date("Y-m-d",$val['dateline']);
-    
-    $answeringThreads[$k] = $val;
+foreach($threadsList as $k => $v){
+    $threadsList[$k] = thread_add_icon_by_row($v);
 }
 
-/*
-foreach($zhThreads as $k =>  $val) {
-    $val['dbdateline'] = $val['dateline'];
-    $val['dateline'] = date("Y-m-d",$val['dateline']);
-    
-    $zhThreads[$k] = $val;
-}
- */
-
-$askingThreads = thread_add_icon_by_row($askingThreads,'dbdateline');
-$answeringThreads = thread_add_icon_by_row($answeringThreads,'dbdateline');
 
 $wheresql = 'catid = 2 AND status=0 ';
 $list = C::t('portal_article_title')->fetch_all_by_sql($wheresql, 'ORDER BY at.dateline DESC', 0, 10, 0, 'at');
