@@ -570,7 +570,7 @@ a{
 	top: 10px;
 }
 .askul{
-	padding: 10px 0;
+	padding: 0;
 }
 .askul ul,.askul ul li{
 	list-style: none;
@@ -732,8 +732,8 @@ a{
 .w240 .gzph-list ul li {
     width: 100%;
     list-style: none;
-    height: 20px;
-    line-height: 20px;
+    height: 22px;
+    line-height: 22px;
     vertical-align: middle;
     font-size: 14px;
     padding: 5px 0;
@@ -1001,7 +1001,7 @@ a{
 }
 
 .showno {
-    height: 210px;
+    height: 170px;
     overflow:hidden;
     position:relative;
     padding-left: 15px;
