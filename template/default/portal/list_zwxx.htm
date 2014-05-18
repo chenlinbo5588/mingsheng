@@ -12,13 +12,31 @@
 			<div class="mline"></div>
 		</div>
 		<div class="plist">
-			<ul>
+			<div class="bm_c xld zw-news">
 				<!--{loop $list['list'] $value}-->
 				<!--{eval $highlight = article_title_style($value);}-->
 				<!--{eval $article_url = fetch_article_url($value);}-->
-				<li><a href="$article_url" target="_blank">$value[title]</a><span>$value[dateline]</span></li>
+                        <dl class="bbda cl">
+                            <dt class="xs2"><a href="$article_url" target="_blank" class="xi2" $highlight>$value[title]</a> <!--{if $value[status] == 1}-->({lang moderate_need})<!--{/if}--></dt>
+                            <dd class="xs2 cl">
+                                <!--{if $value[pic]}--><div class="atc"><a href="$article_url" target="_blank"><img src="$value[pic]" alt="$value[title]" class="tn" /></a></div><!--{/if}-->
+                                $value[summary]
+                            </dd>
+                            <dd>
+                                <!--{if $value[catname] && $cat[subs]}-->{lang category}: <label><a href="{$portalcategory[$value['catid']]['caturl']}" class="xi2">$value[catname]</a></label>&nbsp;&nbsp;<!--{/if}-->
+                                <span class="xg1"> $value[dateline]</span>
+                                <!--{if $_G['group']['allowmanagearticle'] || ($_G['group']['allowpostarticle'] && $value['uid'] == $_G['uid'] && (empty($_G['group']['allowpostarticlemod']) || $_G['group']['allowpostarticlemod'] && $value['status'] == 1)) || $categoryperm[$value['catid']]['allowmanage']}-->
+                                <span class="xg1">
+                                    <span class="pipe">|</span>
+                                    <label><a href="portal.php?mod=portalcp&ac=article&op=edit&aid=$value[aid]">{lang edit}</a></label>
+                                    <span class="pipe">|</span>
+                                    <label><a href="portal.php?mod=portalcp&ac=article&op=delete&aid=$value[aid]" id="article_delete_$value[aid]" onclick="showWindow(this.id, this.href, 'get', 0);">{lang delete}</a></label>
+                                </span>
+                                <!--{/if}-->
+                            </dd>
+                        </dl>
 				<!--{/loop}-->
-			</ul>
+			</div>
 			<div class="page">{$list['multi']}</div>
 		</div>
 	</div>
