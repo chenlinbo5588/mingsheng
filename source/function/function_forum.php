@@ -39,6 +39,11 @@ function wrapper_text($text,$classname = ''){
 
 function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = false){
     global $lang;
+    
+    if(empty($lang)){
+        $lang = lang('forum/template');
+    }
+    
     $ts_now = time();
     $hour24 = 60 * 60 * 24;
     $tids = array();

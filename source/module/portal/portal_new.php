@@ -53,26 +53,42 @@ if($_G['uid']){
     $noticeCount = C::t('home_notification')->count_by_uid($_G['uid'], 1, 'system');
 }
 
-$askingThreads = C::t('forum_thread')->fetch_by_sortid(array(2,3), " dateline DESC " ,0,15);
-$answeringThreads = C::t('forum_thread')->fetch_by_sortid(4," lastpost DESC " ,0,15);
 
+$fids = array();
+foreach($_G['cache']['forums'] as $fid => $forum) {
+    //获取可用板块
+    if($forum['type'] != 'group' && $forum['status'] > 0 && !$forum['viewperm'] && !$forum['havepassword']) {
+        $fids[] = $fid;
+    }
+}
+
+$typeList = array();
+$types = array();
+$threadsList = array();
 $lang = lang('forum/template');
 
-foreach($askingThreads as $k => $val) {
-    $val['dbdateline'] = $val['dateline'];
-    $val['dateline'] = date("Y-m-d",$val['dateline']);
-    $askingThreads[$k] = $val;
+if($fids){
+    $typeList = C::t('forum_threadclass')->fetch_all_by_fid($fids);
+    foreach($typeList as $v){
+        if($v['name'] == $lang['guide_zxqz']){
+            $types[0][] = $v['typeid'];
+        }elseif($v['name'] == $lang['guide_tsjb']){
+            $types[1][] = $v['typeid'];
+        }elseif($v['name'] == $lang['guide_jyxc']){
+            $types[2][] = $v['typeid'];
+        }else{
+            $types[3][] = $v['typeid'];
+        }
+    }
     
+    foreach($types as $v){
+        $threadsList[] = C::t('forum_thread')->fetch_all_by_typeid($v,0,5);
+    }
 }
 
-foreach($answeringThreads as $k =>  $val) {
-    $val['dbdateline'] = $val['dateline'];
-    $val['dateline'] = date("Y-m-d",$val['dateline']);
-    
-    $answeringThreads[$k] = $val;
+foreach($threadsList as $k => $v){
+    $threadsList[$k] = thread_add_icon_by_row($v);
 }
 
-$askingThreads = thread_add_icon_by_row($askingThreads,'dbdateline');
-$answeringThreads = thread_add_icon_by_row($answeringThreads,'dbdateline');
 include_once template('diy:portal/new');
 ?>

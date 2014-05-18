@@ -16,7 +16,7 @@ $sortid = isset($_GET['sortid']) ? $_GET['sortid'] : 0;
 $gid = isset($_GET['gid']) ? $_GET['gid'] : 0;
 
 loadcache('forum_guide');
-if(!in_array($view, array('all','zxqz','tsjb','jyxy', 'hot', 'digest', 'new', 'my', 'newthread', 'sofa'))) {
+if(!in_array($view, array('all','zxqz','tsjb','jyxc', 'hot', 'digest', 'new', 'my', 'newthread', 'sofa'))) {
 	$view = 'all';
 }
 $lang = lang('forum/template');
@@ -186,7 +186,7 @@ include template('forum/guide');
 function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 	global $_G ,$lang ;
 	$setting_guide = unserialize($_G['setting']['guide']);
-	if(!in_array($view, array('all', 'zxqz','tsjb','jyxy', 'hot', 'digest', 'new', 'newthread', 'sofa'))) {
+	if(!in_array($view, array('all', 'zxqz','tsjb','jyxc', 'hot', 'digest', 'new', 'newthread', 'sofa'))) {
 		return array();
 	}
 	loadcache('forums');
@@ -244,7 +244,7 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
         $types = array();
         if($fids){
             $typeList = C::t('forum_threadclass')->fetch_all_by_fid($fids);
-            if(in_array($view,array('zxqz','tsjb','jyxy'))){
+            if(in_array($view,array('zxqz','tsjb','jyxc'))){
                 foreach($typeList as $v){
                     if($v['name'] == $lang['guide_'.$view]){
                         $types[] = $v['typeid'];

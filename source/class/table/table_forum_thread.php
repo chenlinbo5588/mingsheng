@@ -267,6 +267,11 @@ class table_forum_thread extends discuz_table
 		return DB::fetch_all('SELECT * FROM %t WHERE %i '.DB::limit($start, $limit), array($this->get_table_name($tableid), DB::field('displayorder', $displayorder, $glue)));
 	}
 
+    public function fetch_all_by_typeid($typeid ,$start = 0, $limit = 0, $tableid = 0 ){
+		$addWhere = is_array($typeid) && $typeid ? 'typeid IN(%n)' : 'typeid=%d';
+        return DB::fetch_all("SELECT * FROM %t WHERE {$addWhere} ORDER BY dateline DESC ".DB::limit($start, $limit), array($this->get_table_name($tableid),$typeid), $this->_pk);
+    }
+    
 	public function fetch_all_by_authorid($authorid, $start = 0, $limit = 0, $tableid = 0) {
 		$authorid = dintval($authorid, true);
 		return DB::fetch_all("SELECT * FROM %t WHERE %i ORDER BY dateline DESC ".DB::limit($start, $limit), array($this->get_table_name($tableid), DB::field('authorid', $authorid)), $this->_pk);

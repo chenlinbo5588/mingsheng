@@ -73,7 +73,7 @@
             <div class="ask-online"></div>
           
             <div class="askul">
-                <h2>咨询求助<a class="moreLink" href="#"  target="_blank">&gt;&nbsp;更多</a></h2>
+                <h2>咨询求助<a class="moreLink" href="forum.php?mod=guide&view=zxqz"  target="_blank">&gt;&nbsp;更多</a></h2>
                 <div class="hp-title">
                     <ul>
                         <li><div class="p1">内容</div>
@@ -85,9 +85,9 @@
                 </div>
                 <div id="index-asking" class="showno">
                     <ul>
-                        <!--{loop $askingThreads $val}-->
+                        <!--{loop $threadsList[0] $val}-->
                         <li><div class="p1"><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" title="{$val['subject']}" target="_blank">{$val['subject']}</a></div>
-                            <div class="p2">{$val['dateline']}</div>
+                            <div class="p2">{date($val['dateline'],"Y-m-d")}</div>
                             <div class="p3"><a href="forum.php?mod=forumdisplay&fid={$val[fid]}" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$val[fid]][name]}]</b></a></div>
                             <div class="p4">
                                 <p class="threadstatus {$val['className']}" title="{$val['statusTitle']}"></p><p>{$val['show_text']}</p>
@@ -97,7 +97,7 @@
                     </ul>
                 </div>
                 
-                <h2>投诉举报<a class="moreLink" href="#"  target="_blank">&gt;&nbsp;更多</a></h2>
+                <h2>投诉举报<a class="moreLink" href="forum.php?mod=guide&view=tsjb"  target="_blank">&gt;&nbsp;更多</a></h2>
                 <div class="hp-title">
                     <ul>
                         <li><div class="p1">内容</div>
@@ -109,9 +109,9 @@
                 </div>
                 <div id="index-answering" class="showno">
                     <ul>
-                        <!--{loop $answeringThreads $val}-->
+                        <!--{loop $threadsList[1] $val}-->
                         <li><div class="p1"><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" title="{$val['subject']}" target="_blank">{$val['subject']}</a></div>
-                            <div class="p2">{$val['dateline']}</div>
+                            <div class="p2">{date($val['dateline'],"Y-m-d")}</div>
                             <div class="p3"><a href="forum.php?mod=forumdisplay&fid={$val[fid]}" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$val[fid]][name]}]</b></a></div>
                             <div class="p4">
                                 <p class="threadstatus {$val['className']}" title="{$val['statusTitle']}"></p><p>{$val['show_text']}</p>
@@ -122,7 +122,7 @@
                     
                 </div>
                 
-                <h2>建言献策<a class="moreLink" href="#"  target="_blank">&gt;&nbsp;更多</a></h2>
+                <h2>建言献策<a class="moreLink" href="forum.php?mod=guide&view=jyxc"  target="_blank">&gt;&nbsp;更多</a></h2>
                 <div class="hp-title">
                     <ul>
                         <li><div class="p1">内容</div>
@@ -134,9 +134,9 @@
                 </div>
                 <div id="index-suggestion" class="showno">
                     <ul>
-                        <!--{loop $answeringThreads $val}-->
+                        <!--{loop $threadsList[2] $val}-->
                         <li><div class="p1"><a href="forum.php?mod=viewthread&amp;tid={$val['tid']}" title="{$val['subject']}" target="_blank">{$val['subject']}</a></div>
-                            <div class="p2">{$val['dateline']}</div>
+                            <div class="p2">{date($val['dateline'],"Y-m-d")}</div>
                             <div class="p3"><a href="forum.php?mod=forumdisplay&fid={$val[fid]}" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$val[fid]][name]}]</b></a></div>
                             <div class="p4">
                                 <p class="threadstatus {$val['className']}" title="{$val['statusTitle']}"></p><p>{$val['show_text']}</p>
