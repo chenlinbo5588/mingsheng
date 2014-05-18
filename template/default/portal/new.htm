@@ -38,7 +38,11 @@
     </div>
     <div class="secright">
         <a class="right-btn forum-help" href="/forum.php" target="_blank">阿拉帮侬忙</a>
+        <!--{if $_G['uid']}-->
+        <a class="right-btn hp-center" href="/home.php?mod=spacecp">个人中心</a>
+        <!--{else}-->
         <a class="right-btn hp-login" href="/member.php?mod=logging&action=login">用户登入</a>
+        <!--{/if}-->
         <a class="right-btn hp-register" href="/member.php?mod=register">用户注册</a>
         <div class="bncdsy">
             <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>

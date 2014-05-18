@@ -1425,6 +1425,9 @@ a{
 .plist li p a:hover {
     color: #E61A42;
 }
+.plist .zw-news {
+    margin-left: 25px;
+}
 .report li {
     padding-top: 0px;
     margin-bottom: 15px;

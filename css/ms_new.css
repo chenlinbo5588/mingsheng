@@ -344,7 +344,7 @@ a{
 .mscon h3, .mscon h3 a{
 	font-family: '微软雅黑';
 	text-align: center;
-	font-size: 20px;
+	font-size: 26px;
 	color: #000;
 }
 .mfirst{
@@ -459,6 +459,9 @@ a{
 }
 .secright .hp-login {
     background: url("../images/hp-login.jpg") no-repeat 0 0;
+}
+.secright .hp-center {
+    background: url("../images/hp-center.jpg") no-repeat 0 0;
 }
 .secright .hp-register {
     background: url("../images/hp-register.jpg") no-repeat 0 0;
@@ -1424,6 +1427,9 @@ a{
 }
 .plist li p a:hover {
     color: #E61A42;
+}
+.plist .zw-news {
+    margin-left: 25px;
 }
 .report li {
     padding-top: 0px;
