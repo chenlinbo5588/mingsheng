@@ -48,6 +48,7 @@ if($srchtype != 'title' && $srchtype != 'fulltext') {
 	$srchtype = '';
 }
 
+$viewtype = trim($_GET['viewtype']);
 $srchtxt = trim($_GET['srchtxt']);
 $srchuid = intval($_GET['srchuid']);
 $srchuname = isset($_GET['srchuname']) ? trim(str_replace('|', '', $_GET['srchuname'])) : '';;
@@ -163,7 +164,13 @@ if(!submitcheck('searchsubmit', 1)) {
 			}
 		}
 		$threadlist = $posttables = array();
-		foreach(C::t('forum_thread')->fetch_all_by_tid_fid_displayorder(explode(',',$index['ids']), null, 0, $orderby, $start_limit, $_G['tpp'], '>=', $ascdesc) as $thread) {
+        
+        if(empty($viewtype) && !empty($searchstring[12])){
+            $viewtype = $searchstring[12];
+        }
+        
+        $types = getTypes($viewtype);
+		foreach(C::t('forum_thread')->fetch_all_by_tid_types_fid_displayorder(explode(',',$index['ids']), $types, null, 0, $orderby, $start_limit, $_G['tpp'], '>=', $ascdesc) as $thread) {
 			$thread['subject'] = bat_highlight($thread['subject'], $keyword);
 			$thread['realtid'] = $thread['isgroup'] == 1 ? $thread['closed'] : $thread['tid'];
 			$threadlist[$thread['tid']] = procthread($thread, 'dt');
@@ -186,7 +193,8 @@ if(!submitcheck('searchsubmit', 1)) {
 		include template('search/forum');
 
 	} else {
-
+        
+        $types = getTypes($viewtype);
 
 		if($_G['group']['allowsearch'] & 32 && $srchtype == 'fulltext') {
 			periodscheck('searchbanperiods');
@@ -223,7 +231,7 @@ if(!submitcheck('searchsubmit', 1)) {
 		$specials = $special ? implode(',', $special) : '';
 		$srchfilter = in_array($_GET['srchfilter'], array('all', 'digest', 'top')) ? $_GET['srchfilter'] : 'all';
 
-		$searchstring = 'forum|'.$srchtype.'|'.base64_encode($srchtxt).'|'.intval($srchuid).'|'.$srchuname.'|'.addslashes($fids).'|'.intval($srchfrom).'|'.intval($before).'|'.$srchfilter.'|'.$specials.'|'.$specialpluginstr.'|'.$seltableid;
+		$searchstring = 'forum|'.$srchtype.'|'.base64_encode($srchtxt).'|'.intval($srchuid).'|'.$srchuname.'|'.addslashes($fids).'|'.intval($srchfrom).'|'.intval($before).'|'.$srchfilter.'|'.$specials.'|'.$specialpluginstr.'|'.$seltableid.'|'.$viewtype;
 		$searchindex = array('id' => 0, 'dateline' => '0');
 
 		foreach(C::t('common_searchindex')->fetch_all_search($_G['setting']['search']['forum']['searchctrl'], $_G['clientip'], $_G['uid'], $_G['timestamp'], $searchstring, $srchmod) as $index) {
@@ -408,6 +416,10 @@ if(!submitcheck('searchsubmit', 1)) {
 						$sqlsrch .=  " AND special IN (".dimplode($special).")";
 					}
 
+                    if(!empty($types)) {
+						$sqlsrch .=  " AND typeid IN (".dimplode($types).")";
+					}
+                    
 					$keywords = str_replace('%', '+', $srchtxt);
 					$expiration = TIMESTAMP + $cachelife_text;
 
@@ -417,9 +429,9 @@ if(!submitcheck('searchsubmit', 1)) {
 				$_G['setting']['search']['forum']['maxsearchresults'] = $_G['setting']['search']['forum']['maxsearchresults'] ? intval($_G['setting']['search']['forum']['maxsearchresults']) : 500;
 				$query = DB::query("SELECT ".($srchtype == 'fulltext' ? 'DISTINCT' : '')." t.tid, t.closed, t.author, t.authorid $sqlsrch ORDER BY tid DESC LIMIT ".$_G['setting']['search']['forum']['maxsearchresults']);
 				while($thread = DB::fetch($query)) {
-					$ids .= ','.$thread['tid'];
-					$num++;
-				}
+                    $ids .= ','.$thread['tid'];
+                    $num++;
+                }
 				DB::free_result($query);
 			}
 
@@ -442,6 +454,23 @@ if(!submitcheck('searchsubmit', 1)) {
 
 	}
 
+}
+
+function getTypes($viewtype){
+    $types = array();
+    $typeList = array();
+    $lang = lang('forum/template');
+    if(in_array($viewtype,array('zxqz','tsjb','jyxc'))){
+        $typeList = C::t('forum_threadclass')->fetch_all();
+
+        foreach($typeList as $v){
+            if($v['name'] == $lang['guide_'.$viewtype]){
+                $types[] = $v['typeid'];
+            }
+        }
+    }
+    
+    return $types;
 }
 
 ?>

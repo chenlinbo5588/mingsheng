@@ -36,9 +36,22 @@
         <input type="hidden" name="formhash" value="{FORMHASH}">
         <input type="hidden" name="searchsubmit" value="yes">
         <span  class="zi1">
-            <label style="margin-left:50px;">帖子搜索：<input class="input1" type="text"  id="scform_fmtxt" name="srchtxt" value="" tabindex="1" placeholder="请输入搜索内容"></label><input type="image" src="images/search_button.jpg"/>
+            <label style="margin-left:50px;"><span style="float:left;width:60px;">帖子搜索：</span>
+                <span class="ftid">
+                    <select name="viewtype" id="viewtype" width="120" height="30" >
+                        <option value="">请选择主题分类</option>
+                        <option value="zxqz" selected>咨询求助</option>
+                        <option value="tsjb" selected>投诉举报</option>
+                        <option value="jyxc" selected>建言献策</option>
+                    </select>
+                </span>
+                <input class="input1" type="text"  id="scform_fmtxt" name="srchtxt" value="" tabindex="1" placeholder="请输入搜索内容"></label><input type="image" src="images/search_button.jpg"/>
         </span>
     </form>
+    <script>
+        simulateSelect('viewtype');
+        
+    </script>
     <div class="wyw">
         <!--{if $_GET['fid']}-->
         <a href="forum.php?mod=post&action=newthread&fid={$_GET['fid']}"><img src="images/list_wyw.jpg"></a>

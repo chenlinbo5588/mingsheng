@@ -120,19 +120,23 @@ if($view != 'index') {
 	} else {
 		$data[$view] = get_guide_list($view, $start, $perpage);
 	}
+    
+    
+    /*
 	if(empty($data['my']['multi'])) {
 		$multipage = multi($data[$view]['threadcount'], $perpage, $_G['page'], $theurl, $_G['setting']['threadmaxpages']);
 	} else {
 		$multipage = $data['my']['multi'];
 	}
-    
+    */
 } else {
 	$data['hot'] = get_guide_list('hot', 0, 30);
 	$data['digest'] = get_guide_list('digest', 0, 30);
 	$data['new'] = get_guide_list('new', 0, 30);
 	$data['newthread'] = get_guide_list('newthread', 0, 30);
 }
-
+$multipage = multi($data[$view]['totalcount'],$perpage,$_G['page'], $theurl,$_G['setting']['threadmaxpages']);
+    
 loadcache('stamps');
 $currentview[$view] = 'class="xw1 a"';
 $_G['forum_list'] = get_forums();
@@ -270,6 +274,7 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 		$updatecache = true;
 	}
     $query = C::t('forum_thread')->fetch_all_for_guide($view, $limittid, $tids, $_G['setting']['heatthread']['guidelimit'], $dateline, $start, $num , 0,$types);
+    $count = C::t('forum_thread')->count_all_for_guide($view, $limittid, $tids, $_G['setting']['heatthread']['guidelimit'], $dateline, $fids,$types);
     $n = 0;
 	foreach($query as $thread) {
 		if(empty($tids) && ($thread['isgroup'] || !in_array($thread['fid'], $fids))) {
@@ -280,10 +285,10 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 		}
 		$thread = guide_procthread($thread);
 		$threadids[] = $thread['tid'];
-		if($tids || ($n >= $start && $n < ($start + $num))) {
+		/*if($tids || ($n >= $start && $n < ($start + $num))) {*/
 			$list[$thread[tid]] = $thread;
 			$fids[$thread[fid]] = $thread['fid'];
-		}
+		/*}*/
 		$n ++;
 	}
 	if($limittid > $maxnum && !$again && count($list) < 50) {
@@ -312,7 +317,7 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 		$_G['cache']['forum_guide'][$view.($view=='sofa' && $_G['fid'] ? $_G['fid'] : '')] = $data;
 		savecache('forum_guide', $_G['cache']['forum_guide']);
 	}
-	return array('forumnames' => $forumnames, 'threadcount' => $threadcount, 'threadlist' => $threadlist);
+	return array('forumnames' => $forumnames, 'threadcount' => $threadcount, 'threadlist' => $threadlist,'totalcount' => $count[0]['num']);
 }
 
 function get_my_threads($viewtype, $fid = 0, $filter = '', $searchkey = '', $start = 0, $perpage = 20, $theurl = '') {
