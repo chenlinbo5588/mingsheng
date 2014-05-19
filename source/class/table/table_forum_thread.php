@@ -1120,6 +1120,55 @@ class table_forum_thread extends discuz_table
 		$tableid = intval($tableid);
 		return $tableid ? "forum_thread_$tableid" : 'forum_thread';
 	}
+    
+    public function count_all_for_guide($type, $limittid, $tids = array(), $heatslimit = 3, $dateline = 0, $fids = 0 , $typeids = array()){
+        switch ($type) {
+			case 'hot' :
+				$addsql = ' AND heats>='.intval($heatslimit);
+				break;
+			case 'digest' :
+				$addsql = ' AND digest>0';
+				break;
+			default :
+                $addsql = '';
+                if(!empty($typeids)){
+                    $addsql = ' AND typeid IN ('.dimplode($typeids).')';
+                }
+		}
+        
+		if(getglobal('setting/followforumid')) {
+			$addsql .= ' AND '.DB::field('fid', getglobal('setting/followforumid'), '<>');
+		}
+		$tidsql = '';
+		if($tids) {
+			$tids = dintval($tids, true);
+			$tidsql = DB::field('tid', $tids);
+		} else {
+			$limittid = intval($limittid);
+			$tidsql = 'tid>'.$limittid;
+			$fids = dintval($fids, true);
+			if($fids) {
+				$tidsql .= is_array($fids) && $fids ? ' AND fid IN('.dimplode($fids).')' : ' AND fid='.$fids;
+			}
+			if($dateline) {
+				$addsql .= ' AND dateline > '.intval($dateline);
+			}
+            if($type == 'all'){
+                $orderby = 'dateline';
+            }elseif($type == 'newthread') {
+				$orderby = 'tid';
+			} elseif($type == 'reply') {
+				$orderby = 'lastpost';
+				$addsql .= ' AND replies > 0';
+			} else {
+				$orderby = 'lastpost';
+			}
+			$addsql .= ' AND displayorder>=0 ORDER BY '.$orderby.' DESC ';
+		}
+        
+		return DB::fetch_all("SELECT COUNT(*) AS num FROM ".DB::table('forum_thread')." WHERE ".$tidsql.$addsql);
+        
+    }
 	public function fetch_all_for_guide($type, $limittid, $tids = array(), $heatslimit = 3, $dateline = 0, $start = 0, $limit = 600, $fids = 0 , $typeids = array()) {
         switch ($type) {
 			case 'hot' :
