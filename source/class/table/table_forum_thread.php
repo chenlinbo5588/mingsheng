@@ -219,7 +219,45 @@ class table_forum_thread extends discuz_table
 		}
 		return $data;
 	}
+    
+    public function fetch_all_by_tid_types_fid_displayorder($tids,$types = array(), $fids = null, $displayorder = null, $order = 'dateline', $start = 0, $limit = 0, $glue = '>=', $sort = 'DESC', $tableid = 0) {
+		$parameter = array($this->get_table_name($tableid));
+		$wherearr = array();
+		if(!empty($tids)) {
+			$tids = dintval($tids, true);
+			$parameter[] = $tids;
+			$wherearr[] = is_array($tids) && $tids ? 'tid IN(%n)' : 'tid=%d';
+		}
+        
+        if(!empty($types)){
+            $types = dintval($types, true);
+			$parameter[] = $types;
+			$wherearr[] = is_array($types) && $types ? 'typeid IN(%n)' : 'typeid=%d';
+        }
+        
+		if(!empty($fids)) {
+			$fids = dintval($fids, true);
+			$parameter[] = $fids;
+			$wherearr[] = is_array($fids) && $fids ? 'fid IN(%n)' : 'fid=%d';
+		}
 
+		if($displayorder !== null) {
+			$parameter[] = $displayorder;
+			$glue = helper_util::check_glue($glue);
+			$wherearr[] = "displayorder{$glue}%d";
+		}
+		if($order) {
+			$order = 'ORDER BY '.DB::order($order, $sort);
+		}
+		if(!empty($wherearr)) {
+			$wheresql = !empty($wherearr) && is_array($wherearr) ? ' WHERE '.implode(' AND ', $wherearr) : '';
+			return DB::fetch_all("SELECT * FROM %t $wheresql $order ".DB::limit($start, $limit), $parameter, $this->_pk);
+		} else {
+			return array();
+		}
+	}
+    
+    
 	public function fetch_all_by_tid_fid_displayorder($tids, $fids = null, $displayorder = null, $order = 'dateline', $start = 0, $limit = 0, $glue = '>=', $sort = 'DESC', $tableid = 0) {
 		$parameter = array($this->get_table_name($tableid));
 		$wherearr = array();

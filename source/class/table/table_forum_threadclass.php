@@ -30,6 +30,11 @@ class table_forum_threadclass extends discuz_table
 		}
 		return array();
 	}
+    
+    public function fetch_all(){
+        return DB::fetch_all('SELECT * FROM %t ORDER BY displayorder', array($this->_table), $this->_pk);
+    }
+    
 	public function fetch_all_by_fid($fid) {
         $wheresql .= is_array($fid) && $fid ? 'fid IN(%n)' : 'fid=%d';
 		return DB::fetch_all('SELECT * FROM %t WHERE '.$wheresql.' ORDER BY displayorder', array($this->_table, $fid), $this->_pk);
