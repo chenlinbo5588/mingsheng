@@ -80,8 +80,11 @@ class model_forum_thread extends discuz_model
 		if(!$this->param['special']) {
 			$this->param['price'] = $this->group['maxprice'] ? ($this->param['price'] <= $this->group['maxprice'] ? $this->param['price'] : $this->group['maxprice']) : 0;
 		}
-
-		if(!$this->param['typeid'] && $this->forum['threadtypes']['required'] && !$this->param['special']) {
+        
+        /**
+         *版主不需要选择子分类 
+         */
+		if(!$this->forum['ismoderator'] && !$this->param['typeid'] && $this->forum['threadtypes']['required'] && !$this->param['special']) {
 			return $this->showmessage('post_type_isnull');
 		}
 

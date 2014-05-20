@@ -12,7 +12,7 @@
 	var disablepostctrl = parseInt('{$_G['group']['disablepostctrl']}');
 	var seccodecheck = parseInt('<!--{if $seccodecheck}-->1<!--{else}-->0<!--{/if}-->');
 	var secqaacheck = parseInt('<!--{if $secqaacheck}-->1<!--{else}-->0<!--{/if}-->');
-	var typerequired = parseInt('{$_G[forum][threadtypes][required]}');
+	var typerequired = <!--{if $_G['forum']['ismoderator']}-->0<!--{else}-->parseInt('{$_G[forum][threadtypes][required]}')<!--{/if}-->;
 	var sortrequired = parseInt('{$_G[forum][threadsorts][required]}');
 	var special = parseInt('$special');
 	var isfirstpost = <!--{if $isfirstpost}-->1<!--{else}-->0<!--{/if}-->;
