@@ -86,7 +86,7 @@ class block_article extends discuz_block {
 			'titlelength' => array(
 				'title' => 'articlelist_titlelength',
 				'type' => 'text',
-				'default' => 40
+				'default' => 80
 			),
 			'summarylength'	=> array(
 				'title' => 'articlelist_summarylength',
@@ -210,7 +210,7 @@ class block_article extends discuz_block {
 		$publishdateline	= isset($parameter['publishdateline']) ? intval($parameter['publishdateline']) : 0;
 		$startrow	= isset($parameter['startrow']) ? intval($parameter['startrow']) : 0;
 		$items		= isset($parameter['items']) ? intval($parameter['items']) : 10;
-		$titlelength = isset($parameter['titlelength']) ? intval($parameter['titlelength']) : 40;
+		$titlelength = isset($parameter['titlelength']) ? intval($parameter['titlelength']) : 80;
 		$summarylength = isset($parameter['summarylength']) ? intval($parameter['summarylength']) : 80;
 		$clickarr = array('click1', 'click2', 'click3', 'click4', 'click5', 'click6', 'click7', 'click8');
 		$orderby	= in_array($parameter['orderby'], array_merge(array('dateline', 'viewnum', 'commentnum'), $clickarr)) ? $parameter['orderby'] : 'dateline';

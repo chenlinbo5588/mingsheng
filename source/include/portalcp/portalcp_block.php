@@ -25,7 +25,11 @@ if($bid) {
 	if(!($block = C::t('common_block')->fetch($bid))) {
 		showmessage('block_not_exist');
 	}
-
+    
+    if($block['script'] == 'article' && $block['param']['titlelength'] == 40){
+        $block['param']['titlelength'] = 80;
+    }
+    
 	$blockstyle = array();
 	if(!empty($block['styleid'])) {
 		$blockstyle = block_getstyle($block['styleid']);

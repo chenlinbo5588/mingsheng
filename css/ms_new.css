@@ -368,6 +368,7 @@ a{
 }
 .mlisth ul li{
 	width: 335px;
+    overflow:hidden;
 }
 .mlisth ul li:nth-child(2n){
     
