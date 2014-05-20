@@ -367,12 +367,10 @@ a{
     padding-top: 9px;
 }
 .mlisth ul li{
-	display: inline;
-	float: left;
-	width: 238px;
+	width: 335px;
 }
 .mlisth ul li:nth-child(2n){
-    margin-right:5px;
+    
 }
 
 .zxask-btm {
