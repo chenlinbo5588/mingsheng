@@ -15,7 +15,7 @@ if(!empty($_G['tid'])) {
 	$_GET['moderate'] = array($_G['tid']);   
 }
 
-$allow_operation = array('setsortid', 'delete', 'highlight', 'open', 'close', 'stick', 'digest', 'bump', 'down', 'recommend', 'type', 'move', 'recommend_group');
+$allow_operation = array('unmod',  'setsortid', 'delete', 'highlight', 'open', 'close', 'stick', 'digest', 'bump', 'down', 'recommend', 'type', 'move', 'recommend_group');
 
 $operations = empty($_GET['operations']) ? array() : $_GET['operations'];
 if($operations && $operations != array_intersect($operations, $allow_operation) || (!$_G['group']['allowdelpost'] && in_array('delete', $operations)) || (!$_G['group']['allowstickthread'] && in_array('stick', $operations))) {
@@ -391,6 +391,25 @@ if(!submitcheck('modsubmit')) {
 				C::t('forum_thread')->update($tidsarr, array('lastpost'=>$downtime, 'moderated'=>1), true);
 
 				$_G['forum']['threadcaches'] && deletethreadcaches($thread['tid']);
+                
+            } elseif($operation == 'unmod'){
+                /**
+                 * 重新审核 
+                 */
+                if(!$_G['group']['allowmodpost']) {
+					showmessage('no_privilege_unmodpost');
+				}
+                
+                $modaction = 'UMD';
+                C::t('forum_thread')->update($tidsarr, array('displayorder'=> -2, 'sortid'=> 0 ,'moderated'=> 0), true);
+                C::t('forum_threadmod')->update_by_tid_action($tidsarr, array('UMD', 'MOD', 'SOR', 'RPL'), array('status' => 0));
+                
+                updatemoderate('tid', $tidsarr,2);
+                updatemoderate('tid', $tidsarr);
+                C::t('forum_forum')->update_forum_counter($_G['fid'], 0, 0, 1);
+                
+                $_G['referer'] = $_G['referer'].'&modthreadkey='.modauthkey($tidsarr[0]);
+                
 			} elseif($operation == 'delete') {
 				if(!$_G['group']['allowdelpost']) {
 					showmessage('no_privilege_delpost');

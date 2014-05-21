@@ -69,7 +69,7 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
     /**
      * 获取审核和版主回复的时间 
      */
-    $lastlog = C::t('forum_threadmod')->fetch_all_by_tid($tids,array('MOD','SOR', 'RLP'));
+    $lastlog = C::t('forum_threadmod')->fetch_all_by_tid_status($tids,array('MOD','SOR', 'RLP'),array('status' => 1));
     
     foreach($lastlog as $k => $v){
         $tidsMod[$v['tid']][$v['action']] = $v;
@@ -622,7 +622,7 @@ function loadforum($fid = null, $tid = null) {
 			$_G['thread']['allreplies'] = $_G['thread']['replies'] + $_G['thread']['comments'];
 			if(!$_G['forum_auditstatuson'] && !empty($_G['thread'])
 					&& !($_G['thread']['displayorder'] >= 0 || (in_array($_G['thread']['displayorder'], array(-4,-3,-2)) && $_G['uid'] && $_G['thread']['authorid'] == $_G['uid']))) {
-				$_G['thread'] = null;
+                $_G['thread'] = null;
 			}
 
 			$_G['forum_thread'] = & $_G['thread'];

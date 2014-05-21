@@ -704,7 +704,7 @@ CSS 写作注意事项：
 			 .ct2_a h1.mt { display: none; }
 			 .ct2_a .tb { margin-top: 3px; }
 		.ct2_a .mn { float: right; width: 810px; }
-			.ct2_a .mn { display: inline; margin-right: 10px; padding-top: 10px; width: 800px; }
+			.ct2_a .mn { display: inline;  padding-top: 10px; width: 800px; }
 				#nv_userapp .ct2_a .mn, .ct2_a_r .mn { margin-right: 0; width: 810px; }
 
 		.ct3_a .mn { float: left; margin-left: 20px; width: 565px; }

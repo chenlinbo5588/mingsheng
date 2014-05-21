@@ -276,7 +276,16 @@
 			<!--{elseif $_GET['optgroup'] == 3}-->
 				<div class="tplw">
 				<ul class="llst">
-					<!--{if $operation == 'delete'}-->
+                    <!--{if $operation == 'unmod'}-->
+                        <li>
+						<!--{if $_G['group']['allowmodpost']}-->
+							<input name="operations[]" type="hidden" value="unmod"/>
+							<p>{lang admin_unmodthread_confirm}</p>
+						<!--{else}-->
+							<p>{lang admin_unmodthread_nopermission}</p>
+						<!--{/if}-->
+						</li>
+					<!--{elseif $operation == 'delete'}-->
 						<li>
 						<!--{if $_G['group']['allowdelpost']}-->
 							<input name="operations[]" type="hidden" value="delete"/>
