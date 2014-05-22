@@ -287,8 +287,6 @@ $usesigcheck = $_G['uid'] && $_G['group']['maxsigsize'];
 $postlist = $_G['forum_attachtags'] = $attachlist = $_G['forum_threadstamp'] = array();
 $aimgcount = 0;
 $_G['forum_attachpids'] = array();
-//版主是否回复标示
-$moderatorReplied = false;
     
 if(!empty($_GET['action']) && $_GET['action'] == 'printable' && $_G['tid']) {
 	require_once libfile('thread/printable', 'include');
@@ -796,29 +794,7 @@ if($postlist && $rushids) {
 	}
 }
 
-if($thread['sortid'] == 4 && $_G['page'] == 1){
-    ksort($postlist);
-    /*
-     * 
-     * 
-     * 
-    $c = 0;
-    $save_pid = 0;
-    $save_data = array();
-    foreach($postlist as $pid => $post){
-        if($c == 1 && $post['position'] == 3){
-            //unset($postlist[$pid]);
-            $save_pid = $pid;
-            $save_data = $post;
-            break;
-        }
-        $c++;
-    }
-    if($save_pid){
-        $postlist[$save_pid] =  $save_data;
-    }
-    */
-}
+
 //查找帖子评分
 $threadGrade = C::t('forum_threadgrade')->fetch_grade_by_tid($_G['forum_thread']['tid']);
 $threadGrade = $threadGrade[0];
