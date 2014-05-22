@@ -80,7 +80,7 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
         $thread['className'] =  '';
         $thread['show_text'] = '';
         $thread['statusTitle'] = '';
-        
+        $extraText = '';
         $thread['MOD_dateline'] = isset($tidsMod[$thread['tid']]['MOD']) ? $tidsMod[$thread['tid']]['MOD']['dateline'] : 0;
         $thread['SOR_dateline'] = isset($tidsMod[$thread['tid']]['SOR']) ? $tidsMod[$thread['tid']]['SOR']['dateline'] : 0;
         $thread['RLP_dateline'] = isset($tidsMod[$thread['tid']]['RLP']) ? $tidsMod[$thread['tid']]['RLP']['dateline'] : 0;
