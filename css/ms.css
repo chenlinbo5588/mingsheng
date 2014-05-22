@@ -358,6 +358,12 @@ a{
     width: 345px;
     height: 264px;
 }
+
+.mfirst .mhdp .slideshow img {
+    width:345px;
+    height: 226px;
+}
+
 .mlisth {
     float: left;
     width: 375px;

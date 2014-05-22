@@ -313,11 +313,11 @@ function checkemail($email) {
 function check_mobile_code($mobile, $code) {
     if (!$mobile || !$code) return false;
     $info = C::t('common_member_regcode')->fetch_info_by_phone_code($mobile, $code);
-    file_put_contents("dx.txt", print_r($info,true),FILE_APPEND);
+    //file_put_contents("dx.txt", print_r($info,true),FILE_APPEND);
     if ($info) {
         $info = $info[0];
         $subtime = time() - $info['dateline'];
-        file_put_contents("dx.txt", print_r($subtime,true),FILE_APPEND);
+        //file_put_contents("dx.txt", print_r($subtime,true),FILE_APPEND);
         if ($subtime > $info['expiretime']) {
             return false;
         } else {
