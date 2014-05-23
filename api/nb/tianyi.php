@@ -414,7 +414,7 @@ class api_ty {
     }
     
     function respone($pcode, $data = array()){
-        //header("Content-Type:application/json; charset=utf-8");
+        header("Content-Type:application/json; charset=utf-8");
         
         if(is_array($pcode)){
             $code = $pcode['code'];
