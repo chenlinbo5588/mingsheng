@@ -24,11 +24,11 @@ require_once '../../source/function/function_core.php';
 $discuz = C::app();
 $discuz->init();
 
-require DISCUZ_ROOT.'./config/config_ucenter.php';
+require_once DISCUZ_ROOT.'./config/config_ucenter.php';
 
 $action = gpc('action','GP','');
-include_once libfile('function/forum');
-
+require_once libfile('function/forum');
+require_once libfile('function/discuzcode');
 /**
  *  
  */
@@ -42,6 +42,7 @@ if(in_array($action, array('addthread', 'getthread'))) {
 
 class api_ty {
     private $_codeList =  array(
+        'success' => '请求成功',
         'post_newthread_succeed' => '发帖成功',
         'username_empty' => '用户名为空',
         'hash_verify_failed' => '数据校验失败',
@@ -56,6 +57,7 @@ class api_ty {
         'thread_not_found' => '帖子未找到',
         'thread_close_or_inmod' => '帖子审核中或者已经关闭或者已经删除',
         'thread_unreplied' => '帖子尚未被回复',
+        'get_thread_succeed' => '获取回复数据成功',
         'unknow' => '未知错误'
     );
     
@@ -348,11 +350,12 @@ class api_ty {
             
 		}
         
-        $this->respone('post_newthread_succeed',array('tid' => $this->tid));
+        $this->respone(array('code' => 'success','message' => $this->_codeList['post_newthread_succeed']),array('tid' => $this->tid));
         
     }
     
     public function getthread(){
+        global $_G;
         
         $tid = (int)gpc('tid','GP',0);
         if(!$tid){
@@ -372,8 +375,33 @@ class api_ty {
             $this->respone('thread_unreplied');
         }
         
-        $post = C::t('forum_post')->fetch_all_by_tid_position(0,$thread['tid'],2);
-        $this->respone('get_thread_succeed',array('thread' => $thread,'reply' => $post[0]));
+        $replay = C::t('forum_post')->fetch_all_by_tid_position(0,$thread['tid'],2);
+        $post = $replay[0];
+        
+        $t = array(
+            'tid' => $thread['tid'],
+            'fid' => $thread['fid'],
+            'typeid' => $thread['typeid'],
+            'subject' => $thread['subject'],
+            'author' => $thread['author'],
+            'authorid' => $thread['authorid'],
+            'dateline' => $thread['dateline']
+        );
+        
+        $post['message'] = discuzcode($post['message'], $post['smileyoff'], $post['bbcodeoff'], $post['htmlon'] & 1, $_G['forum']['allowsmilies'], 1, ($_G['forum']['allowimgcode'] && $_G['setting']['showimages'] ? 1 : 0), $_G['forum']['allowhtml'], ($_G['forum']['jammer'] && $post['authorid'] != $_G['uid'] ? 1 : 0), 0, $post['authorid'], $_G['cache']['usergroups'][$post['groupid']]['allowmediacode'] && $_G['forum']['allowmediacode'], $post['pid'], $_G['setting']['lazyload'], $post['dbdateline'], $post['first']);
+        $post['message'] = preg_replace('/<img(.*)?src="(static\/image\/)/','/<img\1 src="http://e.cxnews.cn/\2/',$post['message']);
+        $post['message'] = preg_replace("/\[attach\]\d+\[\/attach\]/i", '', $post['message']);
+        
+        //echo $post['message'];
+        $r = array(
+            'pid' => $post['pid'],
+            'author' => $post['author'],
+            'authorid' => $post['authorid'],
+            'dateline' => $post['dateline'],
+            'message' => $post['message']
+        );
+        
+        $this->respone(array('code' => 'success', 'message' => $this->_codeList['get_thread_succeed']),array('thread' => $t,'reply' => $r));
     }
     
     
@@ -385,14 +413,25 @@ class api_ty {
         $this->respone($code);
     }
     
-    function respone($code, $data = array()){
-        header("Content-Type:application/json; charset=utf-8");
+    function respone($pcode, $data = array()){
+        //header("Content-Type:application/json; charset=utf-8");
+        
+        if(is_array($pcode)){
+            $code = $pcode['code'];
+            $message = $pcode['message'];
+        }else{
+            $code = $pcode;
+            $message = '';
+        }
         
         if(empty($code) || empty($this->_codeList[$code])){
             $code = 'unknow';
         }
         
-        $rt = array('code' => $code , 'message' => !empty($this->_codeList[$code]) ? $this->_codeList[$code] : $this->_codeList[$code] , 'data' => $data);
+        if(!$message){
+            $message = !empty($this->_codeList[$code]) ? $this->_codeList[$code] : $this->_codeList[$code];
+        }
+        $rt = array('code' => $code , 'message' =>  $message , 'data' => $data);
         
         if(DEBUG){
             print_r($rt);
