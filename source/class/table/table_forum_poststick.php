@@ -20,7 +20,11 @@ class table_forum_poststick extends discuz_table
 
 		parent::__construct();
 	}
-
+    
+    public function fetch_by_tid_priority($tid,$priority){
+        return DB::fetch_first('SELECT * FROM %t WHERE tid=%d AND priority=%d ', array($this->_table, $tid ,$priority));
+    }
+    
 	public function fetch_all_by_tid($tid) {
 		return DB::fetch_all('SELECT * FROM %t WHERE tid=%d ORDER BY dateline DESC', array($this->_table, $tid), 'pid');
 	}

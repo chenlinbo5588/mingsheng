@@ -12,7 +12,7 @@ error_reporting(0);
 define('IN_API', true);
 define('CURSCRIPT', 'api');
 define('APP_KEY','dac4bb4e44aa0d04a54079178692c3b0');
-define('DEBUG',true);
+define('DEBUG',false);
 /*
 echo strlen(APP_KEY);
 echo md5(mt_rand());
@@ -47,6 +47,8 @@ class api_ty {
         'username_empty' => '用户名为空',
         'hash_verify_failed' => '数据校验失败',
         'paramter_missing' => '参数错误',
+        'external_id_lost' => '外部ID缺失',
+        'external_id_datatypeerror' => '外部ID数据格式错误',
         'method_not_found' => '方法不存在',
         'user_not_found' => '用户不存在',
         'post_subject_toolong' => '标题过长',
@@ -107,10 +109,11 @@ class api_ty {
         $this->param['username'] = gpc('username','GP','');
         $this->param['subject'] = gpc('subject','GP','');
         $this->param['content'] = gpc('content','GP','');
+        $this->param['external_id'] = (int)gpc('external_id','GP',0);
         
-        $hash = gpc('hash','GP');
+        $hash = gpc('hash','GP','');
         
-        if($hash != md5(APP_KEY.$this->param['username'].$this->param['subject'].$this->param['content'])){
+        if($hash != md5(APP_KEY.$this->param['username'].$this->param['subject'].$this->param['content'].$this->param['external_id'])){
             if(!DEBUG){
                 $this->respone('hash_verify_failed');
             }
@@ -126,12 +129,27 @@ class api_ty {
         }
         
         
+        if(empty($this->param['external_id'])){
+            $this->respone('external_id_lost');
+        }
+        
+        if(preg_match("/^\d+$/",$this->param['external_id'])){
+            
+            $info = C::t('forum_thread_interface')->fetch_by_eid($this->param['external_id']);
+            if($info){
+                /**
+                 * 如果已经存在 ,则直接返回成功
+                 */
+                $this->respone(array('code' => 'success','message' => $this->_codeList['post_newthread_succeed']),array('tid' => $info['tid']));
+            }
+        }else{
+            $this->respone('external_id_datatypeerror');
+        }
+        
         $this->member = $user;
         /**
          * 添加逻辑 
          */
-        
-        $modthread = C::m('forum_thread');
         $params = array(
             'subject' => $this->param['subject'],
             'message' => $this->param['content'],
@@ -349,7 +367,7 @@ class api_ty {
 			C::t('forum_sofa')->insert(array('tid' => $this->tid,'fid' => $this->forum['fid']));
             
 		}
-        
+        C::t('forum_thread_interface')->insert(array('tid' => $this->tid,'external_id' => $this->param['external_id'],'dateline' => TIMESTAMP));
         $this->respone(array('code' => 'success','message' => $this->_codeList['post_newthread_succeed']),array('tid' => $this->tid));
         
     }
@@ -375,12 +393,20 @@ class api_ty {
             $this->respone('thread_unreplied');
         }
         
-        $replay = C::t('forum_post')->fetch_all_by_tid_position(0,$thread['tid'],2);
+        $info = C::t("forum_poststick")->fetch_by_tid_priority($thread['tid'],2);
+        if(empty($info)){
+            $this->respone('thread_unreplied');
+        }
+        
+        $replay = C::t('forum_post')->fetch_all_by_tid_position(0,$thread['tid'],$info['position']);
         $post = $replay[0];
         
+        loadforum($thread['fid']);
+        //print_r($_G['forum']);
         $t = array(
             'tid' => $thread['tid'],
             'fid' => $thread['fid'],
+            'fname' => $_G['forum']['name'],
             'typeid' => $thread['typeid'],
             'subject' => $thread['subject'],
             'author' => $thread['author'],
@@ -389,7 +415,8 @@ class api_ty {
         );
         
         $post['message'] = discuzcode($post['message'], $post['smileyoff'], $post['bbcodeoff'], $post['htmlon'] & 1, $_G['forum']['allowsmilies'], 1, ($_G['forum']['allowimgcode'] && $_G['setting']['showimages'] ? 1 : 0), $_G['forum']['allowhtml'], ($_G['forum']['jammer'] && $post['authorid'] != $_G['uid'] ? 1 : 0), 0, $post['authorid'], $_G['cache']['usergroups'][$post['groupid']]['allowmediacode'] && $_G['forum']['allowmediacode'], $post['pid'], $_G['setting']['lazyload'], $post['dbdateline'], $post['first']);
-        $post['message'] = preg_replace('/<img(.*)?src="(static\/image\/)/','/<img\1 src="http://e.cxnews.cn/\2/',$post['message']);
+        $post['message'] = preg_replace('/(<ignore_js_op>.*<\/ignore_js_op>)/is', '', $post['message']);
+        $post['message'] = preg_replace('/<img(.*?)src="(static\/image\/)/','/<img\1 src="'.$_G['siteurl'].'\2',$post['message']);
         $post['message'] = preg_replace("/\[attach\]\d+\[\/attach\]/i", '', $post['message']);
         
         //echo $post['message'];
