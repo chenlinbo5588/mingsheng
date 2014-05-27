@@ -436,6 +436,7 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
     
     if($pid && $thread['sortid'] == 3 && $_G['forum']['ismoderator'] && in_array($_G['groupid'],array(2,3))){
         
+        /** @deprecated 该逻辑根据客户要求去除
         //最新位置和2楼互换位置
         $twoFloor = C::t('forum_post')->fetch_all_by_tid_position(0,$thread['tid'],2);
         $newPidInfo = C::t('forum_post')->fetch(0 ,$pid);
@@ -445,9 +446,23 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
             C::t('forum_post')->update(0,$pid,array('position' => 2));
             C::t('forum_post')->update(0,$twoFloor[0]['pid'],array('position' => $newPidInfo['position']));
         }
+        */
+        
+        /**
+         *自动插入一条置顶记录 
+         */
+        $newPidInfo = C::t('forum_post')->fetch(0 ,$pid);
+        C::t('forum_poststick')->delete($thread['tid'], $pid);
+        C::t('forum_poststick')->insert(array(
+            'tid' => $thread['tid'],
+            'pid' => $pid,
+            'position' => $newPidInfo['position'],
+            'dateline' => $_G['timestamp'],
+            'priority' => 2
+        ), false, true);
         
         //已受理 版主回复自动变为4 
-        C::t('forum_thread')->update($thread['tid'],array('sortid' => 4));
+        C::t('forum_thread')->update($thread['tid'],array('sortid' => 4,'moderated'=>1, 'stickreply'=> 1));
         
         //记录版主回复的时间,这样就与审核时间就可以确定 帖子的亮等状态
         updatemodlog($thread['tid'], 'RLP', 0, 0, '');
@@ -458,9 +473,23 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
         $sm = new forum_sendmsg();
         $status = $sm->send_msg_tid($thread['tid'],false,'','已经答复');
         
+    }else if($pid && $_G['forum']['ismoderator']){
+        /**
+         *自动插入一条置顶记录 
+         */
+        $newPidInfo = C::t('forum_post')->fetch(0 ,$pid);
+        C::t('forum_poststick')->delete($thread['tid'], $pid);
+        C::t('forum_poststick')->insert(array(
+            'tid' => $thread['tid'],
+            'pid' => $pid,
+            'position' => $newPidInfo['position'],
+            'dateline' => $_G['timestamp'],
+            'priority' => 1
+        ), false, true);
         
+        C::t('forum_thread')->update($thread['tid'],array('moderated'=>1, 'stickreply'=> 1));
     }
-    
+
 
 	if($modpost->pid && !$modpost->param('modnewreplies')) {
 

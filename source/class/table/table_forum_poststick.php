@@ -43,9 +43,9 @@ class table_forum_poststick extends discuz_table
 		}
 		return DB::query('DELETE FROM %t WHERE '.DB::field('tid', $tids), array($this->_table));
 	}
-
-	public function delete($tid, $pid) {
-		return DB::query('DELETE FROM %t WHERE tid=%d AND pid=%d', array($this->_table, $tid, $pid));
+    
+	public function delete($tid, $pid, $priority = 0) {
+		return DB::query('DELETE FROM %t WHERE tid=%d AND pid=%d AND priority=%d ', array($this->_table, $tid, $pid , $priority));
 	}
 
 	public function count_by_tid($tid) {

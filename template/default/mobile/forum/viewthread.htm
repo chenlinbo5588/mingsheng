@@ -159,6 +159,9 @@
                         <h2><strong>$post[subject]</strong></h2>
                     <!--{/if}-->
                     <div class="mes">
+                        <!--{if $post['priority'] == 2 && $thread['sortid'] == 4 }-->
+                        <div class="govreply">{lang govreply}</div>
+                        <!--{/if}-->
                     <!--{if $_G['adminid'] != 1 && $_G['setting']['bannedmessages'] & 1 && (($post['authorid'] && !$post['username']) || ($post['groupid'] == 4 || $post['groupid'] == 5) || $post['status'] == -1 || $post['memberstatus'])}-->
                         <div class="xi1">{lang message_banned}</div>
                     <!--{elseif $_G['adminid'] != 1 && $post['status'] & 1}-->

@@ -394,14 +394,25 @@ if(empty($_GET['viewpid'])) {
 	$sticklist = array();
 	if($_G['page'] === 1 && $_G['forum_thread']['stickreply'] && empty($_GET['authorid'])) {
 		$poststick = C::t('forum_poststick')->fetch_all_by_tid($_G['tid']);
+        //print_r($poststick);
 		foreach(C::t('forum_post')->fetch_all($posttableid, array_keys($poststick)) as $post) {
 			$post['position'] = $poststick[$post['pid']]['position'];
 			$post['avatar'] = avatar($post['authorid'], 'small');
 			$post['isstick'] = true;
+            $post['priority'] = empty($poststick[$post['pid']]['priority']) ? 0 : $poststick[$post['pid']]['priority'];
 			$sticklist[$post['pid']] = $post;
 		}
 		$stickcount = count($sticklist);
 	}
+    
+    if($stickcount){
+        usort($sticklist, "_sortbyfield"); 
+        foreach($sticklist as $k => $v){
+            $sticklist[$v['pid']] = $v;
+            unset($sticklist[$k]);
+        }
+    }
+    
 	if($rushreply) {
 		$rushids = $rushpids = $rushpositionlist = $preg = $arr = array();
 		$str = ',,';
@@ -1685,6 +1696,15 @@ function _checkviewgroup() {
 	} elseif($status == 3) {
 		showmessage('forum_group_moderated', 'forum.php?mod=group&fid='.$_G['fid']);
 	}
+}
+
+
+function _sortbyfield($a,$b){
+    if ($a["priority"] == $b["priority"]) {
+        return ($a["position"] < $b["position"]) ? -1 : 1;
+    }
+    
+    return ($a["priority"] < $b["priority"]) ? 1 : -1;
 }
 
 ?>
