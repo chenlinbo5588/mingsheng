@@ -3353,13 +3353,15 @@ EOF;
             C::t('common_holiday')->delete_by_year($_POST['year']);
 
             foreach($_POST['sd'] as $v){
-                if(!preg_match('/^\d{4}-\d{2}-\d{2}$/',$v)){
+                if(!preg_match('/^\d{4}\d{2}\d{2}$/',$v)){
                     continue;
                 }
                 
-                $temp = explode('-',$v);
+                $temp[0] = substr($v,0,4);
+                $temp[1] = substr($v,4,2);
+                $temp[2] = substr($v,6,2);
                 C::t('common_holiday')->insert(array(
-                    'date_key' => $v,
+                    'date_key' => (int)str_replace('-','',$v),
                     'year' => $temp[0],
                     'month' => substr($temp[1],0,1) == 0 ? (int)substr($temp[1],1) : (int)$temp[1],
                     'day' => substr($temp[2],0,1) == 0 ? (int)substr($temp[2],1) : (int)$temp[2],
@@ -3990,18 +3992,18 @@ class Calendar {
 
 				if ($day > 0 AND $day <= $total_days)
 				{
-					if (isset($data["{$year}-{$month}-".($day < 10 ? "0{$day}" : "{$day}")]))
+					if (isset($data["{$year}{$month}".($day < 10 ? "0{$day}" : "{$day}")]))
 					{
 						// Cells with content
 						$temp = ($is_current_month == TRUE AND $day == $cur_day) ? $this->temp['cal_cell_content_today'] : $this->temp['cal_cell_content'];
-                        $temp = str_replace('{date-key}' ,"{$year}-{$month}-".($day < 10 ? "0{$day}" : "{$day}"),$temp);
-                        $out .= str_replace('{day}', $day, str_replace('{content}', $data["{$year}-{$month}-".($day < 10 ? "0{$day}" : "{$day}")], $temp));
+                        $temp = str_replace('{date-key}' ,"{$year}{$month}".($day < 10 ? "0{$day}" : "{$day}"),$temp);
+                        $out .= str_replace('{day}', $day, str_replace('{content}', $data["{$year}{$month}".($day < 10 ? "0{$day}" : "{$day}")], $temp));
 					}
 					else
 					{
 						// Cells with no content
 						$temp = ($is_current_month == TRUE AND $day == $cur_day) ? $this->temp['cal_cell_no_content_today'] : $this->temp['cal_cell_no_content'];
-                        $temp = str_replace('{date-key}' ,"{$year}-{$month}-".($day < 10 ? "0{$day}" : "{$day}"),$temp);
+                        $temp = str_replace('{date-key}' ,"{$year}{$month}".($day < 10 ? "0{$day}" : "{$day}"),$temp);
 						$out .= str_replace('{day}', $day, str_replace('{content}', '', $temp));
 					}
 				}
