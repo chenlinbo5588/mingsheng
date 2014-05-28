@@ -557,3 +557,54 @@ a.faq { background: url(faq.gif) no-repeat 0 2px; padding:1px; margin-left:10px;
 .pbg { position: relative; margin: 10px 0; width: 200px; height: 16px; background: url(bg_progressbar.png) 0 0 repeat-x; border-radius: 5px; }
 	.pbr { height: 16px; width: 200px; background-image: url(bg_progressbar.png); background-color: #5AAF4A; background-position: 0 -16px; background-repeat: repeat-x; border-radius: 5px; }
 	.pbg .xs0 { position: absolute; top: 0; right: 8px; }
+    
+
+    .holiday_calendar .cal_item {
+        margin: 0 0 10px 0;
+    }
+    
+    .holiday_calendar .cal_item  table {
+        width:700px;
+    }
+    
+    .cal_item .day_wrap {
+        position:relative;
+    }
+    
+    .cal_item .rest, .cal_item .work {
+        font-size:12px;
+        position:absolute;
+        width:37px;
+        height:18px;
+        top:0px;
+        right:0px;
+        text-align:center;
+        line-height:18px;
+        color:#fff;
+        background-color:#6292c8;
+    }
+    
+    .cal_item .work {
+        background-color:#a9a9a9;
+    }
+
+    .holiday_calendar .cal_header {
+        background:#D6D1D1;
+    }
+    
+    .holiday_calendar .cal_header th {
+        font-weight:bold;
+        
+    }
+    
+    .holiday_calendar .saturday , .holiday_calendar .sunday {
+        /*
+        background: #4E7A00;
+        color: #fff;
+        */
+    }
+    
+    .holiday_calendar .cal_item  table th , .holiday_calendar .cal_item  table td {
+        border: 1px solid #ccc;
+    }
+    

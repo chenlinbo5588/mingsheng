@@ -2628,6 +2628,8 @@ $lang = array
 	'setting_antitheft_choose_optype' => '请指定要进行的操作',
 	'setting_antitheft_addwhitelist' => '加入白名单',
 	'setting_antitheft_addblacklist' => '加入黑名单',
+            
+    'setting_holiday' => '节假日设置',
 
 	'setting_uc' => 'UCenter 设置',
 	'setting_uc_tips' => '<li>本设置在站点安装时自动生成，一般情况下请不要修改，修改前请备份 config/config_ucenter.php 文件，以防止修改错误导致站点无法运行</li>',
