@@ -22,7 +22,11 @@ class table_common_holiday extends discuz_table
 	}
 
 
-	public function fetch_all_by_where($where, $start = 0, $limit = 0) {
+    public function count_by_timestamp($s1,$s2){
+        return DB::result_first("SELECT COUNT(*) FROM %t WHERE timestamp>=%d AND timestamp <=%d ", array($this->_table, $s1,$s2));
+    }
+
+    public function fetch_all_by_where($where, $start = 0, $limit = 0) {
 		$where = $where ? ' WHERE '.(string)$where : '';
 		return DB::fetch_all('SELECT * FROM '.DB::table($this->_table).$where.' ORDER BY date_key DESC'.DB::limit($start, $limit));
 	}

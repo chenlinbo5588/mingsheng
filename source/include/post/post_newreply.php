@@ -467,6 +467,7 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
         //记录版主回复的时间,这样就与审核时间就可以确定 帖子的亮等状态
         updatemodlog($thread['tid'], 'RLP', 0, 0, '');
         
+        thread_holiday($thread['tid'], 'RLP','SOR');
         /**
          * 版主回复后 发送短信通知给 用户 
          */

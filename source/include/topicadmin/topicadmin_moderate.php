@@ -715,7 +715,7 @@ if(!submitcheck('modsubmit')) {
                 /**
                 $sm = new forum_sendmsg();
                 foreach($tidsarr as $vv){
-                    $status = $sm->send_msg_tid($vv,false,'','已被审核通过');
+                    $status = $sm->send_msg_tid($vv,false,'','已被受理');
                 }*/
             }
 
@@ -725,6 +725,10 @@ if(!submitcheck('modsubmit')) {
 				} else {
 					updatemodlog($moderatetids, $modaction, $expiration, 0, $reason);
 				}
+                
+                if($operation == 'setsortid'){
+                    thread_holiday($tidsarr[0],'SOR','MOD');
+                }
 			}
 
 			updatemodworks($modaction, $modpostsnum);

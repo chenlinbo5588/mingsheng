@@ -37,6 +37,37 @@ function wrapper_text($text,$classname = ''){
     return '<span class="'.$classname.'">['.$text.']</span>';
 }
 
+function thread_holiday($tid , $action , $from_action = 'MOD'){
+    if(empty($tid)){
+        return ;
+    }
+    
+    /**
+     * 从审核到受理这段时间段中有没有节假日，如果有 亮灯计算时间是需要去除
+     * 部门回复时也是一样
+     */
+    $sorlog = C::t('forum_threadmod')->fetch_all_by_tid_status($tid,array($from_action,$action),array('status' => 1));
+
+    //file_put_contents("d.txt", print_r($tid,true));
+    //file_put_contents("d.txt", print_r($sorlog,true),FILE_APPEND);
+    $timeArray = array();
+    foreach($sorlog as $k => $v){
+        $timeArray[$v['action']] = $v['dateline'];
+    }
+    //file_put_contents("d.txt", print_r($timeArray,true),FILE_APPEND);
+    $holidayCount = C::t('common_holiday')->count_by_timestamp($timeArray[$from_action], $timeArray[$action]);
+    //file_put_contents("d.txt", print_r($holidayCount,true),FILE_APPEND);
+    if($holidayCount){
+        C::t('forum_thread_holiday')->delete_by_tid_action($tid,$action);
+        C::t('forum_thread_holiday')->insert(array(
+            'tid' => $tid,
+            'action' => $action,
+            'from_action' => $from_action,
+            'holiday_cnt' => $holidayCount
+        ),true);
+    }
+}
+
 function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = false){
     global $lang;
     
@@ -48,6 +79,7 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
     $hour24 = 60 * 60 * 24;
     $tids = array();
     $tidsMod = array();
+    $tidsHoliday = array();
     $fidList = array();
     $allTypeList = array();
     
@@ -75,6 +107,11 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
         $tidsMod[$v['tid']][$v['action']] = $v;
     }
     
+    $holidays = C::t('forum_thread_holiday')->fetch_all_by_tid($tids);
+    foreach($holidays as $v){
+        $tidsHoliday[$v['tid']][$v['action']] = $v['holiday_cnt'] * $hour24;
+    }
+    
     foreach($data as $k => $thread){
         //$duration = $ts_now - $tv2['dbdateline'];
         $thread['className'] =  '';
@@ -85,15 +122,21 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
         $thread['SOR_dateline'] = isset($tidsMod[$thread['tid']]['SOR']) ? $tidsMod[$thread['tid']]['SOR']['dateline'] : 0;
         $thread['RLP_dateline'] = isset($tidsMod[$thread['tid']]['RLP']) ? $tidsMod[$thread['tid']]['RLP']['dateline'] : 0;
         
+        $sorMinus = !empty($tidsHoliday[$thread['tid']]['SOR']) ? $tidsHoliday[$thread['tid']]['SOR'] : 0;
+        $rlpMinus = !empty($tidsHoliday[$thread['tid']]['RLP']) ? $tidsHoliday[$thread['tid']]['RLP'] : 0;
+        
         if(isset($tidsMod[$thread['tid']]['RLP']) && isset($tidsMod[$thread['tid']]['MOD'])){
             //正确的时间
-            $days = ceil(($tidsMod[$thread['tid']]['RLP']['dateline'] - $tidsMod[$thread['tid']]['MOD']['dateline'])/$hour24);
+            $days = ceil(($tidsMod[$thread['tid']]['RLP']['dateline'] - $tidsMod[$thread['tid']]['MOD']['dateline'] - $sorMinus - $rlpMinus)/$hour24);
+            
+        }elseif(isset($tidsMod[$thread['tid']]['SOR']) && isset($tidsMod[$thread['tid']]['MOD'])){
+            
+            $days = ceil(($tidsMod[$thread['tid']]['SOR']['dateline'] - $tidsMod[$thread['tid']]['MOD']['dateline'] - $sorMinus)/$hour24);
+            
         }elseif(isset($tidsMod[$thread['tid']]['MOD'])){
-            //兼容处理,为了界面有显示，实际上是不正确的
-            $days = ceil(($tidsMod[$thread['tid']]['MOD']['dateline'] - $thread[$datelineKey])/$hour24);
-        }else{
-            //兼容处理,为了界面有显示,实际上是不正确的
             $days = ceil(($ts_now - $thread[$datelineKey])/$hour24);
+        }else{
+            $days = 0;
         }
       
         switch(intval($thread['sortid'])){
@@ -140,10 +183,10 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
             default:
                 break;
         }
-        
+
         if(in_array($thread['sortid'],array($lang['sort_accept_code'],$lang['sort_replied_code']))){
             if(isset($thread['SOR_dateline']) && isset($thread['MOD_dateline'])){
-                $extraClass = ($thread['SOR_dateline'] - $thread['MOD_dateline']) > $hour24 ? 'with-icon-24' : '';
+                $extraClass = ($thread['SOR_dateline'] - $thread['MOD_dateline'] - $sorMinus) > $hour24 ? 'with-icon-24' : '';
             }
             
             if($extraClass){
