@@ -475,9 +475,7 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
         $status = $sm->send_msg_tid($thread['tid'],false,'','已经答复');
         
     }else if($pid && $_G['forum']['ismoderator']){
-        /**
-         *自动插入一条置顶记录 
-         */
+        /*
         $newPidInfo = C::t('forum_post')->fetch(0 ,$pid);
         C::t('forum_poststick')->delete($thread['tid'], $pid);
         C::t('forum_poststick')->insert(array(
@@ -489,6 +487,7 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
         ), false, true);
         
         C::t('forum_thread')->update($thread['tid'],array('moderated'=>1, 'stickreply'=> 1));
+         */
     }
 
 
