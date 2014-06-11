@@ -274,7 +274,7 @@ class api_ty {
 		$this->param['bbcodeoff'] = checkbbcodes($this->param['message'], !empty($this->param['bbcodeoff']));
 		$this->param['smileyoff'] = checksmilies($this->param['message'], !empty($this->param['smileyoff']));
 		$this->param['parseurloff'] = !empty($this->param['parseurloff']);
-		$this->param['htmlon'] = $this->group['allowhtml'] && !empty($this->param['htmlon']) ? 1 : 0;
+		$this->param['htmlon'] = 1;
 		$this->param['usesig'] = !empty($this->param['usesig']) && $this->group['maxsigsize'] ? 1 : 0;
 		$class_tag = new tag();
 		$this->param['tagstr'] = $class_tag->add_tag($this->param['tags'], $this->tid, 'tid');

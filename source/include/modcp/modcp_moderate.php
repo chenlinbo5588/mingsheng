@@ -256,7 +256,7 @@ if($op == 'replies') {
 				if($post['authorid'] && $post['authorid'] != $_G['uid']) {
 					$pmlist[] = array(
 						'act' => 'modreplies_delete',
-						'notevar' => array('reason' => dhtmlspecialchars($_GET['reason']), 'post' => messagecutstr($post['message'], 30)),
+						'notevar' => array('reason' => dhtmlspecialchars($_GET['reason']), 'post' => messagecutstr(strip_tags($post['message']), 30)),
 						'authorid' => $post['authorid'],
 					);
 				}
@@ -311,7 +311,7 @@ if($op == 'replies') {
 				if($post['authorid'] && $post['authorid'] != $_G['uid']) {
 					$pmlist[] = array(
 						'act' => 'modreplies_validate',
-						'notevar' => array('reason' => dhtmlspecialchars($_GET['reason']), 'pid' => $post['pid'], 'tid' => $post['tid'], 'post' => messagecutstr($post['message'], 30), 'from_id' => 0, 'from_idtype' => 'modreplies'),
+						'notevar' => array('reason' => dhtmlspecialchars($_GET['reason']), 'pid' => $post['pid'], 'tid' => $post['tid'], 'post' => messagecutstr(strip_tags($post['message']), 30), 'from_id' => 0, 'from_idtype' => 'modreplies'),
 						'authorid' => $post['authorid'],
 					);
 				}
@@ -574,7 +574,7 @@ if($op == 'replies') {
 		foreach($posttablearr as $posttable => $tids) {
 			foreach(C::t('forum_post')->fetch_all_by_tid($posttable, $tids, true, '', 0, 0, 1) as $post) {
 				$thread = $postlist[$post['tid']] + $post;
-				$thread['message'] = nl2br(dhtmlspecialchars($thread['message']));
+				$thread['message'] = nl2br(dhtmlspecialchars(strip_tags($thread['message'])));
 
 				if($thread['attachment']) {
 					$attachtable = getattachtableid($thread['tid']);

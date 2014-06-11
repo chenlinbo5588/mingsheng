@@ -1553,3 +1553,6 @@ a{
     background: #fff;
     font-size: 14px;
 }
+.t_fsz .t_f img {
+    width:100%;
+}

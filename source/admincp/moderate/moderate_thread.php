@@ -105,7 +105,7 @@ if(!submitcheck('modsubmit') && !$_GET['fast']) {
 		}
 
 		$thread['dateline'] = dgmdate($thread['dateline']);
-		$thread['message'] = discuzcode($thread['message'], $thread['smileyoff'], $thread['bbcodeoff']);
+		$thread['message'] = discuzcode(strip_tags($thread['message']), $thread['smileyoff'], $thread['bbcodeoff']);
 		$censor = & discuz_censor::instance();
 		$censor->highlight = '#FF0000';
 		if($showcensor) {
