@@ -32,8 +32,7 @@ require_once libfile('function/discuzcode');
 /**
  *  
  */
-$fid = gpc('fid','GP',2);
-$api = new api_ty($fid);
+$api = new api_ty();
 if(in_array($action, array('addthread', 'getthread'))) {
     $api->$action();
 } else {
@@ -70,16 +69,8 @@ class api_ty {
     private $forum = array();
     private $member;
     
-    public function __construct($fid) {
-        global $_G;
+    public function __construct() {
         
-        loadforum($fid);
-        
-        if(!$_G['forum']){
-            $this->respone('forum_not_found');
-        }
-        
-        $this->forum = $_G['forum'];
     }
     
     protected function _init_parameters($parameters){
@@ -105,6 +96,14 @@ class api_ty {
     
     public function addthread(){
         global $_G;
+        
+        $fid = gpc('fid','GP',2);
+        loadforum($fid);
+        if($fid) {
+			$_G['forum'] = C::t('forum_forum')->fetch_info_by_fid($fid);
+		}
+        
+        $this->forum = $_G['forum'];
         
         $this->param['username'] = gpc('username','GP','');
         $this->param['subject'] = gpc('subject','GP','');
@@ -385,50 +384,75 @@ class api_ty {
             $this->respone('thread_not_found');
         }
         
-        if($thread['displayorder'] < 0){
-            $this->respone('thread_close_or_inmod');
+        switch($thread['sortid']){
+            case 0:
+            case 1:
+                $thread['status_text'] = '未审核';
+                break;
+            case 2:
+                $thread['status_text'] = '未受理';
+                break;
+            case 3:
+                $thread['status_text'] = '已受理';
+                break;
+            case 4:
+                $thread['status_text'] = '已回复';
+                break;
+            default:
+                $thread['status_text'] = '未审核';
+                break;
         }
         
-        if($thread['sortid'] != 4){
-            $this->respone('thread_unreplied');
-        }
+        loadforum($thread['fid'],$thread['tid']);
+        $_G['forum'] = C::t('forum_forum')->fetch_info_by_fid($thread['fid']);
         
-        $info = C::t("forum_poststick")->fetch_by_tid_priority($thread['tid'],2);
-        if(empty($info)){
-            $this->respone('thread_unreplied');
-        }
-        
-        $replay = C::t('forum_post')->fetch_all_by_tid_position(0,$thread['tid'],$info['position']);
-        $post = $replay[0];
-        
-        loadforum($thread['fid']);
-        //print_r($_G['forum']);
         $t = array(
             'tid' => $thread['tid'],
             'fid' => $thread['fid'],
             'fname' => $_G['forum']['name'],
             'typeid' => $thread['typeid'],
             'subject' => $thread['subject'],
+            'status_text' => $thread['status_text'],
             'author' => $thread['author'],
             'authorid' => $thread['authorid'],
             'dateline' => $thread['dateline']
         );
         
-        $post['message'] = discuzcode($post['message'], $post['smileyoff'], $post['bbcodeoff'], $post['htmlon'] & 1, $_G['forum']['allowsmilies'], 1, ($_G['forum']['allowimgcode'] && $_G['setting']['showimages'] ? 1 : 0), $_G['forum']['allowhtml'], ($_G['forum']['jammer'] && $post['authorid'] != $_G['uid'] ? 1 : 0), 0, $post['authorid'], $_G['cache']['usergroups'][$post['groupid']]['allowmediacode'] && $_G['forum']['allowmediacode'], $post['pid'], $_G['setting']['lazyload'], $post['dbdateline'], $post['first']);
-        $post['message'] = preg_replace('/(<ignore_js_op>.*<\/ignore_js_op>)/is', '', $post['message']);
-        $post['message'] = preg_replace('/<img(.*?)src="(static\/image\/)/','/<img\1 src="'.$_G['siteurl'].'\2',$post['message']);
-        $post['message'] = preg_replace("/\[attach\]\d+\[\/attach\]/i", '', $post['message']);
+        $optimes = C::t('forum_threadmod')->fetch_all_by_tid_status($thread['tid'],array('MOD','SOR', 'RLP'),array('status' => 1));
+        $opArray = array();
         
-        //echo $post['message'];
-        $r = array(
-            'pid' => $post['pid'],
-            'author' => $post['author'],
-            'authorid' => $post['authorid'],
-            'dateline' => $post['dateline'],
-            'message' => $post['message']
-        );
+        foreach($optimes as $op){
+            $opArray[$op['action']] = array(
+                'dateline' => $op['dateline'],
+                'uid' => $op['uid'],
+                'username' => $op['username'],
+                'reason' => $op['resone']
+            );
+        }
         
-        $this->respone(array('code' => 'success', 'message' => $this->_codeList['get_thread_succeed']),array('thread' => $t,'reply' => $r));
+        if($thread['sortid'] == 4){
+            $info = C::t("forum_poststick")->fetch_by_tid_priority($thread['tid'],2);
+            $replay = C::t('forum_post')->fetch_all_by_tid_position(0,$thread['tid'],$info['position']);
+            $post = $replay[0];
+
+            $post['message'] = discuzcode($post['message'], $post['smileyoff'], $post['bbcodeoff'], $post['htmlon'] & 1, $_G['forum']['allowsmilies'], 1, ($_G['forum']['allowimgcode'] && $_G['setting']['showimages'] ? 1 : 0), $_G['forum']['allowhtml'], ($_G['forum']['jammer'] && $post['authorid'] != $_G['uid'] ? 1 : 0), 0, $post['authorid'], $_G['cache']['usergroups'][$post['groupid']]['allowmediacode'] && $_G['forum']['allowmediacode'], $post['pid'], $_G['setting']['lazyload'], $post['dbdateline'], $post['first']);
+            $post['message'] = preg_replace('/(<ignore_js_op>.*<\/ignore_js_op>)/is', '', $post['message']);
+            $post['message'] = preg_replace('/<img(.*?)src="(static\/image\/)/','/<img\1 src="'.$_G['siteurl'].'\2',$post['message']);
+            $post['message'] = preg_replace("/\[attach\]\d+\[\/attach\]/i", '', $post['message']);
+
+            //echo $post['message'];
+            $r = array(
+                'pid' => $post['pid'],
+                'author' => $post['author'],
+                'authorid' => $post['authorid'],
+                'dateline' => $post['dateline'],
+                'message' => $post['message']
+            );
+        }else{
+            $r = array();
+        }
+        
+        $this->respone(array('code' => 'success', 'message' => $this->_codeList['get_thread_succeed']),array('thread' => $t,'op_time' => $opArray, 'reply' => $r));
     }
     
     
