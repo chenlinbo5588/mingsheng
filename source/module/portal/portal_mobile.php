@@ -42,7 +42,7 @@ foreach($_G['cache']['forums'] as $key => $val){
     }
     $bm_count++;
 }
-
+/*
 if(function_exists('curl_init')){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, 'http://www.weather.com.cn/data/sk/101210403.html');
@@ -68,7 +68,7 @@ if($_G['page'] == 1) {
         $announcement['starttime'] = dgmdate($announcement['starttime'], 'u');
     }
 }
-
+*/
 $fids = array();
 foreach($_G['cache']['forums'] as $fid => $forum) {
     //获取可用板块

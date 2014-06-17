@@ -1,6 +1,6 @@
 <!--{template common/header}-->
     <div id="navbox">
-        <a href="m.php?mobile=yes" target="_self">首页</a>|<a href="forum.php?mobile=yes" target="_self">民生论坛</a>|<a href="m.php?mod=mobile_list&catid=2&mobile=yes" class="current"  target="_self">民生快递</a>
+        <a href="m.php?mobile=yes"  target="_self">首页</a>|<a href="m.php?mod=mobile_list&catid=20&mobile=yes" <!--{if $article['catid'] == 20}-->class="current"<!--{/if}--> target="_self">政务信息</a>|<a href="forum.php?mobile=yes" target="_self">民生论坛</a>|<a href="m.php?mod=mobile_list&catid=2&mobile=yes"  <!--{if $article['catid'] == 2}-->class="current"<!--{/if}--> target="_self">民生快递</a>
     </div>
 
     <div id="detialbox">
@@ -10,6 +10,8 @@
         <div class="curtext">
             $content[content]
         </div>
+        <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more">分享到：</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a></div>
+        <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["weixin","tsina","tqq","qzone","renren"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","tqq","qzone","renren"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
     </div>
     <div id="turnpage" class="ft">
         <a class="home" href="{$_SERVER['HTTP_REFERER']}"  >返回</a> <a href="javascript:void(0);" class="top" onclick="window.scrollTo(0, 0);">返回顶部</a>

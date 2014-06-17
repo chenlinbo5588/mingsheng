@@ -4,17 +4,7 @@
     </div>
 
     <div id="slidebox">
-        <div class="notice">
-            <div class="nt_name">
-                <span class="show">便民公告</span><span>天气预报</span>
-            </div>
-            <div class="nt_conts">
-                <p class="show"><!--{if $announcement['type'] == 1}--><a href="{$announcement['message']}&mobile=yes">{$announcement['subject']}</a><!--{else}-->{$announcement['subject']}<!--{/if}--></p>
-            </div>
-            <div class="nt_conts">
-                <p class="show">今天 温度 {$weather['weatherinfo']['temp']}摄氏度,{$weather['weatherinfo']['WD']}{$weather['weatherinfo']['WS']},湿度{$weather['weatherinfo']['SD']} </p>
-            </div>
-        </div>
+        
         <script src="{STATICURL}js/mobile/TouchSlide.1.1.js"></script>
         <div class="bar" id="slideBar">
             <!--{block/28}-->
