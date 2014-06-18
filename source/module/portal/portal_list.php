@@ -110,16 +110,6 @@ if ($catid == 7) {
     ksort($catelist);
 }
 
-if (($catid == 2) || ($catid == 20)) {
-    loadcache('forums');
-    require './source/function/function_forum.php';
-    $newThreads = C::t('forum_thread')->fetch_by_sortid(array(2,3,4), " dateline DESC " ,0,10);
-}
-//$sql = 'UPDATE '.DB::table('portal_category').' SET primaltplname="./template/default:portal/list" WHERE catid=9';
-//print_r($sql);
-//$test = DB::update($sql);
-//var_dump($test);
-
 include template('diy:'.$file, NULL, $tpldirectory, NULL, $primaltplname);
 
 

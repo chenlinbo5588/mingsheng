@@ -35,13 +35,7 @@
 		<div class="lanmu">
 			<div class="lanmutop"><h1>常见问题</h1></div>
 			<div class="lanmucen">
-				<div class="mlist mllist">
-                    <ul>
-                        <!--{loop $newThreads $val}-->
-                        <li><a href="/forum.php?mod=viewthread&tid={$val[tid]}" title="{$val['subject']}" target="_blank">{echo cutstr($val['subject'], 32)}</a></li>
-                        <!--{/loop}-->
-                    </ul>
-                </div>
+				<!--{block/32}-->
 			</div>
 			<div class="lanmufoot"></div>
 		</div>

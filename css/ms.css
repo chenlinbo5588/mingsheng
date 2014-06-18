@@ -194,6 +194,7 @@ a{
 }
 .mllist ul li{
 	background: url("../images/bdian.jpg") left center no-repeat;
+    overflow: hidden;
 }
 .mllist ul li a{
 	color: #444;
