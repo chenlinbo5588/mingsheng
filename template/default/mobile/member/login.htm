@@ -6,6 +6,9 @@
 <div class="box"><a href="forum.php">{lang return_forum}</a><span class="pipe">|</span><a href="javascript:history.back();" onclick="javascript:history.back();" title="{lang goback}" >{lang goback}</a></div>
 -->
 <div id="loginbox" class="bm mtn">
+    <style>
+        #floatbox { display: none; }
+    </style>
     <!--<div class="bm_h">{lang login}</div>-->
     <form method="post" action="member.php?mod=logging&action=login&loginsubmit=yes&loginhash=$loginhash&mobile=yes" onsubmit="{if $_G['setting']['pwdsafety']}pwmd5('password3_$loginhash');{/if}" >
         <input type="hidden" name="formhash" id="formhash" value='{FORMHASH}' />
