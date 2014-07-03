@@ -232,10 +232,12 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
                 }
             }
         }else{
-            foreach($_G['cache']['forums'] as $fid => $forum) {
+            
+            $usedForums = C::t('forum_forum')->fetch_all_fids();
+            foreach($usedForums as $forum) {
                 //获取可用板块
                 if($forum['type'] != 'group' && $forum['status'] > 0 && !$forum['viewperm'] && !$forum['havepassword']) {
-                    $fids[] = $fid;
+                    $fids[] = $forum['fid'];
                 }
             }
         }
