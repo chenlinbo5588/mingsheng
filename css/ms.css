@@ -659,15 +659,20 @@ a{
     width: 395px;
 }
 .askul h2 {
-    height: 27px;
-    line-height: 27px;
     font-size: 16px;
     background: url('../images/fm-title-bg.jpg') left center no-repeat;
-    padding: 5px 0 5px 16px;
+    padding: 10px 0;
+    position: relative;
+}
+
+.askul h2 span {
+    padding:0 0 0 20px;
 }
 
 .askul h2 .moreLink {
-    float: right;
+    position: absolute;
+    top: 15px;
+    right: 10px;
     font-weight: normal;
 }
 
