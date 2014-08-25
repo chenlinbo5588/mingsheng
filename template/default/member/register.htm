@@ -247,13 +247,13 @@
         sendButton.prop("disabled",true);
         jq.post('forum.php?mod=ajax&action=sendchkcode', {'mnumber': mipt.val()},
             function(response){
-                clearTimeout(timeout);
-                clearInterval(interval);
+                //clearTimeout(timeout);
+                //clearInterval(interval);
                 
-                sec = 0;
+                //sec = 0;
 
-                sendButton.html(sendButton.attr("data-text"));
-                sendButton.prop("disabled",false);
+                //sendButton.html(sendButton.attr("data-text"));
+                //sendButton.prop("disabled",false);
                 
                 feedBack.removeClass();
                 
