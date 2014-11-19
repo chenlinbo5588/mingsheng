@@ -125,9 +125,9 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
         $sorMinus = !empty($tidsHoliday[$thread['tid']]['SOR']) ? $tidsHoliday[$thread['tid']]['SOR'] : 0;
         $rlpMinus = !empty($tidsHoliday[$thread['tid']]['RLP']) ? $tidsHoliday[$thread['tid']]['RLP'] : 0;
         
-        if(isset($tidsMod[$thread['tid']]['RLP']) && isset($tidsMod[$thread['tid']]['MOD'])){
+        if(isset($tidsMod[$thread['tid']]['RLP']) && isset($tidsMod[$thread['tid']]['SOR'])){
             //正确的时间
-            $days = ceil(($tidsMod[$thread['tid']]['RLP']['dateline'] - $tidsMod[$thread['tid']]['MOD']['dateline'] - $sorMinus - $rlpMinus)/$hour24);
+            $days = ceil(($tidsMod[$thread['tid']]['RLP']['dateline'] - $tidsMod[$thread['tid']]['SOR']['dateline'] - $rlpMinus)/$hour24);
             
         }elseif(isset($tidsMod[$thread['tid']]['SOR']) && isset($tidsMod[$thread['tid']]['MOD'])){
             
