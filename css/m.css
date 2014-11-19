@@ -194,23 +194,23 @@ a:hover {text-decoration:underline;}
 }
 
 .icon-5daysover {
-    background: url(../images/light_gray.gif) no-repeat 50% 30%;
+    background: url(../images/light_red.gif) no-repeat 50% 30%;
     cursor:pointer;
 }
 
 .icon-5daysover.with-icon-24 {
-    background: url(../images/twolight.png) no-repeat 0 -77px;
+    background: url(../images/twolight.png) no-repeat 0 -117px;
     width:28px;
     height:26px;
 }
 
 
 .icon-overtime {
-    background: url(../images/light_red.gif) no-repeat 50% 30%;
+    background: url(../images/light_gray.gif) no-repeat 50% 30%;
     cursor:pointer;
 }
 .icon-overtime.with-icon-24 {
-    background: url(../images/twolight.png) no-repeat 0 -117px;
+    background: url(../images/twolight.png) no-repeat 0 -77px;
     width:28px;
     height:26px;
 }
