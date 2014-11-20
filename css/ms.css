@@ -1320,7 +1320,7 @@ a{
     width:28px;
     height:28px;
 }
-.icon-24 {
+.icon-24 , .with-icon-24 {
     background: url(../images/light_warn.gif) no-repeat center center;
     cursor:pointer;
 }

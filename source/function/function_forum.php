@@ -131,14 +131,22 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
             
         }elseif(isset($tidsMod[$thread['tid']]['SOR']) && isset($tidsMod[$thread['tid']]['MOD'])){
             
-            $days = ceil(($tidsMod[$thread['tid']]['SOR']['dateline'] - $tidsMod[$thread['tid']]['MOD']['dateline'] - $sorMinus)/$hour24);
+            //$days = ceil(($tidsMod[$thread['tid']]['SOR']['dateline'] - $tidsMod[$thread['tid']]['MOD']['dateline'] - $sorMinus)/$hour24);
+            $days = ceil(($ts_now - $tidsMod[$thread['tid']]['SOR']['dateline'] - $sorMinus)/$hour24);
             
         }elseif(isset($tidsMod[$thread['tid']]['MOD'])){
             $days = ceil(($ts_now - $thread[$datelineKey])/$hour24);
         }else{
             $days = 0;
         }
-      
+        
+        /*
+        if($_GET['tid'] == 220){
+            file_put_contents("debug.txt",print_r($thread,true));
+            file_put_contents("debug.txt",$days,FILE_APPEND);
+        }
+        */
+        
         switch(intval($thread['sortid'])){
             case $lang['sort_all_code']:
                 break;
@@ -188,12 +196,12 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
             if(isset($thread['SOR_dateline']) && isset($thread['MOD_dateline'])){
                 $extraClass = ($thread['SOR_dateline'] - $thread['MOD_dateline'] - $sorMinus) > $hour24 ? 'with-icon-24' : '';
             }
-            
+
             if($extraClass){
                 $extraText = '24小时未受理';
             }
             
-            if($thread['className']){
+            if(!empty($thread['className'])){
                 $thread['className'] .= ' '.$extraClass;
             }else{
                 $thread['className'] = $extraClass;
