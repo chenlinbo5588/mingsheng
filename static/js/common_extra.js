@@ -108,6 +108,10 @@ function _checksec(type, idhash, showmsg, recall, modid) {
 		var obj = $('checksec' + type + 'verify_' + idhash);
 		obj.style.display = '';
 		if(s.substr(0, 7) == 'succeed') {
+            if('member::register' == modid && jq){
+                jq("#valide-code-btn").prop("disabled",false);
+            }
+            
 			obj.innerHTML = '<img src="'+ IMGDIR + '/check_right.gif" width="16" height="16" class="vm" />';
 			if(showmsg) {
 				recall(1);

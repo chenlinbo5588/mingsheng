@@ -748,30 +748,39 @@ EOF;
 	die(json_encode($return));
     exit;
 } elseif ($_GET['action'] == 'sendchkcode') {
-    $return = array('error' => 1);
+    $return = array('error' => 1 , 'text' => '');
     $regmobile = isset($_POST['mnumber']) ? $_POST['mnumber'] : 0;
     if ($regmobile) {
         $chkcode = randVar(6);
         $tenMin = 60 * 10;
+        $now = time();
+        //获取当前号码 在 60 秒内是否有获得过验证码
+        $currentMobileRecordCount = C::t('common_member_regcode')->count_by_phone_second($regmobile,$now - 60);
+        //删除 10分钟以前的 数据
+        C::t('common_member_regcode')->delete_expired_data(" dateline <=  " . ($now - $tenMin) , 100);
         
-        $data = array(
-            'mobile'        => $regmobile,
-            'code'          => $chkcode,
-            'dateline'      => time(),
-            'expiretime'    => $tenMin
-        );
-        C::t('common_member_regcode')->delete_expired_data(" dateline <=  " . (time() - $tenMin) , 100);
-        $insertid = C::t('common_member_regcode')->insert($data, true);
-        if (!$insertid) {
-            $return['error'] = 0;
-        } else {
-            $msg = "注册验证码：$chkcode, 十分钟内有效！";
+        if($currentMobileRecordCount['num'] != 0){
+            $return['text'] = "60秒内不能重复请求手机验证码";
+        }else{
+            $data = array(
+                'mobile'        => $regmobile,
+                'code'          => $chkcode,
+                'dateline'      => $now,
+                'expiretime'    => $tenMin
+            );
             
-            $sendmsg = new forum_sendmsg();
-            $res = $sendmsg->send_message($msg, $regmobile);
-
-            if ($res) {
+            $insertid = C::t('common_member_regcode')->insert($data, true);
+            if (!$insertid) {
                 $return['error'] = 0;
+            } else {
+                $msg = "注册验证码：$chkcode, 十分钟内有效！";
+
+                $sendmsg = new forum_sendmsg();
+                $res = $sendmsg->send_message($msg, $regmobile);
+
+                if ($res) {
+                    $return['error'] = 0;
+                }
             }
         }
     }

@@ -33,5 +33,9 @@ class table_common_member_regcode extends discuz_table_archive
         $res = DB::query("DELETE FROM ".DB::table($this->_table)." $where LIMIT $limit");
         return $res;
     }
+    
+    public function count_by_phone_second($phone , $timestamp){
+        return DB::result_first("SELECT COUNT(*) AS num FROM ".DB::table($this->_table)." WHERE mobile=%s AND dateline >=%d", array($phone, $timestamp));
+    }
 }
     

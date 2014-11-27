@@ -37,6 +37,12 @@
 	<p class="xg1">{lang register_message1}</p></li>
 <!--{/if}-->
 
+<!--{if $secqaacheck || $seccodecheck}-->
+<li>
+	<!--{subtemplate common/seccheck}-->
+</li>
+<!--{/if}-->
+
 <!--{loop $_G['cache']['fields_register'] $field}-->
 <!--{if $htmls[$field['fieldid']]}-->
 	<li><span>$field[title]：</span>
@@ -53,9 +59,28 @@
             </li>
             <li><span>&nbsp;</span>
                 <label><input id="mverifycode" name="mverifycode" style="width:80px;" type="text" autocomplete="off" class="txt px vm"/>*</label>
-                <button type="button" id="valide-code-btn" data-text="获取验证码">获取验证码</button><br><span style="width: auto;color:#009000" id="feedback"></span></li>
-                                                
-<script type='text/javascript'>
+                <button type="button" id="valide-code-btn" data-text="获取验证码" disabled="disabled">获取验证码</button><br><span style="width: auto;color:#009000" id="feedback"></span></li>
+<script type="text/javascript">
+    function checksec(type, idhash, showmsg, recall, modid){
+        var showmsg = !showmsg ? 0 : showmsg;
+        var secverify = $('#sec' + type + 'verify_' + idhash).val();
+        if(!secverify) {
+            return;
+        }
+    
+        $.get('misc.php?mod=sec' + type + '&action=check&inajax=1&modid=' + modid + '&idhash=' + idhash + '&secverify=' + encodeURIComponent(secverify),{}, function(s){
+            if(s.indexOf("succeed") != -1){
+                $("#valide-code-btn").prop("disabled",false);
+            }else{
+                alert("验证码错误");
+            }
+        },'text');
+    }
+    
+    $("#seccodeverify_{$sechash}").bind("blur",function(){
+        checksec('code', '{$sechash}', 0, null, 'member::register');
+    });
+    
     $('#valide-code-btn').click(function(e){
         var mipt = $('#mobile');
         if($.trim(mipt.val()).length == 0 || !/^1[3|4|5|8][0-9]\d{4,8}$/.test(mipt.val())){
@@ -85,9 +110,9 @@
                 if (!response.error) {
                     feedBack.addClass("sendsuccess").html('验证码已经成功发送到您的手机，请注意查收。');
                 } else {
-                    feedBack.addClass("sendfailed").html('操作失败。');
+                    feedBack.addClass("sendfailed").html('操作失败' + response.text);
                 }
-            });
+            },'json');
             
         timeout = setTimeout(function(){
             if(interval){
@@ -120,11 +145,7 @@
 <!--{/if}-->
 <!--{/loop}-->
 
-<!--{if $secqaacheck || $seccodecheck}-->
-<li>
-	<!--{subtemplate common/seccheck}-->
-</li>
-<!--{/if}-->
+
 <li><span style="float:left;">注册协议：</span><textarea name="">$bbrulestxt</textarea></li>
 <!--{if $bbrules}-->
     <li><label for="agreebbrule"><input type="checkbox" class="pc" name="agreebbrule" value="$bbrulehash" id="agreebbrule" checked="checked" /> 我已阅读并完全接受服务协议</label></li>

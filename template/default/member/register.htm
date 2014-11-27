@@ -214,7 +214,10 @@
                                 </tbody></table>
                         </div>-->
                         
-
+                        <!--{if $secqaacheck || $seccodecheck}-->
+                            <!--{block sectpl}--><div class="rfm"><table><tr><th><span class="rq">*</span><sec>: </th><td><sec><br /><sec></td></tr></table></div><!--{/block}-->
+                            <!--{subtemplate common/seccheck}-->
+                        <!--{/if}-->
 						<!--{loop $_G['cache']['fields_register'] $field}-->
 							<!--{if $htmls[$field['fieldid']]}-->
 							<div class="rfm">
@@ -227,7 +230,7 @@
                                             </style>
                                             <!--{if $field['fieldid'] == 'mobile'}-->
                                             <input id="mverifycode" name="mverifycode" style="width:80px;" type="text" autocomplete="off" style="ime-mode:disabled;width:100px" class="txt px vm"/>
-                                                <button type="button" id="valide-code-btn" data-text="获取验证码">获取验证码</button>
+                                            <button type="button" id="valide-code-btn" data-text="获取验证码" disabled="disabled">获取验证码</button>
                                                 <p id="feedback"></p>
                                                 
 <script type='text/javascript'>
@@ -256,13 +259,13 @@
                 //sendButton.prop("disabled",false);
                 
                 feedBack.removeClass();
-                
+
                 if (!response.error) {
                     feedBack.addClass("sendsuccess").html('验证码已经成功发送到您的手机，请注意查收。');
                 } else {
-                    feedBack.addClass("sendfailed").html('操作失败。');
+                    feedBack.addClass("sendfailed").html('操作失败' + response.text);
                 }
-            });
+            },'json');
             
         timeout = setTimeout(function(){
             if(interval){
@@ -302,10 +305,7 @@
 					<!--{/if}-->
 					<!--{hook/register_input}-->
                     
-					<!--{if $secqaacheck || $seccodecheck}-->
-						<!--{block sectpl}--><div class="rfm"><table><tr><th><span class="rq">*</span><sec>: </th><td><sec><br /><sec></td></tr></table></div><!--{/block}-->
-						<!--{subtemplate common/seccheck}-->
-					<!--{/if}-->
+					
 
 				</div>
 			</div>
