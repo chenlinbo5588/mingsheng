@@ -1341,21 +1341,21 @@ a{
 }
 
 .icon-5daysover {
-    background: url(../images/light_red.gif) no-repeat center center;
-    cursor:pointer;
-}
-
-.icon-5daysover.with-icon-24 {
-    background: url(../images/twolight.png) no-repeat 0 -117px;
-}
-
-.icon-overtime {
     background: url(../images/light_gray.gif) no-repeat center center;
     cursor:pointer;
 }
 
-.icon-overtime.with-icon-24 {
+.icon-5daysover.with-icon-24 {
     background: url(../images/twolight.png) no-repeat 0 -77px;
+}
+
+.icon-overtime {
+    background: url(../images/light_red.gif) no-repeat center center;
+    cursor:pointer;
+}
+
+.icon-overtime.with-icon-24 {
+    background: url(../images/twolight.png) no-repeat 0 -117px;
 }
 
 .btm-btn {
