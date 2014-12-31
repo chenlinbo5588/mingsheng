@@ -1,3 +1,4 @@
+<!--{if $_G['forum_topnav']}-->
 <div class="dmain">
     <ul>
     <!--{loop $_G['forum_list'] $key $forum}-->
@@ -5,15 +6,25 @@
             <div class="bmzx"><img src="images/group{$forum[fid]}.jpg" /></div>
             <div class="bmlist">
                 <!--{if !empty($_GET['gid']) && $_GET['gid'] == $forum['fid']}-->
-                <a href="forum.php?gid={$forum['fid']}" class="selected">{lang all}</a>&nbsp;|
+                <a href="forum.php?gid={$forum['fid']}&fid={$forum['fid']}" class="selected">{lang all}</a>&nbsp;|
                 <!--{else}-->
-                <a href="forum.php?gid={$forum['fid']}">{lang all}</a>&nbsp;|
+                <a href="forum.php?gid={$forum['fid']}&fid={$forum['fid']}">{lang all}</a>&nbsp;|
                 <!--{/if}-->
                 <!--{loop $forum[list] $key2 $val}-->
                     <!--{if $_GET['fid'] == $val['fid']}-->
                     <a href="forum.php?mod=forumdisplay&fid={$val['fid']}" class="selected">{$val[name]}</a>&nbsp;|
                     <!--{else}-->
                     <a href="forum.php?mod=forumdisplay&fid={$val['fid']}">{$val[name]}</a>&nbsp;|
+                    <!--{/if}-->
+                    
+                    <!--{if $val[list]}-->
+                    <!--{loop $val[list] $key3 $val3}-->
+                        <!--{if $_GET['fid'] == $val3['fid']}-->
+                        <a href="forum.php?mod=forumdisplay&fid={$val3['fid']}" class="selected">{$val3[name]}</a>&nbsp;|
+                        <!--{else}-->
+                        <a href="forum.php?mod=forumdisplay&fid={$val3['fid']}">{$val3[name]}</a>&nbsp;|
+                        <!--{/if}-->
+                    <!--{/loop}-->
                     <!--{/if}-->
                 <!--{/loop}-->
             </div>
@@ -30,7 +41,7 @@
     
     <div class="working_notify">告知：网络发言人帖文受理时间为正常上班工作日，遇节假日顺延处理。</div>
 </div>
-
+<!--{/if}-->
 <div class="block-thread-search clearfix">
     <form method="post" autocomplete="off" action="search.php?mod=forum" onsubmit="if ($('scform_fmtxt'))  searchFocus($('scform_srchtxt'));">
         <input type="hidden" name="formhash" value="{FORMHASH}">

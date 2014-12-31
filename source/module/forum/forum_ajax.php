@@ -722,6 +722,8 @@ EOF;
             $gradeid = C::t('forum_threadgrade')->insert($gradeinfo, true);
         }
         
+        C::t('forum_kpilog')->update_grade_by_tid($threadid,$grade);
+        
         if ($gradeid) {
             switch ($grade) {
                 case '1':

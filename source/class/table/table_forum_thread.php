@@ -1113,8 +1113,8 @@ class table_forum_thread extends discuz_table
 		$condition = $this->make_query_condition($tids, $fids, $isgroup, $author, $subject);
 		return DB::result_first("SELECT COUNT(*) FROM %t $condition[0]", $condition[1]);
 	}
-
-
+    
+    
 	public function count_group_thread_by_fid($fid) {
 		return DB::fetch_all('SELECT COUNT(*) AS num, authorid FROM %t WHERE fid=%d GROUP BY authorid', array($this->get_table_name(), $fid));
 	}
@@ -1217,10 +1217,11 @@ class table_forum_thread extends discuz_table
 				break;
 			default :
                 $addsql = '';
-                if(!empty($typeids)){
-                    $addsql = ' AND typeid IN ('.dimplode($typeids).')';
-                }
 		}
+        
+        if(!empty($typeids)){
+            $addsql .= ' AND typeid IN ('.dimplode($typeids).')';
+        }
         
 		if(getglobal('setting/followforumid')) {
 			$addsql .= ' AND '.DB::field('fid', getglobal('setting/followforumid'), '<>');

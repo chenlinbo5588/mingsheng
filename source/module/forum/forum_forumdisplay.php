@@ -853,8 +853,14 @@ if(!empty($threadids)) {
 }
 
 
-$_G['forum_list'] = get_forums();
-$_G['forum_threadlist'] = thread_add_icon_by_row($_G['forum_threadlist'],'dbdateline');
+if($_G['forum']['isdepartment']){
+    $_G['forum_list'] = get_forums(array(1));
+    $_G['forum_threadlist'] = thread_add_icon_by_row($_G['forum_threadlist'],'dbdateline');
+    $_G['forum_topnav'] = 1;
+}else{
+    //$_G['forum_list'] = get_forums(array(0));
+    $_G['forum_topnav'] = 0;
+}
 
 //print_r($_G);
 if($_G['setting']['verify']['enabled'] && $verifyuids) {

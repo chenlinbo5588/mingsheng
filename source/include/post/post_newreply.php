@@ -434,7 +434,7 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
      * 添加回复 版主回复逻辑
      */
     
-    if($pid && $thread['sortid'] == 3 && $_G['forum']['ismoderator'] && in_array($_G['groupid'],array(2,3))){
+    if($pid && $_G['forum']['isdepartment'] && $thread['sortid'] == 3 && $_G['forum']['ismoderator'] && in_array($_G['groupid'],array(2,3))){
         
         /** @deprecated 该逻辑根据客户要求去除
         //最新位置和2楼互换位置
@@ -468,6 +468,7 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
         updatemodlog($thread['tid'], 'RLP', 0, 0, '');
         
         thread_holiday($thread['tid'], 'RLP','SOR');
+        thread_add_kpi($thread['tid']);
         /**
          * 版主回复后 发送短信通知给 用户 
          */

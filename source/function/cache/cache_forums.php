@@ -19,7 +19,7 @@ function build_cache_forums() {
 
 	$forumnoperms = array();
 	foreach($forums as $val) {
-		$forum = array('fid' => $val['fid'], 'type' => $val['type'], 'name' => $val['name'], 'fup' => $val['fup'], 'simple' => $val['simple'], 'status' => $val['status'], 'allowpostspecial' => $val['allowpostspecial'], 'viewperm' => $val['viewperm'], 'formulaperm' => $val['formulaperm'], 'havepassword' => $val['password'], 'postperm' => $val['postperm'], 'replyperm' => $val['replyperm'], 'getattachperm' => $val['getattachperm'], 'postattachperm' => $val['postattachperm'], 'extra' => $val['extra'], 'commentitem' => $val['commentitem'], 'uid' => $val['uid'], 'archive' => $val['archive'], 'domain' => $val['domain']);
+		$forum = array('fid' => $val['fid'], 'type' => $val['type'], 'name' => $val['name'], 'fup' => $val['fup'], 'simple' => $val['simple'], 'status' => $val['status'], 'allowpostspecial' => $val['allowpostspecial'], 'viewperm' => $val['viewperm'], 'formulaperm' => $val['formulaperm'], 'havepassword' => $val['password'], 'postperm' => $val['postperm'], 'replyperm' => $val['replyperm'], 'getattachperm' => $val['getattachperm'], 'postattachperm' => $val['postattachperm'], 'extra' => $val['extra'], 'commentitem' => $val['commentitem'], 'uid' => $val['uid'], 'archive' => $val['archive'], 'domain' => $val['domain'] , 'isdepartment' => $val['isdepartment']);
 		$forum['orderby'] = bindec((($forum['simple'] & 128) ? 1 : 0).(($forum['simple'] & 64) ? 1 : 0));
 		$forum['ascdesc'] = ($forum['simple'] & 32) ? 'ASC' : 'DESC';
 		$forum['extra'] = unserialize($forum['extra']);
@@ -62,13 +62,13 @@ function build_cache_forums() {
 				}
 			}
 		}
-	}
+    }
 	savecache('forums', $data);
 }
 
 function formatforumdata($forum, &$pluginvalue) {
 	static $keys = array('fid', 'type', 'name', 'fup', 'viewperm', 'postperm', 'orderby', 'ascdesc', 'users', 'status',
-		'extra', 'plugin', 'allowpostspecial', 'commentitem', 'archive', 'domain', 'havepassword');
+		'extra', 'plugin', 'allowpostspecial', 'commentitem', 'archive', 'domain', 'havepassword','isdepartment');
 	static $orders = array('lastpost', 'dateline', 'replies', 'views');
 
 	$data = array();

@@ -4,7 +4,7 @@
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
  *      This is NOT a freeware, use is subject to license terms
  *
- *      $Id: forum_guide.php 34066 2013-09-27 08:36:09Z nemohou $
+ *      $Id: forum_normal.php 34066 2013-09-27 08:36:09Z nemohou $
  */
 
 if(!defined('IN_DISCUZ')) {
@@ -14,14 +14,15 @@ require_once libfile('function/forumlist');
 $view = $_GET['view'];
 $sortid = isset($_GET['sortid']) ? $_GET['sortid'] : 0;
 $gid = isset($_GET['gid']) ? $_GET['gid'] : 0;
+$fid = isset($_GET['fid']) ? $_GET['fid'] : 0;
 
-loadcache('forum_guide');
-if(!in_array($view, array('all','zxqz','tsjb','jyxc', 'hot', 'digest', 'new', 'my', 'newthread', 'sofa'))) {
+if(!in_array($view, array('all','hot', 'digest', 'new', 'my', 'newthread', 'sofa'))) {
 	$view = 'all';
 }
 $lang = lang('forum/template');
-//$navtitle = $lang['guide'].'-'.$lang['guide_'.$view];
-$navtitle = '阿拉帮侬忙 - '.$lang['guide_'.$view];
+
+$navtitle = str_replace('{bbname}', '论坛', $_G['setting']['seotitle']['portal']);
+
 $perpage = 50;
 $start = $perpage * ($_G['page'] - 1);
 $data = array();
@@ -35,58 +36,8 @@ if($_G['page'] == 1) {
     }
 }
 
-if($_GET['rss'] == 1) {
-	if($view == 'index' || $view == 'my') {
-		showmessage('URL_ERROR');
-	}
-	$ttl = 30;
-	$charset = $_G['config']['output']['charset'];
-	dheader("Content-type: application/xml");
-	echo 	"<?xml version=\"1.0\" encoding=\"".$charset."\"?>\n".
-		"<rss version=\"2.0\">\n".
-		"  <channel>\n".
-		"    <title>{$_G[setting][bbname]} - $lang[guide] - ".$lang['guide_'.$view]."</title>\n".
-		"    <link>{$_G[siteurl]}forum.php?mod=guide&amp;view=$view</link>\n".
-		"    <description>".$lang['guide_'.$view]."</description>\n".
-		"    <copyright>Copyright(C) {$_G[setting][bbname]}</copyright>\n".
-		"    <generator>Discuz! Board by Comsenz Inc.</generator>\n".
-		"    <lastBuildDate>".gmdate('r', TIMESTAMP)."</lastBuildDate>\n".
-		"    <ttl>$ttl</ttl>\n".
-		"    <image>\n".
-		"      <url>{$_G[siteurl]}static/image/common/logo_88_31.gif</url>\n".
-		"      <title>{$_G[setting][bbname]}</title>\n".
-		"      <link>{$_G[siteurl]}</link>\n".
-		"    </image>\n";
-
-	$info = C::t('forum_rsscache')->fetch_all_by_guidetype($view, $perpage);
-	if(empty($info) || (TIMESTAMP - $info[0]['lastupdate'] > $ttl * 60)) {
-		update_guide_rsscache($view, $perpage);
-	}
-	foreach($info as $thread) {
-		list($thread['description'], $attachremote, $attachfile, $attachsize) = explode("\t", $thread['description']);
-		if($attachfile) {
-			if($attachremote) {
-				$filename = $_G['setting']['ftp']['attachurl'].'forum/'.$attachfile;
-			} else {
-				$filename = $_G['siteurl'].$_G['setting']['attachurl'].'forum/'.$attachfile;
-			}
-		}
-		echo 	"    <item>\n".
-			"      <title>".$thread['subject']."</title>\n".
-			"      <link>$_G[siteurl]".($trewriteflag ? rewriteoutput('forum_viewthread', 1, '', $thread['tid']) : "forum.php?mod=viewthread&amp;tid=$thread[tid]")."</link>\n".
-			"      <description><![CDATA[".dhtmlspecialchars($thread['description'])."]]></description>\n".
-			"      <category>".dhtmlspecialchars($thread['forum'])."</category>\n".
-			"      <author>".dhtmlspecialchars($thread['author'])."</author>\n".
-			($attachfile ? '<enclosure url="'.$filename.'" length="'.$attachsize.'" type="image/jpeg" />' : '').
-			"      <pubDate>".gmdate('r', $thread['dateline'])."</pubDate>\n".
-			"    </item>\n";
-	}
-	echo 	"  </channel>\n".
-		"</rss>";
-	exit();
-}
 if($view != 'index') {
-	$theurl = 'forum.php?mod=guide&view='.$view;
+	$theurl = 'forum.php?mod=normal&view='.$view;
 	if($view == 'my') {
 		if(!$_G['uid']) {
 			showmessage('to_login', '', array(), array('login' => 1));
@@ -118,31 +69,22 @@ if($view != 'index') {
 		$tids = $data['my']['tids'];
 		$posts = $data['my']['posts'];
 	} else {
-		$data[$view] = get_guide_list($view, $start, $perpage);
+		$data[$view] = get_list($view, $start, $perpage);
 	}
     
-    
-    /*
-	if(empty($data['my']['multi'])) {
-		$multipage = multi($data[$view]['threadcount'], $perpage, $_G['page'], $theurl, $_G['setting']['threadmaxpages']);
-	} else {
-		$multipage = $data['my']['multi'];
-	}
-    */
 } else {
-	$data['hot'] = get_guide_list('hot', 0, 30);
-	$data['digest'] = get_guide_list('digest', 0, 30);
-	$data['new'] = get_guide_list('new', 0, 30);
-	$data['newthread'] = get_guide_list('newthread', 0, 30);
+	$data['hot'] = get_list('hot', 0, 30);
+	$data['digest'] = get_list('digest', 0, 30);
+	$data['new'] = get_list('new', 0, 30);
+	$data['newthread'] = get_list('newthread', 0, 30);
 }
 $multipage = multi($data[$view]['totalcount'],$perpage,$_G['page'], $theurl,$_G['setting']['threadmaxpages']);
     
 loadcache('stamps');
 $currentview[$view] = 'class="xw1 a"';
-$_G['forum_list'] = get_forums(array(1));
-$_G['forum_topnav'] = 1;
+$_G['forum_list'] = get_forums(array(0));
+$_G['forum_topnav'] = 0;
 
-$data = thread_add_icon($data,'dbdateline',true);
 $forumlist = forumselect(FALSE, 0, intval($_GET['fid']));
 
 /**
@@ -170,7 +112,7 @@ if($globalStickTids){
 }
 
 $globlStickList = thread_add_icon_by_row($globlStickList,'dbdateline',true);
-$navigation = $view != 'index' ? ' <em>&rsaquo;</em> <a href="forum.php?mod=guide&view='.$view.'">'.$lang['guide_'.$view].'</a>' : '';
+//$navigation = $view != 'index' ? ' <em>&rsaquo;</em> <a href="forum.php?mod=normal&view='.$view.'">'.$lang['normal_'.$view].'</a>' : '';
 
 //获取用户消息数
 $newpmcount = $announcepm  = 0;
@@ -186,19 +128,19 @@ if ($_G['uid']) {
     $newpm = $newpmarr['newpm'];
     $newpmcount = $newpm + $announcepm;
 }
-        
-include template('forum/guide');
 
-function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
+include template('forum/normal');
+
+function get_list($view, $start = 0, $num = 50, $again = 0) {
 	global $_G ,$lang ;
-	$setting_guide = unserialize($_G['setting']['guide']);
-	if(!in_array($view, array('all', 'zxqz','tsjb','jyxc', 'hot', 'digest', 'new', 'newthread', 'sofa'))) {
+	$setting_guide = unserialize($_G['setting']['normal']);
+	if(!in_array($view, array('all', 'hot', 'digest', 'new', 'newthread', 'sofa'))) {
 		return array();
 	}
 	loadcache('forums');
 	$cachetimelimit = ($view != 'sofa') ? 900 : 60;
     if($view != 'all'){
-        $cache = $_G['cache']['forum_guide'][$view.($view=='sofa' && $_G['fid'] ? $_G['fid'] : '')];
+        $cache = $_G['cache']['forum_normal'][$view.($view=='sofa' && $_G['fid'] ? $_G['fid'] : '')];
     }
 	if($cache && (TIMESTAMP - $cache['cachetime']) < $cachetimelimit) {
 		$tids = $cache['data'];
@@ -229,16 +171,15 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
             $tempForums = C::t('forum_forum')->fetch_all_fids(0,'',$_GET['gid']);
             foreach($tempForums as $forum) {
                 //获取可用板块
-                if($forum['type'] != 'group' && $forum['status'] > 0 && $forum['isdepartment'] && !$forum['viewperm'] && !$forum['havepassword']) {
+                if($forum['type'] != 'group' && $forum['status'] > 0 && !$forum['isdepartment'] && !$forum['viewperm'] && !$forum['havepassword']) {
                     $fids[] = $forum['fid'];
                 }
             }
         }else{
-            
             $usedForums = C::t('forum_forum')->fetch_all_fids();
             foreach($usedForums as $forum) {
                 //获取可用板块
-                if($forum['type'] != 'group' && $forum['status'] > 0 && $forum['isdepartment'] && !$forum['viewperm'] && !$forum['havepassword']) {
+                if($forum['type'] != 'group' && $forum['status'] > 0 && !$forum['isdepartment'] && !$forum['viewperm'] && !$forum['havepassword']) {
                     $fids[] = $forum['fid'];
                 }
             }
@@ -248,8 +189,10 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 			return array();
 		}
         
+        
         $typeList = array();
         $types = array();
+        /*
         if($fids){
             $typeList = C::t('forum_threadclass')->fetch_all_by_fid($fids);
             if(in_array($view,array('zxqz','tsjb','jyxc'))){
@@ -260,7 +203,7 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
                 }
             }
         }
-        
+        */
         
 		if($view == 'sofa') {
 			if($_GET['fid']) {
@@ -277,10 +220,10 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 		}
 		$updatecache = true;
 	}
-    
     $query = C::t('forum_thread')->fetch_all_for_guide($view, $limittid, $tids, $_G['setting']['heatthread']['guidelimit'], $dateline, $start, $num , $fids,$types);
     $count = C::t('forum_thread')->count_all_for_guide($view, $limittid, $tids, $_G['setting']['heatthread']['guidelimit'], $dateline, $fids,$types);
     $n = 0;
+    
 	foreach($query as $thread) {
 		//if(empty($tids) && ($thread['isgroup'] || !in_array($thread['fid'], $fids))) {
 		if(empty($tids) && ($thread['isgroup'])) {
@@ -289,7 +232,7 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 		if($thread['displayorder'] < 0) {
 			continue;
 		}
-		$thread = guide_procthread($thread);
+		$thread = normal_procthread($thread);
 		$threadids[] = $thread['tid'];
 		/*if($tids || ($n >= $start && $n < ($start + $num))) {*/
 			$list[$thread[tid]] = $thread;
@@ -298,7 +241,7 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 		$n ++;
 	}
 	if($limittid > $maxnum && !$again && count($list) < 50) {
-		return get_guide_list($view, $start, $num, 1);
+		return get_list($view, $start, $num, 1);
 	}
 	$forumnames = array();
 	if($fids) {
@@ -320,8 +263,8 @@ function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 	if($updatecache) {
 		$threadcount = count($threadids);
 		$data = array('cachetime' => TIMESTAMP, 'data' => $threadids);
-		$_G['cache']['forum_guide'][$view.($view=='sofa' && $_G['fid'] ? $_G['fid'] : '')] = $data;
-		savecache('forum_guide', $_G['cache']['forum_guide']);
+		$_G['cache']['forum_normal'][$view.($view=='sofa' && $_G['fid'] ? $_G['fid'] : '')] = $data;
+		savecache('forum_normal', $_G['cache']['forum_normal']);
 	}
 	return array('forumnames' => $forumnames, 'threadcount' => $threadcount, 'threadlist' => $threadlist,'totalcount' => $count[0]['num']);
 }
@@ -357,7 +300,7 @@ function get_my_threads($viewtype, $fid = 0, $filter = '', $searchkey = '', $sta
 			} else {
 				$forumnames[$value['fid']] = array('fid'=> $value['fid'], 'name' => $_G['cache']['forums'][$value['fid']]['name']);
 			}
-			$list[$value['tid']] = guide_procthread($value);
+			$list[$value['tid']] = normal_procthread($value);
 		}
 
 		if(!empty($gids)) {
@@ -399,7 +342,7 @@ function get_my_threads($viewtype, $fid = 0, $filter = '', $searchkey = '', $sta
 
 			$fids[] = $value['fid'];
 			$value['comment'] = messagecutstr($value['comment'], 100);
-			$list[] = guide_procthread($value);
+			$list[] = normal_procthread($value);
 		}
 		unset($pids, $tids, $postcommentarr);
 		if($fids) {
@@ -441,7 +384,7 @@ function get_my_threads($viewtype, $fid = 0, $filter = '', $searchkey = '', $sta
 				} else {
 					$forumnames[$thread[fid]] = array('fid' => $thread['fid'], 'name' => $_G['cache']['forums'][$thread[fid]]['name']);
 				}
-				$threads[$tid] = guide_procthread($thread);
+				$threads[$tid] = normal_procthread($thread);
 			}
 			if(!empty($gids)) {
 				$groupforums = C::t('forum_forum')->fetch_all_name_by_fid($gids);
@@ -460,7 +403,7 @@ function get_my_threads($viewtype, $fid = 0, $filter = '', $searchkey = '', $sta
 	return array('forumnames' => $forumnames, 'threadcount' => $listcount, 'threadlist' => $list, 'multi' => $multi, 'tids' => $tids, 'posts' => $posts);
 }
 
-function guide_procthread($thread) {
+function normal_procthread($thread) {
 	global $_G;
 	$todaytime = strtotime(dgmdate(TIMESTAMP, 'Ymd'));
 	$thread['lastposterenc'] = rawurlencode($thread['lastposter']);
@@ -532,40 +475,5 @@ function guide_procthread($thread) {
 	return $thread;
 }
 
-function update_guide_rsscache($type, $perpage) {
-	global $_G;
-	$processname = 'guide_rss_cache';
-	if(discuz_process::islocked($processname, 600)) {
-		return false;
-	}
-	C::t('forum_rsscache')->delete_by_guidetype($type);
-	require_once libfile('function/post');
-	$data = get_guide_list($type, 0, $perpage);
-	foreach($data['threadlist'] as $thread) {
-		$thread['author'] = $thread['author'] != '' ? addslashes($thread['author']) : 'Anonymous';
-		$thread['subject'] = addslashes($thread['subject']);
-		$post = C::t('forum_post')->fetch_threadpost_by_tid_invisible($thread['tid']);
-		$attachdata = '';
-		if($post['attachment'] == 2) {
-			$attach = C::t('forum_attachment_n')->fetch_max_image('tid:'.$thread['tid'], 'pid', $post['pid']);
-			$attachdata = "\t".$attach['remote']."\t".$attach['attachment']."\t".$attach['filesize'];
-		}
-		$thread['message'] = $post['message'];
-		$thread['status'] = $post['status'];
-		$thread['description'] = $thread['readperm'] > 0 || $thread['price'] > 0 || $thread['status'] & 1 ? '' : addslashes(messagecutstr($thread['message'], 250 - strlen($attachdata)).$attachdata);
-		C::t('forum_rsscache')->insert(array(
-			'lastupdate'=>$_G['timestamp'],
-			'fid'=>$thread['fid'],
-			'tid'=>$thread['tid'],
-			'dateline'=>$thread['dbdateline'],
-			'forum'=>strip_tags($data['forumnames'][$thread[fid]]['name']),
-			'author'=>$thread['author'],
-			'subject'=>$thread['subject'],
-			'description'=>$thread['description'],
-			'guidetype'=>$type
-		), false, true);
-	}
-	discuz_process::unlock($processname);
-	return true;
-}
+
 ?>

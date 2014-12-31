@@ -279,7 +279,11 @@ if(!submitcheck('topicsubmit', 0, $seccodecheck, $secqaacheck)) {
 	$return = $modthread->newthread($params);
 	$tid = $modthread->tid;
 	$pid = $modthread->pid;
-
+    
+    
+    if($_G['forum']['isdepartment']){
+        thread_add_kpi($tid);
+    }
 
 
 

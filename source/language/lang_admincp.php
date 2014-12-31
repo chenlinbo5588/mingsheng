@@ -2730,10 +2730,12 @@ $lang = array
 
 	'forums_edit_basic' => '基本设置',
 	'forums_edit_basic_cat_name' => '分区名称',
+    'forums_edit_basic_isdepartment' => '分区设置(选择是表示改分区下的板块需要受理并回复)',
 	'forums_edit_basic_cat_name_color' => '分区名称颜色',
 	'forums_edit_basic_cat_style' => '分区风格方案(会影响该分区下的子版块)',
 	'forums_edit_basic_cat_style_comment' => '访问者进入分区版块及子版块(子版块不同于分区风格，可单独设置)所使用的风格方案',
 	'forums_edit_basic_name' => '版块名称',
+	'forums_edit_base_isdepartment' => '部门板块(选择是表示需要受理并回复)',
 	'forums_edit_base_name_color' => '版块名称颜色',
 	'forums_edit_basic_scheme' => '站点设置方案',
 	'forums_edit_basic_scheme_comment' => '如果选择了版块设置方案，下面除版块基本设置外，其他设置将以所选方案为准',

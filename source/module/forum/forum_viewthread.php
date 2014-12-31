@@ -807,24 +807,25 @@ if($postlist && $rushids) {
 
 
 //查找帖子评分
-$threadGrade = C::t('forum_threadgrade')->fetch_grade_by_tid($_G['forum_thread']['tid']);
-$threadGrade = $threadGrade[0];
-if (!empty($threadGrade)) {
-    switch ($threadGrade['grade']) {
-        case '1':
-            $threadGrade['gradepic'] = 'dissatisfied.jpg';
-            $threadGrade['gradename'] = '不满意';
-            break;
-        case '2':
-            $threadGrade['gradepic'] = 'general.gif';
-            $threadGrade['gradename'] = '一般';
-            break;
-        case '3':
-            $threadGrade['gradepic'] = 'verygood.gif';
-            $threadGrade['gradename'] = '很满意';
+if($_G['forum']['isdepartment']){
+    $threadGrade = C::t('forum_threadgrade')->fetch_grade_by_tid($_G['forum_thread']['tid']);
+    $threadGrade = $threadGrade[0];
+    if (!empty($threadGrade)) {
+        switch ($threadGrade['grade']) {
+            case '1':
+                $threadGrade['gradepic'] = 'dissatisfied.jpg';
+                $threadGrade['gradename'] = '不满意';
+                break;
+            case '2':
+                $threadGrade['gradepic'] = 'general.gif';
+                $threadGrade['gradename'] = '一般';
+                break;
+            case '3':
+                $threadGrade['gradepic'] = 'verygood.gif';
+                $threadGrade['gradename'] = '很满意';
+        }
     }
 }
-
 if($_G['setting']['repliesrank'] && $postlist) {
 	if($postlist) {
 		foreach(C::t('forum_hotreply_number')->fetch_all_by_pids(array_keys($postlist)) as $pid => $post) {

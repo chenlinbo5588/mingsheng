@@ -149,6 +149,7 @@
             <span class="threadstatus $thread[className]"  title="{$thread[statusTitle]}"></span>
             $thread[show_text]
         </div>
+        <!--{if $forum['isdepartment']}-->
           <div class="grade_info">
   <!--{if !empty($threadGrade)}-->
               此次回复满意度为：<img src="images/{$threadGrade['gradepic']}" alt="{$threadGrade['gradename']}" border="0">
@@ -179,6 +180,7 @@
       <!--{/if}-->
   <!--{/if}-->
       </div>
+  <!--{/if}--> 
   </div>
 </div>
 <script type='text/javascript'>

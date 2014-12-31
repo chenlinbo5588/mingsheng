@@ -18,7 +18,7 @@
 <!--{/loop}-->
 <!--{/if}-->
 <span class="threadstatus $thread[className]"  title="{$thread[statusTitle]}"></span> $thread[show_text]
-
+  <!--{if $forum['isdepartment']}-->
     <div class="grade_info">
   <!--{if !empty($threadGrade)}-->
               此次回复满意度为：<img style="width:80px;" src="images/{$threadGrade['gradepic']}" alt="{$threadGrade['gradename']}" border="0">
@@ -49,6 +49,7 @@
       <!--{/if}-->
   <!--{/if}-->
       </div>
+  <!--{/if}-->
 </div>
 <script type='text/javascript'>
     $('#grade-form').submit(function(e){

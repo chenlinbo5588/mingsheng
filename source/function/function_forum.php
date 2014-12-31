@@ -12,23 +12,32 @@ if(!defined('IN_DISCUZ')) {
 }
 
 /**
- * 跳过三级子板块
+ * 根据是否是部门板块的值来选择论坛
  */
-function get_forums(){
+function get_forums($isdepartment = array(0,1)){
     global $_G;
     loadcache('forums');
     $forums = array();
+    //print_r($_G['cache']['forums']);
     foreach($_G['cache']['forums'] as $key => $val){
+        
+        if(!in_array($val['isdepartment'], $isdepartment)){
+            continue;
+        }
+        
         if($val['type'] == 'group'){
             $forums[$val['fid']] = $val;
+        }elseif ($val['type'] == 'sub'){
+            $groupid = $_G['cache']['forums'][$val['fup']]['fup'];
+            //echo $groupid;
+            $forums[$groupid]['list'][$val['fup']]['list'][$val['fid']] = $val;
+            
         }elseif ($val['type'] == 'forum'){
-            if(!isset($forums[$val['fup']])){
-                $forums[$val['fup']]['list'] = array();
-            }else{
-                $forums[$val['fup']]['list'][] = $val;
-            }
+            $forums[$val['fup']]['list'][$val['fid']] = $val;
         }
     }
+    //print_r($forums);
+    ksort($forums);
     return $forums;
 }
 
@@ -66,11 +75,116 @@ function thread_holiday($tid , $action , $from_action = 'MOD'){
             'holiday_cnt' => $holidayCount
         ),true);
     }
+    $timeArray['holiday_cnt'] = $holidayCount;
+    return $timeArray;
+}
+
+function thread_add_kpi($tids){
+    $tidsMod = array();
+    $tidsHoliday = array();
+    $hour24 = 60 * 60 * 24;
+    
+    if(!is_array($tids)){
+        $tids = (array)$tids;
+    }
+    $lang = lang('forum/template');
+    $threads = C::t('forum_thread')->fetch_all_by_tid($tids);
+    
+    $lastlog = C::t('forum_threadmod')->fetch_all_by_tid_status($tids,array('MOD','SOR', 'RLP'),array('status' => 1));
+    foreach($lastlog as $k => $v){
+        $tidsMod[$v['tid']][$v['action']] = $v;
+    }
+
+    $holidays = C::t('forum_thread_holiday')->fetch_all_by_tid($tids);
+    foreach($holidays as $v){
+        $tidsHoliday[$v['tid']][$v['action']] = $v['holiday_cnt'] * $hour24;
+    }
+
+    foreach($threads as $thread){
+        $days = 0;
+        $light = '';
+        $score = -3;
+        $expired = '';
+        $title = '';
+        
+        $temp['MOD_dateline'] = isset($tidsMod[$thread['tid']]['MOD']) ? $tidsMod[$thread['tid']]['MOD']['dateline'] : 0;
+        $temp['SOR_dateline'] = isset($tidsMod[$thread['tid']]['SOR']) ? $tidsMod[$thread['tid']]['SOR']['dateline'] : 0;
+        $temp['RLP_dateline'] = isset($tidsMod[$thread['tid']]['RLP']) ? $tidsMod[$thread['tid']]['RLP']['dateline'] : 0;
+
+        $sorMinus = !empty($tidsHoliday[$thread['tid']]['SOR']) ? $tidsHoliday[$thread['tid']]['SOR'] : 0;
+        $rlpMinus = !empty($tidsHoliday[$thread['tid']]['RLP']) ? $tidsHoliday[$thread['tid']]['RLP'] : 0;
+        
+        
+        switch($thread['sortid']){
+            case $lang['sort_all_code']:
+                break;
+            case $lang['sort_wait_verify_code']:
+            case $lang['sort_wait_accept_code']:
+                if(isset($tidsMod[$thread['tid']]['MOD'])){
+                    $expired = (TIMESTAMP - $temp['MOD_dateline']) > $hour24 ? '24小时未受理' : '';
+                }else{
+                    $expired = (TIMESTAMP - $thread['dateline']) > $hour24 ? '24小时未受理' : '';
+                }
+                
+                $title = $expired;
+                break;
+            case $lang['sort_accept_code']:
+                $days = ceil((TIMESTAMP - $temp['SOR_dateline'] - $sorMinus)/$hour24);
+                $expired = ($temp['SOR_dateline'] - $temp['MOD_dateline'] - $sorMinus) > $hour24 ? '24小时未受理' : '';
+                
+                //默认超时未回复
+                $title = '默认超时未回复';
+                $light = '红灯';
+                break;
+            case $lang['sort_replied_code']:
+                $days = ceil(($temp['RLP_dateline'] - $temp['SOR_dateline'] - $rlpMinus)/$hour24);
+                $expired = ($temp['SOR_dateline'] - $temp['MOD_dateline'] - $sorMinus) > $hour24 ? '24小时未受理' : '';
+                
+                if($days > 5){
+                    $light = '灰灯';
+                    $title = "5天外回复";
+                    $score = -3;
+                }else{
+                    if($days <= 3){
+                        $light = '绿灯';
+                        $title = "3天内回复";
+                        $score = 1;
+                    }else{
+                        $light = '黄灯';
+                        $title = "5天内回复";
+                        $score = 0;
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+        
+        C::t('forum_kpilog')->insert(array(
+            'tid' => $thread['tid'],
+            'subject' => $thread['subject'],
+            'fid' => $thread['fid'],
+            'sortid' => $thread['sortid'],
+            'day_cnt' => $days,
+            'remark' => $title,
+            'light' => $light,
+            'score' => $score,
+            'sor_expired' => !empty($expired) ? 1 : 0,
+            'date_key' => date("Ymd",TIMESTAMP),
+            'year' => date("Y",TIMESTAMP),
+            'quarter' =>  ceil(date("m",TIMESTAMP)/3),
+            'month' => date("m",TIMESTAMP),
+            'day' => date("d",TIMESTAMP),
+            'timestamp' => TIMESTAMP
+            ), false, true);
+    }
 }
 
 function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = false){
     global $lang;
-    
+    global $_G;
+    loadcache('forums');
+    //print_r($_G['cache']['forums']);
     if(empty($lang)){
         $lang = lang('forum/template');
     }
@@ -97,9 +211,9 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
             }
         }
     }
-    
+
     /**
-     * 获取审核和版主回复的时间 
+     * 获取审核、受理、版主回复的时间 
      */
     $lastlog = C::t('forum_threadmod')->fetch_all_by_tid_status($tids,array('MOD','SOR', 'RLP'),array('status' => 1));
     
@@ -118,99 +232,102 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
         $thread['show_text'] = '';
         $thread['statusTitle'] = '';
         $extraText = '';
-        $thread['MOD_dateline'] = isset($tidsMod[$thread['tid']]['MOD']) ? $tidsMod[$thread['tid']]['MOD']['dateline'] : 0;
-        $thread['SOR_dateline'] = isset($tidsMod[$thread['tid']]['SOR']) ? $tidsMod[$thread['tid']]['SOR']['dateline'] : 0;
-        $thread['RLP_dateline'] = isset($tidsMod[$thread['tid']]['RLP']) ? $tidsMod[$thread['tid']]['RLP']['dateline'] : 0;
-        
-        $sorMinus = !empty($tidsHoliday[$thread['tid']]['SOR']) ? $tidsHoliday[$thread['tid']]['SOR'] : 0;
-        $rlpMinus = !empty($tidsHoliday[$thread['tid']]['RLP']) ? $tidsHoliday[$thread['tid']]['RLP'] : 0;
-        
-        if(isset($tidsMod[$thread['tid']]['RLP']) && isset($tidsMod[$thread['tid']]['SOR'])){
-            //正确的时间
-            $days = ceil(($tidsMod[$thread['tid']]['RLP']['dateline'] - $tidsMod[$thread['tid']]['SOR']['dateline'] - $rlpMinus)/$hour24);
-            
-        }elseif(isset($tidsMod[$thread['tid']]['SOR']) && isset($tidsMod[$thread['tid']]['MOD'])){
-            
-            //$days = ceil(($tidsMod[$thread['tid']]['SOR']['dateline'] - $tidsMod[$thread['tid']]['MOD']['dateline'] - $sorMinus)/$hour24);
-            $days = ceil(($ts_now - $tidsMod[$thread['tid']]['SOR']['dateline'] - $sorMinus)/$hour24);
-            
-        }elseif(isset($tidsMod[$thread['tid']]['MOD'])){
-            $days = ceil(($ts_now - $thread[$datelineKey])/$hour24);
-        }else{
-            $days = 0;
-        }
-        
-        /*
-        if($_GET['tid'] == 220){
-            file_put_contents("debug.txt",print_r($thread,true));
-            file_put_contents("debug.txt",$days,FILE_APPEND);
-        }
-        */
-        
-        switch(intval($thread['sortid'])){
-            case $lang['sort_all_code']:
-                break;
-            case $lang['sort_wait_verify_code']:
-            case $lang['sort_wait_accept_code']:
-                $thread['show_text'] = wrapper_text($lang['sort_wait_accept'],'sort_wait_accept');
-                if(isset($tidsMod[$thread['tid']]['MOD'])){
-                    $thread['className'] = ($ts_now - $tidsMod[$thread['tid']]['MOD']['dateline']) > $hour24 ? 'icon-24' : '';
-                }else{
-                    $thread['className'] = ($ts_now - $thread[$datelineKey]) > $hour24 ? 'icon-24' : '';
-                }
-                if($thread['className']){
-                    $thread['statusTitle'] = '24小时未受理';
-                }
-                break;
-            case $lang['sort_accept_code']:
-                if($days > 10){
-                    $thread['className'] = 'icon-overtime';
-                    $thread['statusTitle'] = '超时未回复';
-                }else{
-                    $thread['statusTitle'] = '已受理';
-                }
-                $thread['show_text'] = wrapper_text($lang['sort_accept'],'sort_accept');
-                break;
-            case $lang['sort_replied_code']:
-                if($days > 5){
-                    $thread['className'] = 'icon-5daysover';
-                    $thread['statusTitle'] = "5天外回复";
-                    $thread['show_text'] = wrapper_text($lang['sort_replied'],'sort_replied');
-                }else{
-                    if($days <= 3){
-                        $thread['show_text'] = wrapper_text($lang['sort_replied'],'sort_replied');
-                        $thread['className'] = 'icon-3days';
-                        $thread['statusTitle'] = "3天内回复";
+        //只有 设置部门 isdepartment 为 1  的板块
+        if($_G['cache']['forums'][$thread['fid']]['isdepartment']){
+            $thread['MOD_dateline'] = isset($tidsMod[$thread['tid']]['MOD']) ? $tidsMod[$thread['tid']]['MOD']['dateline'] : 0;
+            $thread['SOR_dateline'] = isset($tidsMod[$thread['tid']]['SOR']) ? $tidsMod[$thread['tid']]['SOR']['dateline'] : 0;
+            $thread['RLP_dateline'] = isset($tidsMod[$thread['tid']]['RLP']) ? $tidsMod[$thread['tid']]['RLP']['dateline'] : 0;
+
+            $sorMinus = !empty($tidsHoliday[$thread['tid']]['SOR']) ? $tidsHoliday[$thread['tid']]['SOR'] : 0;
+            $rlpMinus = !empty($tidsHoliday[$thread['tid']]['RLP']) ? $tidsHoliday[$thread['tid']]['RLP'] : 0;
+
+            if(isset($tidsMod[$thread['tid']]['RLP']) && isset($tidsMod[$thread['tid']]['SOR'])){
+                //正确的时间
+                $days = ceil(($tidsMod[$thread['tid']]['RLP']['dateline'] - $tidsMod[$thread['tid']]['SOR']['dateline'] - $rlpMinus)/$hour24);
+
+            }elseif(isset($tidsMod[$thread['tid']]['SOR']) && isset($tidsMod[$thread['tid']]['MOD'])){
+
+                //$days = ceil(($tidsMod[$thread['tid']]['SOR']['dateline'] - $tidsMod[$thread['tid']]['MOD']['dateline'] - $sorMinus)/$hour24);
+                $days = ceil(($ts_now - $tidsMod[$thread['tid']]['SOR']['dateline'] - $sorMinus)/$hour24);
+
+            }elseif(isset($tidsMod[$thread['tid']]['MOD'])){
+                $days = ceil(($ts_now - $thread['MOD_dateline'])/$hour24);
+            }else{
+                $days = 0;
+            }
+
+            /*
+            if($_GET['tid'] == 220){
+                file_put_contents("debug.txt",print_r($thread,true));
+                file_put_contents("debug.txt",$days,FILE_APPEND);
+            }
+            */
+
+            switch(intval($thread['sortid'])){
+                case $lang['sort_all_code']:
+                    break;
+                case $lang['sort_wait_verify_code']:
+                case $lang['sort_wait_accept_code']:
+                    $thread['show_text'] = wrapper_text($lang['sort_wait_accept'],'sort_wait_accept');
+                    if(isset($tidsMod[$thread['tid']]['MOD'])){
+                        $thread['className'] = ($ts_now - $tidsMod[$thread['tid']]['MOD']['dateline']) > $hour24 ? 'icon-24' : '';
                     }else{
-                        $thread['show_text'] = wrapper_text($lang['sort_replied'],'sort_replied');
-                        $thread['className'] = 'icon-5days';
-                        $thread['statusTitle'] = "5天内回复";
+                        $thread['className'] = ($ts_now - $thread[$datelineKey]) > $hour24 ? 'icon-24' : '';
                     }
+                    if($thread['className']){
+                        $thread['statusTitle'] = '24小时未受理';
+                    }
+                    break;
+                case $lang['sort_accept_code']:
+                    if($days > 10){
+                        $thread['className'] = 'icon-overtime';
+                        $thread['statusTitle'] = '超时未回复';
+                    }else{
+                        $thread['statusTitle'] = '已受理';
+                    }
+                    $thread['show_text'] = wrapper_text($lang['sort_accept'],'sort_accept');
+                    break;
+                case $lang['sort_replied_code']:
+                    if($days > 5){
+                        $thread['className'] = 'icon-5daysover';
+                        $thread['statusTitle'] = "5天外回复";
+                        $thread['show_text'] = wrapper_text($lang['sort_replied'],'sort_replied');
+                    }else{
+                        if($days <= 3){
+                            $thread['show_text'] = wrapper_text($lang['sort_replied'],'sort_replied');
+                            $thread['className'] = 'icon-3days';
+                            $thread['statusTitle'] = "3天内回复";
+                        }else{
+                            $thread['show_text'] = wrapper_text($lang['sort_replied'],'sort_replied');
+                            $thread['className'] = 'icon-5days';
+                            $thread['statusTitle'] = "5天内回复";
+                        }
+                    }
+                    break;
+                default:
+                    break;
+            }
+
+            if(in_array($thread['sortid'],array($lang['sort_accept_code'],$lang['sort_replied_code']))){
+                if(isset($thread['SOR_dateline']) && isset($thread['MOD_dateline'])){
+                    $extraClass = ($thread['SOR_dateline'] - $thread['MOD_dateline'] - $sorMinus) > $hour24 ? 'with-icon-24' : '';
                 }
-                break;
-            default:
-                break;
-        }
 
-        if(in_array($thread['sortid'],array($lang['sort_accept_code'],$lang['sort_replied_code']))){
-            if(isset($thread['SOR_dateline']) && isset($thread['MOD_dateline'])){
-                $extraClass = ($thread['SOR_dateline'] - $thread['MOD_dateline'] - $sorMinus) > $hour24 ? 'with-icon-24' : '';
-            }
+                if($extraClass){
+                    $extraText = '24小时未受理';
+                }
 
-            if($extraClass){
-                $extraText = '24小时未受理';
-            }
-            
-            if(!empty($thread['className'])){
-                $thread['className'] .= ' '.$extraClass;
-            }else{
-                $thread['className'] = $extraClass;
-            }
-            
-            if($thread['statusTitle']){
-                $thread['statusTitle'] = $extraText . ' '.$thread['statusTitle'];
-            }else{
-                $thread['statusTitle'] = $extraText;
+                if(!empty($thread['className'])){
+                    $thread['className'] .= ' '.$extraClass;
+                }else{
+                    $thread['className'] = $extraClass;
+                }
+
+                if($thread['statusTitle']){
+                    $thread['statusTitle'] = $extraText . ' '.$thread['statusTitle'];
+                }else{
+                    $thread['statusTitle'] = $extraText;
+                }
             }
         }
         

@@ -1,0 +1,102 @@
+<!--{template common/header}-->
+<div id="navbox">
+    <a href="m.php?mobile=yes"  target="_self">首页</a>|<a href="m.php?mod=mobile_list&catid=20&mobile=yes" target="_self">政务信息</a>|<a href="forum.php?mobile=yes" class="current"  target="_self">民生论坛</a>|<a href="m.php?mod=mobile_list&catid=2&mobile=yes" target="_self">民生快递</a>
+</div>
+<style type="text/css">
+	.xl2 { background: url({IMGDIR}/vline.png) repeat-y 50% 0; }
+		.xl2 li { width: 49.9%; }
+			.xl2 li em { padding-right: 10px; }
+				.xl2 .xl2_r em { padding-right: 0; }
+			.xl2 .xl2_r i { padding-left: 10px; }
+</style>
+
+<div class="boardnav">
+    <!--{subtemplate forum/top_forumlist}-->
+    <div id="pt" class="bm cl navlist">
+        <!--{if empty($gid) && $announcements}-->
+        <div class="y">
+            <div id="an">
+                <dl class="cl">
+                    <dt class="z xw1">{lang announcements}:&nbsp;</dt>
+                    <dd>
+                        <div id="anc"><ul id="ancl">$announcements</ul></div>
+                    </dd>
+                </dl>
+            </div>
+            <script type="text/javascript">announcement();</script>
+        </div>
+        <!--{/if}-->
+        <div class="z">
+            <a href="forum.php?mobile=yes">{$_G[setting][navs][2][navname]}</a>$navigation
+        </div>
+        <div class="z"><!--{hook/index_status_extra}--></div>
+    </div>
+	<div id="ct" class="wp cl{if $_G['forum']['allowside']} ct2{/if}"{if $leftside} style="margin-left:{$_G['leftsidewidth_mwidth']}px"{/if}>
+		<div class="mn">
+           
+        <!--[diy=diy_chart]--><div id="diy_chart" class="area"></div><!--[/diy]-->
+			<!--{hook/guide_top}-->
+			<!--{if $view == 'index'}-->
+				<!--{loop $data $key $list}-->
+				<div class="bm bmw">
+					<div class="bm_h">
+						<a href="forum.php?mod=guide&view=$key" class="y xi2">{lang more} &raquo;</a>
+						<h2>
+							<!--{if $key == 'hot'}-->{lang guide_hot}<!--{elseif $key == 'digest'}-->{lang guide_digest}<!--{elseif $key == 'newthread'}-->{lang guide_newthread}<!--{elseif $key == 'new'}-->{lang guide_new}<!--{elseif $key == 'my'}-->{lang guide_my}<!--{/if}-->
+						</h2>
+					</div>
+					 <div class="bm_c">
+					 	<div class="xl xl2 cl">
+					 		<!--{if $list['threadcount']}-->
+					 			<!--{eval $i=0;}-->
+					 			<!--{loop $list['threadlist'] $thread}-->
+					 			<!--{eval $i++;$newtd=$i%2;}-->
+					 			<li{if !$newtd} class="xl2_r"{/if}>
+						 			<em>
+							 			<!--{if $key == 'hot'}--><span class="xi1">$thread['heats']{lang guide_attend}</span><!--{/if}-->
+							 			<!--{if $key == 'new'}-->$thread['lastpost']<!--{/if}-->
+						 			</em>
+						 			
+						 			<i>&middot; <a href="forum.php?mod=viewthread&tid=$thread[tid]&{if $_GET['archiveid']}archiveid={$_GET['archiveid']}&{/if}extra=$extra"$thread[highlight] target="_blank">$thread[subject]</a></i>&nbsp;<span class="xg1"><a href="forum.php?mod=forumdisplay&fid=$thread[fid]" target="_blank">$list['forumnames'][$thread[fid]]['name']</a></span>
+					 			</li>
+					 			<!--{/loop}-->
+					 		<!--{else}-->
+					 				<p class="emp">{lang guide_nothreads}</p>
+					 		<!--{/if}-->
+					 	</div>
+					</div>
+				</div>
+				<!--{/loop}-->
+			<!--{else}-->
+				<!--{loop $data $key $list}-->
+				<div id="threadlist" class="tl bm bmw"{if $_G['uid']} style="position: relative;"{/if}>
+					<div class="th"></div>
+					<div class="bm_c">
+						<div id="forumnew" style="display:none"></div>
+                        <div id="topicbox">
+							<div class="topic1">
+							<!--{subtemplate forum/guide_list_row}-->
+							</div>
+                        </div>
+					</div>
+				</div>
+				<!--{/loop}-->
+				<div class="bm bw0 pgs cl clearfix">
+					$multipage
+				</div>
+			<!--{/if}-->
+			<!--{hook/guide_bottom}-->
+		</div>
+	</div>
+</div>
+<!--{if !IS_ROBOT}-->
+	<div id="filter_special_menu" class="p_pop" style="display:none">
+		<ul>
+			<li><a href="home.php?mod=space&do=poll&view=me" target="_blank">{lang thread_poll}</a></li>
+			<li><a href="home.php?mod=space&do=trade&view=me" target="_blank">{lang thread_trade}</a></li>
+			<li><a href="home.php?mod=space&do=reward&view=me" target="_blank">{lang thread_reward}</a></li>
+			<li><a href="home.php?mod=space&do=activity&view=me" target="_blank">{lang thread_activity}</a></li>
+		</ul>
+	</div>
+<!--{/if}-->
+<!--{template common/footer}-->

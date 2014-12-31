@@ -115,7 +115,7 @@ var rowtypedata = [
 		$table_forum_columns = array('fup', 'type', 'name', 'status', 'displayorder', 'styleid', 'allowsmilies',
 			'allowhtml', 'allowbbcode', 'allowimgcode', 'allowanonymous', 'allowpostspecial', 'alloweditrules',
 			'alloweditpost', 'modnewposts', 'recyclebin', 'jammer', 'forumcolumns', 'threadcaches', 'disablewatermark', 'disablethumb',
-			'autoclose', 'simple', 'allowside', 'allowfeed');
+			'autoclose', 'simple', 'allowside', 'allowfeed','isdepartment');
 		$table_forumfield_columns = array('fid', 'attachextensions', 'threadtypes', 'viewperm', 'postperm', 'replyperm',
 			'getattachperm', 'postattachperm', 'postimageperm');
 
@@ -131,19 +131,20 @@ var rowtypedata = [
 				} else {
 					$groupforum = $fupforum;
 				}
-
+                
 				foreach($forums as $key => $forumname) {
 
 					if(empty($forumname) || strlen($forumname) > 50) continue;
 
 					$forum = $forumfields = array();
 					$inheritedid = !empty($_GET['inherited'][$fup]) ? $fup : (!empty($_GET['newinherited'][$fup][$key]) ? $_GET['newinherited'][$fup][$key] : '');
-
+                    
 					if(!empty($inheritedid)) {
 
 						$forum = C::t('forum_forum')->get_forum_by_fid($inheritedid);
 						$forumfield =  C::t('forum_forum')->get_forum_by_fid($inheritedid, null, 'forumfield');
-
+                        
+                        //继承父级板块属性
 						foreach($table_forum_columns as $field) {
 							$forumfields[$field] = $forum[$field];
 						}
@@ -183,9 +184,9 @@ var rowtypedata = [
 							$data[$field] = $forumfields[$field];
 						}
 					}
-
+                    
 					C::t('forum_forumfield')->insert($data);
-
+                    
 					foreach(C::t('forum_moderator')->fetch_all_by_fid($fup, false) as $mod) {
 						if($mod['inherited'] || $fupforum['inheritedmod']) {
 							C::t('forum_moderator')->insert(array('uid' => $mod['uid'], 'fid' => $fid, 'inherited' => 1), false, true);
@@ -623,6 +624,7 @@ var rowtypedata = [
 			$mforum[0]['extra'] = dunserialize($mforum[0]['extra']);
 			showtableheader();
 			showsetting('forums_edit_basic_cat_name', 'namenew', $mforum[0]['name'], 'text');
+            showsetting('forums_edit_basic_isdepartment', 'isdepartment', $mforum[0]['isdepartment'], 'radio');
 			showsetting('forums_edit_basic_cat_name_color', 'extranew[namecolor]', $mforum[0]['extra']['namecolor'], 'color');
 			showsetting('forums_edit_basic_cat_style', '', '', $styleselect);
 			showsetting('forums_edit_extend_forum_horizontal', 'forumcolumnsnew', $mforum[0]['forumcolumns'], 'text');
@@ -765,6 +767,7 @@ var rowtypedata = [
 				}
 				showtableheader('forums_edit_basic', 'nobottom');
 				showsetting('forums_edit_basic_name', 'namenew', $forum['name'], 'text');
+                showsetting('forums_edit_base_isdepartment', 'isdepartment', $forum['isdepartment'], 'radio');
 				showsetting('forums_edit_base_name_color', 'extranew[namecolor]', $forum['extra']['namecolor'], 'color');
 				if(!$multiset) {
 					if($forum['icon']) {
@@ -1332,10 +1335,18 @@ EOT;
 			$domain = strtolower(trim($_GET['domainnew']));
 		}
 		require_once libfile('function/discuzcode');
+        
+        //更新 论坛组
 		if($_GET['type'] == 'group') {
 			if($_GET['namenew']) {
 				$newstyleid = intval($_GET['styleidnew']);
 				$forumcolumnsnew = $_GET['forumcolumnsnew'] > 1 ? intval($_GET['forumcolumnsnew']) : 0;
+                
+                $isdepartment = intval($_GET['isdepartment']);
+                if(!in_array($isdepartment,array(0,1))){
+                    $isdepartment = 0;
+                }
+                
 				$catforumcolumnsnew = $_GET['catforumcolumnsnew'] > 1 ? intval($_GET['catforumcolumnsnew']) : 0;
 				$descriptionnew = preg_replace('/on(mousewheel|mouseover|click|load|onload|submit|focus|blur)="[^"]*"/i', '', discuzcode($_GET['descriptionnew'], 1, 0, 0, 0, 1, 1, 0, 0, 1));
 				if(!empty($_G['setting']['domain']['root']['forum'])) {
@@ -1352,6 +1363,7 @@ EOT;
 					'domain' => $domain,
 					'status' => intval($_GET['statusnew']),
 					'styleid' => $newstyleid,
+                    'isdepartment' => $isdepartment
 				));
 
 				$extranew = is_array($_GET['extranew']) ? $_GET['extranew'] : array();
@@ -1370,6 +1382,11 @@ EOT;
 				if($newstyleid != $mforum[0]['styleid'] && !empty($subfids)) {
 					C::t('forum_forum')->update($subfids, array('styleid' => $newstyleid));
 				}
+                
+                //自动更新子板块
+                if(!empty($subfids)){
+                    C::t('forum_forum')->update($subfids, array('isdepartment' => $isdepartment));
+                }
 
 				if(array_key_exists($fid, $navs) && !$_GET['shownavnew']) {
 					C::t('common_nav')->delete($navs[$fid]);
@@ -1519,8 +1536,18 @@ EOT;
 				'autoclose' => intval($_GET['autoclosenew'] * $_GET['autoclosetimenew']),
 				'allowfeed' => $_GET['allowfeednew'],
 				'domain' => $domain,
+                'isdepartment' => $_GET['isdepartment'],
 			));
 			C::t('forum_forum')->update($fid, $forumdata);
+            
+            loadcache('forums');
+            $subfids = array();
+            get_subfids($fid);
+
+            //自动更新子板块
+            if(!empty($subfids)){
+                C::t('forum_forum')->update($subfids, array('isdepartment' => $_GET['isdepartment']));
+            }
 
 			if(!(C::t('forum_forumfield')->fetch($fid))) {
 				C::t('forum_forumfield')->insert(array('fid' => $fid));
