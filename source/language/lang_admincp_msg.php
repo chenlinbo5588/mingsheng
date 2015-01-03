@@ -171,6 +171,8 @@ $lang = array (
   'card_make_rate_succeed' => '卡片生成完毕！按此生成规则随机的卡片号码重复过多！共生成了{succeed_num}张, 失败了{fail_num}张',
   'card_make_succeed' => '卡片生成完毕！共生成了{succeed_num}张, 失败了{fail_num}张',
 
+  'threadkpi_config_succeed' => '分数规则设置成功', 
+    
   'hookcheck_nodelhook' => '没有丢失嵌入点的文件',
   'imagepreview_errorcode_0' => '图片不符合处理条件，无法处理',
   'imagepreview_errorcode_-1' => '无效的图片，无法处理',

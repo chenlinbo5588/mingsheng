@@ -282,7 +282,7 @@ if(!submitcheck('topicsubmit', 0, $seccodecheck, $secqaacheck)) {
     
     
     if($_G['forum']['isdepartment']){
-        thread_add_kpi($tid);
+        thread_add_kpi($tid,'newthread');
     }
 
 

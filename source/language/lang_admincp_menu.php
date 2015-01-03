@@ -146,6 +146,7 @@ $lang = array
 	'menu_google' => 'Google 搜索',
 	'menu_ec' => '电子商务',
 	'menu_card' => '充值卡密',
+    'menu_threadkpi' => '民e通考核',
 
 	'menu_styles' => '风格管理',
 	'menu_styles_templates' => '模板管理',

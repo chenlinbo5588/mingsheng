@@ -523,6 +523,7 @@ if($op == 'replies') {
 				updatemodlog($tidstr, 'MOD');
 				updatemoderate('tid', $tids, 2);
                 
+                thread_add_kpi($tids,'modthread');
                 /**
                  * 管理面板 审核通过 ,发送短信通知 版主
                  */

@@ -339,6 +339,10 @@ $lang = array
 	'nav_card_log_del' => '删除记录',
 	'nav_card_log_cron' => '过期记录',
 	'nav_card_type' => '分类',
+    
+    'nav_threadkpi' => '民e通考核',
+    'nav_threadkpi_tj' => '统计',
+    'nav_threadkpi_list' => '明细',
 
 	'nav_tasks' => '站点任务',
 	'nav_task_member' => '会员类任务',
@@ -5440,8 +5444,32 @@ $lang = array
 	'card_type_none' => '暂无分类',
 	'card_type_default' => '默认分类',
 
-
-
+            
+            
+    'threadkpi_config' => '设置分数规则',
+    'threadkpi_config_light_green' => '绿灯分数(输入1表示 加一分 , -1表示倒扣一分)',
+    'threadkpi_config_light_yellow' => '黄灯分数',
+    'threadkpi_config_light_gray' => '灰灯分数',
+    'threadkpi_config_light_red' => '红灯分数',
+    'threadkpi_list_tips' => '<li>导出明细最多支持 10000 条数据，导出的 .xls 文件可用 EXCEL 等工具打开。</li>',
+    'threadkpi_list_subject' => '帖子标题',
+    'threadkpi_list_score' => '帖子得分',
+    'threadkpi_list_grade' => '帖子满意度',
+    'threadkpi_list_status' => '状态',
+    'threadkpi_list_author' => '发帖人',
+    'threadkpi_list_newthreadtime' => '发帖时间',
+    'threadkpi_list_modby' => '审核人',
+    'threadkpi_list_modthreadtime' => '审核时间',
+    'threadkpi_list_sorby' => '受理人',
+    'threadkpi_list_sorthreadtime' => '受理时间',
+    'threadkpi_list_rlpby' => '回复人',
+    'threadkpi_list_rlpthreadtime' => '回复时间',
+    'threadkpi_list_title' => '明细列表',
+            
+    'threadkpi_list_export' => '导出考核记录',
+	'threadkpi_list_export_title' => '导出当前筛选出的所有考核记录',
+            
+            
 	'magics' => '道具中心',
 	'magics_tips' => '<li>系统道具位于 source/class/magic/ 目录中，插件道具位于 source/plugin/插件目录/magic/ 目录中</li><li>插件开发人员在设计新的道具前请务必仔细阅读《<a href="http://dev.discuz.org/wiki" target="_blank">Discuz! 技术文库</a>》中的内容。</li>',
 

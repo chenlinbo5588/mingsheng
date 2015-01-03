@@ -79,8 +79,10 @@ function thread_holiday($tid , $action , $from_action = 'MOD'){
     return $timeArray;
 }
 
-function thread_add_kpi($tids){
+function thread_add_kpi($tids ,$mod){
     $tidsMod = array();
+    $fids = array();
+    $lastlog = array();
     $tidsHoliday = array();
     $hour24 = 60 * 60 * 24;
     
@@ -90,14 +92,26 @@ function thread_add_kpi($tids){
     $lang = lang('forum/template');
     $threads = C::t('forum_thread')->fetch_all_by_tid($tids);
     
-    $lastlog = C::t('forum_threadmod')->fetch_all_by_tid_status($tids,array('MOD','SOR', 'RLP'),array('status' => 1));
-    foreach($lastlog as $k => $v){
-        $tidsMod[$v['tid']][$v['action']] = $v;
+    //
+    foreach($threads as $thread){
+        $fids[] = $thread['fid'];
     }
+    $fids = array_unique($fids);
+    $forums = array();
+    if($fids){
+        $forums = C::t('forum_forum')->fetch_all_by_fid($fids);
+    }
+    
+    if('newthread' != $mod){
+        $lastlog = C::t('forum_threadmod')->fetch_all_by_tid_status($tids,array('MOD','SOR', 'RLP'),array('status' => 1));
+        foreach($lastlog as $k => $v){
+            $tidsMod[$v['tid']][$v['action']] = $v;
+        }
 
-    $holidays = C::t('forum_thread_holiday')->fetch_all_by_tid($tids);
-    foreach($holidays as $v){
-        $tidsHoliday[$v['tid']][$v['action']] = $v['holiday_cnt'] * $hour24;
+        $holidays = C::t('forum_thread_holiday')->fetch_all_by_tid($tids);
+        foreach($holidays as $v){
+            $tidsHoliday[$v['tid']][$v['action']] = $v['holiday_cnt'] * $hour24;
+        }
     }
 
     foreach($threads as $thread){
@@ -106,6 +120,10 @@ function thread_add_kpi($tids){
         $score = -3;
         $expired = '';
         $title = '';
+        
+        if(!$forums[$thread['fid']]['isdepartment']){
+            continue;
+        }
         
         $temp['MOD_dateline'] = isset($tidsMod[$thread['tid']]['MOD']) ? $tidsMod[$thread['tid']]['MOD']['dateline'] : 0;
         $temp['SOR_dateline'] = isset($tidsMod[$thread['tid']]['SOR']) ? $tidsMod[$thread['tid']]['SOR']['dateline'] : 0;
@@ -129,7 +147,7 @@ function thread_add_kpi($tids){
                 $title = $expired;
                 break;
             case $lang['sort_accept_code']:
-                $days = ceil((TIMESTAMP - $temp['SOR_dateline'] - $sorMinus)/$hour24);
+                //$days = ceil((TIMESTAMP - $temp['SOR_dateline'] - $sorMinus)/$hour24);
                 $expired = ($temp['SOR_dateline'] - $temp['MOD_dateline'] - $sorMinus) > $hour24 ? '24小时未受理' : '';
                 
                 //默认超时未回复
@@ -160,23 +178,61 @@ function thread_add_kpi($tids){
                 break;
         }
         
-        C::t('forum_kpilog')->insert(array(
-            'tid' => $thread['tid'],
-            'subject' => $thread['subject'],
-            'fid' => $thread['fid'],
-            'sortid' => $thread['sortid'],
-            'day_cnt' => $days,
-            'remark' => $title,
-            'light' => $light,
-            'score' => $score,
-            'sor_expired' => !empty($expired) ? 1 : 0,
-            'date_key' => date("Ymd",TIMESTAMP),
-            'year' => date("Y",TIMESTAMP),
-            'quarter' =>  ceil(date("m",TIMESTAMP)/3),
-            'month' => date("m",TIMESTAMP),
-            'day' => date("d",TIMESTAMP),
-            'timestamp' => TIMESTAMP
-            ), false, true);
+        if('newthread' == $mod){
+            C::t('forum_kpilog')->insert(array(
+                'tid' => $thread['tid'],
+                'subject' => $thread['subject'],
+                'fid' => $thread['fid'],
+                'sortid' => $thread['sortid'],
+                'day_cnt' => $days,
+                'remark' => $title,
+                'light' => $light,
+                'score' => $score,
+                'sor_expired' => !empty($expired) ? 1 : 0,
+                'newthread_by' => $thread['author'],
+                'newthread_dk' => date("Ymd",$thread['dateline']),
+                'newthread' => $thread['dateline']
+                ), false, true);
+        }else{
+            $d = array(
+                'subject' => $thread['subject'],
+                'fid' => $thread['fid'],
+                'sortid' => $thread['sortid'],
+                'day_cnt' => $days,
+                'remark' => $title,
+                'light' => $light,
+                'score' => $score,
+                'sor_expired' => !empty($expired) ? 1 : 0,
+                'modthread' => $temp['MOD_dateline'],
+                'sorthread' => $temp['SOR_dateline'],
+                'replythread' => $temp['RLP_dateline'],
+                );
+                    
+            switch($mod){
+                case 'modthread':
+                    if($temp['MOD_dateline']){
+                        $d['modthread_dk'] = date("Ymd",$temp['MOD_dateline']);
+                        $d['modthread_by'] = $tidsMod[$thread['tid']]['MOD']['username'];
+                    }
+                    break;
+                case 'sorthread':
+                    if($temp['SOR_dateline']){
+                        $d['sorthread_dk'] = date("Ymd",$temp['SOR_dateline']);
+                        $d['sorthread_by'] = $tidsMod[$thread['tid']]['SOR']['username'];
+                    }
+                    break;
+                case 'replythread':
+                    if($temp['RLP_dateline']){
+                        $d['replythread_dk'] = date("Ymd",$temp['RLP_dateline']);
+                        $d['replythread_by'] = $tidsMod[$thread['tid']]['RLP']['username'];
+                    }
+                    break;
+                default:
+                    break;
+            }
+            C::t('forum_kpilog')->update_by_tid($thread['tid'],$d);
+        }
+        
     }
 }
 

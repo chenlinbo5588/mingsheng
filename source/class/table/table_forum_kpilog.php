@@ -28,6 +28,23 @@ class table_forum_kpilog extends discuz_table
         return DB::query("UPDATE ".DB::table($this->_table)." SET grade=%d WHERE tid=%d", array($grade, $tid));
 	}
     
+    public function update_by_tid($tid, $data) {
+		$tid = dintval($tid, true);
+		if($data && is_array($data) && $tid) {
+			return DB::update($this->_table, $data, DB::field('tid', $tid));
+		}
+		return array();
+	}
+    
+    public function count_by_where($where) {
+		return ($where = (string)$where) ? DB::result_first('SELECT COUNT(*) FROM '.DB::table($this->_table).' WHERE '.$where) : 0;
+	}
+    
+    public function fetch_all_by_where($where, $start = 0, $limit = 0) {
+		$where = $where ? ' WHERE '.(string)$where : '';
+		return DB::fetch_all('SELECT * FROM '.DB::table($this->_table).$where.' ORDER BY tid DESC'.DB::limit($start, $limit));
+	}
+    
 }
 
 ?>

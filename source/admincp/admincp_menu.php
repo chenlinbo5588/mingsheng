@@ -185,7 +185,8 @@ $menu['extended'] = array(
 	array('menu_misc_link', 'misc_link'),
 	array('memu_focus_topic', 'misc_focus'),
 	array('menu_misc_relatedlink', 'misc_relatedlink'),
-	array('menu_card', 'card')
+	array('menu_card', 'card'),
+	array('menu_threadkpi', 'threadkpi')
 );
 
 if(file_exists($menudir = DISCUZ_ROOT.'./source/admincp/menu')) {

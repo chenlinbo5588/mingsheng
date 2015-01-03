@@ -728,7 +728,7 @@ if(!submitcheck('modsubmit')) {
                 
                 if($operation == 'setsortid'){
                     thread_holiday($tidsarr[0],'SOR','MOD');
-                    thread_add_kpi($tidsarr[0]);
+                    thread_add_kpi($tidsarr[0],'sorthread');
                 }
 			}
 

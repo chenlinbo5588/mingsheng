@@ -341,6 +341,8 @@ if(!submitcheck('modsubmit') && !$_GET['fast']) {
 			updatemodlog($tidstr, 'MOD');
 			updatemoderate('tid', $tids, 2);
             
+            thread_add_kpi($tids,'modthread');
+            
             /**
              * 后台管理中审核通过 ,短信通知版主
              */

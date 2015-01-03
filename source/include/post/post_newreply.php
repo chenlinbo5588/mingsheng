@@ -468,7 +468,7 @@ if(!submitcheck('replysubmit', 0, $seccodecheck, $secqaacheck)) {
         updatemodlog($thread['tid'], 'RLP', 0, 0, '');
         
         thread_holiday($thread['tid'], 'RLP','SOR');
-        thread_add_kpi($thread['tid']);
+        thread_add_kpi($thread['tid'],'replythread');
         /**
          * 版主回复后 发送短信通知给 用户 
          */
