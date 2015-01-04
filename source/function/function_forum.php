@@ -80,6 +80,7 @@ function thread_holiday($tid , $action , $from_action = 'MOD'){
 }
 
 function thread_add_kpi($tids ,$mod){
+    global $_G;
     $tidsMod = array();
     $fids = array();
     $lastlog = array();
@@ -102,6 +103,10 @@ function thread_add_kpi($tids ,$mod){
         $forums = C::t('forum_forum')->fetch_all_by_fid($fids);
     }
     
+    loadcache('threadkpi');
+    //loadcache('threadkpi');
+    //file_put_contents("debug.txt",print_r($_G['cache']['threadkpi'],true));
+    
     if('newthread' != $mod){
         $lastlog = C::t('forum_threadmod')->fetch_all_by_tid_status($tids,array('MOD','SOR', 'RLP'),array('status' => 1));
         foreach($lastlog as $k => $v){
@@ -117,7 +122,7 @@ function thread_add_kpi($tids ,$mod){
     foreach($threads as $thread){
         $days = 0;
         $light = '';
-        $score = -3;
+        $score = $_G['cache']['threadkpi']['light_setting']['light_red'];
         $expired = '';
         $title = '';
         
@@ -161,16 +166,16 @@ function thread_add_kpi($tids ,$mod){
                 if($days > 5){
                     $light = '灰灯';
                     $title = "5天外回复";
-                    $score = -3;
+                    $score = $_G['cache']['threadkpi']['light_setting']['light_gray'];
                 }else{
                     if($days <= 3){
                         $light = '绿灯';
                         $title = "3天内回复";
-                        $score = 1;
+                        $score =  $_G['cache']['threadkpi']['light_setting']['light_green'];
                     }else{
                         $light = '黄灯';
                         $title = "5天内回复";
-                        $score = 0;
+                        $score = $_G['cache']['threadkpi']['light_setting']['light_yellow'];;
                     }
                 }
                 break;

@@ -5469,6 +5469,10 @@ $lang = array
     'threadkpi_list_export' => '导出考核记录',
 	'threadkpi_list_export_title' => '导出当前筛选出的所有考核记录',
             
+    'threadkpi_tj_tips' => '<li>导出汇总最多支持 10000 条数据，导出的 .xls 文件可用 EXCEL 等工具打开。</li>',
+    'threadkpi_tj_title' => '统计列表',
+    'threadkpi_tj_export' => '导出统计记录',
+	'threadkpi_tj_export_title' => '导出当前筛选出的所有考核记录',
             
 	'magics' => '道具中心',
 	'magics_tips' => '<li>系统道具位于 source/class/magic/ 目录中，插件道具位于 source/plugin/插件目录/magic/ 目录中</li><li>插件开发人员在设计新的道具前请务必仔细阅读《<a href="http://dev.discuz.org/wiki" target="_blank">Discuz! 技术文库</a>》中的内容。</li>',
