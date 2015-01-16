@@ -340,8 +340,10 @@ class model_forum_post extends discuz_model {
 		$isorigauthor = $this->member['uid'] && $this->member['uid'] == $this->post['authorid'];
 		$this->param['audit'] = $this->post['invisible'] == -2 || $this->thread['displayorder'] == -2 ? $this->param['audit'] : 0;
 
-		list($this->param['modnewthreads'], $this->param['modnewreplies']) = threadmodstatus($this->param['subject']."\t".$this->param['message'].$this->param['extramessage']);
-
+        if(!$this->forum['ismoderator']){
+            list($this->param['modnewthreads'], $this->param['modnewreplies']) = threadmodstatus($this->param['subject']."\t".$this->param['message'].$this->param['extramessage']);
+        }
+		
 		if($post_invalid = checkpost($this->param['subject'], $this->param['message'], $isfirstpost && ($this->param['special'] || $this->param['sortid']))) {
 			showmessage($post_invalid, '', array('minpostsize' => $this->setting['minpostsize'], 'maxpostsize' => $this->setting['maxpostsize']));
 		}
