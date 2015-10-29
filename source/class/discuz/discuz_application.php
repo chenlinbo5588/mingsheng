@@ -174,6 +174,7 @@ class discuz_application extends discuz_base{
 				'app' => array(),
 			),
 			'mobiletpl' => array('1' => 'mobile', '2' => 'touch', '3' => 'wml','yes' => 'mobile'),
+            'debugtpl' => $_GET['debugtpl'] ? '_'.$_GET['debugtpl'] : ''
 		);
 		$_G['PHP_SELF'] = dhtmlspecialchars($this->_get_script_url());
 		$_G['basescript'] = CURSCRIPT;

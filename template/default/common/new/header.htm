@@ -6,12 +6,12 @@
 	<!--{if $_G['setting']['groupstatus']}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][3]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['group']) ? 'http://'.$_G['setting']['domain']['app']['group'] : $_G[siteurl].'group.php'};icon-uri={$_G[siteurl]}{IMGDIR}/group.ico" /><!--{/if}-->
 	<!--{if helper_access::check_module('feed')}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][4]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['home']) ? 'http://'.$_G['setting']['domain']['app']['home'] : $_G[siteurl].'home.php'};icon-uri={$_G[siteurl]}{IMGDIR}/home.ico" /><!--{/if}-->
 	<!--{if $_G['basescript'] == 'forum' && $_G['setting']['archiver']}-->
-		<link rel="archives" title="$_G['setting']['bbname']" href="{$_G[siteurl]}archiver/" />
+	<link rel="archives" title="$_G['setting']['bbname']" href="{$_G[siteurl]}archiver/" />
 	<!--{/if}-->
 	<!--{if !empty($rsshead)}-->$rsshead<!--{/if}-->
 	<!--{if widthauto()}-->
-		<link rel="stylesheet" id="css_widthauto" type="text/css" href="data/cache/style_{STYLEID}_widthauto.css?{VERHASH}" />
-		<script type="text/javascript">HTMLNODE.className += ' widthauto'</script>
+	<link rel="stylesheet" id="css_widthauto" type="text/css" href="data/cache/style_{STYLEID}_widthauto.css?{VERHASH}" />
+	<script type="text/javascript">HTMLNODE.className += ' widthauto'</script>
 	<!--{/if}-->
 	<!--{if $_G['basescript'] == 'forum' || $_G['basescript'] == 'group'}-->
 		<script type="text/javascript" src="{$_G[setting][jspath]}forum.js?{VERHASH}"></script>
@@ -26,50 +26,31 @@
 	<!--{if $_GET['diy'] == 'yes' && check_diy_perm($topic)}-->
 	<link rel="stylesheet" type="text/css" id="diy_common" href="data/cache/style_{STYLEID}_css_diy.css?{VERHASH}" />
 	<!--{/if}-->
+    <!--[if IE 6]>
+    <script type="text/javascript" src="{$_G[setting][jspath]}IE6_PNG.js"></script>
+    <![endif]-->
     <!--[if (gte IE 6)&(lte IE 8)]>
     <script type="text/javascript" src="{$_G[setting][jspath]}selectivizr-min.js"></script>
     <![endif]-->
 </head>
-
 <body id="nv_{$_G[basescript]}" class="pg_{CURMODULE}{if $_G['basescript'] === 'portal' && CURMODULE === 'list' && !empty($cat)} {$cat['bodycss']}{/if}" onkeydown="if(event.keyCode==27) return false;">
 <div id="append_parent"></div><div id="ajaxwaitid"></div>
-<!-- header start -->
-<div class="header">
-	<div class="fll"><a href="http://www.cxnews.cn" target="_blank"><img src="images/newslogo.jpg" /></a></div>
-	<div class="fll"> 
-	<!--{if $_G['uid']}-->
-	<strong class="vwmy{if $_G['setting']['connect']['allow'] && $_G[member][conisbind]} qq{/if}"><a href="/home.php?mod=spacecp&ac=profile" title="{lang visit_my_space}">{$_G[member][username]}</a></strong>
-	您好，欢迎您访问慈溪网络民生服务平台！
-    <a href="home.php?mod=spacecp" title="{lang setup}">个人中心</a> |
-    <a href="home.php?mod=space&do=pm" title="通知中心">通知中心<!--{if $noticeCount}--><b>({$noticeCount})</b><!--{/if}--></a> |
-    <a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
-	<!--{else}-->
-	您好：游客，欢迎您访问慈溪网络民生服务平台！<a href="/member.php?mod=logging&action=login">请登入</a> | <a href="/member.php?mod=register">立即注册</a>
-	<!--{/if}-->
-	
-	 | <a href="#" title="{lang go_to_mobile}">手机版</a> </div>
-	<div class="frr">主办单位：市纪委、市委宣传部&nbsp; &nbsp;</div>
-	<div class="clr"></div>
-</div>
-<div class="dlogo">	
-	<div class="toplogo"><img src="images/toplogo.jpg" /></div>
-	<div class="menu">
-        <div class="nav"><a href="/portal.php">首 页</a><span>|</span><a href="/portal.php?mod=list&catid=2">民生快递</a><span>|</span><a href="/portal.php?mod=list&catid=8">政务信息</a><span>|</span><a href="/forum.php">阿拉帮侬忙</a><span>|</span><a href="/portal.php?mod=list&catid=3">新闻发布会</a><span>|</span><a href="http://apps.weibo.com/2588129880/8s0ckhhX" target="_blank">微博发布厅</a></div>
-        <div class="soso">
-            <form method="post" autocomplete="off" action="search.php?mod=portal"  onsubmit="if($('scform_srchtxt')) searchFocus($('scform_srchtxt'));">
-				<input type="hidden" name="mod" value="portal">
-                <input type="hidden" name="formhash" value="{FORMHASH}">
-                <input type="hidden" name="searchsubmit" value="yes">
-                <ul >
-				<li class="search_ipt"><input type="text" id="scform_srchtxt" name="srchtxt" value="" tabindex="1" placeholder="请输入搜索内容"></li>
-				<li class="search_submit"><button id="scform_submit" value="true" type="submit">搜索</button></li>
-                </ul>
-                <script type="text/javascript">initSearchmenu('scform_srchtxt');$('scform_srchtxt').focus();</script>
-			</form>
+<div class="outter_wrap">
+    <!-- header start -->
+    <div class="header">
+        <div class="fll"><a href="/">{$_G['setting']['bbname']}</a>&nbsp;|&nbsp;<a href="http://www.cxnews.cn" target="_blank">慈溪市新闻网</a></div>
+        <div class="frr"> 
+        <!--{if $_G['uid']}-->
+        <strong class="vwmy{if $_G['setting']['connect']['allow'] && $_G[member][conisbind]} qq{/if}"><a href="/home.php?mod=spacecp&ac=profile" title="{lang visit_my_space}">{$_G[member][username]}</a></strong>
+        <span>您好，</span>
+        <a href="home.php?mod=spacecp" title="{lang setup}">个人中心</a> |
+        <a href="home.php?mod=space&do=pm" title="通知中心">通知中心<!--{if $noticeCount}--><b>({$noticeCount})</b><!--{/if}--></a> |
+        <a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
+        <!--{else}-->
+        您好：游客，欢迎访问{$_G['setting']['bbname']}！<a href="/member.php?mod=logging&action=login">请登入</a> | <a href="/member.php?mod=register">立即注册</a>
+        <!--{/if}-->
+        | <a href="m.php?mobile=yes" title="{lang go_to_mobile}">手机版</a>
         </div>
-		<div class="clr"></div>
-	</div>
-</div>
-<!-- header end -->
-<div class="w1000">
-	
+        <div class="clr"></div>
+    </div>
+    <!-- header end -->

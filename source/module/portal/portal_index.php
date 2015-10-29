@@ -89,6 +89,6 @@ if($fids){
 foreach($threadsList as $k => $v){
     $threadsList[$k] = thread_add_icon_by_row($v);
 }
-
-include_once template('diy:portal/index');
+//print_r($_G['setting']);
+include_once template('diy:portal/index'.$_G['debugtpl']);
 ?>

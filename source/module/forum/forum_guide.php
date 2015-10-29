@@ -187,7 +187,7 @@ if ($_G['uid']) {
     $newpmcount = $newpm + $announcepm;
 }
         
-include template('forum/guide');
+include template('forum/guide'.$_G['debugtpl']);
 
 function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 	global $_G ,$lang ;

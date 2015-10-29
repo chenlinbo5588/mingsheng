@@ -17,7 +17,7 @@ if(empty($catid)) {
 }
 $portalcategory = &$_G['cache']['portalcategory'];
 //echo $catid;
-
+print_r($portalcategory);
 
 $cat = $portalcategory[$catid];
 
@@ -109,8 +109,8 @@ if ($catid == 7) {
     }
     ksort($catelist);
 }
-
-include template('diy:'.$file, NULL, $tpldirectory, NULL, $primaltplname);
+echo $primaltplname;
+include template('diy:'.$file, NULL, $tpldirectory, NULL, $primaltplname.$_G['debugtpl']);
 
 
 function category_get_wheresql($cat) {

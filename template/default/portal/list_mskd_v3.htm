@@ -1,0 +1,46 @@
+<!--{template common/new/top_nav2}-->
+<!--[name]{lang portalcategory_listtplname}[/name]-->
+<!--{eval $list = array();}-->
+<!--{eval $wheresql = category_get_wheresql($cat);}-->
+<!--{eval $list = category_get_list($cat, $wheresql, $page);}-->
+<!-- {var_dump($list);} -->
+<!-- main start -->
+<div class="dmain">
+	<div class="mleft">
+		<div class="mnav">
+			<h1>首页&gt;<span>$cat[catname]</span></h1>
+			<div class="mline"></div>
+		</div>
+		<div class="plist">
+			<ul>
+				<!--{loop $list['list'] $value}-->
+				<!--{eval $highlight = article_title_style($value);}-->
+				<!--{eval $article_url = fetch_article_url($value);}-->
+				<li><a href="$article_url" target="_blank">$value[title]</a><span>$value[dateline]</span></li>
+				<!--{/loop}-->
+			</ul>
+			<div class="page">{$list['multi']}</div>
+		</div>
+	</div>
+	<div class="mright">
+		<div class="helpsound">
+            <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>
+            <a class="hotlink" href="/portal.php?mod=view&aid=9">热线呼叫</a>
+            <a class="hotlink" href="/forum.php?gid=1">部门连线</a>
+            <a class="hotlink" href="/forum.php?gid=72">镇街连线</a>
+            <a class="hotlink" href="http://apps.weibo.com/2588129880/8s0ckhhX" target="_blank">政务微博</a>
+            <a class="hotlink" href="/portal.php?mod=view&aid=10" target="_blank">微信留言</a>
+            <a class="hotlink" href="http://weibo.com/ciximet" target="_blank">微博留言</a>
+        </div>
+		<div class="lanmu">
+			<div class="lanmutop"><h1>常见问题</h1></div>
+			<div class="lanmucen">
+				<!--{block/32}-->
+			</div>
+			<div class="lanmufoot"></div>
+		</div>
+	</div>
+	<div class="clr"></div>
+</div>
+<!-- main end -->
+<!--{template common/new/footer}-->
