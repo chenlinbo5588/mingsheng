@@ -145,6 +145,8 @@ body {
     top:0px;
 }
 
+
+
 #scform_srchtxt {
     position:relative;
     left:10px;
@@ -156,22 +158,50 @@ body {
     position: relative;
 }
 
+.moreLink {
+	position:absolute;
+	right:0px;
+	top:0px;
+	width:16px;
+	height:16px;
+	display:block;
+	background:url("../images/v3/see_more.png") no-repeat left top;
+}
+
+.portal_row1 {
+	margin:5px 0;
+	position: relative;
+	
+}
+.portal_row1 .col1 {
+	height:330px;
+}
+
+.portal_row1 .col2 {
+	width: 455px;
+    background-color: #e9e9e9;
+    padding: 5px;
+}
+
 .msecond{
-	margin-top:5px;
+	position:relative;
+	margin: 5px 0 10px;
+	
 }
 
 
 .mlist{
-	padding: 15px 0 0 25px;
+	padding:0 0 0 10px;
 }
 .mlist ul,.mlist ul li{
 	list-style: none;
 }
+
 .mlist ul li{
 	vertical-align: middle;
-	height: 25px;
-	line-height: 25px;
-	background: url("../images/dian.jpg") left center no-repeat;
+	height: 30px;
+	line-height: 30px;
+	background: url("../images/v3/dian.jpg") left center no-repeat;
 	padding: 0px 20px 0 10px;
 }
 .mlist ul li.liline{
@@ -224,16 +254,20 @@ body {
 	height: 10px;
 	background: url("../images/lanmufoot.jpg") no-repeat;
 }
-.mllist{
-	padding: 0px 0 0 20px;
-}
+
 .mllist ul li{
-	background: url("../images/bdian.jpg") left center no-repeat;
+	background: url("../images/v3/dian.jpg") left center no-repeat;
     overflow: hidden;
+    
+    
 }
-.mllist ul li a{
-	color: #444;
+
+.mllist ul li a, .mllist ul li em {
+	color: #4e6f88;
+	font-size:16px;
 }
+
+
 .mfoot{
 	clear:both;
 	width: 100%;
@@ -256,41 +290,7 @@ body {
 	padding-top: 8px;
 	color: #3e3e3e;
 }
-/*快递详细信息*/
-.kdxx{
-	width:610px;
-	padding-left: 40px;
-}
-.kdxx h1{
-	text-align: center;
-	font-size: 24px;
-	height: 50px;
-	line-height: 50px;
-	border-bottom: 1px solid #c6c6c6;
-}
-.contentText {
-    padding: 15px 4px;
-    line-height: 26px;
-    font-size: 14px;
-    color: #2B2B2B;
-    overflow: hidden;
-}
-.contentText * {
-    font-size: 14px;
-}
-.contentText img {
-    width:100%;
-}
 
-.abstract {
-	margin-top:20px;
-    border: 1px solid #E3E2E2;
-    background: none repeat scroll 0% 0% #F5F5F5;
-    padding: 10px 21px;
-    line-height: 24px;
-    font-size: 14px;
-    color: #464646;
-}
 
 .bmzx_item .selected {
     color: #fff;
@@ -356,118 +356,99 @@ body {
 	background: url("../images/liline.jpg") left center repeat-x;
 }
 
-.msecond .mmskd{
-	width: 100%;
-	overflow: hidden;
-}
 .mmskd h2{
-	height: 35px;
-	line-height: 35px;
-	background: url("../images/mslogo.jpg") no-repeat;
-	text-align: right;
 	font-weight: normal;
-	font-size: 14px;
+	position:relative;
+	border-bottom: 1px solid #b1b1b1;
+	padding: 5px 0px;
 }
+.mmskd h2 strong {
+	font-size:16px;
+	color:#c81f1f;
+	
+}
+
+.mmskd .moreLink {
+	top:2px;
+}
+
 .mscon{
-	width: 748px;
-	border: 1px solid #DADDDD;
-        margin-bottom: 6px;
+	padding:5px 0;
+	border-bottom: 1px dotted #b4b4b4;
 }
 .mscon h3, .mscon h3 a{
-	font-family: '微软雅黑';
 	text-align: center;
 	font-size: 26px;
-	color: #000;
-}
-.mfirst{
-	width: 100%;
-        height: 226px;
-        overflow: hidden;
-        margin-bottom: 13px;
-}
-.mfirst .mhdp{
-    float: left;
-    width: 345px;
-    height: 264px;
+	color: #e60000;
 }
 
-.mfirst .mhdp .slideshow img {
-    width:345px;
-    height: 226px;
+.mscon .module dd{
+	color: #0a0a0a;
 }
 
-.mlisth {
-    float: left;
-    width: 375px;
-    margin-left: 8px;
-    height: 215px;
-    border: 1px solid #DADDDD;
-    padding-top: 9px;
-}
-.mlisth ul li{
-	width: 335px;
-    overflow:hidden;
-}
-.mlisth ul li:nth-child(2n){
-    
-}
-
-.mhdp .slideshow span.title {
-    _width:95% !important;
-}
-
-.zxask-btm {
-    width: 1000px;
-    overflow: hidden;
-    zoom: 1;
-}
 .secleft{
 	float: left;
-	width: 750px;
-        position: relative;
+	width: 730px;
+	position: relative;
 }
 
 .mscons{
-	width: 100%;
-	overflow: hidden;
-	position: relative;
+	
 }
-.mscons .sublist {
-    width: 370px;
-     margin-left: 10px;
-    float: left;
-}
-.mscons .newspub {
-    margin-left: 0px;
-}
-.mscons h2{
-	height: 35px;
-	line-height: 35px;
-	background: url("../images/xwfblogo.jpg") no-repeat;
-	text-align: right;
-	font-weight: normal;
-	font-size: 14px;
-}
-.mscons .newspub h2 {
-    background: url("../images/zwxxlogo.jpg") no-repeat;
-}
-.mlisthome{
-	padding-top: 5px;
-	padding-left: 18px;
-	padding-bottom: 5px;
-	width: 350px;
-        border: 1px solid #DADDDD;
-	overflow: hidden;
 
+.bktitle {
+	position:relative;
+	background:url("../images/v3/bar_bg.jpg") repeat-x;
+	height:41px;
+	border-bottom:2px solid #0c457c;
 }
+
+.bktitle h2{
+	height:41px;
+	color:#fff;
+	font-size:16px;
+	line-height: 41px;
+    text-indent: 14px;
+	background:url("../images/v3/main_title.png") no-repeat left top;
+}
+
+.bktitle .moreLink {
+	right:10px;
+	top:15px;
+}
+
+
+.bktitle span {
+	position:absolute;
+	width:4px;
+	height:41px;
+	display:block;
+	right:0px;
+	top:0px;
+	background:url("../images/v3/roundcn.png") no-repeat right top;
+}
+
+
+.mscons .sublist {
+    width:358px;
+}
+
+
+.mlisthome {
+	
+	
+}
+
 .mlisthome ul li{
 	font-size: 14px;
-        line-height: 30px;
-        height: 30px;
+    line-height: 30px;
+    height: 30px;
+    padding-left: 20px
 }
 .mlisthome ul li a{
 	color: #000;
 }
+
 .viewbg{
 	width: 253px;
 	height: 229px;
@@ -482,6 +463,8 @@ body {
 }
 .secright{
 	float: right;
+	width:365px;
+	
 }
 .secright .bncdsy{
 	width: 240px;
@@ -553,7 +536,7 @@ body {
 }
 
 .mmskd {
-    
+    padding:5px;
 }
 
 .mmskd .xld dt {
