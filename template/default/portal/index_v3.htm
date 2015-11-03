@@ -38,7 +38,7 @@
             </div>
             <div class="sublist frr">
             	<div class="bktitle">
-                	<h2>新闻发布会<a class="moreLink" href="/portal.php?mod=list&catid=3" target="_blank">&nbsp;</a></h2>
+                	<h2 style="text-indent:10px;">新闻发布会<a class="moreLink" href="/portal.php?mod=list&catid=3" target="_blank">&nbsp;</a></h2>
                 	<span></span>
                 </div>
                 <div class="mlist mlisthome">
@@ -53,58 +53,39 @@
                	<h2>热点话题<a class="moreLink" href="/forum.php?fid=1" target="_blank">&nbsp;</a></h2>
                	<span></span>
               </div>
+              
               <div class="mlist mlisthome">
-                  <!--{block/29}-->
+              	  <div class="fll" style="padding:0 0 0 20px;">
+              	  <!--{block/35}-->
+              	  </div>
+              	  <div class="fll" style="padding: 0 0 0 10px;">
+              	  <!--{block/36}-->
+              	  </div>
+                  <div class="clr"></div>
               </div>
         </div>
-    </div>
-    <div class="secright">
-        <a class="right-btn forum-help" href="/forum.php" target="_blank">阿拉帮侬忙</a>
-        <!--{if $_G['uid']}-->
-        <a class="right-btn hp-center" href="/home.php?mod=spacecp">个人中心</a>
-        <!--{else}-->
-        <a class="right-btn hp-login" href="/member.php?mod=logging&action=login">用户登入</a>
-        <!--{/if}-->
-        <a class="right-btn hp-register" href="/member.php?mod=register">用户注册</a>
-        <div class="bncdsy">
-            <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>
-            <a class="hotlink hot-1" href="/portal.php?mod=view&aid=9" target="_blank">热线呼叫</a>
-            <a class="hotlink hot-2" href="/forum.php?gid=1" target="_blank">部门连线</a>
-            <a class="hotlink hot-3" href="/forum.php?gid=72" target="_blank">镇街连线</a>
-            <a class="hotlink hot-4" href="http://apps.weibo.com/2588129880/8s0ckhhX" target="_blank">政务微博</a>
-            <a class="hotlink hot-5" href="/portal.php?mod=view&aid=10" target="_blank">微信留言</a>
-            <a class="hotlink hot-6" href="http://weibo.com/ciximet" target="_blank">微博留言</a>
-        </div>
-    </div>
-    <div class="clr"></div>
-</div>
-<div class="bluebg"></div>
-
-<div class="third">
-    <div class="zxask-btm">
-        <div class="secleft">
-            
-            <div class="asklc">
-                <a href="/portal.php?mod=view&aid=12" class="guide guide1" target="_blank">发帖须知</a>
-                <a href="/portal.php?mod=list&catid=6" class="guide guide2" target="_blank">常见问题</a>
-                <a href="/portal.php?mod=list&catid=7" class="guide guide3" target="_blank">部门职责</a>
-                <a href="/forum.php" class="guide guide4" target="_blank">镇街连线</a>
-                <a href="/forum.php" class="guide guide5" target="_blank">我要提问</a>
-                <!--<img src="images/asklc.jpg" />-->
-            </div>
-            <div class="ask-online-new">
-                <div class="showstatus">
-                    <label title="24小时未受理"><span class="threadstatus icon-24"></span>24小时未受理</label>
-                    <label title="三天内回复"><span class="threadstatus icon-3days"></span>三天内回复</label>
-                    <label title="五天内回复"><span class="threadstatus icon-5days"></span>五天内回复</label>
-                    <label title="五天外回复"><span class="threadstatus icon-5daysover"></span>五天外回复</label>
-                    <label title="超时未回复"><span class="threadstatus icon-overtime"></span>超时未回复</label>
-                </div>
-            </div>
-          
-            <div class="askul">
-                <h2 class="typetitle"><span>咨询求助</span><a class="moreLink" href="forum.php?mod=guide&view=zxqz"  target="_blank">&gt;&nbsp;更多</a></h2>
-                <div class="hp-title">
+        
+        
+       	<div class="asklc  clearfix">
+             <a href="/portal.php?mod=view&aid=12" class="guide guide1" target="_blank">发帖须知</a>
+             <a href="/portal.php?mod=list&catid=6" class="guide guide2" target="_blank">常见问题</a>
+             <a href="/portal.php?mod=list&catid=7" class="guide guide3" target="_blank">部门职责</a>
+             <a href="/forum.php" class="guide guide4" target="_blank">镇街连线</a>
+             <a href="/forum.php" class="guide guide5" target="_blank">我要提问</a>
+         </div>
+       
+       <div class="ask-online-new"></div>
+       
+       
+       
+       <div class="askul">
+       		<div class="askul_item">
+	       		<div class="bktitle">
+	              	<h2>咨询求助<a class="moreLink" href="forum.php?mod=guide&view=zxqz" target="_blank">&nbsp;</a></h2>
+	              	<span></span>
+	             </div>
+	             
+	             <div class="hp-title">
                     <ul>
                         <li><div class="p1">内容</div>
                             <div class="p2">发布时间</div>
@@ -120,15 +101,19 @@
                             <div class="p2">{date($val['dateline'],"Y-m-d")}</div>
                             <div class="p3"><a href="forum.php?mod=forumdisplay&fid={$val[fid]}" style="color:{$_G[cache][forums][$val[fid]][extra][namecolor]}"><b>[{$_G[cache][forums][$val[fid]][name]}]</b></a></div>
                             <div class="p4">
-                                <p class="threadstatus {$val['className']}" title="{$val['statusTitle']}"></p><p>{$val['show_text']}</p>
+                                <p class="threadstatus {$val['className']}" title="{$val['statusTitle']}"></p><span>{$val['show_text']}</span>
                             </div>
                         </li>
                         <!--{/loop}-->
                     </ul>
                 </div>
-                
-                <h2 class="typetitle"><span>投诉举报</span><a class="moreLink" href="forum.php?mod=guide&view=tsjb"  target="_blank">&gt;&nbsp;更多</a></h2>
-                <div class="hp-title">
+             </div>
+             <div class="askul_item">
+	             <div class="bktitle">
+	              	<h2>投诉举报<a class="moreLink" href="forum.php?mod=guide&view=tsjb" target="_blank">&nbsp;</a></h2>
+	              	<span></span>
+	             </div>
+	             <div class="hp-title">
                     <ul>
                         <li><div class="p1">内容</div>
                             <div class="p2">发布时间</div>
@@ -151,9 +136,13 @@
                     </ul>
                     
                 </div>
-                
-                <h2 class="typetitle"><span>建言献策</span><a class="moreLink" href="forum.php?mod=guide&view=jyxc"  target="_blank">&gt;&nbsp;更多</a></h2>
-                <div class="hp-title">
+             </div>
+             <div class="askul_item">
+	             <div class="bktitle">
+	              	<h2>建言献策<a class="moreLink" href="forum.php?mod=guide&view=jyxc" target="_blank">&nbsp;</a></h2>
+	              	<span></span>
+	             </div>
+	             <div class="hp-title">
                     <ul>
                         <li><div class="p1">内容</div>
                             <div class="p2">发布时间</div>
@@ -174,11 +163,33 @@
                         </li>
                         <!--{/loop}-->
                     </ul>
-                    
                 </div>
-                <div class="clr"></div>
-            </div>
+             </div>
+             <div class="clr"></div>
+         </div>
+       
+    </div>
+    <div class="secright">
+        <a class="right-btn forum-help" href="/forum.php" target="_blank">阿拉帮侬忙</a>
+        <!--{if $_G['uid']}-->
+        <a class="right-btn hp-center" href="/home.php?mod=spacecp">个人中心</a>
+        <!--{else}-->
+        <a class="right-btn hp-login" href="/member.php?mod=logging&action=login">用户登入</a>
+        <!--{/if}-->
+        <a class="right-btn hp-register" href="/member.php?mod=register">用户注册</a>
+        <div class="bncdsy">
+            <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>
+            <a class="hotlink hot-1" href="/portal.php?mod=view&aid=9" target="_blank">热线呼叫</a>
+            <a class="hotlink hot-2" href="/forum.php?gid=1" target="_blank">部门连线</a>
+            <a class="hotlink hot-3" href="/forum.php?gid=72" target="_blank">镇街连线</a>
+            <a class="hotlink hot-4" href="http://apps.weibo.com/2588129880/8s0ckhhX" target="_blank">政务微博</a>
+            <a class="hotlink hot-5" href="/portal.php?mod=view&aid=10" target="_blank">微信留言</a>
+            <a class="hotlink hot-6" href="http://weibo.com/ciximet" target="_blank">微博留言</a>
         </div>
+        
+        
+        
+        
         <div class="secright w240">
             <div class="wxbgtop"></div>
             <div class="wxbgcen">
@@ -206,28 +217,29 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="clr"></div>
+</div>
+
+
+<div class="third">
+    <div class="zxask-btm">
+        <div class="secleft">
+            
+            
+        </div>
+        
         <div class="clr"></div>
     </div>
 </div>
-<div class="msad"><a href="http://apps.weibo.com/2588129880/8s0ckhhX" target="_blank"><img src="images/lspic2.jpg" /></a></div>
-<div class="bluebg"></div>
 <div class="four">
-    <div class="zxask wxsytop">
-        <!--<a href="#" class="a3 moreLink">&gt;&nbsp;更多</a>-->
-    </div>
-    <div class="wxsycen">
-        <div class="asktop asktop2">
-            <ul>
-                <li class="askcur" lang="1">部 门</li>
-                <li lang="2">镇 街</li>
-                <!--<li lang="3">政务微博</li>-->
-            </ul>
-            <div class="clr"></div>
-        </div>
-        <div class="bmlogos ask_1">
+    <div class="wxsycen clearfix">
+        <div class="bmlogos ask_1 fll">
+        	<h4>问效部门</h4>
             <!--{block/5}-->
         </div>
-        <div class="bmlogos ask_2">
+        <div class="bmlogos ask_2 frr">
+        	<h4>问效镇街</h4>
             <!--{block/12}-->
         </div>
     </div>
