@@ -1,16 +1,18 @@
 <!--{subtemplate common/new/header}-->
-<div class="dlogo">	
+<div class="dlogo subpage">	
 	<div class="toplogo"></div>
+	<div class="menu">
+	    <ul class="nav">
+	        <!--{loop $_G['setting']['navs'] $navid $item}-->
+	        <!--{if $item['available']}--><li {$item['nav']}></li><!--{/if}-->
+	        <!--{/loop}-->
+	    </ul>
+	    
+	    <div class="clr"></div>
+	</div>
+	<!--{subtemplate common/new/top_search}-->
 </div>
-<div class="menu">
-    <ul class="nav">
-        <!--{loop $_G['setting']['navs'] $navid $item}-->
-        <!--{if $item['available']}--><li {$item['nav']}></li><!--{/if}-->
-        <!--{/loop}-->
-    </ul>
-    <!--{subtemplate common/new/top_search}-->
-    <div class="clr"></div>
-</div>
+
 
 <!-- header end -->
 <div class="">

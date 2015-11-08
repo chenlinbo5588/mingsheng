@@ -1,46 +1,68 @@
 <!--{template common/new/top_nav2}-->
-<!--[name]{lang portalcategory_listtplname}[/name]-->
 <!--{eval $list = array();}-->
 <!--{eval $wheresql = category_get_wheresql($cat);}-->
 <!--{eval $list = category_get_list($cat, $wheresql, $page);}-->
-<!-- {var_dump($list);} -->
+
 <!-- main start -->
-<div class="dmain">
-	<div class="mleft">
+<div class="inner_wrap">
+	<div class="dsub_nav">
 		<div class="mnav">
-			<h1>首页&gt;<span>$cat[catname]</span></h1>
-			<div class="mline"></div>
-		</div>
-		<div class="plist">
-			<ul>
-				<!--{loop $list['list'] $value}-->
-				<!--{eval $highlight = article_title_style($value);}-->
-				<!--{eval $article_url = fetch_article_url($value);}-->
-				<li><a href="$article_url" target="_blank">$value[title]</a><span>$value[dateline]</span></li>
-				<!--{/loop}-->
-			</ul>
-			<div class="page">{$list['multi']}</div>
+			<h1 class="nav_jt"><a href="/">首页</a><span class="current_cate">$cat[catname]</span></h1>
 		</div>
 	</div>
-	<div class="mright">
-		<div class="helpsound">
-            <a class="hotlink first" href="javascript:void(0);">&nbsp;</a>
-            <a class="hotlink" href="/portal.php?mod=view&aid=9">热线呼叫</a>
-            <a class="hotlink" href="/forum.php?gid=1">部门连线</a>
-            <a class="hotlink" href="/forum.php?gid=72">镇街连线</a>
-            <a class="hotlink" href="http://apps.weibo.com/2588129880/8s0ckhhX" target="_blank">政务微博</a>
-            <a class="hotlink" href="/portal.php?mod=view&aid=10" target="_blank">微信留言</a>
-            <a class="hotlink" href="http://weibo.com/ciximet" target="_blank">微博留言</a>
-        </div>
-		<div class="lanmu">
-			<div class="lanmutop"><h1>常见问题</h1></div>
-			<div class="lanmucen">
-				<!--{block/32}-->
+	
+	<div class="dmain dmain_v3">
+		<div class="first_news">
+		
+		</div>
+	
+		<div class="dmain_content">
+			<div class="mleft fll">
+				<div class="bktitle">
+	              	<h2>$cat[catname]</h2>
+	              	<span></span>
+	             </div>
+				<div class="plist">
+					<ul>
+						<!--{loop $list['list'] $key $value}-->
+						
+						<!--{eval $highlight = article_title_style($value);}-->
+						<!--{eval $article_url = fetch_article_url($value);}-->
+						<li><a href="$article_url" target="_blank">$value[title]</a><span class="news_date">$value[dateline]</span></li>
+						<!--{if ($key != 0 && ($key + 1) % 6 == 0)}--><li class="sepline"></li><!--{/if}-->
+						<!--{/loop}-->
+					</ul>
+					<div class="page clearfix">{$list['multi']}</div>
+				</div>
 			</div>
-			<div class="lanmufoot"></div>
+			<div class="mright frr">
+				<!--{template common/new/helpsound}-->
+		        <div class="mybox">
+		        	<div class="box_top"></div>
+		        	<div class="box_top2"><h3>新闻发布会</h3><a href="portal.php?mod=list&catid=4" class="moreLink">&nbsp;</a></div>
+		        	
+		        	<div class="box_middle news_tj">
+		        		<!--{block/37}-->
+		        	</div>
+		        	<div class="box_top2"><h3>民生面对面</h3><a href="portal.php?mod=list&catid=5" class="moreLink">&nbsp;</a></div>
+		        	<div class="box_middle news_tj">
+		        		<!--{block/38}-->
+		        	</div>
+		        	<div class="box_bottom"></div>
+		        </div>
+		        
+				<div class="mybox cjwt">
+		        	<div class="box_top"></div>
+					<div class="box_top2"><h3>常见问题</h3><a href="portal.php?mod=list&catid=8" class="moreLink">&nbsp;</a></div>
+					<div class="box_middle">
+						<!--{block/32}-->
+					</div>
+					<div class="box_bottom"></div>
+				</div>
+			</div>
+			<div class="clr"></div>
 		</div>
 	</div>
-	<div class="clr"></div>
 </div>
 <!-- main end -->
 <!--{template common/new/footer}-->
