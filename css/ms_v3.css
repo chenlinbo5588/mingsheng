@@ -204,16 +204,21 @@ body {
 .portal_row1 {
 	margin:5px 0 25px;
 	position: relative;
-	
+	background-color: #e9e9e9;
+	height:327px;
 }
 .portal_row1 .col1 {
-	height:330px;
+	height:327px;
+	width: 675px;
 }
 
 .portal_row1 .col2 {
-	width: 455px;
-    background-color: #e9e9e9;
+	width: 435px;
     padding: 5px;
+}
+
+.portal_row1 .col2 .mlist {
+	padding-top:5px;
 }
 
 .msecond{
@@ -339,9 +344,10 @@ body {
 }
 
 .dmain_v3 .first_news {
-	background-color:red;
-	height:337px;
+	background-color:#e9e9e9;
+	height:336px;
 	margin-bottom:40px;
+	
 }
 
 .dmain_content .mleft {
@@ -389,7 +395,6 @@ body {
 }
 
 .mscon{
-	padding:5px 0;
 	border-bottom: 1px dotted #b4b4b4;
 }
 .mscon h3, .mscon h3 a{
@@ -486,21 +491,10 @@ body {
 }
 .secright{
 	float: right;
-	width:375px;
-	
+	width:376px;
 }
-.secright .bncdsy{
-	width: 240px;
-	height: 379px;
-	background: url("../images/helpsound-top.jpg") no-repeat 0 0;
-}
-.secright .right-btn {
-    display: block;
-    width: 239px;
-    height: 43px;
-    margin-bottom: 15px;
-    text-indent: -1000em;
-}
+
+
 .secright .forum-help {
     background: url("../images/forum-help.jpg") no-repeat 0 0;
 }
@@ -686,119 +680,7 @@ body {
 }
 
 
-.w240 .wxbgtop{
 
-	height: 34px;
-	background: url("../images/wxbgtop.jpg");
-	position: relative;
-}
-.w240 .wxbgtop a{
-	display: block;
-	width: 50px;
-	height: 25px;
-	position: absolute;
-	right: 8px;
-	top: 7px;
-    text-decoration: none;
-}
-.w240 .wxbgcen{
-
-	border: 1px solid #e0e0e0;
-	border-top: 0px;
-}
-.wxbgcen .bgtj{
-        height: 45px;
-	padding: 5px 9px;
-        background: url(../images/wxbg-top.jpg) no-repeat 0 0;
-}
-.wxbgcen .bgtj ul li {
-    float: left;
-    width: 110px;
-    _width:100px;
-    height: 22px;
-    line-height: 22px;
-    font-size: 12px;
-    color: #464646;
-    list-style: none;
-}
-.wxbgcen .bgtj .forum-num {
-    color: #0EA0B8;
-    font-weight: bold;
-}
-.w240 .gzph {
-    margin-top: 20px;
-    background: url(../images/gzph.jpg) no-repeat 0 0;
-}
-.w240 .zxhf {
-    margin-top: 20px;
-    background: url(../images/zxhf.jpg) no-repeat 0 0;
-}
-.w240 .zxhf-list {
-    height: auto;
-    background: url(../images/zxhf-bg.jpg) left bottom repeat-x;
-}
-.w240 .zxhf-list ul li {
-    width: 100%;
-    list-style: none;
-    height: 20px;
-    line-height: 20px;
-    vertical-align: middle;
-    background: url('../images/zxhf-icon.png') left center no-repeat;
-    padding: 5px 0 5px 15px;
-    font-size: 14px;
-    white-space:nowrap; 
-}
-.w240 .gzph-list {
-    background-image: none;
-    background-color: #dbf2fa;
-    height: auto;
-}
-.w240 .gzph-list ul li {
-    width: 100%;
-    list-style: none;
-    height: 23px;
-    line-height: 23px;
-    vertical-align: middle;
-    font-size: 14px;
-    padding: 5px 0;
-    border-bottom: 1px dashed #CDCDCD;
-    white-space:nowrap;  
-}
-.w240 .gzph-list li .list-num {
-    display: inline-block;
-    width: 16px;
-    height: 23px;
-    text-align: center;
-    font-weight: bold;
-    color: #fff;
-    margin-right: 5px;
-    font-size: 10px;
-    background: url('../images/gzph-icon.png') left center no-repeat;
-}
-.w240 .gzph-list li .top-one {
-    background: url('../images/gzph-icon-hover.jpg') left center no-repeat;
-}
-.fttj {
-    height: 175px;
-    padding:17px 17px 10px 17px;
-}
-.fttj a {
-    color: #f00;
-}
-.wxbgbtm {
-    width: 234px;
-    height: 32px;
-    padding-left: 4px;
-    background: url(../images/wxbg.jpg) no-repeat 0 0;
-}
-.wxbgbtm a {
-    display: block;
-    width: 46px;
-    height: 30px;
-    line-height: 30px;
-    float: left;
-    text-align: center;
-}
 .person{
 	width: 730px;
 	height: 52px;
@@ -1045,6 +927,7 @@ body {
     color:#999999;
     font-size:12px;
     cursor:pointer;
+    text-indent:-1000em;
 }
 
 .showno {
@@ -1098,7 +981,7 @@ body {
 	
 }
 
-.dsub_nav .current_cate {
+.dsub_nav .small_jt {
 	background:url(../images/v3/nav_jt2.jpg) no-repeat left center;
 	padding-left:16px;
 	color:#c30000;
@@ -1121,6 +1004,53 @@ body {
 	height:13px;
 }
 
+.mybox_long .box_top {
+	background:url(../images/v3/long_top.jpg) right top;
+	height:15px;
+}
+
+.mybox_long .box_top2 {
+	background:url(../images/v3/long_top2.jpg) right top;
+	height:21px;
+}
+
+.mybox_long .box_middle {
+	background:url(../images/v3/long_bg.jpg) repeat-y;
+}
+
+.mybox_long .box_bottom {
+	background:url(../images/v3/long_bottom.jpg) repeat-y;
+	height:16px;
+}
+
+.mybox_long .box_top2 h3 {
+	text-indent:30px;
+}
+
+.mybox_long .timg {
+	padding:10px 0 10px 30px;
+}
+
+
+.mybox_long .module {
+	padding:10px 20px 10px 30px;
+	
+}
+
+
+.mybox_long .module li {
+	background:url(../images/v3/rect.jpg) no-repeat left center;
+	padding-left:20px;
+	border-top:1px dotted #c5c5c5;
+	height: 30px;
+    line-height: 30px;
+}
+
+
+
+.mybox_long .gzph li {
+	
+}
 
 .mybox .news_tj {
 	padding:20px 0 20px 38px;
@@ -1190,8 +1120,6 @@ body {
 	color:#5d5d5d;
 	white-space: nowrap;
 }
-
-
 
 
 .guide {
@@ -1652,4 +1580,116 @@ body {
     border: 1px solid #ccc;
     background: #fff;
     font-size: 14px;
+}
+
+
+.slides {
+	display: none
+}
+
+.slides .slidesjs-navigation {
+	
+}
+
+.slides .slidesjs-previous {
+	
+}
+
+.slides .slidesjs-next {
+	
+}
+
+.slides .slidesjs-play ,
+.slides .slidesjs-stop {
+    display:none;
+  }
+    
+
+.slidesjs-pagination {
+	margin:-25px 60px 0;
+    float: right;
+    list-style: none;
+    position: relative;
+    z-index: 20;
+}
+
+.slidesjs-pagination li {
+	float: left;
+	margin: 0 1px;
+}
+
+.slidesjs-pagination li a {
+	display: block;
+	width: 13px;
+	height: 0;
+	padding-top: 13px;
+	background-image: url(../images/v3/pagination.png);
+	background-position: 0 0;
+	float: left;
+	overflow: hidden;
+}
+
+.slidesjs-pagination li a.active,
+.slidesjs-pagination li a:hover.active {
+	background-position: 0 -26px
+}
+
+.slidesjs-pagination li a:hover {
+	background-position: 0 -13px
+}
+
+.slides a:link,
+.slides a:visited {
+	color: #333
+}
+
+.slides a:hover,
+.slides a:active {
+	color: #9e2020
+}
+
+.navbar {
+	overflow: hidden
+}
+
+#home_slides span {
+	display:block;
+	position:absolute;
+	height:32px;
+	bottom:0;
+	left:0;
+	width:100%;
+	color:white;
+	*zoom:1;
+	font-size:16px;
+	background-color: #000000;
+	background:rgba(0,0,0,0.6);  
+    background:#000 9;/*CSS Hack,只能对ie9以下浏览器ie6,ie7,ie8有效，否侧ie10,FF,Cherome会失去透明效果*/  
+	text-indent:20px;
+	padding:5px 0 0 0;
+}
+
+
+
+
+#mskd_slides dl {
+	position:absolute;
+	right:0;
+	top:0;
+	width:342px;
+	height:300px;
+	overflow: hidden;
+}
+
+#mskd_slides dd h4 {
+	color:#c30000;
+	font-size:16px;
+	padding: 20px 0 0 35px;
+}
+
+#mskd_slides dt {
+	color:#014886;
+	font-size:14px;
+	padding: 20px;
+    text-indent: 2em;
 }

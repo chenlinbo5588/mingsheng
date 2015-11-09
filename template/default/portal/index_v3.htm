@@ -1,9 +1,45 @@
 <!--{template common/new/top_nav}-->
-
+<script type="text/javascript" src="{$_G[setting][jspath]}v3/jquery.slides.min.js?{VERHASH}"></script>
 <div class="portal_row1">
 	<div class="fll col1">
 		<!-- 幻灯片  -->
-		<!--{block/14}-->
+		<div id="home_slides" class="slides">
+	    	<div>
+	    		<a href="javascript:void(0);" ><img src="static/image/example-slide-1.jpg" width="675" height="327" alt="Photo by: Missy S Link: http://www.flickr.com/photos/listenmissy/5087404401/"></a>
+	    		<span>asaaas1111</span>
+	    	</div>
+	    	<div>
+	    		<a href="javascript:void(0);"><img src="static/image/example-slide-1.jpg" width="675" height="327" alt="Photo by: Daniel Parks Link: http://www.flickr.com/photos/parksdh/5227623068/"></a>
+	    		<span>asaaas2222</span>
+	    	</div>
+	    	<div>
+	    		<a href="javascript:void(0);"><img src="static/image/example-slide-1.jpg" width="675" height="327" alt="Photo by: Mike Ranweiler Link: http://www.flickr.com/photos/27874907@N04/4833059991/"></a>
+	    		<span>34343434</span>
+	    	</div>
+	    	<div>
+	    		<a href="javascript:void(0);"><img src="static/image/example-slide-1.jpg" width="675" height="327" alt="Photo by: Stuart SeegerLink: http://www.flickr.com/photos/stuseeger/97577796/"></a>
+	    		<span>fdfsfsdfsdf</span>
+	    	</div>
+	    	<a href="#" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left icon-large"></i></a>
+            <a href="#" class="slidesjs-next slidesjs-navigation"><i class="icon-chevron-right icon-large"></i></a>
+	  	</div>
+		<script type="text/javascript">
+			jq(function() {
+				jq('#home_slides').slidesjs({
+			        width: 675,
+			        height:327,
+			        navigation: true,
+			        play: {
+			            active: true,
+			            auto: true,
+			            interval: 4000,
+			            swap: false,
+			            pauseOnHover: true,
+			            restartDelay: 2500
+			          }
+			    });
+		    });
+		</script>
 	</div>
 	
 	<div class="frr col2">
@@ -170,57 +206,59 @@
        
     </div>
     <div class="secright">
-        <a class="right-btn forum-help" href="/forum.php" target="_blank">阿拉帮侬忙</a>
-        <!--{if $_G['uid']}-->
-        <a class="right-btn hp-center" href="/home.php?mod=spacecp">个人中心</a>
-        <!--{else}-->
-        <a class="right-btn hp-login" href="/member.php?mod=logging&action=login">用户登入</a>
-        <!--{/if}-->
-        <a class="right-btn hp-register" href="/member.php?mod=register">用户注册</a>
-        <!--{template common/new/helpsound}-->
+    
+    
+    	<div>
+	        <a class="right-btn forum-help" href="/forum.php" target="_blank">阿拉帮侬忙</a>
+	        <!--{if $_G['uid']}-->
+	        <a class="right-btn hp-center" href="/home.php?mod=spacecp">个人中心</a>
+	        <!--{else}-->
+	        <a class="right-btn hp-login" href="/member.php?mod=logging&action=login">用户登入</a>
+	        <!--{/if}-->
+	        <a class="right-btn hp-register" href="/member.php?mod=register">用户注册</a>
+        </div>
         
-        <div class="secright w240">
-            <div class="wxbgtop"></div>
-            <div class="wxbgcen">
-                <div class="bgtj">
+    	<div class="mybox_long">
+        	<div class="box_top"><h3>新闻发布会</h3></div>
+        	<div class="box_middle">
+        		<!--{template common/new/helpsound}-->
+        	</div>
+        	<div class="box_bottom"></div>
+        </div>
+        
+        <div class="mybox_long">
+        	<div class="box_top"></div>
+        	<div class="box_top2"><h3>最新回复</h3><a class="moreLink" href="/forum.php?mod=guide&view=new"  target="_blank">更多</a></div>
+        	<div class="box_middle" style="padding-bottom:20px;">
+        		<div class="timg"><img src="images/v3/home_kh1.jpg"/></div>
+        		<!--{block/30}-->
+        	</div>
+       
+        	<div class="box_top2" ><h3>关注排行</h3><a class="moreLink" href="/forum.php?mod=guide&view=new"  target="_blank">更多</a></div>
+        	<div class="box_middle gzph" style="padding-bottom:20px;">
+        		<div class="timg"><img src="images/v3/home_kh2.jpg"/></div>
+        		<!--{block/31}-->
+        	</div>
+        	
+        
+        	<div class="box_top2"><h3>问效数据</h3></div>
+        	<div class="box_middle">
+        		<div class="timg"><img src="images/v3/home_kh3.jpg"/></div>
+        		<div class="bgtj">
                     <ul><li><span class="forum-num">总发帖：</span>{$allposts}</li>
                     <li><span class="forum-num"> 用户数：</span>{$allmembers}</li></ul>
                     <ul><li><span class="forum-num">在受理：</span>{$nowdeals}</li>
                     <li><span class="forum-num">总回复：</span>{$allreplies}</li></ul>
                 </div>
-            </div>
-            
-            <div class="wxbgtop zxhf"><a class="moreLink" href="/forum.php?mod=guide&view=new"  target="_blank">更多</a></div>
-            <div class="wxbgcen">
-                <div class="bgtj zxhf-list">
-                    <!--{block/30}-->
-                    <div class="clr"></div>
-                </div>
-            </div>
-            
-            <div class="wxbgtop gzph"><a class="moreLink" href="/forum.php?mod=guide&view=new"  target="_blank">更多</a></div>
-            <div class="wxbgcen">
-                <div class="bgtj gzph-list">
-                    <!--{block/31}-->
-                    <div class="clr"></div>
-                </div>
-            </div>
+        	</div>
+        	<div class="box_bottom"></div>
         </div>
     </div>
     <div class="clr"></div>
 </div>
 
 
-<div class="third">
-    <div class="zxask-btm">
-        <div class="secleft">
-            
-            
-        </div>
-        
-        <div class="clr"></div>
-    </div>
-</div>
+
 <div class="four">
     <div class="wxsycen clearfix">
         <div class="bmlogos ask_1 fll">

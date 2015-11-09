@@ -3,17 +3,66 @@
 <!--{eval $wheresql = category_get_wheresql($cat);}-->
 <!--{eval $list = category_get_list($cat, $wheresql, $page);}-->
 
+
+<script type="text/javascript" src="{$_G[setting][jspath]}v3/jquery.slides.min.js?{VERHASH}"></script>
 <!-- main start -->
 <div class="inner_wrap">
 	<div class="dsub_nav">
 		<div class="mnav">
-			<h1 class="nav_jt"><a href="/">首页</a><span class="current_cate">$cat[catname]</span></h1>
+			<h1 class="nav_jt"><a href="/">首页</a><span class=small_jt>$cat[catname]</span></h1>
 		</div>
 	</div>
+	<script type="text/javascript">
+		jq(function() {
+			jq('#slides').slidesjs({
+		        width: 1067,
+		        height:336,
+		        navigation: false,
+		        play: {
+		            active: true,
+		            auto: true,
+		            interval: 4000,
+		            swap: false,
+		            pauseOnHover: true,
+		            restartDelay: 2500
+		          }
+		    });
+	    });
+	
+	</script>
 	
 	<div class="dmain dmain_v3">
 		<div class="first_news">
-		
+			<div id="mskd_slides" class="slides">
+		    	<div>
+		    		<img src="static/image/example-slide-1.jpg" width="723" height="336" alt="Photo by: Missy S Link: http://www.flickr.com/photos/listenmissy/5087404401/">
+		    		<dl>
+		    			<dd><h4>加紧时间按时间按手机按键手机按时间按时间按时间</h4></dd>
+		    			<dt>aaaaaaaaaaaaaaaaaaaaa</dt>
+		    		</dl>
+		    	</div>
+		    	<div>
+		    		<img src="static/image/example-slide-1.jpg" width="723" height="336" alt="Photo by: Daniel Parks Link: http://www.flickr.com/photos/parksdh/5227623068/">
+		    		<dl>
+		    			<dd><h4>asas2</h4></dd>
+		    			<dt>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</dt>
+		    		</dl>
+		    	</div>
+		    	<div>
+		    		<img src="static/image/example-slide-1.jpg" width="723" height="336" alt="Photo by: Mike Ranweiler Link: http://www.flickr.com/photos/27874907@N04/4833059991/">
+		    		<dl>
+		    			<dd><h4>asas3</h4></dd>
+		    			<dt>aaaaaaa</dt>
+		    		</dl>
+		    	</div>
+		    	<div>
+		    		<img src="static/image/example-slide-1.jpg" width="723" height="336" alt="Photo by: Stuart SeegerLink: http://www.flickr.com/photos/stuseeger/97577796/">
+		    		<dl>
+		    			<dd><h4>asas4</h4></dd>
+		    			<dt>aaaaaaa</dt>
+		    		</dl>
+		    	</div>
+		  	</div>
 		</div>
 	
 		<div class="dmain_content">
