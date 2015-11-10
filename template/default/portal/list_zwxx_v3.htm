@@ -3,6 +3,7 @@
 <!--{eval $list = array();}-->
 <!--{eval $wheresql = category_get_wheresql($cat);}-->
 <!--{eval $list = category_get_list($cat, $wheresql, $page);}-->
+<!-- main start -->
 
 <script type="text/javascript" src="{$_G[setting][jspath]}v3/jquery.slides.min.js?{VERHASH}"></script>
 <!-- main start -->
@@ -71,21 +72,35 @@
 	              	<h2>$cat[catname]</h2>
 	              	<span></span>
 	             </div>
-				<div class="plist">
-					<ul>
-						<!--{loop $list['list'] $key $value}-->
-						
-						<!--{eval $highlight = article_title_style($value);}-->
-						<!--{eval $article_url = fetch_article_url($value);}-->
-						<li><a href="$article_url" target="_blank">$value[title]</a><span class="news_date">$value[dateline]</span></li>
-						<!--{if ($key != 0 && ($key + 1) % 6 == 0)}--><li class="sepline"></li><!--{/if}-->
-						<!--{/loop}-->
-					</ul>
-					<div class="page clearfix">{$list['multi']}</div>
-				</div>
+				<div class="plist zwxx">
+				<!--{loop $list['list'] $value}-->
+				<!--{eval $highlight = article_title_style($value);}-->
+				<!--{eval $article_url = fetch_article_url($value);}-->
+                       <dl class="bbda cl">
+                           <dt class="xs2 alink"><a href="$article_url" target="_blank" class="xi2" $highlight>$value[title]</a> <!--{if $value[status] == 1}-->({lang moderate_need})<!--{/if}--></dt>
+                           <dd class="xs2 cl">
+                               <!--{if $value[pic]}--><div class="atc"><a href="$article_url" target="_blank"><img src="$value[pic]" alt="$value[title]" class="tn" /></a></div><!--{/if}-->
+                               $value[summary]
+                           </dd>
+                           <dd class="xs3">
+                               <!--{if $value[catname] && $cat[subs]}-->{lang category}: <label><a href="{$portalcategory[$value['catid']]['caturl']}" class="xi2">$value[catname]</a></label>&nbsp;&nbsp;<!--{/if}-->
+                               <span class="xg1"> $value[dateline]</span>
+                               <!--{if $_G['group']['allowmanagearticle'] || ($_G['group']['allowpostarticle'] && $value['uid'] == $_G['uid'] && (empty($_G['group']['allowpostarticlemod']) || $_G['group']['allowpostarticlemod'] && $value['status'] == 1)) || $categoryperm[$value['catid']]['allowmanage']}-->
+                               <span class="xg1">
+                                   <span class="pipe">|</span>
+                                   <label><a href="portal.php?mod=portalcp&ac=article&op=edit&aid=$value[aid]">{lang edit}</a></label>
+                                   <span class="pipe">|</span>
+                                   <label><a href="portal.php?mod=portalcp&ac=article&op=delete&aid=$value[aid]" id="article_delete_$value[aid]" onclick="showWindow(this.id, this.href, 'get', 0);">{lang delete}</a></label>
+                               </span>
+                               <!--{/if}-->
+                           </dd>
+                       </dl>
+				<!--{/loop}-->
 			</div>
-			<!--{template common/new/common_side}-->
+			<div class="page clearfix">{$list['multi']}</div>
 		</div>
+		
+		<!--{template common/new/common_side}-->
 	</div>
 </div>
 <!-- main end -->

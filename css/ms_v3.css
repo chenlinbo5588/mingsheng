@@ -257,13 +257,8 @@ body {
 }
 
 
-
-
-
 .mfoot{
-	clear:both;
-	width: 100%;
-	height: 83px;
+	height:160px;
 	background-color: #e5e5e5;
 	margin-top: 30px;
 	border-top: 3px solid #0c457c;
@@ -271,9 +266,25 @@ body {
 
 .mfoot .bqxx{
 	width: 1120px;
-	margin: 0 auto;
-	text-align: center;
+    margin: 0px auto;
+    text-align: center;
+    padding: 40px 0 20px 0;
+    position: relative;
 }
+
+.mfoot .qr {
+	width: 96px;
+    height: 120px;
+    position: absolute;
+    right: 0px;
+    top: 20px
+}
+
+.mfoot .qr img {
+	width:100px;
+	height:100px;
+}
+
 .mfoot .bqxx .p1{
         font-size: 18px;
         font-weight: bold;
@@ -281,8 +292,9 @@ body {
         font-family: '微软雅黑';
 }
 .mfoot .bqxx .p2{
-	padding-top: 8px;
 	color: #3e3e3e;
+	font-size:14px;
+	margin:10px 0;
 }
 
 
@@ -298,22 +310,14 @@ body {
     margin:0 0 10px 0;
 }
 
-.bmlist {
-    line-height:28px;
-    padding:5px 10px 20px 10px;
-}
-
-
-.bmlist div{
-	padding: 10px;
-	color: #7e7c7d;
-}
-.bmlist a{
+.bmlist a  , .zjlist a {
 	padding:3px 5px;
 	font-size: 14px;
-	color: #7e7c7d;
+	color: #0d2aa0;
 	white-space:nowrap;
 }
+
+
 .showstatus{
 	border: 1px solid #DADDDD;
 	margin-top: 6px;
@@ -695,19 +699,23 @@ body {
 .asktop2{
 	padding: 20px 0 0 25px;
 }
+
 .bmlogos{
-	padding: 20px 25px;
+	width:50%;
+}
+
+.bmlogos .dlist {
+	padding: 0 0px 0 20px;
 }
 
 .bmlogos ul,.bmlogos ul li{
 	list-style: none;
 }
 .bmlogos ul li{
-	display: inline;
+	display: block;
 	float: left;
-	width: 96px;
+	width: 107px;
 	height: 128px;
-	margin-right: 10px;
 	
 }
 .bmlogos ul li .piclogo,
@@ -715,7 +723,17 @@ body {
 	width: 80px;
 	height: 80px;
 	border: 1px solid #ccc;
+	padding:5px;
 }
+
+
+.zjlist ul li .piclogo,
+.zjlist ul li .pic {
+	display:none;
+}
+
+
+
 .bmlogos ul li .bmdesc,
 .bmlogos ul li .parttitle{
 	text-align: center;
@@ -723,57 +741,68 @@ body {
 	line-height: 24px;
 	color: #0d2aa0;
 	font-weight: bold;
-        display: block;
+    display: block;
+    width: 90px;
 }
+
+
+.zjlist ul li .bmdesc,
+.zjlist ul li .parttitle {
+	
+	width: auto;
+    height: 37px;
+    line-height: 37px;
+}
+
+
+.zjlist a {
+	font-size:16px;
+	color:#fff;
+}
+
+
+
+.zjlist ul li {
+	text-align: center;
+    height: 37px;
+    line-height: 37px;
+    color: #ffffff;
+    display: block;
+    width: 118px;
+    background-color: #6fb3e0;
+    margin: 0px 16px 15px 0;
+}
+
+
+
+
 .bmlogos ul li span {
     display: inline-block;
     margin-right: 3px;
 }
 
-.ask_1 h4 , .ask_2 h4 {
-	
-    color:#c30000;
-        padding-left: 20px;
+.bmlogos h4 {
+    color: #c30000;
+    margin: 20px;
     font-size: 16px;
-    
-	background:url("../images/v3/jiantou.jpg") no-repeat left center;
+    background: url("../images/v3/jiantou.jpg") no-repeat left 6px;
+    padding: 0 0px 10px 20px;
+    border-bottom: 1px solid #0c457c;
 }
 
-
-
-.ask_1 {
-	width:555px;
-}
-
-.ask_2 {
-	width:518px;
-}
-
-
-.ask_1 ul {
-	border: 1px solid #0c457c;
+.zjlist {
 	
 }
 
-.ask_2 ul li{
-	width: 180px;
-	height: 155px;
-	margin-left: 16px;
-	margin-top: 20px;
-}
-.ask_2 ul li .piclogo{
-	width: 168px;
-	height: 94px;
-	padding:5px;
-	border: 1px solid #ccc;
-}
 .bmask{
 	text-align: center;
 	display:none;
 }
+
 .newsdiv{
 	padding: 10px 20px;
 }
+
 .h5{
 	height:25px;
 	line-height:25px;
@@ -796,6 +825,7 @@ body {
 	font-size: 12px;
 	padding-right: 5px;
 }
+
 .xwcon{
 	clear: both;
 	padding-top: 15px;
@@ -1518,6 +1548,30 @@ body {
 
 .plist ul li a:hover {
 	color:#c40000;
+}
+
+.plist .bbda {
+	margin:20px 5px 0 0;
+}
+
+.plist .bbda .xs2 {
+	margin:10px 0;
+	color:#5d5d5d;
+	padding:0 10px 0 20px;
+}
+
+.plist .bbda .xg1 {
+	font-size:12px;
+	padding:0 0 0 20px;
+}
+
+.zwxx .alink {
+	background:url(../images/v3/gray_dian.jpg) no-repeat left center;
+	padding-left:20px;
+}
+
+.zwxx .xs3 {
+	padding:10px 0 20px 0;
 }
 
 .report li {
