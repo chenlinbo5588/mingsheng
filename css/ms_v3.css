@@ -494,58 +494,8 @@ body {
 	width:376px;
 }
 
-
-.secright .forum-help {
-    background: url("../images/forum-help.jpg") no-repeat 0 0;
-}
-.secright .hp-login {
-    background: url("../images/hp-login.jpg") no-repeat 0 0;
-}
-.secright .hp-center {
-    background: url("../images/hp-center.jpg") no-repeat 0 0;
-}
-.secright .hp-register {
-    background: url("../images/hp-register.jpg") no-repeat 0 0;
-}
-.bluebg{
-	font-size: 0px;
-	height: 4px;
-	background: #026dcf;
-	margin: 20px 0;
-}
-.zxask{
-	
-	height: 65px;
-	background: url("../images/zxask.jpg") no-repeat;
-	position: relative;
-}
-.zxask a {
-    text-decoration: none;
-}
-
-.wxsytop{
-	height: 50px;
-	background: url("../images/wxsytop.jpg") no-repeat;
-	position: relative;
-}
-
-.ask-online-new {
-    height: 50px;
-    background: url("../images/v3/5icon.jpg") no-repeat 0 -160px;
-    margin-top:22px;
-}
-
-
-
-.ask-online-new .showstatus label {
-    padding:0;
-}
-
-.wxsytop a {
-    position: absolute;
-    right:0px;
-    top:10px;
-    
+.secright .mybox_long {
+	margin: 15px 0;
 }
 
 .mmskd {
@@ -561,24 +511,6 @@ body {
     margin-bottom: 8px;
     font-size: 16px;
 }
-
-.zxask a {
-	display: block;
-	position: absolute;
-	width: 65px;
-	height: 30px;
-	top: 22px;
-    right: -22px;
-}
-
-
-.zxask a.a1{
-	right: 168px;
-}
-.zxask a.a2{
-	right: 80px;
-}
-
 
 
 
@@ -679,6 +611,18 @@ body {
     width: 376px;
 }
 
+.four {
+	border:1px solid #dbdbdb;
+	border-width: 0px 1px 1px 1px;
+}
+
+
+.four .fayanren {
+	height:47px;
+	background:#f5f5f5 url(../images/v3/fayanren.jpg) no-repeat 20px center;
+	border-top: 4px solid #c30000;
+	border-bottom:1px solid #dbdbdb;
+}
 
 
 .person{
@@ -747,17 +691,14 @@ body {
 .msad{
 	padding: 20px 0 10px 0;
 }
-.wxsycen{
-	border: 1px solid #DADDDD;
-}
+
 .asktop2{
 	padding: 20px 0 0 25px;
 }
 .bmlogos{
 	padding: 20px 25px;
-    height:350px;
-    overflow: auto;
 }
+
 .bmlogos ul,.bmlogos ul li{
 	list-style: none;
 }
@@ -971,6 +912,47 @@ body {
     background-position: -240px -120px;
 }
 
+.homepage {
+	padding:0 0 0 30px;
+}
+
+.homepage h3 {
+  font-size: 16px;
+  color: #c30000;
+  padding: 0px 0 20px 0;
+  line-height: 15px;
+}
+
+.homepage .hotlink  {
+	background: url(../images/v3/home_site_links.jpg) no-repeat left top;
+	  width: 110px;
+	  height: 110px;
+	  display: block;
+	  float: left;
+	  text-decoration: none;
+	  text-indent: -1000em;
+	  margin-bottom: 0;
+}
+
+.homepage .helpsound .hot-1 {
+    background-position:0 0;
+}
+.homepage .helpsound .hot-2 {
+    background-position: -110px 0;
+}
+.homepage .helpsound .hot-3 {
+    background-position: -220px 0;
+}
+.homepage .helpsound .hot-4 {
+    background-position: 0 -110px;
+}
+.homepage .helpsound .hot-5 {
+    background-position: -110px -110px;
+}
+.homepage .helpsound .hot-6 {
+    background-position: -220px -110px;
+}
+
 .dsub_nav .mnav {
 	background:url(../images/v3/nav_jt.jpg) no-repeat left center;
 	padding-left:20px;
@@ -986,6 +968,25 @@ body {
 	padding-left:16px;
 	color:#c30000;
 }
+
+.login_area {
+    background:url(../images/v3/login_bg.jpg) no-repeat right center;
+    height:130px;
+    position:relative;
+}
+
+.login_area .username {
+    position:absolute;
+    left:60px;
+    top:30px;
+}
+
+.login_area .username {
+    position:absolute;
+    left:60px;
+    top:30px;
+}
+
 
 .mybox .box_top {
 	background:url(../images/v3/box_top.jpg) right top;
@@ -1020,7 +1021,7 @@ body {
 
 .mybox_long .box_bottom {
 	background:url(../images/v3/long_bottom.jpg) repeat-y;
-	height:16px;
+	height:12px;
 }
 
 .mybox_long .box_top2 h3 {
@@ -1037,6 +1038,9 @@ body {
 	
 }
 
+.mybox_long .module ul {
+    border-bottom:1px dotted #c5c5c5;
+}
 
 .mybox_long .module li {
 	background:url(../images/v3/rect.jpg) no-repeat left center;
@@ -1046,10 +1050,21 @@ body {
     line-height: 30px;
 }
 
-
-
 .mybox_long .gzph li {
-	
+    background:none;
+    padding-left:0;
+}
+.mybox_long .gzph li span {
+    width: 20px;
+  background: url(../images/v3/num_bg.jpg) no-repeat center center;
+  font-size: 10px;
+  margin: 0 10px 0 0;
+  height: 15px;
+  color: #fff;
+  text-align: center;
+  float: left;
+  display: block;
+  height: 30px;
 }
 
 .mybox .news_tj {
@@ -1058,12 +1073,18 @@ body {
 	
 }
 
+.box_top2 {
+    position:relative;
+}
+
 .box_top2 h3 {
 	font-size:16px;
 	color:#c30000;
 	text-indent: 40px;
     line-height: 15px;
 }
+
+
 .box_top2 .moreLink {
 	right: 20px;
     top: 0px;
@@ -1120,6 +1141,41 @@ body {
 	color:#5d5d5d;
 	white-space: nowrap;
 }
+
+.bgtj {
+    height:60px;
+    position:relative;
+}
+
+.bgtj div {
+    position:absolute;
+    font-size:14px;
+}
+
+.bgtj .row11 {
+   left: 35px;
+  top: 10px
+}
+
+.bgtj .row12 {
+   left: 195px;
+  top: 10px
+}
+
+.bgtj .row21 {
+   left: 35px;
+  top: 40px;
+}
+
+.bgtj .row22 {
+   left: 195px;
+  top: 40px;
+}
+
+.bgtj .forum-num {
+    color:#11619e;
+}
+
 
 
 .guide {
