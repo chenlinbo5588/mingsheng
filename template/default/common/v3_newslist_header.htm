@@ -1,0 +1,32 @@
+<!--{template common/new/top_nav2}-->
+<!--[name]{lang portalcategory_listtplname}[/name]-->
+<!--{eval $list = array();}-->
+<!--{eval $wheresql = category_get_wheresql($cat);}-->
+<!--{eval $list = category_get_list($cat, $wheresql, $page);}-->
+
+<script type="text/javascript" src="{$_G[setting][jspath]}v3/jquery.slides.min.js?{VERHASH}"></script>
+<!-- main start -->
+<div class="inner_wrap">
+	<div class="dsub_nav">
+		<div class="mnav">
+			<h1 class="nav_jt"><a href="/">首页</a><span class=small_jt>$cat[catname]</span></h1>
+		</div>
+	</div>
+	<script type="text/javascript">
+		jq(function() {
+			jq('#slides_1').slidesjs({
+		        width: 1067,
+		        height:336,
+		        navigation: false,
+		        play: {
+		            active: true,
+		            auto: true,
+		            interval: 4000,
+		            swap: false,
+		            pauseOnHover: true,
+		            restartDelay: 2500
+		          }
+		    });
+	    });
+	
+	</script>

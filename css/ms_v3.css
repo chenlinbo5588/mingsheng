@@ -285,6 +285,14 @@ body {
 	height:100px;
 }
 
+
+.mfoot .qr span {
+	padding: 5px;
+    display: block;
+    text-align: center;
+    font-weight: bold;
+}
+
 .mfoot .bqxx .p1{
         font-size: 18px;
         font-weight: bold;
@@ -1000,9 +1008,33 @@ body {
 }
 
 .login_area {
-    background:url(../images/v3/login_bg.jpg) no-repeat right center;
-    height:130px;
     position:relative;
+}
+
+.login_area ul {
+	padding:0 0 0 10px;
+	margin : 0 0 10px;
+}
+
+.login_area li {
+	background-color:#f7f7f7;
+	border:1px solid #dbdbdb;
+	width:175px;
+	padding:10px 0;
+	text-indent:20px;
+}
+
+.login_area li a {
+	color:#cd3331;
+	font-size:16px;
+}
+
+.login_area li.col1 {
+	float:left;
+}
+
+.login_area li.col1 {
+	float:right;
 }
 
 .login_area .username {
@@ -1535,6 +1567,7 @@ body {
 	color:#5d5d5d;
 }
 
+
 .plist ul li a {
     font-size: 14px;
     overflow: hidden;
@@ -1550,29 +1583,32 @@ body {
 	color:#c40000;
 }
 
-.plist .bbda {
-	margin:20px 5px 0 0;
-}
-
-.plist .bbda .xs2 {
-	margin:10px 0;
-	color:#5d5d5d;
-	padding:0 10px 0 20px;
-}
-
-.plist .bbda .xg1 {
-	font-size:12px;
-	padding:0 0 0 20px;
-}
 
 .zwxx .alink {
 	background:url(../images/v3/gray_dian.jpg) no-repeat left center;
-	padding-left:20px;
+	padding:20px;
 }
 
 .zwxx .xs3 {
 	padding:10px 0 20px 0;
 }
+
+.zwxx_item {
+	padding:5px;
+	
+}
+
+
+
+.zwxx_item .cl {
+	padding:0 20px;
+}
+
+.zwxx_item .ft {
+	padding:20px;
+	border-bottom:1px dotted #b2b2b2;
+}
+
 
 .report li {
     padding-top: 0px;
@@ -1650,7 +1686,7 @@ body {
     width:28px;
     height:28px;
     position:relative;
-    top:8px;
+    top:6px;
     cursor:pointer;
 }
 
@@ -1782,7 +1818,7 @@ body {
 
 
 
-#mskd_slides dl {
+#slides_1 dl {
 	position:absolute;
 	right:0;
 	top:0;
@@ -1791,13 +1827,13 @@ body {
 	overflow: hidden;
 }
 
-#mskd_slides dd h4 {
+#slides_1 dd h4 {
 	color:#c30000;
 	font-size:16px;
 	padding: 20px 0 0 35px;
 }
 
-#mskd_slides dt {
+#slides_1 dt {
 	color:#014886;
 	font-size:14px;
 	padding: 20px;
