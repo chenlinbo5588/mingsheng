@@ -1,0 +1,91 @@
+<!--{template common/new/top_nav2}-->
+<!--[name]{lang portalcategory_viewtplname}[/name]-->
+<!-- main start -->
+<div class="dmain">
+	<div class="dmain_content clearfix">
+		<div class="dsub_nav">
+			<div class="mnav nav_jt">
+				<h1>
+	                <a href="$_G[setting][navs][1][filename]">{lang nav_index}</a> <em class="small_jt">&nbsp;&nbsp;</em>
+	                <!--{loop $cat[ups] $value}-->
+	                    <a href="{echo getportalcategoryurl($value[catid])}">$value[catname]</a><em class="small_jt">&nbsp;&nbsp;</em>
+	                <!--{/loop}-->
+	                <a href="{echo getportalcategoryurl($cat[catid])}">$cat[catname]</a> <em class="small_jt">&nbsp;&nbsp;</em>
+	                <span class="last">{lang view_content_defined}</span>
+	            </h1>
+				<div class="mline"></div>
+			</div>
+        </div>
+		<div class="mlist kdxx">
+			<h1 class="title">$article[title]</h1>
+            <!--article information start-->
+            <div class='article-info'>
+                <!--{if empty($article['from'])}-->
+                <span>{lang article_dateline}：{$article['dateline']}</span>
+                <!--{else}-->
+                <span>{lang article_source}：{$article['from']} &nbsp; {$article['dateline']}</span>
+                <!--{/if}-->
+                &nbsp;  &nbsp;
+                <span>{lang view_count}：{$article['viewnum']}</span>  &nbsp;  &nbsp;
+                <span>{lang font_size}：【<a href="javascript:zoomFont(16);">大</a> <a href="javascript:zoomFont(14);">中</a> <a href="javascript:zoomFont(12);">小</a>】   </span>
+            </div>
+            <!--article information end-->
+			<!--{if $article[summary] && empty($cat[notshowarticlesummay])}--><div id="abstract-wrapper" class="abstract">{lang article_description}: $article[summary]</div><!--{/if}-->
+			
+			<div id="context-wrapper" class="contentText">$content[content]</div>
+            
+            <script type="text/javascript">
+                function zoomFont(size) {
+                    var des = document.getElementById('abstract-wrapper');
+                    var con = document.getElementById('context-wrapper');
+                    if (des !== null) {
+                        des.style.fontSize = size+'px';
+                    }
+                    if (con !== null) {
+                        con.style.fontSize = size+'px';
+                        var divchildren = con.childNodes;
+                        for (var i = 0; i<divchildren.length; i++){
+                            if(divchildren[i].nodeType == 1){
+                               divchildren[i].style.fontSize=size+'px';
+                            }
+                        }
+                    }
+                }
+            </script>
+            
+            <div class="btm-btn">
+                <div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more">分享到：</a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"image":{"viewList":["weixin","tsina","tqq","qzone","renren"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","tqq","qzone","renren"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+                <div class="right"> 
+                    【<a href="javascript:window.print()">打印</a>】  【<a href="javascript:window.opener=null;window.close();">关闭</a>】 
+                </div>
+            </div>
+
+			<div class="o cl ptm pbm">
+				<!--{hook/view_article_op_extra}-->
+				<a href="home.php?mod=spacecp&ac=favorite&type=article&id=$article[aid]&handlekey=favoritearticlehk_{$article[aid]}" id="a_favorite" onclick="showWindow(this.id, this.href, 'get', 0);" class="oshr ofav">{lang favorite}</a>
+				<!--{if helper_access::check_module('share')}-->
+				<a href="home.php?mod=spacecp&ac=share&type=article&id=$article[aid]&handlekey=sharearticlehk_{$article[aid]}" id="a_share" onclick="showWindow(this.id, this.href, 'get', 0);" class="oshr">{lang share}</a>
+				<!--{/if}-->
+				<a href="misc.php?mod=invite&action=article&id=$article[aid]" id="a_invite" onclick="showWindow('invite', this.href, 'get', 0);" class="oshr oivt">{lang invite}</a>
+				<!--{if $_G['group']['allowmanagearticle'] || ($_G['group']['allowpostarticle'] && $article['uid'] == $_G['uid'] && (empty($_G['group']['allowpostarticlemod']) || $_G['group']['allowpostarticlemod'] && $article['status'] == 1)) || $categoryperm[$value['catid']]['allowmanage']}-->
+					<a href="portal.php?mod=portalcp&ac=article&op=edit&aid=$article[aid]">{lang edit}</a><span class="pipe">|</span>
+					<a  id="related_article" href="portal.php?mod=portalcp&ac=related&aid=$article[aid]&catid=$article[catid]&update=1" onclick="showWindow(this.id, this.href, 'get', 0);return false;">{lang article_related}</a><span class="pipe">|</span>
+					<!--{if $article[status]>0 && ($_G['group']['allowmanagearticle'] || $categoryperm[$value['catid']]['allowmanage'])}-->
+						<a href="portal.php?mod=portalcp&ac=article&op=verify&aid=$article[aid]" id="article_verify_$article[aid]" onclick="showWindow(this.id, this.href, 'get', 0);">{lang moderate}</a>
+					<!--{else}-->
+						<a href="portal.php?mod=portalcp&ac=article&op=delete&aid=$article[aid]" id="article_delete_$article[aid]" onclick="showWindow(this.id, this.href, 'get', 0);">{lang delete}</a>
+					<!--{/if}-->
+					<span class="pipe">|</span>
+				<!--{/if}-->
+				<!--{if $article[status]==0 && ($_G['group']['allowdiy']  || getstatus($_G['member']['allowadmincp'], 4) || getstatus($_G['member']['allowadmincp'], 5) || getstatus($_G['member']['allowadmincp'], 6))}-->
+				<a href="portal.php?mod=portalcp&ac=portalblock&op=recommend&idtype=aid&id=$article[aid]" onclick="showWindow('recommend', this.href, 'get', 0)">{lang blockdata_recommend}</a><span class="pipe">|</span>
+				<!--{/if}-->
+			</div>
+		</div>
+		
+	</div>
+</div>
+<!-- main end -->
+<!--{template common/new/footer}-->

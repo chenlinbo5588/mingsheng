@@ -1,0 +1,76 @@
+<!--{template common/v3_newslist_header}-->
+	<div class="dmain dmain_v3">
+		<div class="dmain_content ">
+			
+			<div><!--{block/17}--></div>
+			<div><!--{block/18}--></div>
+			
+			
+			<div class="clearfix">
+			
+				<div class="mleft fll">
+					<!--{if isset($cat['children'][0])}-->
+			        <!--{eval $subcatid = $cat['children'][0];}-->
+			        <!--{eval $list = array();}-->
+			        <!--{eval $subcat = $portalcategory[$subcatid];}-->
+			        <!--{eval $wheresql = category_get_wheresql($subcat);}-->
+			        <!--{eval $list = category_get_list($subcat, $wheresql, 1, 10);}-->
+					<div class="bktitle">
+		              	<h2>$subcat[catname]<a class="moreLink" href="portal.php?mod=list&catid={$subcatid}">&nbsp;</a></h2>
+		              	<span></span>
+		             </div>
+					<div class="plist">
+						<ul>
+							<!--{loop $list['list'] $key $value}-->
+							
+							<!--{eval $highlight = article_title_style($value);}-->
+							<!--{eval $article_url = fetch_article_url($value);}-->
+							<li><a href="$article_url" target="_blank">$value[title]</a><span class="news_date">$value[dateline]</span></li>
+							<!--{if ($key != 0 && ($key + 1) % 6 == 0)}--><li class="sepline"></li><!--{/if}-->
+							<!--{/loop}-->
+						</ul>
+						<div class="page clearfix">{$list['multi']}</div>
+					</div>
+					<!--{/if}-->
+					
+					<!--{if isset($cat['children'][1])}-->
+			        <!--{eval $subcatid = $cat['children'][1];}-->
+			        <!--{eval $list = array();}-->
+			        <!--{eval $subcat = $portalcategory[$subcatid];}-->
+			        <!--{eval $wheresql = category_get_wheresql($subcat);}-->
+			        <!--{eval $list = category_get_list($subcat, $wheresql, 1, 10);}-->
+					<div class="bktitle">
+		              	<h2>$subcat[catname]<a class="moreLink" href="portal.php?mod=list&catid={$subcatid}">&nbsp;</a></h2>
+		              	<span></span>
+		             </div>
+					<div class="plist">
+						<ul>
+							<!--{loop $list['list'] $key $value}-->
+							
+							<!--{eval $highlight = article_title_style($value);}-->
+							<!--{eval $article_url = fetch_article_url($value);}-->
+							<li><a href="$article_url" target="_blank">$value[title]</a><span class="news_date">$value[dateline]</span></li>
+							<!--{if ($key != 0 && ($key + 1) % 6 == 0)}--><li class="sepline"></li><!--{/if}-->
+							<!--{/loop}-->
+						</ul>
+						<div class="page clearfix">{$list['multi']}</div>
+					</div>
+					<!--{/if}-->
+				</div>
+				<div class="mright frr">
+					<div class="mybox cjwt">
+			        	<div class="box_top"></div>
+						<div class="box_top2"><h3>常见问题</h3><a href="portal.php?mod=list&catid=8" class="moreLink">&nbsp;</a></div>
+						<div class="box_middle">
+							<!--{block/32}-->
+						</div>
+						<div class="box_bottom"></div>
+					</div>
+					<div class="clr"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- main end -->
+
+<!--{template common/new/footer}-->

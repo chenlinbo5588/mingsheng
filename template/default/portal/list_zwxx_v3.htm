@@ -1,5 +1,4 @@
 <!--{template common/v3_newslist_header}-->
-	
 	<div class="dmain dmain_v3">
 		<div class="first_news">
 			<div id="slides_1" class="slides">
@@ -7,7 +6,7 @@
 		  	</div>
 		</div>
 	
-		<div class="dmain_content">
+		<div class="dmain_content clearfix">
 			<div class="mleft fll">
 				<div class="bktitle">
 	              	<h2>$cat[catname]</h2>
@@ -37,12 +36,25 @@
                            </dd>
                        </dl>
 				<!--{/loop}-->
+				</div>
+				<div class="page clearfix">{$list['multi']}</div>
 			</div>
-			<div class="page clearfix">{$list['multi']}</div>
+			<div class="mright frr">
+				<!--{template common/new/helpsound}-->
+	        
+				<div class="mybox cjwt" style="margin:0;">
+		        	<div class="box_top"></div>
+					<div class="box_top2"><h3>阿拉帮侬忙</h3></div>
+					<div class="box_middle">
+						<div class="mlist">
+						<!--{block/33}-->
+						</div>
+					</div>
+					<div class="box_bottom"></div>
+				</div>
+				<div class="clr"></div>
+			</div>
 		</div>
-		
-		<!--{template common/v3_newslist_side}-->
-	</div>
-</div>
-<!-- main end -->
+	
+	</div><!-- main end -->
 <!--{template common/new/footer}-->

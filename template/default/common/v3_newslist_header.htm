@@ -5,11 +5,16 @@
 <!--{eval $list = category_get_list($cat, $wheresql, $page);}-->
 
 <script type="text/javascript" src="{$_G[setting][jspath]}v3/jquery.slides.min.js?{VERHASH}"></script>
-<!-- main start -->
-<div class="inner_wrap">
 	<div class="dsub_nav">
-		<div class="mnav">
-			<h1 class="nav_jt"><a href="/">首页</a><span class=small_jt>$cat[catname]</span></h1>
+		<div class="mnav nav_jt">
+			<h1>
+                <a href="$_G[setting][navs][1][filename]">首页</a> <em class="small_jt">&nbsp;&nbsp;</em>
+                <!--{loop $cat[ups] $value}-->
+                    <a href="{echo getportalcategoryurl($value[catid])}">$value[catname]</a><em class="small_jt">&nbsp;&nbsp;</em>
+                <!--{/loop}-->
+                <a class="last" href="{echo getportalcategoryurl($cat[catid])}">$cat[catname]</a
+            </h1>
+			<div class="mline"></div>
 		</div>
 	</div>
 	<script type="text/javascript">

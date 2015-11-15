@@ -1,35 +1,32 @@
 <!--{template common/v3_newslist_header}-->
-
-	
-	<div class="dmain dmain_v3">
-		<div class="first_news">
-			<div id="slides_1" class="slides">
-		    	<!--{block/39}-->
-		  	</div>
-		</div>
-	
-		<div class="dmain_content">
-			<div class="mleft fll">
-				<div class="bktitle">
-	              	<h2>$cat[catname]</h2>
-	              	<span></span>
-	             </div>
-				<div class="plist">
-					<ul>
-						<!--{loop $list['list'] $key $value}-->
-						
-						<!--{eval $highlight = article_title_style($value);}-->
-						<!--{eval $article_url = fetch_article_url($value);}-->
-						<li><a href="$article_url" target="_blank">$value[title]</a><span class="news_date">$value[dateline]</span></li>
-						<!--{if ($key != 0 && ($key + 1) % 6 == 0)}--><li class="sepline"></li><!--{/if}-->
-						<!--{/loop}-->
-					</ul>
-					<div class="page clearfix">{$list['multi']}</div>
-				</div>
+		<div class="dmain dmain_v3">
+			<div class="first_news">
+				<div id="slides_1" class="slides">
+			    	<!--{block/39}-->
+			  	</div>
 			</div>
-			<!--{template common/v3_newslist_side}-->
+		
+			<div class="dmain_content clearfix">
+				<div class="mleft fll">
+					<div class="bktitle">
+		              	<h2>$cat[catname]</h2>
+		              	<span></span>
+		             </div>
+					<div class="plist">
+						<ul>
+							<!--{loop $list['list'] $key $value}-->
+							
+							<!--{eval $highlight = article_title_style($value);}-->
+							<!--{eval $article_url = fetch_article_url($value);}-->
+							<li><a href="$article_url" target="_blank">$value[title]</a><span class="news_date">$value[dateline]</span></li>
+							<!--{if ($key != 0 && ($key + 1) % 6 == 0)}--><li class="sepline"></li><!--{/if}-->
+							<!--{/loop}-->
+						</ul>
+						<div class="page clearfix">{$list['multi']}</div>
+					</div>
+				</div>
+				<!--{template common/v3_newslist_side}-->
+			</div>
 		</div>
-	</div>
-</div>
-<!-- main end -->
+		<!-- main end -->
 <!--{template common/new/footer}-->

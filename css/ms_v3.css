@@ -708,8 +708,13 @@ body {
 	padding: 20px 0 0 25px;
 }
 
-.bmlogos{
+.wxsycen {
+	position:relative;
+}
+
+.bmlogos {
 	width:50%;
+	margin: 20px 0;
 }
 
 .bmlogos .dlist {
@@ -791,7 +796,7 @@ body {
 
 .bmlogos h4 {
     color: #c30000;
-    margin: 20px;
+    margin: 0 20px 15px;
     font-size: 16px;
     background: url("../images/v3/jiantou.jpg") no-repeat left 6px;
     padding: 0 0px 10px 20px;
@@ -1000,10 +1005,13 @@ body {
 	color:#478fca;
 	
 }
+.dsub_nav .nav_jt .last  {
+	color:#d40000;
+}
 
 .dsub_nav .small_jt {
 	background:url(../images/v3/nav_jt2.jpg) no-repeat left center;
-	padding-left:16px;
+	padding-left:8px;
 	color:#c30000;
 }
 
@@ -1184,6 +1192,7 @@ body {
 	width:285px;
 }
 
+/** 常见问题 */
 .cjwt {
 	margin: 40px 0;
 }
@@ -1290,6 +1299,34 @@ body {
 	float: right;
 	width: 670px;
 }
+
+
+.kdxx {
+	padding:25px 120px;
+}
+
+.kdxx .title {
+	text-align:center;
+	font-size:20px;
+	border-bottom:1px solid #dcdcdc;
+	padding:0 0 10px 0;
+}
+
+#abstract-wrapper {
+	width:580px;
+	padding:10px 20px;
+	margin:20px auto;
+	color:#464646;
+	border:1px solid #e3e2e2;
+}
+
+#context-wrapper {
+	text-indent:2em;
+    border-bottom: 1px solid #e3e2e2;
+    margin: 0 0 25px 0;
+    padding: 0 0 10px 0;
+}
+
 .weidesc {
     width: 282px;
     line-height: 24px;
