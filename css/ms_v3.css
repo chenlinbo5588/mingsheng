@@ -352,7 +352,7 @@ body {
 	
 }
 .dmain_v3 {
-	padding:23px 26px;
+	padding:23px 25px;
 }
 
 .dmain_v3 .first_news {
@@ -443,6 +443,10 @@ body {
 	line-height: 41px;
     text-indent: 14px;
 	background:url("../images/v3/main_title.jpg") no-repeat left top;
+}
+
+.bktitle h2.lgtext {
+    text-indent: 10px;
 }
 
 .bktitle .moreLink {
@@ -1325,6 +1329,121 @@ body {
     border-bottom: 1px solid #e3e2e2;
     margin: 0 0 25px 0;
     padding: 0 0 10px 0;
+}
+
+
+.video_news {
+}
+
+.video_news .video_item {
+	width:343px;
+	float:left;
+}
+
+.video_news .video_bd {
+    border: 1px solid #dddddd;
+    border-width:0 1px 0 1px;  
+}
+
+
+.video_item .video_bg_top {
+    background:url(../images/v3/xinwen_video_t_bg.jpg) no-repeat left top;
+    height:5px;
+}
+
+.video_item .video_bg_bottom {
+    background:url(../images/v3/xinwen_video_b_bg.jpg) no-repeat left top;
+    height:5px;
+}
+
+.video_bd .video_desc {
+    position:relative;
+    background:url(../images/v3/xin_video_desc.jpg) no-repeat left top;
+    height:258px;
+}
+
+.video_bd .video_content {
+    width:334px;
+    margin:0 auto;	
+}
+
+.video_content .video_title, .video_content .video_date , .video_content .video_author , .video_content .video_summary , .video_content .more_link {
+    display:block;
+    position:absolute;
+    left:95px;
+    width:235px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+.video_content .video_title {
+	top:10px;
+	color:#0e86ca;
+	height: 40px;
+    font-size: 14px;
+}
+
+.video_content .video_date {
+    top:67px;
+}
+
+.video_content .video_author {
+	top:105px;
+	height:20px;
+}
+
+.video_content .video_summary {
+	top: 142px;
+	text-indent: 2em;
+    height: 70px;
+}
+
+.video_content .more_link {
+	bottom: 8px;
+	left: 220px;
+	color: #0c457c;
+	font-size: 14px;
+}
+
+.xwfbh {
+    margin: 0 0 60px 0;
+}
+
+#xwfbh {
+    
+}
+
+#xwfbg_2 {
+	position:relative;
+	left:20px;
+}
+
+#msmdm {
+	right: -40px;
+	position: relative;
+}
+
+
+.jplist .module {
+    padding:0 20px 0 40px;
+}
+
+.jplist .module dl {
+    border-bottom: 1px dashed #cccccc;
+    padding: 5px 0;
+}
+
+.jplist .module .item_1 {
+	border-top: 1px dashed #cccccc;
+}
+
+.jplist .module .m {
+    border: 3px solid #eaeaea;
+    padding: 2px;
+}
+
+.jplist .box_middle {
+    padding: 20px 0;	
 }
 
 .weidesc {

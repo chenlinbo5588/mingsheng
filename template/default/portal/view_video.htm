@@ -1,0 +1,42 @@
+<!--{template common/new/top_nav2}-->
+<!--[name]{lang portalcategory_viewtplname}[/name]-->
+<!-- main start -->
+<div class="dsub_nav">
+    <div class="mnav nav_jt">
+        <h1>
+            <a href="$_G[setting][navs][1][filename]">{lang nav_index}</a> <em class="small_jt">&nbsp;&nbsp;</em>
+            <!--{loop $cat[ups] $value}-->
+                <a href="{echo getportalcategoryurl($value[catid])}">$value[catname]</a><em class="small_jt">&nbsp;&nbsp;</em>
+            <!--{/loop}-->
+            <a href="{echo getportalcategoryurl($cat[catid])}">$cat[catname]</a> <em class="small_jt">&nbsp;&nbsp;</em>
+            <span class="last">{lang view_content_defined}</span>
+        </h1>
+        <div class="mline"></div>
+    </div>
+</div>
+<div class="dmain dmain_v3">
+	<div class="dmain_content">
+		<div class="clearfix" >
+			<div class="mleft fll">
+				
+				
+				aaaaaaaaaaaaaaaaaaaaaaa
+				
+			</div>
+			<div class="mright frr">
+				<div class="mybox jplist">
+		        	<div class="box_top"></div>
+					<div class="box_top2"><h3>访谈嘉宾</h3></div>
+					<div class="box_middle">
+						<!--{block/45}-->
+					</div>
+					<div class="box_bottom"></div>
+				</div>
+				<div class="clr"></div>
+			</div>
+		</div>
+	</div>
+	</div>
+	<!-- main end -->
+
+<!--{template common/new/footer}-->

@@ -1,21 +1,24 @@
 <!--{template common/new/top_nav2}-->
 <!--[name]{lang portalcategory_viewtplname}[/name]-->
+
+<div class="dsub_nav">
+    <div class="mnav nav_jt">
+        <h1>
+            <a href="$_G[setting][navs][1][filename]">{lang nav_index}</a> <em class="small_jt">&nbsp;&nbsp;</em>
+            <!--{loop $cat[ups] $value}-->
+                <a href="{echo getportalcategoryurl($value[catid])}">$value[catname]</a><em class="small_jt">&nbsp;&nbsp;</em>
+            <!--{/loop}-->
+            <a href="{echo getportalcategoryurl($cat[catid])}">$cat[catname]</a> <em class="small_jt">&nbsp;&nbsp;</em>
+            <span class="last">{lang view_content_defined}</span>
+        </h1>
+        <div class="mline"></div>
+    </div>
+</div>
+
 <!-- main start -->
 <div class="dmain">
 	<div class="dmain_content clearfix">
-		<div class="dsub_nav">
-			<div class="mnav nav_jt">
-				<h1>
-	                <a href="$_G[setting][navs][1][filename]">{lang nav_index}</a> <em class="small_jt">&nbsp;&nbsp;</em>
-	                <!--{loop $cat[ups] $value}-->
-	                    <a href="{echo getportalcategoryurl($value[catid])}">$value[catname]</a><em class="small_jt">&nbsp;&nbsp;</em>
-	                <!--{/loop}-->
-	                <a href="{echo getportalcategoryurl($cat[catid])}">$cat[catname]</a> <em class="small_jt">&nbsp;&nbsp;</em>
-	                <span class="last">{lang view_content_defined}</span>
-	            </h1>
-				<div class="mline"></div>
-			</div>
-        </div>
+		
 		<div class="mlist kdxx">
 			<h1 class="title">$article[title]</h1>
             <!--article information start-->
@@ -33,7 +36,6 @@
 			<!--{if $article[summary] && empty($cat[notshowarticlesummay])}--><div id="abstract-wrapper" class="abstract">{lang article_description}: $article[summary]</div><!--{/if}-->
 			
 			<div id="context-wrapper" class="contentText">$content[content]</div>
-            
             <script type="text/javascript">
                 function zoomFont(size) {
                     var des = document.getElementById('abstract-wrapper');

@@ -17,7 +17,7 @@ if(empty($catid)) {
 }
 $portalcategory = &$_G['cache']['portalcategory'];
 //echo $catid;
-print_r($portalcategory);
+//print_r($portalcategory);
 
 $cat = $portalcategory[$catid];
 
@@ -109,7 +109,7 @@ if ($catid == 7) {
     }
     ksort($catelist);
 }
-echo $primaltplname;
+//echo $primaltplname;
 include template('diy:'.$file, NULL, $tpldirectory, NULL, $primaltplname.$_G['debugtpl']);
 
 
