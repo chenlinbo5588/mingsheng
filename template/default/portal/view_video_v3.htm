@@ -20,35 +20,30 @@
 			<div class="mleft fll">
 				<div class="mn">
 					<div class="vw">
-						<div class="h hm video_article_title" >
-						
+						<div class="h video_article" >
 							<ul>
-								<li>$article[title] <!--{if $article['status'] == 1}-->({lang moderate_need})<!--{elseif $article['status'] == 2}-->({lang ignored})<!--{/if}--></li>
-								<li>{lang article_dateline}：$article[dateline]</li>
-								<li>$article[author]</li>
-								<li>$article[summary]</li>
-							
+								<li class="video_zt">$article[title]</li>
+								<li class="video_sj">$article[dateline]</li>
+								<li class="video_jb">$article[author]</li>
+								<li class="video_jj">$article[summary]</li>
 							</ul>
-							
 						</div>
-			
 						<!--[diy=diysummarytop]--><div id="diysummarytop" class="area"></div><!--[/diy]-->
 						<!--[diy=diysummarybottom]--><div id="diysummarybottom" class="area"></div><!--[/diy]-->
 			
 						<div class="d" style="margin: -40px 0 0 0;">
-							
 							<!--[diy=diycontenttop]--><div id="diycontenttop" class="area"></div><!--[/diy]-->
 							
 							<table cellpadding="0" cellspacing="0" class="vwtb"><tr><td id="article_content">
 								<!--{ad/article/a_af/1}-->
-								<div class="bktitle" style="top: 560px;">
+								<div class="bktitle" style="top: 620px;">
 					              	<h2>文字实录</h2>
 					              	<span></span>
 					            </div>
-					            $content[content]
+					            <div class="video_article_c">$content[content]</div>
 							</td></tr></table>
 							<!--{hook/view_article_content}-->
-							<!--{if $multi}--><div class="ptw pbw cl">$multi</div><!--{/if}-->
+							<!--{if $multi}--><div class="ptw pbw cl clearfix">$multi</div><!--{/if}-->
 			
 							<!--[diy=diycontentbottom]--><div id="diycontentbottom" class="area"></div><!--[/diy]-->
 			
@@ -211,10 +206,10 @@
 				<input type="hidden" id="portalview" value="1">
 				
 			</div>
-			<div class="mright frr" style="margin:400px 0 0 0;">
+			<div class="mright frr" style="margin:580px 0 0 0;">
 				<div class="mybox jplist">
 		        	<div class="box_top"></div>
-					<div class="box_top2"><h3>访谈嘉宾</h3></div>
+					<div class="box_top2"><h3>访谈回顾</h3></div>
 					<div class="box_middle">
 						<!--{block/45}-->
 					</div>

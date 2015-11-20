@@ -302,13 +302,20 @@ function checkhtml($html) {
 	return $html;
 }
 
-function blog_bbcode($message) {
-	$message = preg_replace("/\[flash\=?(media|real|mp3)*\](.+?)\[\/flash\]/ie", "blog_flash('\\2', '\\1')", $message);
+function blog_bbcode($message , $size = array()) {
+	if($size){
+		$width = $size['width'];
+		$height = $size['height'];
+		
+		$message = preg_replace("/\[flash\=?(media|real|mp3)*\](.+?)\[\/flash\]/ie", "blog_flash('\\2', '\\1','{$width}','{$height}')", $message);
+	}else{
+		$message = preg_replace("/\[flash\=?(media|real|mp3)*\](.+?)\[\/flash\]/ie", "blog_flash('\\2', '\\1')", $message);
+	}
+	
 	return $message;
 }
-function blog_flash($swf_url, $type='') {
-	$width = '520';
-	$height = '390';
+function blog_flash($swf_url, $type='' , $width = '520', $height = '390') {
+	
 	preg_match("/((https?|ftp|gopher|news|telnet|rtsp|mms|callto|bctp|thunder|qqdl|synacast){1}:\/\/|www\.)[^\[\"']+/i", $swf_url, $matches);
 	$swf_url = $matches[0];
 	if ($type == 'media') {

@@ -73,7 +73,15 @@ if($article['contents'] && $article['showinnernav']) {
 }
 
 require_once libfile('function/blog');
-$content['content'] = blog_bbcode($content['content']);
+
+if($article['catid'] == 4 || $article['catid'] == 5){
+	//新闻发布会和民生面对面视频新闻
+	$content['content'] = blog_bbcode($content['content'], array('width'=>640 ,'height' => 515));
+}else{
+	$content['content'] = blog_bbcode($content['content']);
+}
+
+
 
 if(!empty($_G['setting']['makehtml']['flag']) && $article['htmlmade']) {
 	$_caturl = $_G['cache']['portalcategory'][$cat['topid']]['domain'] ? $_G['cache']['portalcategory'][$cat['topid']]['caturl'] : '';
