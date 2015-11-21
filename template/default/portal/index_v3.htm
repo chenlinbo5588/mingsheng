@@ -59,7 +59,7 @@
             </div>
             <div class="sublist frr">
             	<div class="bktitle">
-                	<h2 style="text-indent:10px;">新闻发布会<a class="moreLink" href="/portal.php?mod=list&catid=3" target="_blank">&nbsp;</a></h2>
+                	<h2 class="lgtext">新闻发布会<a class="moreLink" href="/portal.php?mod=list&catid=3" target="_blank">&nbsp;</a></h2>
                 	<span></span>
                 </div>
                 <div class="mlist mlisthome">
@@ -86,18 +86,13 @@
               </div>
         </div>
         
-        
-       	<div class="asklc  clearfix">
-             <a href="/portal.php?mod=view&aid=12" class="guide guide1" target="_blank">发帖须知</a>
-             <a href="/portal.php?mod=list&catid=6" class="guide guide2" target="_blank">常见问题</a>
-             <a href="/portal.php?mod=list&catid=7" class="guide guide3" target="_blank">部门职责</a>
-             <a href="/forum.php" class="guide guide4" target="_blank">镇街连线</a>
-             <a href="/forum.php" class="guide guide5" target="_blank">我要提问</a>
-         </div>
-       
-       <div class="ask-online-new"></div>
-       
-       
+       	<div class="asklc clearfix">
+           <a href="/portal.php?mod=view&aid=12" class="guide guide1" target="_blank" title="发帖须知">&nbsp;</a>
+           <a href="/portal.php?mod=list&catid=6" class="guide guide2" target="_blank" title="常见问题">&nbsp;</a>
+           <a href="/portal.php?mod=list&catid=7" class="guide guide3" target="_blank" title="部门职责">&nbsp;</a>
+           <a href="/forum.php" class="guide guide4" target="_blank" title="镇街连线">&nbsp;</a>
+           <a href="/forum.php" class="guide guide5" target="_blank" title="我要提问">&nbsp;</a>
+       </div>
        
        <div class="askul">
        		<div class="askul_item">
@@ -215,7 +210,7 @@
         </div>
         
         
-        <div class="mybox_long">
+        <div class="mybox mybox_long">
         	<div class="box_top"></div>
         	<div class="box_top2"><h3>最新回复</h3><a class="moreLink" href="/forum.php?mod=guide&view=new"  target="_blank">更多</a></div>
         	<div class="box_middle" style="padding-bottom:20px;">
@@ -232,11 +227,11 @@
         	<div class="box_top2"><h3>问效数据</h3><a class="moreLink" href="/forum.php"  target="_blank">更多</a></div>
         	<div class="box_middle">
         		<div class="timg"><img src="images/v3/home_kh3.jpg"/></div>
-        		<div class="bgtj">
-                    <div class="row11"><span class="forum-num">总发帖：</span><strong>{$allposts}</strong></div>
-                    <div class="row12"><span class="forum-num">用户数：</span><strong>{$allmembers}</strong></div>
-                    <div class="row21"><span class="forum-num">在受理：</span><strong>{$nowdeals}</strong></div>
-                    <div class="row22"><span class="forum-num">总回复：</span><strong>{$allreplies}</strong></div>
+        		<div class="bgtj clearfix">
+                    <div class="row1"><span class="forum-num">总发帖：</span><strong>{$allposts}</strong></div>
+                    <div class="row1"><span class="forum-num">用户数：</span><strong>{$allmembers}</strong></div>
+                    <div class="row2"><span class="forum-num">在受理：</span><strong>{$nowdeals}</strong></div>
+                    <div class="row2"><span class="forum-num">总回复：</span><strong>{$allreplies}</strong></div>
                 </div>
         	</div>
         	<div class="box_bottom"></div>
@@ -245,19 +240,19 @@
     <div class="clr"></div>
 </div>
 
-<div class="four">
+<div class="four" >
 	<div class="fayanren"></div>
     <div class="wxsycen clearfix">
-        <div class="bmlogos fll">
+        <div class="bmlogos fll" style="border-right: 1px dashed #cccccc;;">
         	<h4>问效部门</h4>
         	<div class="dlist bmlist"><!--{block/5}--></div>
         </div>
-        <div class="bmlogos frr">
+        <div class="bmlogos frr" style="width:49%;">
         	<h4>问效镇街</h4>
             <div class="dlist zjlist"><!--{block/12}--></div>
         </div>
         
-        <div style="position:absolute;top:20px;left:50%;width:1px;height:95%;border-right:1px dotted #cccccc;"></div>
+        
     </div>
 </div>
 <!--{template common/new/footer}-->

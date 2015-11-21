@@ -18,6 +18,7 @@ body,div,ul,ol,li,dl,dt,dd,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input
 .clearfix { *zoom: 1;clear:both }
 
 
+
 .fll{
 	float: left;
 }
@@ -34,6 +35,8 @@ a{
 .clr{
 	clear: both;
 }
+
+
 
 
 button {
@@ -101,17 +104,27 @@ body {
 .menu .nav li {
     float:left;
     display:block;
+    height:60px;
+}
+
+.subpage .menu .nav li {
+    height:auto;
 }
 
 .menu .nav li a {
     display:block;
     float:left;
     color:#fff;
+    background:#0068b7;
     font-size:16px;
     height:40px;
     line-height:40px;
     padding: 10px 20px;
     text-align: center;
+}
+
+.subpage .menu .nav li a {
+    background:none;
 }
 
 .menu .nav li a:hover {
@@ -143,8 +156,6 @@ body {
     top:0px;
 }
 
-
-
 #scform_srchtxt {
     position:relative;
     left:10px;
@@ -156,17 +167,20 @@ body {
     position: relative;
 }
 
-.moreLink {
+
+.bktitle .moreLink {
 	position:absolute;
-	right:0px;
-	top:0px;
-	/*
+    right:0px;
+    top:0px;
+    display:block;
+    background:url("../images/v3/bktitle_more.jpg") no-repeat left top;
+}
+
+.mybox .moreLink  {
 	float:right;
-	margin: -15px 15px 0 0 ;*/
-	width:16px;
-	height:16px;
-	display:block;
-	background:url("../images/v3/see_more.png") no-repeat left top;
+	display:inline;
+	background:url("../images/v3/mybox_more.jpg") no-repeat left top;
+	margin:-20px 20px 0 0;
 }
 
 
@@ -225,9 +239,7 @@ body {
 }
 
 .msecond{
-	position:relative;
-	margin: 5px 0 10px;
-	
+	margin: 5px 0 0 0;
 }
 
 
@@ -406,7 +418,11 @@ body {
 }
 
 .mmskd .moreLink {
-	top:2px;
+	position:absolute;
+	right:10px;
+	top:10px;
+	background:url(../images/v3/topnews_more.jpg) no-repeat left top;
+	
 }
 
 .mscon{
@@ -449,7 +465,7 @@ body {
 }
 
 .bktitle h2.lgtext {
-    text-indent: 10px;
+    text-indent: 8px;
 }
 
 .bktitle .moreLink {
@@ -508,13 +524,14 @@ body {
 	height: 229px;
 	background: url("../images/viewbg.jpg") no-repeat;
 }
+
 .secright{
 	float: right;
 	width:376px;
 }
 
 .secright .mybox_long {
-	margin: 15px 0;
+	1margin: 15px 0;
 }
 
 .mmskd {
@@ -532,8 +549,6 @@ body {
 }
 
 
-
-
 .askul{
 	padding: 0;
 }
@@ -545,12 +560,14 @@ body {
 .askul ul,.askul ul li{
 	list-style: none;
 }
+
 .askul ul li{
 	height: 40px;
 	line-height: 40px;
 	vertical-align: middle;
     text-align: center;
 }
+
 .askul ul li div{
 	float: left;
 }
@@ -630,10 +647,22 @@ body {
     width: 376px;
 }
 
+.secright .xq {
+	padding: 0 0 0 10px;
+	margin: 15px 0;
+}
+
+
+  
+
 .four {
 	border:1px solid #dbdbdb;
 	border-width: 0px 1px 1px 1px;
+	margin-top:20px;
+	_padding:0 0 20px 0;
 }
+
+
 
 
 .four .fayanren {
@@ -722,7 +751,9 @@ body {
 .bmlogos {
 	width:50%;
 	margin: 20px 0;
+    
 }
+
 
 .bmlogos .dlist {
 	padding: 0 0px 0 20px;
@@ -788,7 +819,7 @@ body {
     line-height: 37px;
     color: #ffffff;
     display: block;
-    width: 118px;
+    width: 115px;
     background-color: #6fb3e0;
     margin: 0px 16px 15px 0;
 }
@@ -919,6 +950,8 @@ body {
     font-size:12px;
     cursor:pointer;
     text-indent:-1000em;
+    width:16px;
+    height:16px;
 }
 
 .showno {
@@ -930,7 +963,7 @@ body {
 
 .hotlink  {
 	background:url(../images/v3/site_links2.jpg) no-repeat left top;
-	width:120px;
+	width:119px;
 	height:101px;
 	display:block;
 	float:left;
@@ -941,6 +974,10 @@ body {
 
 .hotlink:hover {
     text-decoration: none;
+}
+
+.helpsound {
+    margin:0 0 20px 0;
 }
 
 .helpsound .hot-1 {
@@ -969,8 +1006,7 @@ body {
 .homepage h3 {
   font-size: 16px;
   color: #c30000;
-  padding: 0px 0 20px 0;
-  line-height: 15px;
+  margin: 0px 0 20px 0;
 }
 
 .homepage .hotlink  {
@@ -1004,7 +1040,7 @@ body {
 }
 
 .dsub_nav .mnav {
-	background:url(../images/v3/nav_jt.jpg) no-repeat left center;
+	background:url(../images/v3/nav_jt.jpg) no-repeat 0 2px;
 	padding-left:20px;
 }
 
@@ -1060,22 +1096,27 @@ body {
     left:60px;
     top:30px;
 }
+.mybox  {
+    background:url(../images/v3/box_bg.jpg) repeat-y;	
+}
 
+.mybox_long {
+	background:url(../images/v3/long_bg.jpg) repeat-y;
+}
 
 .mybox .box_top {
 	background:url(../images/v3/box_top.jpg) no-repeat right top;
 	height:19px;
 }
 .mybox .box_top2 {
-	1position:relative;
-	background:url(../images/v3/box_top2.jpg) no-repeat  right top;
+	background:url(../images/v3/yuan.jpg) no-repeat 11px center;
 }
 .mybox .box_middle {
 	background:url(../images/v3/box_bg.jpg) repeat-y;
 }
 
 .mybox .box_bottom {
-	background:url(../images/v3/box_bottom.jpg) repeat-y;
+	background:url(../images/v3/box_bottom.jpg) no-repeat right bottom;
 	height:13px;
 }
 
@@ -1085,8 +1126,7 @@ body {
 }
 
 .mybox_long .box_top2 {
-	background:url(../images/v3/long_top2.jpg) no-repeat right top;
-	height:21px;
+	background:url(../images/v3/yuan.jpg) no-repeat 5px center;
 }
 
 .mybox_long .box_middle {
@@ -1094,12 +1134,12 @@ body {
 }
 
 .mybox_long .box_bottom {
-	background:url(../images/v3/long_bottom.jpg) repeat-y;
+	background:url(../images/v3/long_bottom.jpg) no-repeat right bottom;
 	height:12px;
 }
 
 .mybox_long .box_top2 h3 {
-	text-indent:30px;
+	1text-indent:30px;
 }
 
 .mybox_long .timg {
@@ -1129,16 +1169,16 @@ body {
     padding-left:0;
 }
 .mybox_long .gzph li span {
-    width: 20px;
-  background: url(../images/v3/num_bg.jpg) no-repeat center center;
-  font-size: 10px;
-  margin: 0 10px 0 0;
-  height: 15px;
-  color: #fff;
-  text-align: center;
-  float: left;
-  display: block;
-  height: 30px;
+	  width: 20px;
+	  background: url(../images/v3/num_bg.jpg) no-repeat center center;
+	  font-size: 10px;
+	  margin: 0 10px 0 0;
+	  height: 15px;
+	  color: #fff;
+	  text-align: center;
+	  float: left;
+	  display: block;
+	  height: 30px;
 }
 
 .mybox .news_tj {
@@ -1147,23 +1187,13 @@ body {
 	
 }
 
-.box_top2 {
-    position:relative;
-    display:block;
-}
-
 .box_top2 h3 {
 	font-size:16px;
 	color:#c30000;
 	text-indent: 40px;
-    line-height: 15px;
 }
 
 
-.box_top2 .moreLink {
-	right: 20px;
-    top: 0px;
-}
 
 .news_tj dt {
 	padding:5px 0;
@@ -1219,34 +1249,16 @@ body {
 }
 
 .bgtj {
-    height:60px;
-    position:relative;
+    padding: 0 0 0 30px;
 }
 
 .bgtj div {
-    position:absolute;
+    width:45%;
+    float:left;
     font-size:14px;
+    margin: 5px 0;
 }
 
-.bgtj .row11 {
-   left: 35px;
-  top: 10px
-}
-
-.bgtj .row12 {
-   left: 195px;
-  top: 10px
-}
-
-.bgtj .row21 {
-   left: 35px;
-  top: 40px;
-}
-
-.bgtj .row22 {
-   left: 195px;
-  top: 40px;
-}
 
 .bgtj .forum-num {
     color:#11619e;
@@ -1257,7 +1269,9 @@ body {
 .guide {
     background:url(../images/v3/5icon.jpg) no-repeat ;
     width:146px;
+    _width:145px;
     height:138px;
+    
     display: block;
     float: left;
     text-indent: -1000em;
@@ -1334,81 +1348,64 @@ body {
 
 
 .video_news {
+	
 }
 
 .video_news .video_item {
 	width:343px;
+	height:528px;
 	float:left;
+	position:relative;
+	background:url(../images/v3/video_bg.jpg) no-repeat left top;
 }
 
 .video_news .video_bd {
-    border: 1px solid #dddddd;
-    border-width:0 1px 0 1px;  
+    1border: 1px solid #dddddd;
+    1border-width:0 1px 0 1px;  
 }
 
-
-.video_item .video_bg_top {
-    background:url(../images/v3/xinwen_video_t_bg.jpg) no-repeat left top;
-    height:5px;
-}
-
-.video_item .video_bg_bottom {
-    background:url(../images/v3/xinwen_video_b_bg.jpg) no-repeat left top;
-    height:5px;
-}
-
-.video_bd .video_desc {
-    position:relative;
-    background:url(../images/v3/xin_video_desc.jpg) no-repeat left top;
-    height:258px;
-}
-
-.video_bd .video_content {
-    width:334px;
-    margin:0 auto;	
+.video_content {
+    padding:5px 4px;
 }
 
 .video_content .video_title, .video_content .video_date , .video_content .video_author , .video_content .video_summary , .video_content .more_link {
     display:block;
     position:absolute;
-    left:95px;
+    left:105px;
     width:235px;
     overflow:hidden;
     text-overflow: ellipsis;
 }
 
 .video_content .video_title {
-	top:10px;
-	color:#0e86ca;
-	height: 40px;
+    top:273px;
+    color:#0e86ca;
+    height: 40px;
     font-size: 14px;
 }
 
 .video_content .video_date {
-    top:67px;
+    top:332px;
 }
 
 .video_content .video_author {
-	top:105px;
-	height:20px;
+    top:369px;
+    height:20px;
 }
 
 .video_content .video_summary {
-	top: 142px;
-	text-indent: 2em;
+    top: 408px;
+    text-indent: 2em;
     height: 70px;
 }
 
 .video_content .more_link {
-	bottom: 8px;
-	left: 220px;
-	color: #0c457c;
-	font-size: 14px;
+    bottom: 12px;
+    left: 220px;
+    color: #0c457c;
+    font-size: 14px;
 }
 
-.xwfbh {
-    margin: 0 0 60px 0;
-}
 
 #xwfbh {
     
@@ -1422,6 +1419,12 @@ body {
 #msmdm {
 	right: -40px;
 	position: relative;
+}
+
+
+
+.xwfbh {
+    margin: 0 0 60px 0;
 }
 
 
@@ -1748,12 +1751,21 @@ body {
 }
 
 .plist ul li {
+	/*
     list-style:none;
     position:relative;
     padding: 0 0 0 10px;
     background:url("../images/v3/dian.jpg") no-repeat left center;
     margin: 15px 0px;
+    */
     
+    list-style: none;
+	  position: relative;
+	  padding: 0 0 0 10px;
+	  background: url("../images/v3/dian.jpg") no-repeat left center;
+	  /* margin: 15px 0px; */
+	  height: 35px;
+	  line-height: 35px;
 }
 
 .plist ul li.sepline {
@@ -1937,22 +1949,36 @@ body {
 }
 
 .slides .slidesjs-navigation {
-
+    background:url(../images/v3/nav.png) no-repeat left top;
+    width:30px;
+    height:60px;
+    position:absolute;
+	border: 1px solid red;
+	top: 0;
+	z-index: 20;
+	
+}
+.slides .slidesjs-navigation:hover {
+	1background:rgba(0,0,0,0.6) url(../images/v3/nav.png) no-repeat left top;
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType = 0, startColorstr = #60000000, endColorstr = #60000000)\9; 
 }
 
 .slides .slidesjs-previous {
-	
-  
-  top: 0;
-  left: 0;
-  
-  
+	background-position:-60px 0;
+	left:0;
+}
+
+.slides .slidesjs-previous:hover {
+	background-position:0 0;
 }
 
 .slides .slidesjs-next {
-	top: 0;
-  left: 600px;
-  
+    background-position:-60px 0;
+    right:0;
+}
+
+.slides .slidesjs-next:hover {
+    background-position:-60px -60px;
 }
 
 .slides .slidesjs-play ,
@@ -1967,6 +1993,7 @@ body {
     list-style: none;
     position: relative;
     z-index: 20;
+    
 }
 
 .slidesjs-pagination li {
@@ -2008,6 +2035,13 @@ body {
 	overflow: hidden
 }
 
+
+.alpha {
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType = 0, startColorstr = #50000000, endColorstr = #50000000)\9; 
+    
+}
+
+
 #home_slides .atitle {
 	display:block;
 	position:absolute;
@@ -2018,9 +2052,10 @@ body {
 	color:white;
 	*zoom:1;
 	font-size:16px;
-	background-color: #000000;
+	
 	background:rgba(0,0,0,0.6);  
-    background:#000 9;/*CSS Hack,只能对ie9以下浏览器ie6,ie7,ie8有效，否侧ie10,FF,Cherome会失去透明效果*/  
+    
+    filter: progid:DXImageTransform.Microsoft.gradient(gradientType = 0, startColorstr = #60000000, endColorstr = #60000000)\9; 
 	text-indent:20px;
 	padding:5px 0 0 0;
 }
