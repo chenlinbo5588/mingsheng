@@ -1,209 +1,222 @@
-<!--{template common/new/top_nav}-->
-<div class="boardnav">
-    <!--{template forum/top_forumlist}-->
-    <div id="pt" class="bm cl">
-        <!--{if empty($gid) && $announcements}-->
-        <div class="y">
-            <div id="an">
-                <dl class="cl">
-                    <dt class="z xw1">{lang announcements}:&nbsp;</dt>
-                    <dd>
-                        <div id="anc"><ul id="ancl">$announcements</ul></div>
-                    </dd>
-                </dl>
-            </div>
-            <script type="text/javascript">announcement();</script>
-        </div>
-        <!--{/if}-->
-        <div class="z">
-            <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="forum.php">{$_G[setting][navs][2][navname]}</a>$navigation
-        </div>
-        <div class="z"><!--{hook/index_status_extra}--></div>
-    </div>
-	<div id="ct" class="wp cl{if $_G['forum']['allowside']} ct2{/if}"{if $leftside} style="margin-left:{$_G['leftsidewidth_mwidth']}px"{/if}>
-		<div class="mn">
-            <!--
-			<div class="bm bml pbn">
-				<div class="bm_h cl">
-					<!--{if $view != 'index' && $view != 'my'}-->
-					<span class="y">
-						<a href="forum.php?mod=guide&view=$view&rss=1" class="fa_rss" target="_blank" title="RSS">{lang rss_subscribe_this}</a>
-					</span>
-					<!--{/if}-->
-					<h1 class="xs2">
-						$lang['guide_'.$view]
-					</h1>
-				</div>
-                
-				<!--{if $view != 'my'}-->
-				<div class="bm_c cl pbn">
-					<div style=";" id="forum_rules_1163">
-						<div class="ptn xg2">$lang['guide_'.$view.'_description']</div>
-					</div>
-				</div>
-				<!--{/if}-->
-			</div>
-            -->
-            <!--
-			<!--{if $view != 'index'}-->
-			<div id="pgt" class="bm bw0 pgs cl">
-				$multipage
-				<a onclick="showWindow('nav', this.href, 'get', 0)" href="forum.php?mod=misc&amp;action=nav"><img src="{IMGDIR}/pn_post.png" alt="{lang send_posts}" /></a>
-			</div>
-			<!--{/if}-->
-            -->
-            <!--{if empty($gid)}-->
-            <div id="chart" class="bm bw0 cl">
-                <p class="z clearfix">
-                    <!--{if $_G['uid']}-->
-                    <strong class="vwmy{if $_G['setting']['connect']['allow'] && $_G[member][conisbind]} qq{/if}"><a href="/home.php?mod=spacecp&ac=profile" title="{lang visit_my_space}">{$_G[member][username]}</a></strong> &nbsp;
-                    <a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a> |
-                    <a href="home.php?mod=space&do=pm" title="{lang pm_center}">{lang pm_center}
-                        <!--{if $newpmcount > 0}-->
-                        ({$newpmcount})
-                        <!--{/if}-->
-                    </a> &nbsp;
-                    <a href="home.php?mod=spacecp" title="{lang setup}">{lang setup}</a>
-                    <!--{/if}-->
-
-                    <!--{if $_G['uid']}-->                    
-                    <span class='user-profile'>
-                    <!--{eval $creditid=$_G['setting']['creditstrans'];}-->
-                    <!--{if $_G['setting']['extcredits'][$creditid]}-->
-                    <!--{eval $credit=$_G['setting']['extcredits'][$creditid]; }-->
-                    <em><!--{if $credit[img]}--> {$credit[img]}<!--{/if}--> {$credit[title]}: </em><!--{echo getuserprofile('extcredits'.$creditid);}--> {$credit[unit]} &nbsp; <!--{if ($_G['setting']['ec_ratio'] && ($_G['setting']['ec_tenpay_opentrans_chnid'] || $_G['setting'][ec_tenpay_bargainor] || $_G['setting']['ec_account'])) || $_G['setting']['card']['open']}--><a href="home.php?mod=spacecp&ac=credit&op=buy" class="xi2">{lang card_use}&raquo;</a><!--{/if}--> |
-                    <!--{/if}-->
-                    <!--{loop $_G['setting']['extcredits'] $id $credit}-->
-                    <!--{if $id!=$creditid}-->
-                    <em><!--{if $credit[img]}--> {$credit[img]}<!--{/if}--> {$credit[title]}: </em><!--{echo getuserprofile('extcredits'.$id);}--> {$credit[unit]}|
-                    <!--{/if}-->
-                    <!--{/loop}-->
-                    <em>{lang credits}: </em>$_G['member']['credits']
-                    </span>
-                    <!--{/if}-->
-                </p>
-            </div>
-        <!--{/if}-->
-        <!--[diy=diy_chart]--><div id="diy_chart" class="area"></div><!--[/diy]-->
-            
-            <ul id="thread_types" class="ttp bm cl">
-                <li <!--{if empty($_GET['view']) || $_GET['view'] == 'all' }-->class="xw1 a"<!--{/if}-->><a href="forum.php<!--{if $_GET['gid']}-->?gid=$_GET['gid']<!--{/if}-->">{lang guide_all}</a></li>
-                <li <!--{if $_GET['view'] == 'zxqz'}-->class="xw1 a"<!--{/if}-->><a href="forum.php?mod=guide&view=zxqz<!--{if $_GET['gid']}-->&gid=$_GET['gid']<!--{/if}-->">{lang guide_zxqz}</a></li>
-                <li <!--{if $_GET['view'] =='tsjb'}-->class="xw1 a"<!--{/if}-->><a href="forum.php?mod=guide&view=tsjb<!--{if $_GET['gid']}-->&gid=$_GET['gid']<!--{/if}-->">{lang guide_tsjb}</a></li>
-                <li <!--{if $_GET['view'] =='jyxc'}-->class="xw1 a"<!--{/if}-->><a href="forum.php?mod=guide&view=jyxc<!--{if $_GET['gid']}-->&gid=$_GET['gid']<!--{/if}-->">{lang guide_jyxc}</a></li>
-            </ul>
-			<!--{hook/guide_top}-->
-			<!--{if $view == 'index'}-->
-				<!--{loop $data $key $list}-->
-				<div class="bm bmw">
-					<div class="bm_h">
-						<a href="forum.php?mod=guide&view=$key" class="y xi2">{lang more} &raquo;</a>
-						<h2>
-							<!--{if $key == 'hot'}-->{lang guide_hot}<!--{elseif $key == 'digest'}-->{lang guide_digest}<!--{elseif $key == 'newthread'}-->{lang guide_newthread}<!--{elseif $key == 'new'}-->{lang guide_new}<!--{elseif $key == 'my'}-->{lang guide_my}<!--{/if}-->
-						</h2>
-					</div>
-					 <div class="bm_c">
-					 	<div class="xl xl2 cl">
-					 		<!--{if $list['threadcount']}-->
-					 			<!--{eval $i=0;}-->
-					 			<!--{loop $list['threadlist'] $thread}-->
-					 			<!--{eval $i++;$newtd=$i%2;}-->
-					 			<li{if !$newtd} class="xl2_r"{/if}>
-						 			<em>
-							 			<!--{if $key == 'hot'}--><span class="xi1">$thread['heats']{lang guide_attend}</span><!--{/if}-->
-							 			<!--{if $key == 'new'}-->$thread['lastpost']<!--{/if}-->
-						 			</em>
-						 			
-						 			<i>&middot; <a href="forum.php?mod=viewthread&tid=$thread[tid]&{if $_GET['archiveid']}archiveid={$_GET['archiveid']}&{/if}extra=$extra"$thread[highlight] target="_blank">$thread[subject]</a></i>&nbsp;<span class="xg1"><a href="forum.php?mod=forumdisplay&fid=$thread[fid]" target="_blank">$list['forumnames'][$thread[fid]]['name']</a></span>
-					 			</li>
-					 			<!--{/loop}-->
-					 		<!--{else}-->
-					 				<p class="emp">{lang guide_nothreads}</p>
-					 		<!--{/if}-->
-					 	</div>
-					</div>
-				</div>
-				<!--{/loop}-->
-			<!--{else}-->
-				<!--{loop $data $key $list}-->
-				<div id="threadlist" class="tl bm bmw"{if $_G['uid']} style="position: relative;"{/if}>
-					<div class="th">
-						<table cellspacing="0" cellpadding="0">
-							<tr>
-								<th colspan="2">
-									{lang title}
-									<!--{if $view == 'my'}-->
-									&nbsp;&nbsp;&nbsp;
-										<a href="forum.php?mod=guide&view=my&type=thread" $orderactives[thread]>{lang forum_threads}</a><span class="pipe">|</span>
-										<a href="forum.php?mod=guide&view=my&type=reply" $orderactives[reply]>{lang reply}</a><span class="pipe">|</span>
-										<a href="forum.php?mod=guide&view=my&type=postcomment" $orderactives[postcomment]>{lang comments}</a><span class="pipe">|</span>
-										<!--{if $viewtype != 'postcomment'}-->
-											<a href="#" onclick="var displayvalue = $('searchbody').style.display == 'none' ? '' : 'none';$('searchbody').style.display=displayvalue; return false;">{lang screening}</a>
-										<!--{/if}-->
-									<!--{/if}-->
-								</th>
-								<td class="by">{lang forum_group}</td>
-								<td class="by">{lang author}</td>
-								<td class="num">{lang replies}</td>
-								<td class="by">{lang lastpost}</td>
-							</tr>
-							<!--{if $view == 'my'}-->
-							<tbody class="bw0_all" id="searchbody"{if !$searchbody} style="display: none"{/if}>
-								<tr>
-								<th colspan="6">&nbsp;
-									<form method="get" action="forum.php">
-										<input type="hidden" name="mod" value="guide">
-										<input type="hidden" name="view" value="my">
-										<input type="hidden" name="type" value="$viewtype">
-									<!--{if $viewtype != 'postcomment'}-->
-											{lang status}:
-											<select name="filter" id="filter">
-												<option value="">{lang all}</option>
-											<!--{loop $filter_array $fkey $name}-->
-												<option value="$fkey" {if $fkey == $_GET[filter]}selected{/if}>$name</option>
-											<!--{/loop}-->
-											</select>
-											{lang guide_forum_select}:
-											<select name="fid" id="forumlist">
-											<option value="0">{lang all}</option>
-												$forumlist
-											</select>
-									<!--{/if}-->
-									<!--{if $viewtype == 'thread'}-->
-									&nbsp; {lang keyword}: <input type="text" id="searchmypost" class="px vm" name="searchkey" size="20" value="$searchkey" >
-									<!--{/if}--><button class="pn vm"><em>{lang search}</em></button>
-									</form>
-								</th>
-							</tr>
-							</tbody>
-							<!--{/if}-->
-						</table>
-					</div>
-					<div class="bm_c">
-						<div id="forumnew" style="display:none"></div>
-							<table cellspacing="0" cellpadding="0">
-							<!--{subtemplate forum/guide_list_row}-->
-							</table>
-					</div>
-				</div>
-				<!--{/loop}-->
-				<div class="bm bw0 pgs cl">
-					$multipage
-					<span class="pgb y"><a href="forum.php?mod=guide">{lang forum_index}</a></span>
-				</div>
-			<!--{/if}-->
-			<!--{hook/guide_bottom}-->
-		</div>
+<!--{template common/new/top_nav2}-->
+<div class="dsub_nav">
+	<div class="mnav nav_jt">
+		<h1>
+			<a href="./" class="" title="{lang homepage}">$_G[setting][bbname]</a><em class="small_jt"></em>
+			<a href="forum.php">{$_G[setting][navs][2][navname]}</a><em class="small_jt"></em>
+			<span class="last">$navigation</span>
+        </h1>
 	</div>
 </div>
-<!--{if !IS_ROBOT}-->
-	<div id="filter_special_menu" class="p_pop" style="display:none">
-		<ul>
-			<li><a href="home.php?mod=space&do=poll&view=me" target="_blank">{lang thread_poll}</a></li>
-			<li><a href="home.php?mod=space&do=trade&view=me" target="_blank">{lang thread_trade}</a></li>
-			<li><a href="home.php?mod=space&do=reward&view=me" target="_blank">{lang thread_reward}</a></li>
-			<li><a href="home.php?mod=space&do=activity&view=me" target="_blank">{lang thread_activity}</a></li>
-		</ul>
+<div class="dmain dmain_v3">
+	<div class="boardnav">
+	    <!--{template forum/top_forumlist_v3}-->
+	    <div id="pt" class="bm cl">
+	        <!--{if empty($gid) && $announcements}-->
+	        <div class="y">
+	            <div id="an">
+	                <dl class="cl">
+	                    <dt class="z xw1">{lang announcements}:&nbsp;</dt>
+	                    <dd>
+	                        <div id="anc"><ul id="ancl">$announcements</ul></div>
+	                    </dd>
+	                </dl>
+	            </div>
+	            <script type="text/javascript">announcement();</script>
+	        </div>
+	        <!--{/if}-->
+	        <div class="z">
+	            <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="forum.php">{$_G[setting][navs][2][navname]}</a>$navigation
+	        </div>
+	        <div class="z"><!--{hook/index_status_extra}--></div>
+	    </div>
+		<div id="ct" class="wp cl{if $_G['forum']['allowside']} ct2{/if}"{if $leftside} style="margin-left:{$_G['leftsidewidth_mwidth']}px"{/if}>
+			<div class="mn">
+	            <!--
+				<div class="bm bml pbn">
+					<div class="bm_h cl">
+						<!--{if $view != 'index' && $view != 'my'}-->
+						<span class="y">
+							<a href="forum.php?mod=guide&view=$view&rss=1" class="fa_rss" target="_blank" title="RSS">{lang rss_subscribe_this}</a>
+						</span>
+						<!--{/if}-->
+						<h1 class="xs2">
+							$lang['guide_'.$view]
+						</h1>
+					</div>
+	                
+					<!--{if $view != 'my'}-->
+					<div class="bm_c cl pbn">
+						<div style=";" id="forum_rules_1163">
+							<div class="ptn xg2">$lang['guide_'.$view.'_description']</div>
+						</div>
+					</div>
+					<!--{/if}-->
+				</div>
+	            -->
+	            <!--
+				<!--{if $view != 'index'}-->
+				<div id="pgt" class="bm bw0 pgs cl">
+					$multipage
+					<a onclick="showWindow('nav', this.href, 'get', 0)" href="forum.php?mod=misc&amp;action=nav"><img src="{IMGDIR}/pn_post.png" alt="{lang send_posts}" /></a>
+				</div>
+				<!--{/if}-->
+	            -->
+	            <!--{if empty($gid)}-->
+	            <div id="chart" class="bm bw0 cl">
+	                <p class="z clearfix">
+	                    <!--{if $_G['uid']}-->
+	                    <strong class="vwmy{if $_G['setting']['connect']['allow'] && $_G[member][conisbind]} qq{/if}"><a href="/home.php?mod=spacecp&ac=profile" title="{lang visit_my_space}">{$_G[member][username]}</a></strong> &nbsp;
+	                    <a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a> |
+	                    <a href="home.php?mod=space&do=pm" title="{lang pm_center}">{lang pm_center}
+	                        <!--{if $newpmcount > 0}-->
+	                        ({$newpmcount})
+	                        <!--{/if}-->
+	                    </a> &nbsp;
+	                    <a href="home.php?mod=spacecp" title="{lang setup}">{lang setup}</a>
+	                    <!--{/if}-->
+	
+	                    <!--{if $_G['uid']}-->                    
+	                    <span class='user-profile'>
+	                    <!--{eval $creditid=$_G['setting']['creditstrans'];}-->
+	                    <!--{if $_G['setting']['extcredits'][$creditid]}-->
+	                    <!--{eval $credit=$_G['setting']['extcredits'][$creditid]; }-->
+	                    <em><!--{if $credit[img]}--> {$credit[img]}<!--{/if}--> {$credit[title]}: </em><!--{echo getuserprofile('extcredits'.$creditid);}--> {$credit[unit]} &nbsp; <!--{if ($_G['setting']['ec_ratio'] && ($_G['setting']['ec_tenpay_opentrans_chnid'] || $_G['setting'][ec_tenpay_bargainor] || $_G['setting']['ec_account'])) || $_G['setting']['card']['open']}--><a href="home.php?mod=spacecp&ac=credit&op=buy" class="xi2">{lang card_use}&raquo;</a><!--{/if}--> |
+	                    <!--{/if}-->
+	                    <!--{loop $_G['setting']['extcredits'] $id $credit}-->
+	                    <!--{if $id!=$creditid}-->
+	                    <em><!--{if $credit[img]}--> {$credit[img]}<!--{/if}--> {$credit[title]}: </em><!--{echo getuserprofile('extcredits'.$id);}--> {$credit[unit]}|
+	                    <!--{/if}-->
+	                    <!--{/loop}-->
+	                    <em>{lang credits}: </em>$_G['member']['credits']
+	                    </span>
+	                    <!--{/if}-->
+	                </p>
+	            </div>
+	        <!--{/if}-->
+	        <!--[diy=diy_chart]--><div id="diy_chart" class="area"></div><!--[/diy]-->
+	            
+	            <ul id="thread_types" class="ttp bm cl">
+	                <li <!--{if empty($_GET['view']) || $_GET['view'] == 'all' }-->class="xw1 a"<!--{/if}-->><a href="forum.php<!--{if $_GET['gid']}-->?gid=$_GET['gid']<!--{/if}-->">{lang guide_all}</a></li>
+	                <li <!--{if $_GET['view'] == 'zxqz'}-->class="xw1 a"<!--{/if}-->><a href="forum.php?mod=guide&view=zxqz<!--{if $_GET['gid']}-->&gid=$_GET['gid']<!--{/if}-->">{lang guide_zxqz}</a></li>
+	                <li <!--{if $_GET['view'] =='tsjb'}-->class="xw1 a"<!--{/if}-->><a href="forum.php?mod=guide&view=tsjb<!--{if $_GET['gid']}-->&gid=$_GET['gid']<!--{/if}-->">{lang guide_tsjb}</a></li>
+	                <li <!--{if $_GET['view'] =='jyxc'}-->class="xw1 a"<!--{/if}-->><a href="forum.php?mod=guide&view=jyxc<!--{if $_GET['gid']}-->&gid=$_GET['gid']<!--{/if}-->">{lang guide_jyxc}</a></li>
+	            </ul>
+				<!--{hook/guide_top}-->
+				<!--{if $view == 'index'}-->
+					<!--{loop $data $key $list}-->
+					<div class="bm bmw">
+						<div class="bm_h">
+							<a href="forum.php?mod=guide&view=$key" class="y xi2">{lang more} &raquo;</a>
+							<h2>
+								<!--{if $key == 'hot'}-->{lang guide_hot}<!--{elseif $key == 'digest'}-->{lang guide_digest}<!--{elseif $key == 'newthread'}-->{lang guide_newthread}<!--{elseif $key == 'new'}-->{lang guide_new}<!--{elseif $key == 'my'}-->{lang guide_my}<!--{/if}-->
+							</h2>
+						</div>
+						 <div class="bm_c">
+						 	<div class="xl xl2 cl">
+						 		<!--{if $list['threadcount']}-->
+						 			<!--{eval $i=0;}-->
+						 			<!--{loop $list['threadlist'] $thread}-->
+						 			<!--{eval $i++;$newtd=$i%2;}-->
+						 			<li{if !$newtd} class="xl2_r"{/if}>
+							 			<em>
+								 			<!--{if $key == 'hot'}--><span class="xi1">$thread['heats']{lang guide_attend}</span><!--{/if}-->
+								 			<!--{if $key == 'new'}-->$thread['lastpost']<!--{/if}-->
+							 			</em>
+							 			
+							 			<i>&middot; <a href="forum.php?mod=viewthread&tid=$thread[tid]&{if $_GET['archiveid']}archiveid={$_GET['archiveid']}&{/if}extra=$extra"$thread[highlight] target="_blank">$thread[subject]</a></i>&nbsp;<span class="xg1"><a href="forum.php?mod=forumdisplay&fid=$thread[fid]" target="_blank">$list['forumnames'][$thread[fid]]['name']</a></span>
+						 			</li>
+						 			<!--{/loop}-->
+						 		<!--{else}-->
+						 				<p class="emp">{lang guide_nothreads}</p>
+						 		<!--{/if}-->
+						 	</div>
+						</div>
+					</div>
+					<!--{/loop}-->
+				<!--{else}-->
+					<!--{loop $data $key $list}-->
+					<div id="threadlist" class="tl bm bmw"{if $_G['uid']} style="position: relative;"{/if}>
+						<div class="th">
+							<table cellspacing="0" cellpadding="0">
+								<tr>
+									<th colspan="2">
+										{lang title}
+										<!--{if $view == 'my'}-->
+										&nbsp;&nbsp;&nbsp;
+											<a href="forum.php?mod=guide&view=my&type=thread" $orderactives[thread]>{lang forum_threads}</a><span class="pipe">|</span>
+											<a href="forum.php?mod=guide&view=my&type=reply" $orderactives[reply]>{lang reply}</a><span class="pipe">|</span>
+											<a href="forum.php?mod=guide&view=my&type=postcomment" $orderactives[postcomment]>{lang comments}</a><span class="pipe">|</span>
+											<!--{if $viewtype != 'postcomment'}-->
+												<a href="#" onclick="var displayvalue = $('searchbody').style.display == 'none' ? '' : 'none';$('searchbody').style.display=displayvalue; return false;">{lang screening}</a>
+											<!--{/if}-->
+										<!--{/if}-->
+									</th>
+									<td class="by">{lang forum_group}</td>
+									<td class="by">{lang author}</td>
+									<td class="num">{lang replies}</td>
+									<td class="by">{lang lastpost}</td>
+								</tr>
+								<!--{if $view == 'my'}-->
+								<tbody class="bw0_all" id="searchbody"{if !$searchbody} style="display: none"{/if}>
+									<tr>
+									<th colspan="6">&nbsp;
+										<form method="get" action="forum.php">
+											<input type="hidden" name="mod" value="guide">
+											<input type="hidden" name="view" value="my">
+											<input type="hidden" name="type" value="$viewtype">
+										<!--{if $viewtype != 'postcomment'}-->
+												{lang status}:
+												<select name="filter" id="filter">
+													<option value="">{lang all}</option>
+												<!--{loop $filter_array $fkey $name}-->
+													<option value="$fkey" {if $fkey == $_GET[filter]}selected{/if}>$name</option>
+												<!--{/loop}-->
+												</select>
+												{lang guide_forum_select}:
+												<select name="fid" id="forumlist">
+												<option value="0">{lang all}</option>
+													$forumlist
+												</select>
+										<!--{/if}-->
+										<!--{if $viewtype == 'thread'}-->
+										&nbsp; {lang keyword}: <input type="text" id="searchmypost" class="px vm" name="searchkey" size="20" value="$searchkey" >
+										<!--{/if}--><button class="pn vm"><em>{lang search}</em></button>
+										</form>
+									</th>
+								</tr>
+								</tbody>
+								<!--{/if}-->
+							</table>
+						</div>
+						<div class="bm_c">
+							<div id="forumnew" style="display:none"></div>
+								<table cellspacing="0" cellpadding="0">
+								<!--{subtemplate forum/guide_list_row}-->
+								</table>
+						</div>
+					</div>
+					<!--{/loop}-->
+					<div class="bm bw0 pgs cl">
+						$multipage
+						<span class="pgb y"><a href="forum.php?mod=guide">{lang forum_index}</a></span>
+					</div>
+				<!--{/if}-->
+				<!--{hook/guide_bottom}-->
+			</div>
+		</div>
 	</div>
-<!--{/if}-->
+	<!--{if !IS_ROBOT}-->
+		<div id="filter_special_menu" class="p_pop" style="display:none">
+			<ul>
+				<li><a href="home.php?mod=space&do=poll&view=me" target="_blank">{lang thread_poll}</a></li>
+				<li><a href="home.php?mod=space&do=trade&view=me" target="_blank">{lang thread_trade}</a></li>
+				<li><a href="home.php?mod=space&do=reward&view=me" target="_blank">{lang thread_reward}</a></li>
+				<li><a href="home.php?mod=space&do=activity&view=me" target="_blank">{lang thread_activity}</a></li>
+			</ul>
+		</div>
+	<!--{/if}-->
+</div>
+
+
 <!--{template common/new/footer}-->

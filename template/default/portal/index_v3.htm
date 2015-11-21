@@ -1,30 +1,33 @@
 <!--{template common/new/top_nav}-->
-<script type="text/javascript" src="{$_G[setting][jspath]}v3/jquery.slides.min.js?{VERHASH}"></script>
+<link type="text/css" rel="stylesheet" href="css/swiper.min.css?{VERHASH}" />
+<script type="text/javascript" src="{$_G[setting][jspath]}v3/swiper.min.js?{VERHASH}"></script>
 <div class="portal_row1">
 	<div class="fll col1">
 		<!-- 幻灯片  -->
-		<div id="home_slides" class="slides">
-	    	<!--{block/42}-->
-	    	<a href="javascript:void(0);" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left icon-large"></i></a>
-            <a href="javascript:void(0);" class="slidesjs-next slidesjs-navigation"><i class="icon-chevron-right icon-large"></i></a>
-	  	</div>
-		<script type="text/javascript">
-			jq(function() {
-				jq('#home_slides').slidesjs({
-			        width: 675,
-			        height:327,
-			        navigation: true,
-			        play: {
-			            active: true,
-			            auto: true,
-			            interval: 4000,
-			            swap: false,
-			            pauseOnHover: true,
-			            restartDelay: 2500
-			          }
-			    });
-		    });
-		</script>
+        <div id="home_slides" class="swiper-container">
+            <div class="swiper-wrapper">
+                <!--{block/42}-->
+            </div>
+            <!-- Add Pagination -->
+            <div class="swiper-pagination"></div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
+
+        <script type="text/javascript">
+            var swiper = new Swiper('#home_slides', {
+                pagination: '.swiper-pagination',
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev',
+                paginationClickable: true,
+                spaceBetween: 30,
+                loop:true,
+                centeredSlides: true,
+                autoplay: 2500,
+                autoplayDisableOnInteraction: false
+            });
+        </script>
 	</div>
 	
 	<div class="frr col2">

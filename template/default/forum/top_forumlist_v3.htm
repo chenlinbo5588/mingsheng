@@ -1,28 +1,28 @@
 <!--{if $_G['forum_topnav']}-->
-<div>
-    <ul>
+<div class="albnm_nav">
+    <ul class="bmzx clearfix">
     <!--{loop $_G['forum_list'] $key $forum}-->
-    <li class="bmzx_item">
-            <div class="bmzx"><img src="images/group{$forum[fid]}.jpg" /></div>
-            <div class="bmlist">
+    	<li class="bmzx_item bmzx_{$key}">
+            <div class="bmzx_group">{$forum['name']}</div>
+            <div class="list clearfix">
                 <!--{if !empty($_GET['gid']) && $_GET['gid'] == $forum['fid']}-->
-                <a href="forum.php?gid={$forum['fid']}&fid={$forum['fid']}" class="selected">{lang all}</a>&nbsp;|
+                <a href="forum.php?gid={$forum['fid']}&fid={$forum['fid']}" class="selected">{lang all}</a>
                 <!--{else}-->
-                <a href="forum.php?gid={$forum['fid']}&fid={$forum['fid']}">{lang all}</a>&nbsp;|
+                <a href="forum.php?gid={$forum['fid']}&fid={$forum['fid']}">{lang all}</a>
                 <!--{/if}-->
                 <!--{loop $forum[list] $key2 $val}-->
                     <!--{if $_GET['fid'] == $val['fid']}-->
-                    <a href="forum.php?mod=forumdisplay&fid={$val['fid']}" class="selected">{$val[name]}</a>&nbsp;|
+                    <a href="forum.php?mod=forumdisplay&fid={$val['fid']}" class="selected">{$val[name]}</a>
                     <!--{else}-->
-                    <a href="forum.php?mod=forumdisplay&fid={$val['fid']}">{$val[name]}</a>&nbsp;|
+                    <a href="forum.php?mod=forumdisplay&fid={$val['fid']}">{$val[name]}</a>
                     <!--{/if}-->
                     
                     <!--{if $val[list]}-->
                     <!--{loop $val[list] $key3 $val3}-->
                         <!--{if $_GET['fid'] == $val3['fid']}-->
-                        <a href="forum.php?mod=forumdisplay&fid={$val3['fid']}" class="selected">{$val3[name]}</a>&nbsp;|
+                        <a href="forum.php?mod=forumdisplay&fid={$val3['fid']}" class="selected">{$val3[name]}</a>
                         <!--{else}-->
-                        <a href="forum.php?mod=forumdisplay&fid={$val3['fid']}">{$val3[name]}</a>&nbsp;|
+                        <a href="forum.php?mod=forumdisplay&fid={$val3['fid']}">{$val3[name]}</a>
                         <!--{/if}-->
                     <!--{/loop}-->
                     <!--{/if}-->

@@ -48,7 +48,7 @@ body {
 }
 
 
-.outter_wrap , .header {
+.outter_wrap , .header , .w1000 {
     width: 1120px;
 	margin: 0 auto;
 }
@@ -321,16 +321,54 @@ body {
 }
 
 
-.bmzx_item .selected {
-    color: #fff;
-	font-weight: bold;
-	background-color: #52a0e5;
+
+
+.albnm_nav {
+	margin: 0 0 20px 0;
 }
 
-.bmzx{
-	height: 38px;
-	background: url("../images/bmzx.jpg") repeat-x;
-    margin:0 0 10px 0;
+.bmzx {
+	
+}
+
+.bmzx .bmzx_group {
+	color:#298bcc;
+	padding:0 0 0 20px;
+	font-size:16px;
+	margin: 0 0 10px 0;
+}
+
+.bmzx .list {
+	border:1px solid #0c457c;
+	border-width:1px 0 1px 0;
+	padding:20px 0;
+	height:155px;
+}
+
+.bmzx .list a {
+	display:block;
+	float:left;
+	color:#777777;
+	height:30px;
+	padding:5px;
+	font-size:14px;
+}
+
+.bmzx .list a:hover {
+	color:#c30000;
+}
+
+.bmzx .bmzx_item {
+	width:48%;
+	float:left;
+}
+
+.bmzx .bmzx_1 {
+	
+}
+
+.bmzx .bmzx_72 {
+	float:right;
 }
 
 .bmlist a  , .zjlist a {
@@ -777,6 +815,13 @@ body {
 	padding:5px;
 }
 
+.bmlogos .piclogo img {
+	width:80px;
+	height:80px;
+	
+}
+
+
 
 .zjlist ul li .piclogo,
 .zjlist ul li .pic {
@@ -1048,13 +1093,17 @@ body {
 	color:#478fca;
 	
 }
-.dsub_nav .nav_jt .last  {
+.dsub_nav .nav_jt .last , .dsub_nav .nav_jt .last a  {
 	color:#d40000;
+}
+
+.dsub_nav .nav_jt .last em {
+	display:none;
 }
 
 .dsub_nav .small_jt {
 	background:url(../images/v3/nav_jt2.jpg) no-repeat left center;
-	padding-left:8px;
+	padding-left:12px;
 	color:#c30000;
 }
 
