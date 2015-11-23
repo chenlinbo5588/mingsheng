@@ -37,8 +37,6 @@ a{
 }
 
 
-
-
 button {
     cursor: pointer;
 }
@@ -48,7 +46,7 @@ body {
 }
 
 
-.outter_wrap , .header , .w1000 {
+.outter_wrap , .header , .w1000 ,.dlogo {
     width: 1120px;
 	margin: 0 auto;
 }
@@ -1093,18 +1091,18 @@ body {
 	color:#478fca;
 	
 }
-.dsub_nav .nav_jt .last , .dsub_nav .nav_jt .last a  {
+.nav_jt .last , .dsub_nav .nav_jt .last a  {
 	color:#d40000;
 }
 
-.dsub_nav .nav_jt .last em {
-	display:none;
-}
 
-.dsub_nav .small_jt {
+.dsub_nav .nav_jt em {
+	display:inline;
 	background:url(../images/v3/nav_jt2.jpg) no-repeat left center;
 	padding-left:12px;
 	color:#c30000;
+    overflow: hidden;
+    width:16px;
 }
 
 
@@ -1540,6 +1538,10 @@ body {
 
 
 .dmain_v3 .bm_c { padding: 5px; }
+
+.dmain_v3 .fl_tb .fl_g {
+	padding:3px;
+}
 
 .video_article_c {
 }
