@@ -26,12 +26,8 @@ if(empty($cat)) {
 }
 require_once libfile('function/portalcp');
 $categoryperm = getallowcategory($_G['uid']);
-/*
-print_r($cat);
-print_r($_G['group']);
-print_r($categoryperm[$catid]);
-die(0);
-*/
+
+//print_r($_G['setting']);
 
 if($cat['closed'] && !$_G['group']['allowdiy'] && !$categoryperm[$catid]['allowmanage']) {
 	showmessage('list_category_is_closed', dreferer());
@@ -69,6 +65,7 @@ $catseoset = array(
 	'seokeywords' => $cat['keyword'],
 	'seodescription' => $cat['description']
 );
+
 $seodata = array('firstcat' => $cats[0], 'secondcat' => $cats[1], 'curcat' => $cat['catname'], 'page' => intval($_GET['page']));
 list($navtitle, $metadescription, $metakeywords) = get_seosetting('articlelist', $seodata, $catseoset);
 if(!$navtitle) {
@@ -82,6 +79,18 @@ if(!$metakeywords) {
 }
 if(!$metadescription) {
 	$metadescription = $cat['catname'];
+}
+
+//@todo add by clb
+if($cat['upid'] == 0){
+	$currentTopNavTitle = $cat['catname'];
+}else{
+	$upcatid = $cat['upid'];
+	while($upcatid){
+		$tempcat = category_remake($upcatid);
+		$upcatid = $tempcat['upid'];
+	}
+	$currentTopNavTitle = $tempcat['catname'];
 }
 
 if(isset($_G['makehtml'])){

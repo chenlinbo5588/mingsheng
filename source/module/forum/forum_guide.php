@@ -171,6 +171,7 @@ if($globalStickTids){
 
 $globlStickList = thread_add_icon_by_row($globlStickList,'dbdateline',true);
 $navigation = $view != 'index' ? ' <em>&rsaquo;</em> <a href="forum.php?mod=guide&view='.$view.'">'.$lang['guide_'.$view].'</a>' : '';
+$navigation = str_replace('&rsaquo;','',$navigation);
 
 //获取用户消息数
 $newpmcount = $announcepm  = 0;
@@ -186,8 +187,10 @@ if ($_G['uid']) {
     $newpm = $newpmarr['newpm'];
     $newpmcount = $newpm + $announcepm;
 }
+
+$currentTopNavTitle = $_G['setting']['navs'][2]['navname'];
         
-include template('forum/guide'.$_G['debugtpl']);
+include template('forum/guide');
 
 function get_guide_list($view, $start = 0, $num = 50, $again = 0) {
 	global $_G ,$lang ;

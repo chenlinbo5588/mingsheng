@@ -854,10 +854,16 @@ if(!empty($threadids)) {
 
 
 if($_G['forum']['isdepartment']){
+	
+	$currentTopNavTitle = $_G['setting']['navs'][2]['navname'];
+	
     $_G['forum_list'] = get_forums(array(1));
     $_G['forum_threadlist'] = thread_add_icon_by_row($_G['forum_threadlist'],'dbdateline');
     $_G['forum_topnav'] = 1;
 }else{
+	
+	$currentTopNavTitle = '民声论坛';
+	
     //$_G['forum_list'] = get_forums(array(0));
     $_G['forum_topnav'] = 0;
 }

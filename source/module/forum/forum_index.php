@@ -42,6 +42,8 @@ if(!$metakeywords) {
 	$metakeywords = $navtitle;
 }
 
+$currentTopNavTitle = "民声论坛";
+
 if($_G['setting']['indexhot']['status'] && $_G['cache']['heats']['expiration'] < TIMESTAMP) {
 	require_once libfile('function/cache');
 	updatecache('heats');

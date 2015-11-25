@@ -1,19 +1,18 @@
 <!--{template common/new/top_nav2}-->
 <!--[name]{lang portalcategory_viewtplname}[/name]-->
 
-<div class="dsub_nav">
-    <div class="mnav nav_jt">
-        <h1>
-            <a href="$_G[setting][navs][1][filename]">{lang nav_index}</a> <em class="small_jt">&nbsp;&nbsp;</em>
-            <!--{loop $cat[ups] $value}-->
-                <a href="{echo getportalcategoryurl($value[catid])}">$value[catname]</a><em class="small_jt">&nbsp;&nbsp;</em>
-            <!--{/loop}-->
-            <a href="{echo getportalcategoryurl($cat[catid])}">$cat[catname]</a> <em class="small_jt">&nbsp;&nbsp;</em>
-            <span class="last">{lang view_content_defined}</span>
-        </h1>
-        <div class="mline"></div>
+<div id="pt" class="bm cl">
+    <div class="z">
+        <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a> <em>&rsaquo;</em>
+        <a href="$_G[setting][navs][1][filename]">{lang nav_index}</a> <em>&rsaquo;</em>
+        <!--{loop $cat[ups] $value}-->
+            <a href="{echo getportalcategoryurl($value[catid])}">$value[catname]</a><em>&rsaquo;</em>
+        <!--{/loop}-->
+        <a href="{echo getportalcategoryurl($cat[catid])}">$cat[catname]</a> <em>&rsaquo;</em>
+        {lang view_content}
     </div>
 </div>
+
 
 <!-- main start -->
 <div class="dmain dmain_v3">

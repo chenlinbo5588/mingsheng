@@ -1,5 +1,14 @@
 <!--{template common/header}-->
 
+<!--{if empty($_GET['infloat']) && $_G['debugtpl']}-->
+<div id="pt" class="bm cl">
+    <div class="z">
+        <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a> <em>&rsaquo;</em>
+        <a href="member.php?mod=logging&action=login">{lang login}</a> <em>&rsaquo;</em>
+    </div>
+</div>
+<!--{/if}-->
+
 <!--{eval $loginhash = 'L'.random(4);}-->
 <!--{if empty($_GET['infloat'])}-->
 <div id="ct" class="ptm wp w cl">

@@ -1,7 +1,12 @@
 <!--{template common/header}-->
+
+
 <div class="boardnav">
-    <!--{template forum/top_forumlist}-->
     <div id="pt" class="bm cl">
+        <div class="z">
+            <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="forum.php">{$_G[setting][navs][2][navname]}</a>$navigation
+        </div>
+        <div class="z"><!--{hook/index_status_extra}--></div>
         <!--{if empty($gid) && $announcements}-->
         <div class="y">
             <div id="an">
@@ -15,12 +20,18 @@
             <script type="text/javascript">announcement();</script>
         </div>
         <!--{/if}-->
-        <div class="z">
-            <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="forum.php">{$_G[setting][navs][2][navname]}</a>$navigation
-        </div>
-        <div class="z"><!--{hook/index_status_extra}--></div>
+        
     </div>
+    
+    
+    
 	<div id="ct" class="wp cl{if $_G['forum']['allowside']} ct2{/if}"{if $leftside} style="margin-left:{$_G['leftsidewidth_mwidth']}px"{/if}>
+		<!--{if $_G['debugtpl']}-->
+	    <!--{template forum/top_forumlist_v3}-->
+	    <!--{else}-->
+	    <!--{template forum/top_forumlist}-->
+	    <!--{/if}-->
+		
 		<div class="mn">
             <!--
 			<div class="bm bml pbn">

@@ -7,16 +7,16 @@
 <div class="dlogo">	
 	<div class="toplogo"></div>
 </div>
-<div class="menu">
+<div class="menu mainpage clearfix">
     <ul class="nav">
         <!--{loop $_G['setting']['navs'] $navid $item}-->
-        <!--{if $item['available']}--><li {$item['nav']}></li><!--{/if}-->
+        <!--{if $item['available']}--><li <!--{if $currentTopNavTitle == $item['navname']}-->class="cur"<!--{/if}--> {$item['nav']}></li><!--{/if}-->
         <!--{/loop}-->
     </ul>
-    <!--{subtemplate common/new/top_search}-->
     <div class="clr"></div>
+    <!--{subtemplate common/new/top_search}-->
 </div>
 
 <!-- inner_wrap begin -->
-<div class="inner_wrap">
+<div class="">
 	

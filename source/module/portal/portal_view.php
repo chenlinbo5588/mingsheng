@@ -53,6 +53,19 @@ if($article['url']) {
 
 $cat = category_remake($article['catid']);
 
+//@todo add by clb
+if($cat['upid'] == 0){
+	$currentTopNavTitle = $cat['catname'];
+}else{
+	$upcatid = $cat['upid'];
+	while($upcatid){
+		$tempcat = category_remake($upcatid);
+		$upcatid = $tempcat['upid'];
+	}
+	$currentTopNavTitle = $tempcat['catname'];
+}
+
+
 $article['pic'] = pic_get($article['pic'], '', $article['thumb'], $article['remote'], 1, 1);
 
 $page = intval($_GET['page']);

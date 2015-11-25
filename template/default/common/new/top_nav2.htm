@@ -4,11 +4,10 @@
 	<div class="menu">
 	    <ul class="nav">
 	        <!--{loop $_G['setting']['navs'] $navid $item}-->
-	        <!--{if $item['available']}--><li {$item['nav']}></li><!--{/if}-->
+	        <!--{if $item['available']}--><li <!--{if $currentTopNavTitle == $item['navname']}-->class="cur"<!--{/if}--> {$item['nav']}></li><!--{/if}-->
 	        <!--{/loop}-->
+	        <div class="clr"></div>
 	    </ul>
-	    
-	    <div class="clr"></div>
 	</div>
 	<!--{subtemplate common/new/top_search}-->
 </div>

@@ -90,5 +90,7 @@ foreach($threadsList as $k => $v){
     $threadsList[$k] = thread_add_icon_by_row($v);
 }
 //print_r($_G['setting']);
+
+$currentTopNavTitle = $_G['setting']['navs'][1]['navname'];
 include_once template('diy:portal/index'.$_G['debugtpl']);
 ?>

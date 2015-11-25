@@ -1,25 +1,32 @@
 <!--{template common/header}-->
-<!--{template forum/top_forumlist}-->
-<div id="pt" class="bm cl">
-	<!--{if empty($gid) && $announcements}-->
-	<div class="y">
-		<div id="an">
-			<dl class="cl">
-				<dt class="z xw1">{lang announcements}:&nbsp;</dt>
-				<dd>
-					<div id="anc"><ul id="ancl">$announcements</ul></div>
-				</dd>
-			</dl>
-		</div>
-		<script type="text/javascript">announcement();</script>
-	</div>
-	<!--{/if}-->
-	<div class="z">
-		<a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="forum.php">{$_G[setting][navs][2][navname]}</a>$navigation
-	</div>
-	<div class="z"><!--{hook/index_status_extra}--></div>
+
+<div id="pt" class="<!--{if $_G['debugtpl'] == ''}-->bm<!--{/if}--> cl">
+    <div class="z">
+        <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="forum.php?mod=index">{$_G[setting][navs][155][navname]}</a>$navigation
+    </div>
+    <div class="z"><!--{hook/index_status_extra}--></div>
+    <!--{if empty($gid) && $announcements}-->
+    <div class="y">
+        <div id="an">
+            <dl class="cl">
+                <dt class="z xw1">{lang announcements}:&nbsp;</dt>
+                <dd>
+                    <div id="anc"><ul id="ancl">$announcements</ul></div>
+                </dd>
+            </dl>
+        </div>
+        <script type="text/javascript">announcement();</script>
+    </div>
+    <!--{/if}-->
 </div>
 
+<!--{if $_G['forum']['isdepartment']}-->
+    <!--{if $_G['debugtpl']}-->
+    <!--{template forum/top_forumlist_v3}-->
+    <!--{else}-->
+    <!--{template forum/top_forumlist}-->
+    <!--{/if}-->
+<!--{/if}-->
 
 <!--{if empty($gid)}-->
 	<!--{ad/text/wp a_t}-->
