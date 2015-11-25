@@ -1,8 +1,30 @@
 <!--{template common/header}-->
 
-<div id="pt" class="<!--{if $_G['debugtpl'] == ''}-->bm<!--{/if}--> cl">
+<!--{if empty($_G['debugtpl'])}-->
+<!--{template forum/top_forumlist}-->
+<div id="pt" class="bm cl">
+    <!--{if empty($gid) && $announcements}-->
+    <div class="y">
+        <div id="an">
+            <dl class="cl">
+                <dt class="z xw1">{lang announcements}:&nbsp;</dt>
+                <dd>
+                    <div id="anc"><ul id="ancl">$announcements</ul></div>
+                </dd>
+            </dl>
+        </div>
+        <script type="text/javascript">announcement();</script>
+    </div>
+    <!--{/if}-->
     <div class="z">
-        <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="forum.php?mod=index">{$_G[setting][navs][155][navname]}</a>$navigation
+        <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="{$_G[setting][navs][155][filename]}">{$_G[setting][navs][155][navname]}</a>$navigation
+    </div>
+    <div class="z"><!--{hook/index_status_extra}--></div>
+</div>
+<!--{else}-->
+<div id="pt" class="cl">
+    <div class="z">
+        <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="{$_G[setting][navs][155][filename]}">{$_G[setting][navs][155][navname]}</a>$navigation
     </div>
     <div class="z"><!--{hook/index_status_extra}--></div>
     <!--{if empty($gid) && $announcements}-->
@@ -19,14 +41,11 @@
     </div>
     <!--{/if}-->
 </div>
-
-<!--{if $_G['forum']['isdepartment']}-->
-    <!--{if $_G['debugtpl']}-->
-    <!--{template forum/top_forumlist_v3}-->
-    <!--{else}-->
-    <!--{template forum/top_forumlist}-->
+    <!--{if $_G['forum']['isdepartment']}-->
+        <!--{template forum/top_forumlist_v3}-->
     <!--{/if}-->
 <!--{/if}-->
+
 
 <!--{if empty($gid)}-->
 	<!--{ad/text/wp a_t}-->

@@ -1,5 +1,6 @@
 <!--{template common/header}-->
 
+<!--{if $_G['debugtpl']}-->
 <div id="pt" class="bm cl">
     <div class="z">
         <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em>
@@ -11,6 +12,7 @@
         $navigation
     </div>
 </div>
+<!--{/if}-->
 
 <!--{if $_G['forum']['ismoderator']}-->
 	<script type="text/javascript" src="{$_G[setting][jspath]}forum_moderate.js?{VERHASH}"></script>
@@ -18,8 +20,14 @@
 <style id="diy_style" type="text/css"></style>
 <!--[diy=diynavtop]--><div id="diynavtop" class="area"></div><!--[/diy]-->
 
-
-
+<!--{if empty($_G['debugtpl'])}-->
+<!--{template forum/top_forumlist}-->
+<div id="pt" class="bm cl">
+   <div class="z">
+       <a href="./" class="nvhm" title="{lang homepage}">$_G[setting][bbname]</a><em>&raquo;</em><a href="forum.php">{$_G[setting][navs][2][navname]}</a>$navigation
+   </div>
+</div>
+<!--{/if}-->
 
 <!--{ad/text/wp a_t}-->
 <div class="wp">
@@ -27,12 +35,9 @@
 </div>
 <div class="boardnav">
 	<div id="ct" class="wp cl{if $_G['forum']['allowside']} ct2{/if}"{if $leftside} style="margin-left:{$_G['leftsidewidth_mwidth']}px"{/if}>
-		
 		<!--{if $_G['forum']['isdepartment']}-->
 		    <!--{if $_G['debugtpl']}-->
 		    <!--{template forum/top_forumlist_v3}-->
-		    <!--{else}-->
-		    <!--{template forum/top_forumlist}-->
 		    <!--{/if}-->
 		<!--{/if}-->
 		
