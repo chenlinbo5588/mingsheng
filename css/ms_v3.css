@@ -487,7 +487,7 @@ body {
 }
 .mscon h3, .mscon h3 a{
 	text-align: center;
-	font-size: 26px;
+	font-size: 20px;
 	color: #e60000;
 }
 
@@ -606,6 +606,8 @@ body {
     font-weight: normal;
     margin-bottom: 8px;
     font-size: 16px;
+    overflow: hidden;
+    height: 20px;
 }
 
 

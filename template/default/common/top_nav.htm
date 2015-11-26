@@ -1,0 +1,83 @@
+<!--{template common/header_common}-->
+    <meta name="application-name" content="$_G['setting']['bbname']" />
+    <meta name="msapplication-tooltip" content="$_G['setting']['bbname']" />
+    <!--{if $_G['setting']['portalstatus']}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][1]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['portal']) ? 'http://'.$_G['setting']['domain']['app']['portal'] : $_G[siteurl].'portal.php'};icon-uri={$_G[siteurl]}{IMGDIR}/portal.ico" /><!--{/if}-->
+    <meta name="msapplication-task" content="name=$_G['setting']['navs'][2]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['forum']) ? 'http://'.$_G['setting']['domain']['app']['forum'] : $_G[siteurl].'forum.php'};icon-uri={$_G[siteurl]}{IMGDIR}/bbs.ico" />
+    <!--{if $_G['setting']['groupstatus']}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][3]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['group']) ? 'http://'.$_G['setting']['domain']['app']['group'] : $_G[siteurl].'group.php'};icon-uri={$_G[siteurl]}{IMGDIR}/group.ico" /><!--{/if}-->
+    <!--{if helper_access::check_module('feed')}--><meta name="msapplication-task" content="name=$_G['setting']['navs'][4]['navname'];action-uri={echo !empty($_G['setting']['domain']['app']['home']) ? 'http://'.$_G['setting']['domain']['app']['home'] : $_G[siteurl].'home.php'};icon-uri={$_G[siteurl]}{IMGDIR}/home.ico" /><!--{/if}-->
+    <!--{if $_G['basescript'] == 'forum' && $_G['setting']['archiver']}-->
+    <link rel="archives" title="$_G['setting']['bbname']" href="{$_G[siteurl]}archiver/" />
+    <!--{/if}-->
+    <!--{if !empty($rsshead)}-->$rsshead<!--{/if}-->
+    <!--{if widthauto()}-->
+    <link rel="stylesheet" id="css_widthauto" type="text/css" href="data/cache/style_{STYLEID}_widthauto.css?{VERHASH}" />
+    <script type="text/javascript">HTMLNODE.className += ' widthauto'</script>
+    <!--{/if}-->
+    <!--{if $_G['basescript'] == 'forum' || $_G['basescript'] == 'group'}-->
+        <script type="text/javascript" src="{$_G[setting][jspath]}forum.js?{VERHASH}"></script>
+    <!--{elseif $_G['basescript'] == 'home' || $_G['basescript'] == 'userapp'}-->
+        <script type="text/javascript" src="{$_G[setting][jspath]}home.js?{VERHASH}"></script>
+    <!--{elseif $_G['basescript'] == 'portal'}-->
+        <script type="text/javascript" src="{$_G[setting][jspath]}portal.js?{VERHASH}"></script>
+    <!--{/if}-->
+    <!--{if $_G['basescript'] != 'portal' && $_GET['diy'] == 'yes' && check_diy_perm($topic)}-->
+        <script type="text/javascript" src="{$_G[setting][jspath]}portal.js?{VERHASH}"></script>
+    <!--{/if}-->
+    <!--{if $_GET['diy'] == 'yes' && check_diy_perm($topic)}-->
+    <link rel="stylesheet" type="text/css" id="diy_common" href="data/cache/style_{STYLEID}_css_diy.css?{VERHASH}" />
+    <!--{/if}-->
+    
+    <!--[if IE 6]>
+    <script type="text/javascript" src="{$_G[setting][jspath]}IE6_PNG.js"></script>
+    <script type="text/javascript">
+    DD_belatedPNG.fix('.slidesjs-pagination li a,.slidesjs-navigation i,.png_bg');
+    </script> 
+    <![endif]-->
+    <!--[if (gte IE 6)&(lte IE 8)]>
+    <script type="text/javascript" src="{$_G[setting][jspath]}selectivizr-min.js"></script>
+    <![endif]-->
+</head>
+<body id="nv_{$_G[basescript]}" class="pg_{CURMODULE}{if $_G['basescript'] === 'portal' && CURMODULE === 'list' && !empty($cat)} {$cat['bodycss']}{/if}" onkeydown="if(event.keyCode==27) return false;">
+<div id="append_parent"></div><div id="ajaxwaitid"></div>
+<div class="outter_wrap">
+    <!-- header start -->
+    <div class="header">
+        <div class="fll"><a href="/">{$_G['setting']['bbname']}</a>&nbsp;|&nbsp;<a href="http://www.cxnews.cn" target="_blank">慈溪市新闻网</a></div>
+        <div class="frr"> 
+        <!--{if $_G['uid']}-->
+        <strong class="vwmy{if $_G['setting']['connect']['allow'] && $_G[member][conisbind]} qq{/if}"><a href="/home.php?mod=spacecp&ac=profile" title="{lang visit_my_space}">{$_G[member][username]}</a></strong>
+        <span>您好，</span>
+        <a href="home.php?mod=spacecp" title="{lang setup}">个人中心</a> |
+        <a href="home.php?mod=space&do=pm" title="通知中心">通知中心<!--{if $noticeCount}--><b>({$noticeCount})</b><!--{/if}--></a> |
+        <a href="member.php?mod=logging&action=logout&formhash={FORMHASH}">{lang logout}</a>
+        <!--{else}-->
+        您好：游客，欢迎访问{$_G['setting']['bbname']}！<a href="/member.php?mod=logging&action=login">请登入</a> | <a href="/member.php?mod=register">立即注册</a>
+        <!--{/if}-->
+        | <a href="m.php?mobile=yes" title="{lang go_to_mobile}">手机版</a>
+        | <a href="portal.php?cls=debugtpl" title="返回旧版">返回旧版</a>
+        </div>
+        <div class="clr"></div>
+    </div>
+    <!-- header end -->
+	
+	<style type="text/css">
+	    body {
+	    background:#fff url("../images/v3/top_bg.jpg") no-repeat 50% 0 !important;
+	}
+	</style>
+	<div class="dlogo">	
+		<div class="toplogo"></div>
+	</div>
+	<div class="menu mainpage clearfix">
+	    <ul class="nav">
+	        <!--{loop $_G['setting']['navs'] $navid $item}-->
+	        <!--{if $item['available']}--><li <!--{if $currentTopNavTitle == $item['navname']}-->class="cur"<!--{/if}--> {$item['nav']}></li><!--{/if}-->
+	        <!--{/loop}-->
+	    </ul>
+	    <div class="clr"></div>
+	    <!--{template common/top_search}-->
+	</div>
+	
+	<!-- inner_wrap begin -->
+	<div class="">
+	
