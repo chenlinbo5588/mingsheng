@@ -69,9 +69,36 @@ class discuz_application extends discuz_base{
 			$this->_init_mobile();
 			$this->_init_cron();
 			$this->_init_misc();
+			$this->_init_uiversion();
 		}
 		$this->initated = true;
 	}
+
+	
+	/**
+	 * @todo add by clb
+	 */
+	private function _init_uiversion(){
+		
+		$key = 'debugtpl';
+		$tpl = getcookie($key);
+		
+		//echo $tpl;
+		if(empty($tpl)){
+			if($_GET[$key] == 'v3'){
+				$this->var[$key] = '_v3';
+				dsetcookie($key,$_GET[$key], 86400 * 30, 1, 1);
+			}
+		}else{
+			$this->var[$key] = '_v3';
+		}
+		
+		if($_GET['cls'] == $key){
+			dsetcookie($key,'', -1, 1, 1);
+			$this->var[$key] = '';
+		}
+	}
+
 
 	private function _init_env() {
 
@@ -174,7 +201,7 @@ class discuz_application extends discuz_base{
 				'app' => array(),
 			),
 			'mobiletpl' => array('1' => 'mobile', '2' => 'touch', '3' => 'wml','yes' => 'mobile'),
-            'debugtpl' => $_GET['debugtpl'] ? '_'.$_GET['debugtpl'] : ''
+            'debugtpl' => ''
 		);
 		$_G['PHP_SELF'] = dhtmlspecialchars($this->_get_script_url());
 		$_G['basescript'] = CURSCRIPT;
