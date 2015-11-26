@@ -1438,6 +1438,10 @@ body {
     width:100%;	
 }
 
+#context-wrapper {
+    font-size:14px;	
+}
+
 .video_news {
 	
 }
@@ -1581,7 +1585,7 @@ body {
 }
 
 
-#ct .bm_c ,.dmain_v3 .bm_c { padding: 5px; }
+#ct .bm_c ,.dmain_v3 .bm_c { padding: 2px; }
 
 #ct {
     width:auto;
