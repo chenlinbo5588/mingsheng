@@ -22,7 +22,7 @@
 							<!--{eval $highlight = article_title_style($value);}-->
 							<!--{eval $article_url = fetch_article_url($value);}-->
 							<li><a href="$article_url" target="_blank">$value[title]</a><span class="news_date">$value[dateline]</span></li>
-							<!--{if ($key != 0 && ($key + 1) % 6 == 0)}--><li class="sepline"></li><!--{/if}-->
+							<!--{if ($key != 0 && ($key + 1) % 6 == 0)}--><li class="sepline">&nbsp;</li><!--{/if}-->
 							<!--{/loop}-->
 						</ul>
 						<div class="page clearfix">{$list['multi']}</div>

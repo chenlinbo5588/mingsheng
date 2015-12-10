@@ -122,9 +122,12 @@ function thread_add_kpi($tids ,$mod){
     foreach($threads as $thread){
         $days = 0;
         $light = '';
-        $score = $_G['cache']['threadkpi']['light_setting']['light_red'];
+        //$score = $_G['cache']['threadkpi']['light_setting']['light_red'];
+        //默认不能直接 -3 分,改未默认不扣分
+        $score = 0;
         $expired = '';
-        $title = '';
+        $expired_score = 1; //表示倒扣1分
+        $remark = '';
         
         if(!$forums[$thread['fid']]['isdepartment']){
             continue;
@@ -140,24 +143,23 @@ function thread_add_kpi($tids ,$mod){
         
         switch($thread['sortid']){
             case $lang['sort_all_code']:
+            	$remark = '新贴';
                 break;
             case $lang['sort_wait_verify_code']:
+            	$remark = $lang['sort_wait_verify'];
+            	break;
             case $lang['sort_wait_accept_code']:
+            	$remark = $lang['sort_wait_accept'];
                 if(isset($tidsMod[$thread['tid']]['MOD'])){
                     $expired = (TIMESTAMP - $temp['MOD_dateline']) > $hour24 ? '24小时未受理' : '';
-                }else{
-                    $expired = (TIMESTAMP - $thread['dateline']) > $hour24 ? '24小时未受理' : '';
                 }
                 
-                $title = $expired;
                 break;
             case $lang['sort_accept_code']:
                 //$days = ceil((TIMESTAMP - $temp['SOR_dateline'] - $sorMinus)/$hour24);
                 $expired = ($temp['SOR_dateline'] - $temp['MOD_dateline'] - $sorMinus) > $hour24 ? '24小时未受理' : '';
-                
-                //默认超时未回复
-                $title = '默认超时未回复';
-                $light = '红灯';
+                $remark = $lang['sort_accept'];
+                $light = '';
                 break;
             case $lang['sort_replied_code']:
                 $days = ceil(($temp['RLP_dateline'] - $temp['SOR_dateline'] - $rlpMinus)/$hour24);
@@ -165,19 +167,20 @@ function thread_add_kpi($tids ,$mod){
                 
                 if($days > 5){
                     $light = '灰灯';
-                    $title = "5天外回复";
+                    $remark = "5天外回复";
                     $score = $_G['cache']['threadkpi']['light_setting']['light_gray'];
                 }else{
                     if($days <= 3){
                         $light = '绿灯';
-                        $title = "3天内回复";
+                        $remark = "3天内回复";
                         $score =  $_G['cache']['threadkpi']['light_setting']['light_green'];
                     }else{
                         $light = '黄灯';
-                        $title = "5天内回复";
+                        $remark = "5天内回复";
                         $score = $_G['cache']['threadkpi']['light_setting']['light_yellow'];;
                     }
                 }
+                
                 break;
             default:
                 break;
@@ -190,10 +193,10 @@ function thread_add_kpi($tids ,$mod){
                 'fid' => $thread['fid'],
                 'sortid' => $thread['sortid'],
                 'day_cnt' => $days,
-                'remark' => $title,
+                'remark' => $remark,
                 'light' => $light,
                 'score' => $score,
-                'sor_expired' => !empty($expired) ? 1 : 0,
+                'sor_expired' => !empty($expired) ? $expired_score : 0,
                 'newthread_by' => $thread['author'],
                 'newthread_dk' => date("Ymd",$thread['dateline']),
                 'newthread' => $thread['dateline']
@@ -204,10 +207,10 @@ function thread_add_kpi($tids ,$mod){
                 'fid' => $thread['fid'],
                 'sortid' => $thread['sortid'],
                 'day_cnt' => $days,
-                'remark' => $title,
+                'remark' => $remark,
                 'light' => $light,
                 'score' => $score,
-                'sor_expired' => !empty($expired) ? 1 : 0,
+                'sor_expired' => !empty($expired) ? $expired_score : 0,
                 'modthread' => $temp['MOD_dateline'],
                 'sorthread' => $temp['SOR_dateline'],
                 'replythread' => $temp['RLP_dateline'],

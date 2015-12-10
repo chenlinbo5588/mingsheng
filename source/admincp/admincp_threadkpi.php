@@ -280,7 +280,7 @@ if($operation == 'set') {
                 $val['score'],
 				$val['light'],
                 $val['remark'],
-				$val['sor_expired'] ? "是" : ' -- ',
+				$val['sor_expired'] ? "是" : '否',
                 $val['grade'],
 				$val['newthread'] ? dgmdate($val['newthread']) : ' -- ',
 				$val['modthread'] ? dgmdate($val['modthread']) : ' -- ',
@@ -411,9 +411,18 @@ if($operation == 'set') {
 			cplang('card_search_perpage'), '<select name="perpage" class="ps" onchange="this.form.submit();" ><option value="20" '.$perpage_selected[20].'>'.cplang('perpage_20').'</option><option value="50" '.$perpage_selected[50].'>'.cplang('perpage_50').'</option><option value="100" '.$perpage_selected[100].'>'.cplang('perpage_100').'</option></select>',
 		)
 	);
-
+	
+	
+	if($_GET['group_light'] == '是'){
+        $light_option .= "<option value='否'>否</option><option value='是' selected>是</option>";
+    }else{
+        $light_option .= "<option value='否' selected>否</option><option value='是'>是</option>";
+    }
+    
+	
 	showtablerow('', array('width="40"', 'width="100"', 'width=50', 'width="260"'),
 		array(
+			'按灯色统计', "<select name='group_light'>{$light_option}</select>",
 			'<input type="submit" name="srchbtn" class="btn" value="'.$lang['search'].'" />',''
 		)
 	);
@@ -422,7 +431,14 @@ if($operation == 'set') {
 
 	showformheader('threadkpi&operation=list&');
 	showtableheader('threadkpi_tj_title');
-	showsubtitle(array('版块','灯色','帖子数量', '得分'));
+	
+	
+	if($_GET['group_light'] == "是"){
+		showsubtitle(array('版块','灯色','帖子数量', '得分','24小时未受理超时扣分'));
+	}else{
+		showsubtitle(array('版块','帖子数量', '得分','24小时未受理超时扣分'));
+	}
+	
 
 
 	//$start_limit = ($page - 1) * $perpage;
@@ -436,18 +452,40 @@ if($operation == 'set') {
 	$count = $sqladd ? C::t('forum_kpilog')->count_by_where($sqladd) : C::t('forum_kpilog')->count();
 	if($count) {
 		//$multipage = multi($count, $perpage, $page, $url, 0, 3);
-		foreach(C::t('forum_kpilog')->fetch_all_group_by_where($sqladd) as $result) {
+		
+		
+		if($_GET['group_light'] == "是"){
+			$groupfield = 'fid ,light';
+		}else{
+			$groupfield = 'fid';
+		}
+		
+		foreach(C::t('forum_kpilog')->fetch_all_group_by_where($sqladd,$groupfield) as $result) {
 			$list[] = $result;
 		}
-
-		foreach($list AS $key => $val) {
-			showtablerow('', array( '', '', '', '', '', '', '', '', '', '', ''), array(
-				"<a href='forum.php?mod=forumdisplay&fid={$val['fid']} target='_blank'>".$_G['cache']['forums'][$val['fid']]['name'].'</a>',
-                $val['light'] ? $val['light'] : '--',
-                $val['NUM'],
-                $val['score']
-			));
+		
+		if($_GET['group_light'] == "是"){
+			foreach($list AS $key => $val) {
+				showtablerow('', array( '', '', '', '', '', '', '', '', '', '', ''), array(
+					"<a href='forum.php?mod=forumdisplay&fid={$val['fid']} target='_blank'>".$_G['cache']['forums'][$val['fid']]['name'].'</a>',
+	                $val['light'] ? $val['light'] : '',
+	                $val['NUM'],
+	                $val['score'],
+	                $val['expired_score']
+				));
+			}
+		}else{
+			foreach($list AS $key => $val) {
+				showtablerow('', array( '', '', '', '', '', '', '', '', '', '', ''), array(
+					"<a href='forum.php?mod=forumdisplay&fid={$val['fid']} target='_blank'>".$_G['cache']['forums'][$val['fid']]['name'].'</a>',
+	                $val['NUM'],
+	                $val['score'],
+	                $val['expired_score']
+				));
+			}
+			
 		}
+		
 		echo '<input type="hidden" name="perpage" value="'.$perpage.'">';
 		showsubmit('threadkpisubmit', 'submit', '', '<a href="'.ADMINSCRIPT.'?action=threadkpi&operation=export_tj&'.implode('&', $export_url).'" title="'.$lang['threadkpi_tj_export_title'].'">'.$lang['threadkpi_tj_export'].'</a>', $multipage, false);
 	}
@@ -524,7 +562,17 @@ if($operation == 'set') {
 	$count = $sqladd ? C::t('forum_kpilog')->count_by_where($sqladd) : C::t('forum_kpilog')->count();
 	if($count) {
 		$count = min(10000, $count);
-		foreach(C::t('forum_kpilog')->fetch_all_group_by_where($sqladd) as $result) {
+		
+		
+		if($_GET['group_light'] == "是"){
+			$groupfield = 'fid ,light';
+			$detail = "版块,灯色,帖子数量,得分,24小时未受理超时扣分\n";
+		}else{
+			$groupfield = 'fid';
+			$detail = "版块,帖子数量,得分,24小时未受理超时扣分\n";
+		}
+		
+		foreach(C::t('forum_kpilog')->fetch_all_group_by_where($sqladd,$groupfield) as $result) {
 			$list[] = $result;
 		}
         
@@ -532,18 +580,29 @@ if($operation == 'set') {
             loadcache('forums');
         }
         
-        $detail = "版块,灯色,帖子数量,得分\n";
         
-		foreach($list as $key => $val) {
-            $d = array(
-                'fid' => $_G['cache']['forums'][$val['fid']]['name'],
-                'light' => $val['light'] ? $val['light'] : '--',
-                'num' => $val['NUM'],
-                'score' => $val['score']
-            );
-            $detail .= implode(",",array_values($d))."\n";
-		}
-
+        if($_GET['group_light'] == "是"){
+        	foreach($list as $key => $val) {
+	            $d = array(
+	                'fid' => $_G['cache']['forums'][$val['fid']]['name'],
+	                'light' => $val['light'] ? $val['light'] : '',
+	                'num' => $val['NUM'],
+	                'score' => $val['score'],
+	                'expired_score' => $val['expired_score']
+	            );
+	            $detail .= implode(",",array_values($d))."\n";
+			}
+        }else{
+        	foreach($list as $key => $val) {
+	            $d = array(
+	                'fid' => $_G['cache']['forums'][$val['fid']]['name'],
+	                'num' => $val['NUM'],
+	                'score' => $val['score'],
+	                'expired_score' => $val['expired_score']
+	            );
+	            $detail .= implode(",",array_values($d))."\n";
+			}
+        }
 	}
     
 	//$detail = implode(',', $title)."\n".$detail;

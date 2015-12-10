@@ -906,7 +906,7 @@ CSS 写作注意事项：
 		*/
 
 /* 文本列表 */
-.xl li { margin: 2px 0; }
+.xl li { margin: 0; }
 	.xl em { float: right; padding-left: 5px; }
 		.xl em, .xl em a { color: {LIGHTTEXT}; }
 	.xl label, .xl label a { color: #C00; }

@@ -45,10 +45,10 @@ class table_forum_kpilog extends discuz_table
 		return DB::fetch_all('SELECT * FROM '.DB::table($this->_table).$where.' ORDER BY fid ASC,tid DESC'.DB::limit($start, $limit));
 	}
     
-    public function fetch_all_group_by_where($where) {
+    public function fetch_all_group_by_where($where,$groupfield = 'fid ,light') {
 		$where = $where ? ' WHERE '.(string)$where : '';
-		return DB::fetch_all('SELECT COUNT(tid) AS NUM, fid ,light , SUM(score) AS score FROM '.DB::table($this->_table).$where.' GROUP BY  fid ,light   ORDER BY fid ASC,NUM DESC');
+		return DB::fetch_all('SELECT COUNT(tid) AS NUM, '.$groupfield.' , SUM(score) AS score, SUM(sor_expired) AS expired_score FROM '.DB::table($this->_table).$where.' GROUP BY '.$groupfield.'  ORDER BY fid ASC,NUM DESC');
 	}
-    
+	
 }
 ?>

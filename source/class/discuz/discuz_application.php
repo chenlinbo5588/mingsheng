@@ -93,7 +93,7 @@ class discuz_application extends discuz_base{
 			$this->var[$key] = '_v3';
 		}
 		
-		if($_GET['cls'] == $key){
+		if(defined('IN_MOBILE') || $_GET['cls'] == $key){
 			dsetcookie($key,'', -1, 1, 1);
 			$this->var[$key] = '';
 		}
