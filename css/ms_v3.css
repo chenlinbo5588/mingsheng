@@ -1863,25 +1863,14 @@ body {
 }
 
 .plist ul li {
-	/*
-    list-style:none;
-    position:relative;
-    padding: 0 0 0 10px;
-    background:url("../images/v3/dian.jpg") no-repeat left center;
-    margin: 15px 0px;
-    */
-    
-    list-style: none;
-	  position: relative;
-	  padding: 0 0 0 10px;
-	  background: url("../images/v3/dian.jpg") no-repeat left center;
-	  /* margin: 15px 0px; */
-	  height: 35px;
-	  line-height: 35px;
+	list-style: none;
+	position: relative;
+	padding: 9px 0 9px 10px;
+	background: url("../images/v3/dian.jpg") no-repeat left center;
 }
 
 .plist ul li.sepline {
-	height:40px;
+	height:30px;
 	background:url("../images/v3/line_bg.jpg") repeat-x left center;
 	display:block;
 	overflow:hidden;

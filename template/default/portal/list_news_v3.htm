@@ -14,7 +14,7 @@
 			        <!--{eval $list = array();}-->
 			        <!--{eval $subcat = $portalcategory[$subcatid];}-->
 			        <!--{eval $wheresql = category_get_wheresql($subcat);}-->
-			        <!--{eval $list = category_get_list($subcat, $wheresql, 1, 10);}-->
+			        <!--{eval $list = category_get_list($subcat, $wheresql, 1, 15);}-->
 					<div class="bktitle">
 		              	<h2 class="lgtext">$subcat[catname]<a class="moreLink" href="portal.php?mod=list&catid={$subcatid}">&nbsp;</a></h2>
 		              	<span></span>
@@ -22,14 +22,11 @@
 					<div class="plist">
 						<ul>
 							<!--{loop $list['list'] $key $value}-->
-							
 							<!--{eval $highlight = article_title_style($value);}-->
 							<!--{eval $article_url = fetch_article_url($value);}-->
 							<li><a href="$article_url" target="_blank">$value[title]</a><span class="news_date">$value[dateline]</span></li>
-							<!--{if ($key != 0 && ($key + 1) % 6 == 0)}--><li class="sepline"></li><!--{/if}-->
 							<!--{/loop}-->
 						</ul>
-						
 					</div>
 					<!--{/if}-->
 					
@@ -38,8 +35,8 @@
 			        <!--{eval $list = array();}-->
 			        <!--{eval $subcat = $portalcategory[$subcatid];}-->
 			        <!--{eval $wheresql = category_get_wheresql($subcat);}-->
-			        <!--{eval $list = category_get_list($subcat, $wheresql, 1, 10);}-->
-					<div class="bktitle">
+			        <!--{eval $list = category_get_list($subcat, $wheresql, 1, 15);}-->
+					<div class="bktitle" style="margin:15px 0 0 0">
 		              	<h2 class="lgtext">$subcat[catname]<a class="moreLink" href="portal.php?mod=list&catid={$subcatid}">&nbsp;</a></h2>
 		              	<span></span>
 		             </div>
@@ -49,7 +46,6 @@
 							<!--{eval $highlight = article_title_style($value);}-->
 							<!--{eval $article_url = fetch_article_url($value);}-->
 							<li><a href="$article_url" target="_blank">$value[title]</a><span class="news_date">$value[dateline]</span></li>
-							<!--{if ($key != 0 && ($key + 1) % 6 == 0)}--><li class="sepline"></li><!--{/if}-->
 							<!--{/loop}-->
 						</ul>
 					</div>
