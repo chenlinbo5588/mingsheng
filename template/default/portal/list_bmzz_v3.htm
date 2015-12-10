@@ -1,0 +1,31 @@
+<!--{if $cat['upid'] == 3}-->
+<!--{template portal/list_v3}-->
+<!--{else}-->
+<!--{template common/v3_newslist_header}-->
+		<div class="dmain dmain_v3">
+			<div class="dmain_content clearfix">
+				<div class="mleft fll">
+					 <div class="bktitle">
+		              	<h2>$cat[catname]</h2>
+		              	<span></span>
+		             </div>
+		             <div class="plist">
+			            <ul class="bmzz">
+			                <!--{loop $catelist $letter $sublist}-->
+			                <li><span class="first-letter">$letter</span>
+			                    <!--{loop $sublist $value}-->
+			                    <!--{eval $article_url = fetch_article_url($value);}-->
+			                    <a href="$article_url" target="_blank">$value[title]</a>
+			                    <!--{/loop}-->
+			                </li>
+			                <!--{/loop}-->
+			            </ul>
+			            <div class="page clearfix">{$list['multi']}</div>
+			        </div>
+				</div>
+				<!--{template common/v3_newslist_side}-->
+			</div>
+		</div>
+		<!-- main end -->
+<!--{template common/footer}-->
+<!--{/if}-->

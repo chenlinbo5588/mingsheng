@@ -1884,6 +1884,18 @@ body {
 	color:#5d5d5d;
 }
 
+.plist .first-letter {
+    background: url(../images/bmzz.jpg) no-repeat 0 0;
+    display: inline-block;
+    width: 48px;
+    height: 51px;
+    text-align: center;
+    line-height: 47px;
+    color: #B40000;
+    font-size: 30px;
+    font-family: Microsoft YaHei,Verdana,sans-serif,SimSun; 
+}
+
 
 .plist ul li a {
     font-size: 14px;
@@ -1898,6 +1910,11 @@ body {
 
 .plist ul li a:hover {
 	color:#c40000;
+}
+
+.plist .bmzz li a {
+	padding-right:5px;
+    display:inline;	
 }
 
 
