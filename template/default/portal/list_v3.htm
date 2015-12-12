@@ -3,7 +3,7 @@
         <div class="dmain_content clearfix">
             <div class="mleft fll">
                 <div class="bktitle">
-                    <h2>$cat[catname]</h2>
+                    <h2 <!--{if dstrlen($cat['catname']) > 4}-->class="lgtext"<!--{/if}-->>$cat[catname]</h2>
                     <span></span>
                  </div>
                 <div class="zwxx">
@@ -36,8 +36,8 @@
             <div class="mright frr">
                 <!--{template common/helpsound}-->
                 <!--{if $cat[others]}-->
-		        <div class="mybox cjwt">
-		            <div class="box_top"></div>
+		        <div class="mybox cjwt" style="margin-top:0;">
+		            <div class="box_top"><span class="corner1">&nbsp;</span></div>
 		            <div class="box_top2"><h3>{lang category_related}</h3></div>
 		            <div class="box_middle">
 		                <div class="mlist">
@@ -48,18 +48,18 @@
 			                </ul>
 		                </div>
 		            </div>
-		            <div class="box_bottom"></div>
+		            <div class="box_bottom"><span class="corner2">&nbsp;</span></div>
 		        </div>
 				<!--{/if}-->
                 <div class="mybox cjwt">
-                    <div class="box_top"></div>
+                    <div class="box_top"><span class="corner1">&nbsp;</span></div>
                     <div class="box_top2"><h3>阿拉帮侬忙</h3></div>
                     <div class="box_middle">
                         <div class="mlist">
                         <!--{block/33}-->
                         </div>
                     </div>
-                    <div class="box_bottom"></div>
+                    <div class="box_bottom"><span class="corner2">&nbsp;</span></div>
                 </div>
                 <div class="clr"></div>
             </div>

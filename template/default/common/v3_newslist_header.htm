@@ -13,11 +13,16 @@
 	    </div>
 	</div>
 
-	
 	<script type="text/javascript">
 		jq(function() {
+			var w = parseInt(jq(window).width());
+            var imgWidth = 1068;
+            if(w <= 1024){
+                imgWidth = 960;
+            }
+			
 			jq('#slides_1').slidesjs({
-		        width: 1067,
+		        width: imgWidth,
 		        height:336,
 		        navigation: false,
 		        play: {

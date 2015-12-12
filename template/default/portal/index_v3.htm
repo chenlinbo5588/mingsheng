@@ -12,6 +12,13 @@
           </div>
         <script type="text/javascript">
             jq(function() {
+            	/*
+            	var w = parseInt(jq(window).width());
+            	var imgWidth = 675;
+            	if(w <= 1024){
+            		imgWidth = 500;
+            	}
+            	*/
                 jq('#home_slides').slidesjs({
                     width: 675,
                     height:327,
@@ -78,10 +85,10 @@
               </div>
               
               <div class="mlist mlisthome hottpoic">
-              	  <div class="fll" style="padding:0 0 0 20px;width:280px;">
+              	  <div class="fll" style="width:280px;">
               	  <!--{block/35}-->
               	  </div>
-              	  <div class="fll" style="padding: 0 0 0 10px;width:38 0px;">
+              	  <div class="fll" style="padding-left:10px;">
               	  <!--{block/36}-->
               	  </div>
                   <div class="clr"></div>
@@ -198,13 +205,13 @@
         		<li class="col2"><a href="/member.php?mod=register">用户注册</a></li>
         	</ul>
         </div>
-    	<div class="mybox_long">
-        	<div class="box_top"></div>
+    	<div class="mybox">
+        	<div class="box_top"><span class="corner1">&nbsp;</span></div>
         	<div class="box_middle homepage" >
                 <h3>帮您传递声音</h3>
         		<!--{template common/helpsound}-->
         	</div>
-        	<div class="box_bottom"></div>
+        	<div class="box_bottom"><span class="corner2">&nbsp;</span></div>
         </div>
         
         <div class="xq">
@@ -212,23 +219,23 @@
         </div>
         
         
-        <div class="mybox mybox_long">
-        	<div class="box_top"></div>
+        <div class="mybox homeside">
+        	<div class="box_top"><span class="corner1">&nbsp;</span></div>
         	<div class="box_top2"><h3>最新回复</h3><a class="moreLink" href="/forum.php?mod=guide&view=new"  target="_blank">更多</a></div>
         	<div class="box_middle" style="padding-bottom:20px;">
-        		<div class="timg"><img src="images/v3/home_kh1.jpg"/></div>
+        		<div class="timg timg1"></div>
         		<!--{block/30}-->
         	</div>
        
         	<div class="box_top2" ><h3>关注排行</h3><a class="moreLink" href="/forum.php?mod=guide&view=new"  target="_blank">更多</a></div>
         	<div class="box_middle gzph" style="padding-bottom:20px;">
-        		<div class="timg"><img src="images/v3/home_kh2.jpg"/></div>
+        		<div class="timg timg2"></div>
         		<!--{block/31}-->
         	</div>
         	
         	<div class="box_top2"><h3>问效数据</h3><a class="moreLink" href="/forum.php"  target="_blank">更多</a></div>
         	<div class="box_middle">
-        		<div class="timg"><img src="images/v3/home_kh3.jpg"/></div>
+        		<div class="timg timg3"></div>
         		<div class="bgtj clearfix">
                     <div class="row1"><span class="forum-num">总发帖：</span><strong>{$allposts}</strong></div>
                     <div class="row1"><span class="forum-num">用户数：</span><strong>15{$allmembers}</strong></div>
@@ -236,7 +243,7 @@
                     <div class="row2"><span class="forum-num">总回复：</span><strong>{$allreplies}</strong></div>
                 </div>
         	</div>
-        	<div class="box_bottom"></div>
+        	<div class="box_bottom"><span class="corner2">&nbsp;</span></div>
         </div>
     </div>
     <div class="clr"></div>
