@@ -91,6 +91,32 @@ body {
     height:auto;
 }
 
+.toplogo {
+	width:211px;
+	height:125px;
+	position:absolute;
+	background:url("../images/v3/site_logo.png") no-repeat left top;
+}
+
+.mainpage .toplogo {
+	left:10px;
+	top:60px;
+}
+
+.subpage .toplogo {
+	left:10px;
+	top:5x;
+}
+
+#bigslider {
+	position:absolute;
+	width:850px;
+	height:213px;
+	top:31px;
+	right:0px;
+}
+
+
 .menu .nav li a {
     display:block;
     float:left;

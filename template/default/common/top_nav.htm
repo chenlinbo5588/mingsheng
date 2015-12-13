@@ -39,7 +39,36 @@
 </head>
 <body id="nv_{$_G[basescript]}" class="pg_{CURMODULE}{if $_G['basescript'] === 'portal' && CURMODULE === 'list' && !empty($cat)} {$cat['bodycss']}{/if}" onkeydown="if(event.keyCode==27) return false;">
 <div id="append_parent"></div><div id="ajaxwaitid"></div>
-<div class="outter_wrap">
+
+
+
+<script>
+jq(function() {
+	
+    jq('#bigslider').slidesjs({
+    	width:850,
+    	height:213,
+    	navigation: {
+    	      active: false,
+    	        // [boolean] Generates next and previous buttons.
+    	        // You can set to false and use your own buttons.
+    	        // User defined buttons must have the following:
+    	        // previous button: class="slidesjs-previous slidesjs-navigation"
+    	        // next button: class="slidesjs-next slidesjs-navigation"
+    	      effect: "fade"
+    	        // [string] Can be either "slide" or "fade".
+    	    }
+    });
+});
+</script>
+
+<div class="outter_wrap" style="position:relative;">
+	<div id="bigslider">
+		<img src="{$_G[siteurl]}images/v3/banner2_850.png"/>
+		<img src="{$_G[siteurl]}images/v3/banner1_850.png"/>
+		<img src="{$_G[siteurl]}images/v3/banner3_850.png"/>
+	</div>
+
     <!-- header start -->
     <div class="header">
         <div class="fll"><a href="/">{$_G['setting']['bbname']}</a>&nbsp;|&nbsp;<a href="http://www.cxnews.cn" target="_blank">慈溪新闻网</a></div>
@@ -59,13 +88,7 @@
         <div class="clr"></div>
     </div>
     <!-- header end -->
-	
-	<style type="text/css">
-	    body {
-	    background:#fff url("../images/v3/top_bg.jpg") no-repeat 50% 0 !important;
-	}
-	</style>
-	<div class="dlogo">	
+	<div class="dlogo mainpage">	
 		<div class="toplogo"></div>
 	</div>
 	<div class="menu mainpage clearfix">
