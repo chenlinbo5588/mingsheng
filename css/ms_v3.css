@@ -42,9 +42,8 @@ button {
 }
 
 body {
-    background:#fff url("../images/v3/top_bg3.jpg") no-repeat 50% 0 !important;
+    background:#fff url("../images/v3/top_bg.jpg") no-repeat 50% 0 !important;
 }
-
 
 .outter_wrap , .header , .w1000 ,.dlogo {
     width: 1120px;
@@ -70,7 +69,7 @@ body {
 }
 
 .dlogo {
-    height:210px;
+    height:212px;
     position:relative;
 }
 
@@ -110,8 +109,8 @@ body {
 
 #bigslider {
 	position:absolute;
-	width:850px;
-	height:213px;
+	width:980px;
+	height:212px;
 	top:31px;
 	right:0px;
 }

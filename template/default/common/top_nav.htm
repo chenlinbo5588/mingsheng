@@ -40,35 +40,53 @@
 <body id="nv_{$_G[basescript]}" class="pg_{CURMODULE}{if $_G['basescript'] === 'portal' && CURMODULE === 'list' && !empty($cat)} {$cat['bodycss']}{/if}" onkeydown="if(event.keyCode==27) return false;">
 <div id="append_parent"></div><div id="ajaxwaitid"></div>
 
-
-
 <script>
 jq(function() {
-	
     jq('#bigslider').slidesjs({
-    	width:850,
-    	height:213,
+    	width:980,
+    	height:212,
     	navigation: {
-    	      active: false,
-    	        // [boolean] Generates next and previous buttons.
-    	        // You can set to false and use your own buttons.
-    	        // User defined buttons must have the following:
-    	        // previous button: class="slidesjs-previous slidesjs-navigation"
-    	        // next button: class="slidesjs-next slidesjs-navigation"
-    	      effect: "fade"
-    	        // [string] Can be either "slide" or "fade".
-    	    }
+    	  active:false,
+          effect: "fade"
+        },
+        pagination: {
+          effect: "fade"
+        },
+    	play: {
+   	      active: false,
+   	        // [boolean] Generate the play and stop buttons.
+   	        // You cannot use your own buttons. Sorry.
+   	      effect: "fade",
+   	        // [string] Can be either "slide" or "fade".
+   	      interval: 3000,
+   	        // [number] Time spent on each slide in milliseconds.
+   	      auto: true,
+   	        // [boolean] Start playing the slideshow on load.
+   	      swap: true,
+   	        // [boolean] show/hide stop and play buttons
+   	      pauseOnHover: true,
+   	        // [boolean] pause a playing slideshow on hover
+   	      restartDelay: 2000
+   	        // [number] restart delay on inactive slideshow
+   	    },
+    	effect: {
+  	      fade: {
+  	        speed: 1000,
+  	          // [number] Speed in milliseconds of the fade animation.
+  	        crossfade: true
+  	          // [boolean] Cross-fade the transition.
+  	      }
+  	    }
     });
 });
 </script>
 
 <div class="outter_wrap" style="position:relative;">
-	<div id="bigslider">
-		<img src="{$_G[siteurl]}images/v3/banner2_850.png"/>
-		<img src="{$_G[siteurl]}images/v3/banner1_850.png"/>
-		<img src="{$_G[siteurl]}images/v3/banner3_850.png"/>
-	</div>
-
+    <div id="bigslider">
+        <img class="png_bg" src="{$_G[siteurl]}images/v3/banner1.png"/>
+        <img class="png_bg" src="{$_G[siteurl]}images/v3/banner2.png"/>
+        <img class="png_bg" src="{$_G[siteurl]}images/v3/banner3.png"/>
+    </div>
     <!-- header start -->
     <div class="header">
         <div class="fll"><a href="/">{$_G['setting']['bbname']}</a>&nbsp;|&nbsp;<a href="http://www.cxnews.cn" target="_blank">慈溪新闻网</a></div>
@@ -89,7 +107,7 @@ jq(function() {
     </div>
     <!-- header end -->
 	<div class="dlogo mainpage">	
-		<div class="toplogo"></div>
+		<div class="toplogo png_bg"></div>
 	</div>
 	<div class="menu mainpage clearfix">
 	    <ul class="nav">
