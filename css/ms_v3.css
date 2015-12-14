@@ -246,6 +246,7 @@ body {
 	margin:5px 0 15px;
 	background-color: #e9e9e9;
 	height:327px;
+	position:relative;
 }
 .portal_row1 .col1 {
 	height:327px;
@@ -2275,6 +2276,7 @@ body {
     border:0px;	
 }
 
+
 .smaller .mlist .xl em {
     display:none;
 }
@@ -2287,33 +2289,27 @@ body {
     padding:0px 0px 0 8px;
 }
 
-
-.smaller .portal_row1 .col1 {
-	1width:550px;
+.smaller #homecol2 {
+	1position:absolute;
+	1right:0px;
+    width:315px;
 }
 
-.smaller .portal_row1 .col2 {
-    width:315px;    
-}
 
 .smaller .secleft {
     width:695px;
 }
 
-.smaller .secright {
+.smaller .secright ,.smaller .mright {
     width:295px; 
-}
-
-.smaller .dmain_content .mright {
-	width:295px;
 }
 
 .smaller .mscons .sublist {
 	width: 330px;
 }
 
-.smaller .mlisthome ul li {
-    width:100%;	
+.smaller .mscons ul li {
+    width:100%;
 }
 
 
