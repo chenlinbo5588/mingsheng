@@ -26,7 +26,6 @@
     <!--{if $_GET['diy'] == 'yes' && check_diy_perm($topic)}-->
     <link rel="stylesheet" type="text/css" id="diy_common" href="data/cache/style_{STYLEID}_css_diy.css?{VERHASH}" />
     <!--{/if}-->
-    
     <!--[if IE 6]>
     <script type="text/javascript" src="{$_G[setting][jspath]}IE6_PNG.js"></script>
     <script type="text/javascript">
@@ -40,7 +39,7 @@
 <body id="nv_{$_G[basescript]}" class="pg_{CURMODULE}{if $_G['basescript'] === 'portal' && CURMODULE === 'list' && !empty($cat)} {$cat['bodycss']}{/if}" onkeydown="if(event.keyCode==27) return false;">
 <div id="append_parent"></div><div id="ajaxwaitid"></div>
 
-<script>
+<script type="text/javascript">
 jq(function() {
     jq('#bigslider').slidesjs({
     	width:980,
@@ -54,27 +53,17 @@ jq(function() {
         },
     	play: {
    	      active: false,
-   	        // [boolean] Generate the play and stop buttons.
-   	        // You cannot use your own buttons. Sorry.
    	      effect: "fade",
-   	        // [string] Can be either "slide" or "fade".
    	      interval: 3000,
-   	        // [number] Time spent on each slide in milliseconds.
    	      auto: true,
-   	        // [boolean] Start playing the slideshow on load.
    	      swap: true,
-   	        // [boolean] show/hide stop and play buttons
    	      pauseOnHover: true,
-   	        // [boolean] pause a playing slideshow on hover
    	      restartDelay: 2000
-   	        // [number] restart delay on inactive slideshow
    	    },
     	effect: {
   	      fade: {
   	        speed: 1000,
-  	          // [number] Speed in milliseconds of the fade animation.
   	        crossfade: true
-  	          // [boolean] Cross-fade the transition.
   	      }
   	    }
     });
@@ -83,9 +72,9 @@ jq(function() {
 
 <div class="outter_wrap" style="position:relative;">
     <div id="bigslider">
-        <img class="png_bg" src="{$_G[siteurl]}images/v3/banner1.png"/>
-        <img class="png_bg" src="{$_G[siteurl]}images/v3/banner2.png"/>
-        <img class="png_bg" src="{$_G[siteurl]}images/v3/banner3.png"/>
+        <div class="mypng" style="display:none;background:url({$_G[siteurl]}images/v3/banner1.png) no-repeat left top;"></div>
+        <div class="mypng" style="display:none;background:url({$_G[siteurl]}images/v3/banner2.png) no-repeat left top;"></div>
+        <div class="mypng" style="display:none;background:url({$_G[siteurl]}images/v3/banner3.png) no-repeat left top;"></div>
     </div>
     <!-- header start -->
     <div class="header">

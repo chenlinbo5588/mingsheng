@@ -20,22 +20,9 @@
 function adjustStyle(width){
     width = parseInt(width);
     if(width > 1024){
-    	//remove small css
-    	//jq("#small_style").remove();
     	jq("body").removeClass("smaller");
     }else{
     	jq("body").addClass("smaller");
-    	/*
-    	if(!jq("#small_style").size()){
-    		jq("<link>").attr({
-    	    	id : "small_style",
-    	    	rel: "stylesheet",
-    	        type: "text/css",
-    	        href: "css/ms_small.css"
-    	    })
-    	    .appendTo("head");
-    	}
-    	*/
     }
 }
  
