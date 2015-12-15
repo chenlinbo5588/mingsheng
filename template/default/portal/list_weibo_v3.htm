@@ -13,7 +13,7 @@
 	                    </div>
 	                    <ul class="weixin_list clearfix">
 	                       <!--{loop $value['article_list'] $article}-->
-	                       <li><a href="<!--{if $article['url']}-->{$article['url']}<!--{else}-->javascript:void(0);<!--{/if}-->" title="{$article['title']}"><img width="100px" height="100px" src="{$_G['setting']['attachurl']}{$article['pic']}"/></a><div>{$article['title']}</div></li>
+	                       <li><a href="<!--{if $article['url']}-->{$article['url']}<!--{else}-->javascript:void(0);<!--{/if}-->" title="{$article['title']}" target="_blank"><img width="100px" height="100px" src="{$_G['setting']['attachurl']}{$article['pic']}"/></a><div>{$article['title']}</div></li>
 	                       <!--{/loop}-->
 	                    </ul>
 					</div>

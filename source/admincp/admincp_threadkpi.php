@@ -434,9 +434,9 @@ if($operation == 'set') {
 	
 	
 	if($_GET['group_light'] == "是"){
-		showsubtitle(array('版块','灯色','帖子数量', '得分','24小时未受理超时扣分'));
+		showsubtitle(array('版块','灯色','帖子数量', '回复得分','24小时未受理超时扣分','总得分'));
 	}else{
-		showsubtitle(array('版块','帖子数量', '得分','24小时未受理超时扣分'));
+		showsubtitle(array('版块','帖子数量', '回复得分','24小时未受理超时扣分','总得分'));
 	}
 	
 
@@ -466,21 +466,23 @@ if($operation == 'set') {
 		
 		if($_GET['group_light'] == "是"){
 			foreach($list AS $key => $val) {
-				showtablerow('', array( '', '', '', '', '', '', '', '', '', '', ''), array(
+				showtablerow('', array( '', '', '', '', 'class="highlight"', '', '', '', '', '', ''), array(
 					"<a href='forum.php?mod=forumdisplay&fid={$val['fid']} target='_blank'>".$_G['cache']['forums'][$val['fid']]['name'].'</a>',
 	                $val['light'] ? $val['light'] : '',
 	                $val['NUM'],
 	                $val['score'],
-	                $val['expired_score']
+	                -$val['expired_score'],
+	                $val['score'] - $val['expired_score']
 				));
 			}
 		}else{
 			foreach($list AS $key => $val) {
-				showtablerow('', array( '', '', '', '', '', '', '', '', '', '', ''), array(
+				showtablerow('', array( '', '', '', 'class="highlight"', '', '', '', '', '', '', ''), array(
 					"<a href='forum.php?mod=forumdisplay&fid={$val['fid']} target='_blank'>".$_G['cache']['forums'][$val['fid']]['name'].'</a>',
 	                $val['NUM'],
 	                $val['score'],
-	                $val['expired_score']
+	                -$val['expired_score'],
+	                $val['score'] - $val['expired_score']
 				));
 			}
 			
@@ -508,7 +510,7 @@ if($operation == 'set') {
             loadcache('forums');
         }
         
-        $detail = "帖子ID,帖子标题,版块,状态,回复天数,得分,灯色,备注,受理超时,满意度,发帖时间,审核时间,受理时间,回复时间\n";
+        $detail = "帖子ID,帖子标题,版块,状态,回复天数,回复得分,灯色,备注,受理超时,满意度,发帖时间,审核时间,受理时间,回复时间\n";
         
         //file_put_contents("list.txt",print_r($list,true));
 		foreach($list as $key => $val) {
@@ -566,10 +568,10 @@ if($operation == 'set') {
 		
 		if($_GET['group_light'] == "是"){
 			$groupfield = 'fid ,light';
-			$detail = "版块,灯色,帖子数量,得分,24小时未受理超时扣分\n";
+			$detail = "版块,灯色,帖子数量,回复得分,24小时未受理超时扣分,总得分\n";
 		}else{
 			$groupfield = 'fid';
-			$detail = "版块,帖子数量,得分,24小时未受理超时扣分\n";
+			$detail = "版块,帖子数量,回复得分,24小时未受理超时扣分,总得分\n";
 		}
 		
 		foreach(C::t('forum_kpilog')->fetch_all_group_by_where($sqladd,$groupfield) as $result) {
@@ -588,7 +590,8 @@ if($operation == 'set') {
 	                'light' => $val['light'] ? $val['light'] : '',
 	                'num' => $val['NUM'],
 	                'score' => $val['score'],
-	                'expired_score' => $val['expired_score']
+	                'expired_score' => $val['expired_score'],
+	                'fscore' => ($val['score'] - $val['expired_score'])
 	            );
 	            $detail .= implode(",",array_values($d))."\n";
 			}
@@ -598,7 +601,8 @@ if($operation == 'set') {
 	                'fid' => $_G['cache']['forums'][$val['fid']]['name'],
 	                'num' => $val['NUM'],
 	                'score' => $val['score'],
-	                'expired_score' => $val['expired_score']
+	                'expired_score' => $val['expired_score'],
+	                'fscore' => ($val['score'] - $val['expired_score'])
 	            );
 	            $detail .= implode(",",array_values($d))."\n";
 			}

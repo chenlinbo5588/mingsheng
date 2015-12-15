@@ -1463,7 +1463,8 @@ body {
 .weixin_list li div {
     text-align:center;
     font-size:14px;
-    color:#666666;	
+    color:#666666;
+    width:96px;
 }
 
 
