@@ -811,9 +811,14 @@ a:hover {text-decoration:underline;}
 #personalbox .msg_send{padding:20px 0px;}
 
 
+#newsbox .weixin {
+    position: relative;
+    top: -4px;	
+}
+
 .weixin .bktitle {
 	background:#31a8c6;
-	padding:5px 0 5px 30px;
+	padding:5px 0 5px 20px;
 }
 
 .weixin .bktitle h2 {
@@ -827,7 +832,7 @@ a:hover {text-decoration:underline;}
 
 .weixin_list li {
     float:left;
-    padding:5px 5px;
+    padding:5px 2px;
 }
 
 .weixin_list li div {

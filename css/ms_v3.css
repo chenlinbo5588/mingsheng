@@ -250,7 +250,7 @@ body {
 }
 .portal_row1 .col1 {
 	height:327px;
-	width: 675px;
+	width:675px;
 	position: relative;
 }
 
@@ -1464,7 +1464,6 @@ body {
     text-align:center;
     font-size:14px;
     color:#666666;
-    width:96px;
 }
 
 
@@ -2305,12 +2304,11 @@ body {
     padding:0px 0px 0 8px;
 }
 
-.smaller #homecol2 {
+.smaller .portal_row1 .col2 {
+	width:315px !important;
 	1position:absolute;
-	1right:0px;
-    width:315px;
+    1right:0px;
 }
-
 
 .smaller .secleft {
     width:695px;

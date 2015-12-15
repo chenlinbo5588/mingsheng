@@ -13,10 +13,11 @@
         <script type="text/javascript">
             jq(function() {
             	/*
+            	var ie=!!window.ActiveXObject;
+            	var ie6=ie&&!window.XMLHttpRequest;
             	var w = parseInt(jq(window).width());
-            	var imgWidth = 675;
-            	if(w <= 1024){
-            		imgWidth = 500;
+            	if(w <= 1024 && ie6){
+            		//jq("#homecol2").css({ width:'315px' });
             	}
             	*/
                 jq('#home_slides').slidesjs({
@@ -43,7 +44,6 @@
 	         <div class="mscon">
 	             <h3><!--{block/7}--></h3>
 	         </div>
-	         
 	         <!-- 新版门户民生快递6条 -->
 	         <div class="mlist">
 	             <!--{block/34}-->
