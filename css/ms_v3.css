@@ -1451,6 +1451,21 @@ body {
 	width: 670px;
 }
 
+.weixin_list {
+    margin:20px 0;	
+}
+
+.weixin_list  li {
+	float:left;
+	padding:15px 5px;
+}
+
+.weixin_list li div {
+    text-align:center;
+    font-size:14px;
+    color:#666666;	
+}
+
 
 .kdxx {
 	1padding:25px 120px;
@@ -1479,7 +1494,7 @@ body {
 }
 
 #context-wrapper img {
-    width:100%;	
+	
 }
 
 #context-wrapper {

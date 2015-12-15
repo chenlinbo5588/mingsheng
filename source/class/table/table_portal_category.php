@@ -28,6 +28,10 @@ class table_portal_category extends discuz_table
 		}
 		return DB::fetch_all("SELECT catid, $numkey FROM %t", array($this->_table), $this->_pk);
 	}
+	
+	public function fetch_all_by_upid($upid){
+		return DB::fetch_all("SELECT * FROM %t WHERE upid = %d", array($this->_table,$upid));
+	}
 
 	public function increase($catids, $data) {
 		$catids = array_map('intval', (array)$catids);

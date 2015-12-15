@@ -1,42 +1,23 @@
 <!--{template common/v3_newslist_header}-->
 		<div class="dmain dmain_v3">
 			<div class="first_news">
-				<div id="slides_1" class="slides slides_1">
-			    	<!--{block/41}-->
-			  	</div>
+				<img src="{$_G[siteurl]}images/v3/weixin_top.jpg" width="100%"/>
 			</div>
 			<div class="dmain_content clearfix">
 				<div class="mleft fll">
-					<div class="bktitle lgtext">
-		              	<h2 style="text-indent:10px;">$cat[catname]</h2>
-		              	<span></span>
-		             </div>
-					<div class="zwxx">
-					<!--{loop $list['list'] $value}-->
-					<!--{eval $highlight = article_title_style($value);}-->
-					<!--{eval $article_url = fetch_article_url($value);}-->
-	                       <dl class="zwxx_item">
-	                           <dt class="xs2 alink"><a href="$article_url" target="_blank" class="xi2" $highlight>$value[title]</a> <!--{if $value[status] == 1}-->({lang moderate_need})<!--{/if}--></dt>
-	                           <dd class="xs2 cl">
-	                               <!--{if $value[pic]}--><div class="atc"><a href="$article_url" target="_blank"><img src="$value[pic]" alt="$value[title]" class="tn" /></a></div><!--{/if}-->
-	                               $value[summary]
-	                           </dd>
-	                           <dd class="ft">
-	                               <!--{if $value[catname] && $cat[subs]}-->{lang category}: <label><a href="{$portalcategory[$value['catid']]['caturl']}" class="xi2">$value[catname]</a></label>&nbsp;&nbsp;<!--{/if}-->
-	                               <span class="xg1"> $value[dateline]</span>
-	                               <!--{if $_G['group']['allowmanagearticle'] || ($_G['group']['allowpostarticle'] && $value['uid'] == $_G['uid'] && (empty($_G['group']['allowpostarticlemod']) || $_G['group']['allowpostarticlemod'] && $value['status'] == 1)) || $categoryperm[$value['catid']]['allowmanage']}-->
-	                               <span class="xg1">
-	                                   <span class="pipe">|</span>
-	                                   <label><a href="portal.php?mod=portalcp&ac=article&op=edit&aid=$value[aid]">{lang edit}</a></label>
-	                                   <span class="pipe">|</span>
-	                                   <label><a href="portal.php?mod=portalcp&ac=article&op=delete&aid=$value[aid]" id="article_delete_$value[aid]" onclick="showWindow(this.id, this.href, 'get', 0);">{lang delete}</a></label>
-	                               </span>
-	                               <!--{/if}-->
-	                           </dd>
-	                       </dl>
-					<!--{/loop}-->
+				    <!--{loop $weixinSubCat $value}-->
+					<div class="weixin">
+						<div class="bktitle">
+	                        <h2 class="lgtxt">{$value[catname]}</h2>
+	                        <span></span>
+	                    </div>
+	                    <ul class="weixin_list clearfix">
+	                       <!--{loop $value['article_list'] $article}-->
+	                       <li><a href="<!--{if $article['url']}-->{$article['url']}<!--{else}-->javascript:void(0);<!--{/if}-->" title="{$article['title']}"><img width="100px" height="100px" src="{$_G['setting']['attachurl']}{$article['pic']}"/></a><div>{$article['title']}</div></li>
+	                       <!--{/loop}-->
+	                    </ul>
 					</div>
-					<div class="page clearfix">{$list['multi']}</div>
+					<!--{/loop}-->
 				</div>
 			<!--{template common/v3_newslist_side}-->
 			</div>

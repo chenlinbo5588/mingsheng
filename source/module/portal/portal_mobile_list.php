@@ -93,11 +93,33 @@ if ($catid == 7) {
     ksort($catelist);
 }
 
+
+$template = 'mobile_list';
+
+// @todo clb weixin list
+if($catid == 8){
+	//获取 下级分类
+	$weixinSubCat = C::t('portal_category')->fetch_all_by_upid($catid);
+	foreach($weixinSubCat as $key => $value){
+		$articleList = $query = C::t('portal_article_title')->fetch_all_for_cat($value['catid']);
+		foreach($articleList as $ak => $article){
+			if(strpos($article['url'],'/gzh?') !== false){
+				$articleList[$ak]['url'] = str_replace('/gzh?','/gzhwap?',$article['url']);
+			}
+		}
+		
+		$weixinSubCat[$key]['article_list'] = $articleList;
+	}
+	
+	$template .=$catid;
+}
+
+
 $list = array();
 $wheresql = category_get_wheresql($cat);
 $list = category_get_list($cat, $wheresql, $page);
 
-include_once template('mobile_list');
+include_once template($template);
 
 function category_get_wheresql($cat) {
 	$wheresql = '';

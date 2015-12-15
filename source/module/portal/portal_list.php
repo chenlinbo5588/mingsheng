@@ -118,6 +118,23 @@ if ($catid == 7) {
     }
     ksort($catelist);
 }
+
+// @todo clb weixin list
+if($catid == 8){
+	//获取 下级分类
+	$weixinSubCat = C::t('portal_category')->fetch_all_by_upid($catid);
+	foreach($weixinSubCat as $key => $value){
+		$articleList = $query = C::t('portal_article_title')->fetch_all_for_cat($value['catid']);
+		foreach($articleList as $ak => $article){
+			if(strpos($article['url'],'/gzhwap?') !== false){
+				$articleList[$ak]['url'] = str_replace('/gzhwap?','/gzh?',$article['url']);
+			}
+		}
+		
+		$weixinSubCat[$key]['article_list'] = $articleList;
+	}
+}
+
 //echo $primaltplname;
 include template('diy:'.$file, NULL, $tpldirectory, NULL, $primaltplname.$_G['debugtpl']);
 

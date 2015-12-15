@@ -44,6 +44,16 @@ if($article_count) {
 }
 
 if($article['url']) {
+	//@todo  公众号
+	if(strpos($article['url'],'/gzhwap?') !== false || strpos($article['url'],'/gzh?') !== false ){
+		if(defined('IN_MOBILE')){
+			$article['url'] = str_replace('/gzh?','/gzhwap?',$article['url']);
+		}else{
+			$article['url'] = str_replace('/gzhwap?','/gzh?',$article['url']);
+		}
+	}
+	
+	
 	if(!isset($_G['makehtml'])) {
 		dheader("location:{$article['url']}");
 	}
