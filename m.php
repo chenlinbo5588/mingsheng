@@ -19,7 +19,7 @@ $discuz->init();
 
 require DISCUZ_ROOT.'./source/function/function_home.php';
 
-if(empty($_GET['mod']) || !in_array($_GET['mod'], array('mobile','mobile_list','mobile_view','mobile_search'))) $_GET['mod'] = 'mobile';
+if(empty($_GET['mod']) || !in_array($_GET['mod'], array('mobile','mobile_list','mobile_view','mobile_search','mobile_psearch'))) $_GET['mod'] = 'mobile';
 
 
 define('CURMODULE', $_GET['mod']);

@@ -406,7 +406,6 @@ body {
 }
 
 .bmlist a  , .zjlist a {
-	padding:3px 5px;
 	font-size: 14px;
 	color: #0d2aa0;
 	white-space:nowrap;
@@ -1458,12 +1457,14 @@ body {
 .weixin_list  li {
 	float:left;
 	padding:15px 5px;
+	height: 130px;
 }
 
 .weixin_list li div {
     text-align:center;
     font-size:14px;
     color:#666666;
+    width:100px;
 }
 
 
@@ -1487,7 +1488,6 @@ body {
 }
 
 #context-wrapper {
-	text-indent:2em;
     border-bottom: 1px solid #e3e2e2;
     margin: 0 0 25px 0;
     padding: 0 0 10px 0;

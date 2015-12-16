@@ -139,10 +139,13 @@ body {background: #FFF; background-image:none; line-height: 130%; font-size: 10p
     </div>
     <div class="srh clearfix">
         <form action="m.php" name="formsearch" method="get" onsubmit="if(keyword.value==''){alert('请输入搜索的关键词');return false;}">
-            <input type="hidden" name="mod" value="mobile_search">
             <input type="hidden" name="mobile" value="yes">
             <input type="hidden" name="formhash" value="{FORMHASH}">
             <input type="hidden" name="searchsubmit" value="1">
+            <select name="mod" style="float:left;width:20%;height:30px">
+                <option value="mobile_search">帖子</option>
+                <option value="mobile_psearch" <!--{if $_GET['mod'] == 'mobile_psearch'}-->selected<!--{/if}-->>文章</option>
+            </select>
             <input type="text" name="srchtxt" autocomplete="off" maxlength="2048"  <!--{if $_GET['kw']}-->value="{$_GET['kw']}"<!--{else}-->value=""<!--{/if}--> placeholder="请输入关键字"/></li>
             <button type="submit">&nbsp;</button>
         </form>

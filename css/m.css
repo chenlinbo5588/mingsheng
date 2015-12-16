@@ -325,7 +325,7 @@ a:hover {text-decoration:underline;}
 }
 #linkbox .srh input {
 	float: left;
-	width: 80%;
+	width: 60%;
 	min-width: 170px;
 	height: 28px;
 	line-height: 28px;
@@ -833,11 +833,13 @@ a:hover {text-decoration:underline;}
 .weixin_list li {
     float:left;
     padding:5px 2px;
+    height: 130px;
 }
 
 .weixin_list li div {
     text-align:center;
     font-size:14px;
-    color:#666666;  
+    color:#666666;
+    width:100px;
 }
 
