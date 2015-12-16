@@ -171,7 +171,10 @@ if($globalStickTids){
 
 $globlStickList = thread_add_icon_by_row($globlStickList,'dbdateline',true);
 $navigation = $view != 'index' ? ' <em>&rsaquo;</em> <a href="forum.php?mod=guide&view='.$view.'">'.$lang['guide_'.$view].'</a>' : '';
-$navigation = str_replace('&rsaquo;','',$navigation);
+
+if($_G['debugtpl'] && !defined('IN_MOBILE')){
+	$navigation = str_replace('&rsaquo;','',$navigation);
+}
 
 //获取用户消息数
 $newpmcount = $announcepm  = 0;

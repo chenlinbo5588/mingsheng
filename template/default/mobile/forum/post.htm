@@ -135,16 +135,47 @@
 	<!--{subtemplate common/seccheck}-->
 	<!--{/if}-->
 </div>
+<script type="text/javascript">
+$(function(){
+	$("body").delegate(".attch_list a","click",function(){
+		 $(this).parent("li").remove();
+		 
+		 if($(".attch_list li").size() == 1){
+			 $("#removeall").hide();
+		 }
+	});
+	
+	$("#removeall").bind("click",function(){
+		$("#attch_list li:gt(0)").remove();
+		$(this).hide();
+	});
+	
+	$("input[name=addFile]").bind('click',function(){
+		if($(".attch_list li").size() > 20){
+			alert("最多20个附件");
+			return ;
+		}
+		
+		$("#removeall").show();
+		$("#attch_list").append('<li><input type="file" name="Filedata' + $(".attch_list li").size() + '"/><a href="javascript:void(0);">移除</a></li>');
+	});
+});
 
+</script>
 <div class="inbox">
-    <input type="submit" id="postsubmit" name="{if $_GET[action] == 'newthread'}topicsubmit{elseif $_GET[action] == 'reply'}replysubmit{elseif $_GET[action] == 'edit'}editsubmit{/if}" value="<!--{if $_GET[action] == 'newthread'}-->{lang post_newthread}<!--{elseif $_GET[action] == 'reply'}-->{lang join_thread}<!--{elseif $_GET[action] == 'edit'}-->{lang edit_save}<!--{/if}-->" />
+    <ul class="attch_list" id="attch_list">
+        <li><input type="file" name="Filedata"/><span id="removeall" style="display:none;">全部移除</span></li>
+    </ul>
+    <input class="slave_btn" type="button" name="addFile" value="添加文件选择" />
+    <input class="mst_btn" type="submit" id="postsubmit" name="{if $_GET[action] == 'newthread'}topicsubmit{elseif $_GET[action] == 'reply'}replysubmit{elseif $_GET[action] == 'edit'}editsubmit{/if}" value="<!--{if $_GET[action] == 'newthread'}-->{lang post_newthread}<!--{elseif $_GET[action] == 'reply'}-->{lang join_thread}<!--{elseif $_GET[action] == 'edit'}-->{lang edit_save}<!--{/if}-->" />
     <!--{if $_GET[action] == 'edit' && $isorigauthor && ($isfirstpost && $thread['replies'] < 1 || !$isfirstpost) && !$rushreply && $_G['setting']['editperdel']}-->
         <label><input type="checkbox" name="delete" id="delete" class="pc" value="1" title="{lang post_delpost}{if $thread[special] == 3}{lang reward_price_back}{/if}"> {lang delete_check}</label>
     <!--{/if}-->
 	<input type="hidden" name="uid" value="$_G[uid]" />
 	<input type="hidden" name="type" value="image" />
 	<input type="hidden" name="hash" value="{echo md5(substr(md5($_G['config']['security']['authkey']), 8).$_G['uid'])}">
-	<input type="file" name="Filedata">
+	
+	
 </div>
 <!--{/if}-->
 </div>

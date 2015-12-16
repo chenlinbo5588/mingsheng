@@ -78,10 +78,15 @@ class extend_thread_image extends extend_thread_base {
 					$_G['group']['attachextensions'] = $forumattachextensions;
 				}
 			}
-			$upload = new forum_upload(1);
-			if($upload) {
-				$_GET['attachnew'][$upload->getaid] = array('description' => '');
+			
+			foreach($_FILES as $fk => $fv){
+				// Filedata
+				$upload = new forum_upload(1,$fk);
+				if($upload) {
+					$_GET['attachnew'][$upload->getaid] = array('description' => '');
+				}
 			}
+			
 		}
 	}
 	public function after_newreply() {

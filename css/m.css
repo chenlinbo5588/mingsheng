@@ -237,18 +237,21 @@ a:hover {text-decoration:underline;}
 }
 
 .showstatus{
-	border: 1px solid #d8d7d8;
-    border-width:1px 0 1px 0;
+	border-top: 1px solid #d8d7d8;
 }
 
 .showstatus label {
     font-size:13px;
+    width:33%;
+    display:block;
+    float:left;
 }
 
 .working_notify {
     color: red;
     font-size: 12px;
     padding: 5px 10px;
+    border-bottom: 1px solid #d8d7d8;
 }
 
 .filter a {
@@ -332,6 +335,7 @@ a:hover {text-decoration:underline;}
 	border: 1px solid #7f9db9;
 	padding: 0px 5px;
 	font-family: "Microsoft YaHei", sans-serif;
+	margin: 0 0 0 2px;
 }
 #linkbox .srh button {
 	float: left;
@@ -477,7 +481,7 @@ a:hover {text-decoration:underline;}
 #topicbox .topic1 .t1_list li .rt h6 a.town{margin-right:5px;font-weight:bold;color:#002459;}
 #topicbox .topic1 .t1_list li .rt h6 a.title{color:#333;}
 #topicbox .topic1 .t1_list li .rt .date{margin-right:10px;text-align:right;font-size:12px;color:#666;}
-#topicbox .topic1 .t1_list li .rt span.status{float:left;font-size:13px;font-size:12px;color:#666;position: relative;top: -10px;}
+#topicbox .topic1 .t1_list li .rt span.status{float:left;font-size:13px;font-size:12px;color:#666;position: relative;top: -5px;}
 #topicbox .topic1 .t1_list li .rt span.status em.green{font-style:normal;color:#009000;}
 #topicbox .topic1 .t1_list li .rt span.status em.red{font-style:normal;color:#F00;}
 #topicbox .topic1 .t1_list li .rt span.reply{float:right;margin-right:10px;_display:inline;font-size:12px;color:#666;}
@@ -498,7 +502,7 @@ a:hover {text-decoration:underline;}
 	border-bottom: 1px solid #057894;
 	padding-left: 10px;
 	padding-bottom: 5px;
-	margin-bottom: 10px;
+	margin: 10px 0;
 }
 #newsbox .n_tab span {
 	float: left;
@@ -621,7 +625,10 @@ a:hover {text-decoration:underline;}
 #selectbox .bypx a:hover,#selectbox .bypx a.navOn{border-radius:2px;background:#057894;color:#FFF;}
 #selectbox .bydm{padding:10px;}
 #selectbox .bydm span{float:left;}
-#selectbox .bydm select{float:left;width:50%;margin-left:5px;_display:inline;}
+#selectbox .bydm select{  /* float: left; */
+  width: 100%;
+  height: 30px;
+}
 
 #top_hd {border-bottom:0;background:url(../images/mobile/top_bg.png) repeat-x;height:40px;}
 #top_hd a {color:#fff;}
@@ -841,5 +848,29 @@ a:hover {text-decoration:underline;}
     font-size:14px;
     color:#666666;
     width:100px;
+}
+
+.attch_list li {
+    padding:2px 0;
+}
+
+.mst_btn , .slave_btn {
+    font-size: 14px;
+    width:100%;
+    text-align:center;
+    border:0;
+    background-color:#db3652;
+    color:#fff;
+    padding: 5px;
+    margin: 2px 0;
+    border-radius:5px;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
+    -o-border-radius:5px;
+}
+
+.slave_btn {
+    background:#d0d0d0;
+    color:black;
 }
 
