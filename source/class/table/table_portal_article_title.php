@@ -21,7 +21,16 @@ class table_portal_article_title extends discuz_table
 		parent::__construct();
 	}
 
-
+	
+	public function update_url($cid, $url) {
+		if(empty($cid)) {
+			return false;
+		}
+		
+		return DB::query('UPDATE %t SET url = %s WHERE aid = %d', array($this->_table, $url,$cid));
+	}
+	
+	
 	public function update_click($cid, $clickid, $incclick) {
 		$clickid = intval($clickid);
 		if($clickid < 1 || $clickid > 8 || empty($cid) || empty($incclick)) {
