@@ -22,12 +22,12 @@ class table_portal_article_title extends discuz_table
 	}
 
 	
-	public function update_url($cid, $url) {
+	public function update_url($cid, $url,$updatetime) {
 		if(empty($cid)) {
 			return false;
 		}
 		
-		return DB::query('UPDATE %t SET url = %s WHERE aid = %d', array($this->_table, $url,$cid));
+		return DB::query('UPDATE %t SET url = %s ,dateline = %d WHERE aid = %d', array($this->_table, $url,$updatetime,$cid));
 	}
 	
 	

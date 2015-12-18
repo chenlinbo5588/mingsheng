@@ -122,31 +122,31 @@ if ($catid == 7) {
 // @todo clb weixin list
 if($catid == 8){
 	//获取 下级分类
+	
 	$weixinSubCat = C::t('portal_category')->fetch_all_by_upid($catid);
 	foreach($weixinSubCat as $key => $value){
 		$articleList = $query = C::t('portal_article_title')->fetch_all_for_cat($value['catid']);
+		
+		// 一次最多刷新3个 多了搜狗出现防止爬取
+		$maxrefresh_once = 3;
+		
 		foreach($articleList as $ak => $article){
-			//print_r($article);
-			//echo TIMESTAMP;
-			/*
-			if((TIMESTAMP - $article['dateline']) >= 43200){
-				$searchKey = urlencode($article['title']);
-				//$html = file_get_contents('sougou.txt');
-				//echo $html;
-				$html = fsocketopen('http://weixin.sogou.com/weixinwap?ie=utf8&type=1&t=1450423376145&query={$searchKey}&pg=webSearchList');
-				
-				//print_r($html);
-				preg_match_all('/<ul\s+class="account_box_lst">.*?href=("\/gzhwap\?.*?")/si',$html,$match);
-				
-				if($match){
-					//http://weixin.sogou.com
-					$article['url'] = 'http://weixin.sogou.com'.str_replace('&amp;','&',trim($match[1][0],'"'));
-					C::t('portal_article_title')->update_url($article['aid'],$article['url']);
+			//echo TIMESTAMP - $article['dateline'];
+			
+			if($_GET['refreshtitle'] == $article['title'] || ((TIMESTAMP - $article['dateline']) >= 7200)){
+				if($maxrefresh_once > 0){
+					$newurl = refresh_weixin_url($article['title']);
+					
+					$maxrefresh_once--;
+					
+					if($newurl){
+						$article['url'] = $newurl;
+						C::t('portal_article_title')->update_url($article['aid'],$article['url'],TIMESTAMP);
+					}
 				}
-				//echo $articleList[$ak]['url'];
-				//print_r($match);
 			}
-			*/
+			
+			
 			if(strpos($article['url'],'/gzhwap?') !== false){
 				$articleList[$ak]['url'] = str_replace('/gzhwap?','/gzh?',$article['url']);
 			}
@@ -158,6 +158,29 @@ if($catid == 8){
 
 //echo $primaltplname;
 include template('diy:'.$file, NULL, $tpldirectory, NULL, $primaltplname.$_G['debugtpl']);
+
+
+
+function refresh_weixin_url($searchKey){
+	//$html = file_get_contents('sougou.txt');
+	//echo $html;
+	$html = dfsockopen("http://weixin.sogou.com/weixinwap?ie=utf8&type=1&t=1450423376145&query={$searchKey}&pg=webSearchList");
+	
+	preg_match_all('/<ul\s+class="account_box_lst">.*?href=("\/gzhwap\?.*?")/si',$html,$match);
+	
+	if($_GET['debug'] == 'true'){
+		var_dump($html);
+		print_r($match);
+	}
+	
+	if(!empty($match[1][0])){
+		return 'http://weixin.sogou.com'.str_replace('&amp;','&',trim($match[1][0],'"'));
+	}
+	
+	return '';
+	
+}
+
 
 
 function category_get_wheresql($cat) {
