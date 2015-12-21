@@ -47,6 +47,16 @@ class table_portal_article_title extends discuz_table
 	public function fetch_count_for_idtype($id, $idtype) {
 		return DB::result_first("SELECT COUNT(*) FROM %t WHERE id=%d AND idtype=%s", array($this->_table, $id, $idtype));
 	}
+	
+	public function fetch_all_for_cat2($catid, $status = null, $orderaid = '', $start = 0, $limit = 0) {
+		if(empty($catid)) {
+			return array();
+		}
+		$statussql = $status !== null ? ' AND '.DB::field('status', $status) : '';
+		$orderaidsql = $orderaid ? ' ORDER BY aid ASC' : '';
+		return DB::fetch_all('SELECT * FROM %t WHERE '.DB::field('catid', $catid).$statussql.$orderaidsql.DB::limit($start, $limit), array($this->_table));
+	}
+	
 	public function fetch_all_for_cat($catid, $status = null, $orderaid = 0, $start = 0, $limit = 0) {
 		if(empty($catid)) {
 			return array();

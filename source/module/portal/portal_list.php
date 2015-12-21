@@ -124,19 +124,23 @@ if($catid == 8){
 	//获取 下级分类
 	
 	$weixinSubCat = C::t('portal_category')->fetch_all_by_upid($catid);
+
+	// 一次最多刷新3个 多了搜狗出现防止爬取
+	$maxrefresh_once = 3;
+
 	foreach($weixinSubCat as $key => $value){
-		$articleList = $query = C::t('portal_article_title')->fetch_all_for_cat($value['catid']);
+		$articleList = $query = C::t('portal_article_title')->fetch_all_for_cat2($value['catid'],null,1);
 		
-		// 一次最多刷新3个 多了搜狗出现防止爬取
-		$maxrefresh_once = 3;
 		
 		foreach($articleList as $ak => $article){
 			//echo TIMESTAMP - $article['dateline'];
 			
-			if($_GET['refreshtitle'] == $article['title'] || ((TIMESTAMP - $article['dateline']) >= 7200)){
+			if($_GET['refreshtitle'] == $article['title'] || ((TIMESTAMP - $article['dateline']) >= 14400)){
 				if($maxrefresh_once > 0){
 					$newurl = refresh_weixin_url($article['title']);
 					
+					sleep(3);
+
 					$maxrefresh_once--;
 					
 					if($newurl){
@@ -172,7 +176,7 @@ function refresh_weixin_url($searchKey){
 		var_dump($html);
 		print_r($match);
 	}
-	
+
 	if(!empty($match[1][0])){
 		return 'http://weixin.sogou.com'.str_replace('&amp;','&',trim($match[1][0],'"'));
 	}
