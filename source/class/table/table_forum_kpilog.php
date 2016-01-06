@@ -35,10 +35,25 @@ class table_forum_kpilog extends discuz_table
 		}
 		return array();
 	}
+	
+	
+	public function update_light_by_tid($tid , $nowts , $data){
+		$thread = $this->fetch_all_by_where("tid = {$tid}" );
+		
+		//print_r($thread);
+        //红灯更新逻辑,超过8小时并且列表被访问到时自动更新, 暂时借用  replythread 这个字段进行更新
+		if(( $nowts - $thread[0]['replythread'] ) >= 28800){
+			$data['replythread'] = $nowts;
+			$this->update_by_tid($tid , $data);
+		}
+		
+	}
+	
     
     public function count_by_where($where) {
 		return ($where = (string)$where) ? DB::result_first('SELECT COUNT(*) FROM '.DB::table($this->_table).' WHERE '.$where) : 0;
 	}
+	
     
     public function fetch_all_by_where($where, $start = 0, $limit = 0) {
 		$where = $where ? ' WHERE '.(string)$where : '';

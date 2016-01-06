@@ -285,7 +285,7 @@ if($operation == 'set') {
 				$val['newthread'] ? dgmdate($val['newthread']) : ' -- ',
 				$val['modthread'] ? dgmdate($val['modthread']) : ' -- ',
 				$val['sorthread'] ? dgmdate($val['sorthread']) : ' -- ',
-				$val['replythread'] ? dgmdate($val['replythread']) : ' -- '
+				$val['replythread'] ? (($val['tid'] == 4) ? dgmdate($val['replythread']) : ' -- ') : ' -- '
 			));
 		}
 		echo '<input type="hidden" name="perpage" value="'.$perpage.'">';
@@ -534,6 +534,10 @@ if($operation == 'set') {
             
             if($val['sortid'] < 3){
                 $d['sor_expired'] = '--';
+            }
+            
+            if($val['sortid'] < 4){
+            	$d['replythread'] = '--';
             }
             
             //$detail .= "{$val['tid']}\t{$val['subject']}\t".$_G['cache']['forums'][$val['fid']];

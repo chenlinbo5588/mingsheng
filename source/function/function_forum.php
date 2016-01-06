@@ -202,6 +202,13 @@ function thread_add_kpi($tids ,$mod){
                 'newthread' => $thread['dateline']
                 ), false, true);
         }else{
+        	//检查是否真的存在那条记录
+        	$justUpdate = true;
+        	$cnt = C::t('forum_kpilog')->count_by_where('tid = '. $thread['tid']);
+        	if(!$cnt){
+        		$justUpdate = false;
+        	}
+        	
             $d = array(
                 'subject' => $thread['subject'],
                 'fid' => $thread['fid'],
@@ -238,7 +245,18 @@ function thread_add_kpi($tids ,$mod){
                 default:
                     break;
             }
-            C::t('forum_kpilog')->update_by_tid($thread['tid'],$d);
+            
+            if($justUpdate){
+            	C::t('forum_kpilog')->update_by_tid($thread['tid'],$d);
+            }else{
+            	$d['tid'] = $thread['tid'];
+            	$d['newthread_by'] = $thread['author'];
+                $d['newthread_dk'] = date("Ymd",$thread['dateline']);
+                $d['newthread'] = $thread['dateline'];
+                
+            	C::t('forum_kpilog')->insert($d,false,true);
+            }
+            
         }
         
     }
@@ -248,6 +266,7 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
     global $lang;
     global $_G;
     loadcache('forums');
+    loadcache('threadkpi');
     //print_r($_G['cache']['forums']);
     if(empty($lang)){
         $lang = lang('forum/template');
@@ -344,8 +363,20 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
                     break;
                 case $lang['sort_accept_code']:
                     if($days > 10){
+                    	$expired = 0 ;
+                    	if(isset($thread['SOR_dateline']) && isset($thread['MOD_dateline'])){
+		                    $expired = ($thread['SOR_dateline'] - $thread['MOD_dateline'] - $sorMinus) > $hour24 ? 1 : 0;
+		                }
+		                
                         $thread['className'] = 'icon-overtime';
                         $thread['statusTitle'] = '超时未回复';
+                        
+		                C::t('forum_kpilog')->update_light_by_tid($thread['tid'] , $ts_now ,array(
+		                	'light' => '红灯',
+		                	'remark' => $thread['statusTitle'],
+		                	'score' => $_G['cache']['threadkpi']['light_setting']['light_red'],
+			                'sor_expired' => $expired));
+		                
                     }else{
                         $thread['statusTitle'] = '已受理';
                     }

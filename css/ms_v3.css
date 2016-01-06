@@ -437,6 +437,10 @@ body {
 	border-width:0px 1px 1px 1px;
 }
 
+.inner_wrap .ct2_a .appl {
+    margin-left:0px;
+}
+
 #ct ,.dmain_v3 {
 	padding:20px 25px;
 }

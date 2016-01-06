@@ -79,8 +79,11 @@ class discuz_application extends discuz_base{
 	 * @todo add by clb
 	 */
 	private function _init_uiversion(){
-		
 		$key = 'debugtpl';
+		
+		$this->var[$key] = '_v3';
+		return;
+		
 		$tpl = getcookie($key);
 		
 		//echo $tpl;
