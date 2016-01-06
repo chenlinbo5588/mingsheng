@@ -146,16 +146,6 @@ $data = thread_add_icon($data,'dbdateline',true);
 $forumlist = forumselect(FALSE, 0, intval($_GET['fid']));
 
 
-if('new' == $_GET['chenlinbo'] ){
-    //print_r($data['all']['threadlist']);
-    
-    // 单条
-    //thread_add_kpi(1445,'newthread');
-    $ar = array('newthread','modthread','sorthread','replythread');
-    foreach($ar as $md){
-        thread_add_kpi(array_keys($data['all']['threadlist']),$md);
-    }
-}
 
 /**
  * 获取全局置顶 

@@ -273,8 +273,8 @@ if($operation == 'set') {
 		foreach($list AS $key => $val) {
 			showtablerow('', array( '', '', '', '', '', '', '', '', '', '', ''), array(
 				$val['tid'],
-				"<a href='forum.php?mod=viewthread&tid={$val['tid']}&extra=' target='_blank'>".cutstr($val['subject'], 30).'</a>',
-				"<a href='forum.php?mod=forumdisplay&fid={$val['fid']} target='_blank'>".$_G['cache']['forums'][$val['fid']]['name'].'</a>',
+				"<a href=\"forum.php?mod=viewthread&tid={$val['tid']}&extra=\" target=\"_blank\">".cutstr($val['subject'], 30).'</a>',
+				"<a href=\"forum.php?mod=forumdisplay&fid={$val['fid']}\" target=\"_blank\">".$_G['cache']['forums'][$val['fid']]['name'].'</a>',
 				$sortAr['k'.$val['sortid']],
 				$val['day_cnt'],
                 $val['score'],
@@ -285,7 +285,7 @@ if($operation == 'set') {
 				$val['newthread'] ? dgmdate($val['newthread']) : ' -- ',
 				$val['modthread'] ? dgmdate($val['modthread']) : ' -- ',
 				$val['sorthread'] ? dgmdate($val['sorthread']) : ' -- ',
-				$val['replythread'] ? (($val['tid'] == 4) ? dgmdate($val['replythread']) : ' -- ') : ' -- '
+				$val['replythread'] ? (($val['sortid'] == 4) ? dgmdate($val['replythread']) : ' -- ') : ' -- '
 			));
 		}
 		echo '<input type="hidden" name="perpage" value="'.$perpage.'">';
@@ -467,7 +467,7 @@ if($operation == 'set') {
 		if($_GET['group_light'] == "是"){
 			foreach($list AS $key => $val) {
 				showtablerow('', array( '', '', '', '', 'class="highlight"', '', '', '', '', '', ''), array(
-					"<a href='forum.php?mod=forumdisplay&fid={$val['fid']} target='_blank'>".$_G['cache']['forums'][$val['fid']]['name'].'</a>',
+					"<a href='forum.php?mod=forumdisplay&fid={$val['fid']}' target='_blank'>".$_G['cache']['forums'][$val['fid']]['name'].'</a>',
 	                $val['light'] ? $val['light'] : '',
 	                $val['NUM'],
 	                $val['score'],
@@ -478,7 +478,7 @@ if($operation == 'set') {
 		}else{
 			foreach($list AS $key => $val) {
 				showtablerow('', array( '', '', '', 'class="highlight"', '', '', '', '', '', '', ''), array(
-					"<a href='forum.php?mod=forumdisplay&fid={$val['fid']} target='_blank'>".$_G['cache']['forums'][$val['fid']]['name'].'</a>',
+					"<a href='forum.php?mod=forumdisplay&fid={$val['fid']}' target='_blank'>".$_G['cache']['forums'][$val['fid']]['name'].'</a>',
 	                $val['NUM'],
 	                $val['score'],
 	                -$val['expired_score'],

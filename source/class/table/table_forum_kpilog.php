@@ -57,7 +57,7 @@ class table_forum_kpilog extends discuz_table
     
     public function fetch_all_by_where($where, $start = 0, $limit = 0) {
 		$where = $where ? ' WHERE '.(string)$where : '';
-		return DB::fetch_all('SELECT * FROM '.DB::table($this->_table).$where.' ORDER BY fid ASC,tid DESC'.DB::limit($start, $limit));
+		return DB::fetch_all('SELECT * FROM '.DB::table($this->_table).$where.' ORDER BY tid DESC'.DB::limit($start, $limit));
 	}
     
     public function fetch_all_group_by_where($where,$groupfield = 'fid ,light') {
