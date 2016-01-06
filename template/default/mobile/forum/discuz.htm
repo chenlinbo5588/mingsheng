@@ -16,7 +16,7 @@
 <!--{/if}-->
 
 <!--{loop $catlist $key $cat}-->
-<div class="fl">
+<div class="fl x2col">
 	<div class="bm">
     	<div class="bm_h">
     	<!--{if $_G[setting][mobile][mobileforumview] == 1}--><a href="forum.php?viewgid={if $cat[fid] != $_GET[viewgid]}{$cat[fid]}{else}0{/if}">$cat[name]</a><!--{else}-->$cat[name]<!--{/if}-->
@@ -35,7 +35,8 @@
 </div>
 <!--{/loop}-->
 <!--{hook/index_middle_mobile}-->
-<div class="box">
+<div class="clr"></div>
+<div class="box clearfix">
 	{lang index_today}$todayposts<span class="pipe">|</span>{lang index_members}$_G['cache']['userstats']['totalmembers']<!--{if empty($gid) && $_G['setting']['whosonlinestatus'] && $onlinenum}--><span class="pipe">|</span>{lang online}$onlinenum<!--{/if}-->
 </div>
 <!--{hook/index_bottom_mobile}-->
