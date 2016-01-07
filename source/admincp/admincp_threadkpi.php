@@ -269,8 +269,10 @@ if($operation == 'set') {
 			$list[] = $result;
 		}
 		
-
+		$checkTids = array();
+		
 		foreach($list AS $key => $val) {
+			$checkTids[] = $val['tid'];
 			showtablerow('', array( '', '', '', '', '', '', '', '', '', '', ''), array(
 				$val['tid'],
 				"<a href=\"forum.php?mod=viewthread&tid={$val['tid']}&extra=\" target=\"_blank\">".cutstr($val['subject'], 30).'</a>',
@@ -290,6 +292,15 @@ if($operation == 'set') {
 		}
 		echo '<input type="hidden" name="perpage" value="'.$perpage.'">';
 		showsubmit('threadkpisubmit', 'submit', '', '<a href="'.ADMINSCRIPT.'?action=threadkpi&operation=export&'.implode('&', $export_url).'" title="'.$lang['threadkpi_list_export_title'].'">'.$lang['threadkpi_list_export'].'</a>', $multipage, false);
+	
+		$existsThread = C::t('forum_thread')->fetch_all_by_tid($checkTids);
+		//print_r($existsThread);
+		$needDelete = array_diff($checkTids,array_keys($existsThread));
+		
+		if($needDelete){
+			C::t('forum_kpilog')->delete_by_tids($needDelete);
+		}
+		
 	}
 
 	showtablefooter();

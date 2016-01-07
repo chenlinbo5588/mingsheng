@@ -1,4 +1,4 @@
-<?php
+ <?php
 
 /**
  *      [Discuz!] (C)2001-2099 Comsenz Inc.
@@ -81,7 +81,12 @@ class discuz_application extends discuz_base{
 	private function _init_uiversion(){
 		$key = 'debugtpl';
 		
-		$this->var[$key] = '_v3';
+		if(defined('IN_MOBILE')){
+			$this->var[$key] = '';
+		}else{
+			$this->var[$key] = '_v3';
+		}
+		
 		return;
 		
 		$tpl = getcookie($key);

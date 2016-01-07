@@ -65,5 +65,9 @@ class table_forum_kpilog extends discuz_table
 		return DB::fetch_all('SELECT COUNT(tid) AS NUM, '.$groupfield.' , SUM(score) AS score, SUM(sor_expired) AS expired_score FROM '.DB::table($this->_table).$where.' GROUP BY '.$groupfield.'  ORDER BY fid ASC,NUM DESC');
 	}
 	
+	public function delete_by_tids($tids,$unbuffered = false, $limit = 0){
+		return DB::delete($this->_table, DB::field('tid', $tids), $limit, $unbuffered);
+	}
+	
 }
 ?>

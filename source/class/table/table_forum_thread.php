@@ -1136,6 +1136,8 @@ class table_forum_thread extends discuz_table
 		if($tids) {
 			$this->clear_cache($tids);
 			C::t('forum_newthread')->delete_by_tids($tids);
+			C::t('forum_kpilog')->delete_by_tids($tids);
+			
 			return DB::delete($this->get_table_name($tableid), DB::field('tid', $tids), $limit, $unbuffered);
 		}
 		return !$unbuffered ? 0 : false;
