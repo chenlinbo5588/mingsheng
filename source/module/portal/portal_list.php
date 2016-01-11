@@ -139,7 +139,7 @@ if($catid == 8){
 				if($maxrefresh_once > 0){
 					$newurl = refresh_weixin_url($article['title']);
 					
-					sleep(3);
+					sleep(2);
 
 					$maxrefresh_once--;
 					
