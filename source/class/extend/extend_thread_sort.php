@@ -82,7 +82,7 @@ class extend_thread_sort extends extend_thread_base {
 			$parameters['sortid'] = isset($this->forum['threadsorts']['types'][$parameters['sortid']]) ? $parameters['sortid'] : 0;
 			$typeexpiration = intval($_GET['typeexpiration']);
 
-			if(!$parameters['typeid'] && $this->forum['threadtypes']['required'] && !$this->thread['special']) {
+			if(!$this->forum['ismoderator'] && !$parameters['typeid'] && $this->forum['threadtypes']['required'] && !$this->thread['special']) {
 				showmessage('post_type_isnull');
 			}
 

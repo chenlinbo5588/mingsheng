@@ -125,8 +125,8 @@ if($catid == 8){
 	
 	$weixinSubCat = C::t('portal_category')->fetch_all_by_upid($catid);
 
-	// 一次最多刷新3个 多了搜狗出现防止爬取
-	$maxrefresh_once = 3;
+	// 一次最多刷新1个 多了搜狗出现防止爬取
+	$maxrefresh_once = 1;
 
 	foreach($weixinSubCat as $key => $value){
 		$articleList = $query = C::t('portal_article_title')->fetch_all_for_cat2($value['catid'],null,1);
@@ -137,10 +137,8 @@ if($catid == 8){
 			
 			if($_GET['refreshtitle'] == $article['title'] || ((TIMESTAMP - $article['dateline']) >= 14400)){
 				if($maxrefresh_once > 0){
+					sleep(1);
 					$newurl = refresh_weixin_url($article['title']);
-					
-					sleep(2);
-
 					$maxrefresh_once--;
 					
 					if($newurl){
