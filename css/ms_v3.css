@@ -553,7 +553,7 @@ body {
 }
 
 .bktitle h2.lgtext {
-    text-indent: 8px;
+    text-indent: 10px;
 }
 
 .bktitle .moreLink {
@@ -1972,6 +1972,12 @@ body {
 	padding-right:5px;
     display:inline;	
 }
+
+.plist .bmzz li {
+	line-height: 35px;
+    height: 35px;
+}
+
 
 
 .zwxx .alink {
