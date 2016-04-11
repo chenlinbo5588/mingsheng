@@ -101,7 +101,7 @@ if($catid == 8){
 	//获取 下级分类
 	$weixinSubCat = C::t('portal_category')->fetch_all_by_upid($catid);
 	foreach($weixinSubCat as $key => $value){
-		$articleList = $query = C::t('portal_article_title')->fetch_all_for_cat($value['catid']);
+		$articleList = C::t('portal_article_title')->fetch_all_for_cat2($value['catid'],null,1);
 		foreach($articleList as $ak => $article){
 			if(strpos($article['url'],'/gzh?') !== false){
 				$articleList[$ak]['url'] = str_replace('/gzh?','/gzhwap?',$article['url']);

@@ -129,7 +129,7 @@ if($catid == 8){
 	$maxrefresh_once = 1;
 
 	foreach($weixinSubCat as $key => $value){
-		$articleList = $query = C::t('portal_article_title')->fetch_all_for_cat2($value['catid'],null,1);
+		$articleList = C::t('portal_article_title')->fetch_all_for_cat2($value['catid'],null,1);
 		
 		
 		foreach($articleList as $ak => $article){

@@ -63,8 +63,39 @@ function thread_holiday($tid , $action , $from_action = 'MOD'){
     foreach($sorlog as $k => $v){
         $timeArray[$v['action']] = $v['dateline'];
     }
+    
+    $startTimeFixed = mktime(0,0,0,date('n',$timeArray[$from_action]),date('d',$timeArray[$from_action]),date('Y',$timeArray[$from_action]));
+    $endTimeFixed = mktime(23,59,59,date('n',$timeArray[$from_action]),date('d',$timeArray[$from_action]),date('Y',$timeArray[$from_action]));
+    
+    
+    
+    $isHoliday = 0;
+    
+    $isHoliday = C::t('common_holiday')->count_by_timestamp($startTimeFixed, $endTimeFixed);
+    $weekDay = date('w', $timeArray[$from_action]);
+    
+    if(!$isHoliday){
+    	//本身就结假日
+    	if($weekDay == 0 || $weekDay == 6){
+    		$isHoliday = 1;
+    	}
+    }
+    
     //file_put_contents("d.txt", print_r($timeArray,true),FILE_APPEND);
-    $holidayCount = C::t('common_holiday')->count_by_timestamp($timeArray[$from_action], $timeArray[$action]);
+    
+    if($isHoliday){
+    	//本身如果是周末或者法定节假日,将匹配开始时间移动至0点
+    	$holidayCount = C::t('common_holiday')->count_by_timestamp($startTimeFixed, $timeArray[$action]);
+    	
+    	if($_GET['chenlinbo'] == 'chenlinbo'){
+	    	echo '$holidayCount='.$holidayCount;
+	    	
+	    }
+    }else{
+    	$holidayCount = C::t('common_holiday')->count_by_timestamp($timeArray[$from_action], $timeArray[$action]);
+    }
+    
+    
     //file_put_contents("d.txt", print_r($holidayCount,true),FILE_APPEND);
     if($holidayCount){
         C::t('forum_thread_holiday')->delete_by_tid_action($tid,$action);
@@ -75,6 +106,8 @@ function thread_holiday($tid , $action , $from_action = 'MOD'){
             'holiday_cnt' => $holidayCount
         ),true);
     }
+    
+    
     $timeArray['holiday_cnt'] = $holidayCount;
     return $timeArray;
 }
@@ -305,6 +338,9 @@ function thread_add_icon_by_row($data,$datelineKey = 'dateline',$addTypeHtml = f
     }
     
     $holidays = C::t('forum_thread_holiday')->fetch_all_by_tid($tids);
+    
+    
+    
     foreach($holidays as $v){
         $tidsHoliday[$v['tid']][$v['action']] = $v['holiday_cnt'] * $hour24;
     }
