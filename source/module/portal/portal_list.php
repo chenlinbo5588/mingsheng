@@ -149,9 +149,9 @@ if($catid == 8){
 			}
 			
 			
-			if(strpos($article['url'],'/gzhwap?') !== false){
-				$articleList[$ak]['url'] = str_replace('/gzhwap?','/gzh?',$article['url']);
-			}
+			//if(strpos($article['url'],'/gzhwap?') !== false){
+				//$articleList[$ak]['url'] = str_replace('/gzhwap?','/gzh?',$article['url']);
+			//}
 		}
 		
 		$weixinSubCat[$key]['article_list'] = $articleList;
@@ -166,9 +166,9 @@ include template('diy:'.$file, NULL, $tpldirectory, NULL, $primaltplname.$_G['de
 function refresh_weixin_url($searchKey){
 	//$html = file_get_contents('sougou.txt');
 	//echo $html;
-	$html = dfsockopen("http://weixin.sogou.com/weixinwap?ie=utf8&type=1&t=1450423376145&query={$searchKey}&pg=webSearchList");
+	$html = dfsockopen("http://weixin.sogou.com/weixinwap?query={$searchKey}&type=1&ie=utf8&_sug_=y&_sug_type_=");
 	
-	preg_match_all('/<ul\s+class="account_box_lst">.*?href=("\/gzhwap\?.*?")/si',$html,$match);
+	preg_match_all('/<ul\s+class="account_box_lst">.*?href=\"?(.*?)\"?\s+/si',$html,$match);
 	
 	if($_GET['debug'] == 'true'){
 		var_dump($html);
@@ -176,7 +176,7 @@ function refresh_weixin_url($searchKey){
 	}
 
 	if(!empty($match[1][0])){
-		return 'http://weixin.sogou.com'.str_replace('&amp;','&',trim($match[1][0],'"'));
+		return $match[1][0];
 	}
 	
 	return '';
