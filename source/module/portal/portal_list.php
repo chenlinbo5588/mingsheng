@@ -168,7 +168,7 @@ function refresh_weixin_url($searchKey){
 	//echo $html;
 	$html = dfsockopen("http://weixin.sogou.com/weixinwap?query={$searchKey}&type=1&ie=utf8&_sug_=y&_sug_type_=");
 	
-	preg_match_all('/<ul\s+class="account_box_lst">.*?href=\"?(.*?)\"?\s+/si',$html,$match);
+	preg_match_all('/<div\s+class="results.*?">.*?href=\"?(.*?)\"?\s+/si',$html,$match);
 	
 	if($_GET['debug'] == 'true'){
 		var_dump($html);

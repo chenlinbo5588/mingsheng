@@ -585,7 +585,7 @@ body {
 	font-size: 14px;
     padding-left: 10px;
     overflow:hidden;
-
+    text-overflow: ellipsis;
 }
 
 .hottpoic ul li {
@@ -1301,6 +1301,7 @@ body {
 	height: 30px;
     line-height: 30px;
     white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 .homeside .gzph li {
@@ -1626,8 +1627,9 @@ body {
     padding:15px;
     margin:0 0 10px 0;
     text-indent:5em;
-    font-size:14px;
-    
+    height: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .dmain_v3 .video_article {
