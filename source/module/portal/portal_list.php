@@ -166,8 +166,8 @@ include template('diy:'.$file, NULL, $tpldirectory, NULL, $primaltplname.$_G['de
 function refresh_weixin_url($searchKey){
 	//$html = file_get_contents('sougou.txt');
 	//echo $html;
-	$html = dfsockopen("http://weixin.sogou.com/weixinwap?query={$searchKey}&type=1&ie=utf8&_sug_=y&_sug_type_=");
 	
+	$html = dfsockopen("http://weixin.sogou.com/weixin?type=1&query={$searchKey}&ie=utf8&_sug_=y&_sug_type_=");
 	preg_match_all('/<div\s+class="results.*?">.*?href=\"?(.*?)\"?\s+/si',$html,$match);
 	
 	if($_GET['debug'] == 'true'){
