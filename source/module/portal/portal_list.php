@@ -131,10 +131,16 @@ if($catid == 8){
 	foreach($weixinSubCat as $key => $value){
 		$articleList = C::t('portal_article_title')->fetch_all_for_cat2($value['catid'],null,1);
 		
-		
 		foreach($articleList as $ak => $article){
-			//echo TIMESTAMP - $article['dateline'];
+			/*
+			if($_GET['debug']){
+				C::t('portal_article_title')->update_url($article['aid'],'http://weixin.sogou.com/weixin?type=1&ie=utf8&_sug_=n&_sug_type_=',TIMESTAMP);
+				print_r($articleList);
+			}
+			*/
 			
+			//echo TIMESTAMP - $article['dateline'];
+			/*
 			if($_GET['refreshtitle'] == $article['title'] || ((TIMESTAMP - $article['dateline']) >= 14400)){
 				if($maxrefresh_once > 0){
 					sleep(1);
@@ -147,11 +153,15 @@ if($catid == 8){
 					}
 				}
 			}
+			*/
 			
+			$article['url'] = $article['url'].'&query='.urlencode($article['title']);
 			
-			//if(strpos($article['url'],'/gzhwap?') !== false){
-				//$articleList[$ak]['url'] = str_replace('/gzhwap?','/gzh?',$article['url']);
-			//}
+			if(strpos($article['url'],'/weixinwap?') !== false){
+				$articleList[$ak]['url'] = str_replace('/weixinwap?','/weixin?',$article['url']);
+			}else{
+				$articleList[$ak]['url'] = $article['url'];
+			}
 		}
 		
 		$weixinSubCat[$key]['article_list'] = $articleList;

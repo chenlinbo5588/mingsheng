@@ -103,13 +103,18 @@ if($catid == 8){
 	foreach($weixinSubCat as $key => $value){
 		$articleList = C::t('portal_article_title')->fetch_all_for_cat2($value['catid'],null,1);
 		
-		/*
+		
 		foreach($articleList as $ak => $article){
-			if(strpos($article['url'],'/gzh?') !== false){
-				$articleList[$ak]['url'] = str_replace('/gzh?','/gzhwap?',$article['url']);
+			
+			$article['url'] = $article['url'].'&query='.urlencode($article['title']);
+			
+			if(strpos($article['url'],'/weixin?') !== false){
+				$articleList[$ak]['url'] = str_replace('/weixin?','/weixinwap?',$article['url']);
+			}else{
+				$articleList[$ak]['url'] = $article['url'];
 			}
 		}
-		*/
+		
 		
 		$weixinSubCat[$key]['article_list'] = $articleList;
 	}
