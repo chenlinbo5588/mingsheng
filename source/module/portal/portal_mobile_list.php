@@ -106,7 +106,7 @@ if($catid == 8){
 		
 		foreach($articleList as $ak => $article){
 			
-			$article['url'] = $article['url'].'&query='.urlencode($article['title']);
+			$article['url'] = $article['url'].'&query='.urlencode($article['author']);
 			
 			if(strpos($article['url'],'/weixin?') !== false){
 				$articleList[$ak]['url'] = str_replace('/weixin?','/weixinwap?',$article['url']);

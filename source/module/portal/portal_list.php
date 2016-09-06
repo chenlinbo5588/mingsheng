@@ -155,7 +155,7 @@ if($catid == 8){
 			}
 			*/
 			
-			$article['url'] = $article['url'].'&query='.urlencode($article['title']);
+			$article['url'] = $article['url'].'&query='.urlencode($article['author']);
 			
 			if(strpos($article['url'],'/weixinwap?') !== false){
 				$articleList[$ak]['url'] = str_replace('/weixinwap?','/weixin?',$article['url']);
