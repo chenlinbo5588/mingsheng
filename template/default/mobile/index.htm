@@ -1,19 +1,43 @@
 <!--{template common/header}-->
     <!--{template common/header_nav}-->
-
+    <link type="text/css" rel="stylesheet" href="css/swiper.min.css?{VERHASH}" />
+    <style>
+    #slidebox .slidesjs-navigation {
+		display:none;
+	}
+	
+	#slidebox .slidesjs-pagination {
+		display:none;
+	}
+    
+    </style>
     <div id="slidebox">
-        
         <script src="{STATICURL}js/mobile/TouchSlide.1.1.js"></script>
-        <div class="bar" id="slideBar">
-            <!--{block/28}-->
+        <script type="text/javascript" src="{$_G[setting][jspath]}v3/jquery.slides.min.js?{VERHASH}"></script>
+        <div class="bar" id="slideBar" style="height:auto;">
+            <!--{block/46}-->
         </div>
         <script type="text/javascript">
-            TouchSlide({slideCell:"#slideBar",effect:"leftLoop",titCell:".pager",mainCell:".container",autoPlay:true,autoPage:true,switchLoad:"data-src"});
+            //TouchSlide({slideCell:"#slideBar",effect:"leftLoop",titCell:".pager",mainCell:".container",autoPlay:true,autoPage:true,switchLoad:"data-src"});
             TouchSlide({slideCell:"#topicbox",effect:"leftLoop",titCell:".slideTab span",mainCell:".slideTopic"});
         </script>
     </div>
     <script>
+    	$('#slideBar').slidesjs({
+	        navigation: true,
+	        play: {
+	            active: true,
+	            auto: true,
+	            interval: 4000,
+	            swap: false,
+	            pauseOnHover: true,
+	            restartDelay: 2500
+	        }
+	    });
+    	
         $(function(){
+        	
+        	
             $('.notice .nt_name span').each(function(index){
                 $(this).click(function(){
                     $('.notice .nt_name span').removeClass('show');
