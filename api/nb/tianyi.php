@@ -241,7 +241,7 @@ class api_ty {
 			'special' => $this->param['special'],
 			'attachment' => 0,
 			'moderated' => $this->param['moderated'],
-			'status' => $this->param['tstatus'],
+			'status' => $this->param['tstatus'] == 34 ?  32 : $this->param['tstatus'],
 			'isgroup' => $this->param['isgroup'],
 			'replycredit' => $this->param['replycredit'],
 			'closed' => $this->param['closed'] ? 1 : 0
